@@ -239,8 +239,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'Recommonmark.tex', u'Recommonmark Documentation',
-   u'Lu Zero, Eric Holscher, and contributors', 'manual'),
+  (master_doc, 'Recommonmark.tex', u'ChainMaker-docs',
+   u'chainmaker.org@烛夜'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -269,7 +269,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'recommonmark', u'Recommonmark Documentation',
+    (master_doc, 'recommonmark', u'ChainMaker-docs',
      [author], 1)
 ]
 
@@ -283,8 +283,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'Recommonmark', u'Recommonmark Documentation',
-   author, 'Recommonmark', 'One line description of project.',
+  (master_doc, 'Recommonmark', u'ChainMaker-docs',
+   author, 'chainmaker.org@烛夜', 'One line description of project.',
    'Miscellaneous'),
 ]
 
