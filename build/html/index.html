@@ -1,0 +1,514 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>chainmaker文档 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. 长安链底层技术平台简介" href="intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> chainmaker-docs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tech/P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tech/RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>chainmaker文档</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="topics-index"></span><div class="section" id="chainmaker">
+<h1>chainmaker文档<a class="headerlink" href="#chainmaker" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">长安链介绍:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html#id2">1.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html#id3">1.2. 官网地址</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html#id4">1.3. 公众号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html#id5">1.4. 联系我们</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="intro/%E8%83%8C%E6%99%AF.html">2. 背景</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro/%E8%83%8C%E6%99%AF.html#id2">2.1. 长安链生态愿景</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/%E8%83%8C%E6%99%AF.html#id3">2.2. 关键技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/%E8%83%8C%E6%99%AF.html#id4">2.3. 技术优势</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html#id2">3.1. 通用概念：</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html#id2">5.1. 版本及特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html#chainmaker-docker">5.2. chainmaker docker 镜像地址</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id3">2.1. 硬件依赖</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id4">2.2. 软件依赖</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id6">3.1. 使用脚本搭建</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id13">3.2. 使用Docker搭建</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#cmc">4.1. cmc命令行工具验证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#go-sdk">4.2. go sdk验证</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id22">5.1. 下载安装goland</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#go">5.2. 下载安装go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id25">5.3. 下载源码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id26">5.4. 启动goland</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id31">6.1. 视频教程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id32">6.2. 编译时错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id33">6.3. 启动时错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id34">6.4. 运行时错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id36">6.5. 其他关键信息</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html#id2">1.1. 逻辑架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html#id3">1.2. 层级架构</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html#id2">3.1. 核心数据模型</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html#id2">4.1. 字节码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html#sdk">4.2. 智能合约SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html#id3">4.3. 智能合约生命周期管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html#id9">4.4. 智能合约事件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html#id2">5.1. 共识算法简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html#id6">5.2. 长安链中的共识</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tech/P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tech/P2P%E7%BD%91%E7%BB%9C.html#id1">6.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/P2P%E7%BD%91%E7%BB%9C.html#id2">6.2. 组网方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/P2P%E7%BD%91%E7%BB%9C.html#id4">6.3. 节点身份验证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/P2P%E7%BD%91%E7%BB%9C.html#id5">6.4. 参数配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/P2P%E7%BD%91%E7%BB%9C.html#id6">6.5. 与其他模块交互</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/P2P%E7%BD%91%E7%BB%9C.html#id7">6.6. 接口说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/P2P%E7%BD%91%E7%BB%9C.html#id8">6.7. 节点地址格式说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/P2P%E7%BD%91%E7%BB%9C.html#id9">6.8. 网络消息数据格式说明（加密前）</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tech/RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tech/RPC%E6%9C%8D%E5%8A%A1.html#id1">7.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/RPC%E6%9C%8D%E5%8A%A1.html#id2">7.2. 配置说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/RPC%E6%9C%8D%E5%8A%A1.html#id3">7.3. 接口定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/RPC%E6%9C%8D%E5%8A%A1.html#id4">7.4. 关键逻辑</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html#id2">8.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html#id3">8.2. 存储模块运行逻辑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html#id4">8.3. 区块提交流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html#id5">8.4. 账本恢复流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html#id6">8.5. 存储接口说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html#id7">8.6. 数据库</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html#id2">9.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html#id3">9.2. 用户标识</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html#id6">9.3. 权限管理</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html#id2">10.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html#id3">10.2. 丰富的隐私保护、认证鉴权能力</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html#id2">11.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html#id3">11.2. 交易种类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html#id4">11.3. 模块设计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html#single">11.4. single 交易池实现</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html#batch">11.5. batch交易池实现</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html#id5">11.6. 模块间交互</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html#id6">11.7. 参数配置</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html#id2">12.1. 并行调度算法分类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html#id3">12.2. 长安链并行调度算法</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html#c">1.1. 使用C++进行智能合约开发</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html#go-tinygo">1.2. 使用Go(TinyGo)进行智能合约开发</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html#rust">1.3. 使用Rust进行智能合约开发</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html#solidity">1.4. 使用Solidity进行智能合约开发</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev/SDK.html">2. SDK</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev/SDK.html#id1">2.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/SDK.html#id2">2.2. 约定概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/SDK.html#id3">2.3. 开发指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html#id2">3.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html#cmc">3.2. cmc编译</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html#id3">3.3. cmc功能</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html#id2">4.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html#id3">4.2. 证书配置模板</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html#id4">4.3. 使用方法</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html#id2">1.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html#id3">1.2. 操作步骤</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html#id2">2.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html#id3">2.2. 环境依赖</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html#id4">2.3. 操作步骤</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html#id15">2.4. 监控效果展示</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html#id2">3.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html#id3">3.2. 操作步骤</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html#id2">4.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html#id3">4.2. 配置更改的方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html#id4">4.3. 使用命令行工具修改链配置</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html#id1">5.1. 接口、工具介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html#id6">5.2. 用例</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html#id2">6.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html#v1-0-0-v1-1-0">6.2. v1.0.0版本 -&gt; v1.1.0版本 升级指南</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html#id2">1.1. 问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html#id3">1.2. 解决方案</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html#id2">2.1. 长安链推动碳交易产业发展</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html#id3">2.2. 背景</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html#id4">2.3. 应用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html#id2">3.1. 问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html#id3">3.2. 解决方案</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html" class="btn btn-neutral float-right" title="1. 长安链底层技术平台简介" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

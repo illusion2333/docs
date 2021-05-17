@@ -1,0 +1,507 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>8. 数据存储 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9. 身份权限管理" href="%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" />
+    <link rel="prev" title="7. RPC服务" href="RPC%E6%9C%8D%E5%8A%A1.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. 数据存储</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">8.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">8.2. 存储模块运行逻辑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">8.3. 区块提交流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">8.4. 账本恢复流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">8.5. 存储接口说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">8.6. 数据库</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">8.6.1. 概述</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">8.6.1.1. 支持的数据库类型</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">8.6.2. 配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">8.6.3. 安装说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rocksdb">8.6.3.1. RocksDB安装部署</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mysql">8.6.3.2. MySQL数据库表</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">8. </span>数据存储</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tech/数据存储.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">8. </span>数据存储<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">8.1. </span>概述<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>存储模块负责持久化存储链上的区块、交易、状态、历史读写集等账本数据，并对外提供上述数据的查询功能。区块链以区块为单位进行批量的数据提交，一次区块提交会涉及到多项账本数据的提交，比如：交易提交，状态数据修改等，所以存储模块需要维护账本数据的原子性。长安链支持常用的数据库来存储账本数据，如LevelDB、RocksDB、MySQL等数据库，业务可选择其中任意一种数据库来部署区块链。</p>
+<p>账本数据主要分为3类：</p>
+<ol class="simple">
+<li><p>区块数据，记录区块元信息和交易数据：</p>
+<ul class="simple">
+<li><p>区块元数据包括：区块头、区块DAG、区块中交易的txid列表，additionalData等；</p></li>
+<li><p>交易数据，既序列化后的交易体，为了提供对单笔交易数据的查询，所以对交易数据进行了单独存储。</p></li>
+</ul>
+</li>
+<li><p>状态数据，记录智能合约中读写的链上状态数据，既世界状态。</p></li>
+<li><p>历史读写集数据，长安链对每笔交易在执行过程中的所读写的状态数据集进行了单独保存，可用于后续追溯交易、状态数据的变迁过程。</p></li>
+</ol>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">8.2. </span>存储模块运行逻辑<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>针对上述3类账本数据，长安链分别实现了3个DB类，分别是：Block DB、State DB、History DB。采用多个数据库之后，就需要维护数据库之间的数据一致性，避免仅有部分数据库提交后，发生程序中断而导致不同数据库间的数据不一致，因此，长安链引入了Block binary log组件来持久化存储区块的原始内容，用于重启过程中的数据恢复，类似于数据库中的预写式日志(wal)的功能。</p>
+<img src="../images/数据存储-存储模块结构图.png" style="zoom:50%;" /></div>
+<div class="section" id="id4">
+<h2><span class="section-number">8.3. </span>区块提交流程<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>首先将序列化后的区块、读写集数据、以及最新的区块高度写入Block binary log，用于异常中断后的数据恢复。为了提高性能，加入一层cache，新区块提交请求在更新完Block binary log之后，再将区块数据写入cache，在更新完log和cache后，提交即可返回，由后台线程异步更新Block DB、State DB和History DB。</p></li>
+<li><p>在Block DB中记录区块元信息与交易信息，其中交易信息以TxID作为key存储，区块信息以BlockHeight作为key存储，区块元信息中只记录交易ID列表，同时索引BlockHash到BlockHeight的映射关系。Block DB中额外记录了当前最新的区块高度（LastBlockHeight）作为checkpoint，用以重启后的数据恢复。</p></li>
+<li><p>在State DB中保存state数据，key为合约名与对象主键的组合：&lt;contractName, ObjectKey&gt;，同时记录最新的区块高度（LastBlockHeight）作为checkpoint。</p></li>
+<li><p>在History DB中记录交易的读写集，读写集以TxID作为key，同时记录最新的区块高度（LastBlockHeight）作为checkpoint。</p></li>
+</ol>
+</div>
+<div class="section" id="id5">
+<h2><span class="section-number">8.4. </span>账本恢复流程<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>如果区块正在提交过程中，节点因异常退出，节点在下次启动时存储模块会进入恢复流程：</p>
+<ol class="simple">
+<li><p>分别从Block binary log、Block DB、State DB、History DB中获取最新的区块高度，以Block binary log中的区块高度作为基准高度，判断其他DB是否落后基准高度。</p></li>
+<li><p>如果有某个DB落后基准高度，则从Block bianry log中获取缺失的区块及读写集，依次提交到落后DB中。</p></li>
+<li><p>所有DB同步到基准高度后，存储模块启动完成，节点进入正常流程。</p></li>
+</ol>
+</div>
+<div class="section" id="id6">
+<h2><span class="section-number">8.5. </span>存储接口说明<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// BlockchainStore provides handle to store instances</span>
+<span class="kd">type</span> <span class="nx">BlockchainStore</span> <span class="kd">interface</span> <span class="p">{</span>
+
+	<span class="c1">// PutBlock commits the block and the corresponding rwsets in an atomic operation</span>
+	<span class="nx">PutBlock</span><span class="p">(</span><span class="nx">block</span> <span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">Block</span><span class="p">,</span> <span class="nx">txRWSets</span> <span class="p">[]</span><span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">TxRWSet</span><span class="p">)</span> <span class="kt">error</span>
+
+	<span class="c1">// GetBlockByHash returns a block given it&#39;s hash, or returns nil if none exists.</span>
+	<span class="nx">GetBlockByHash</span><span class="p">(</span><span class="nx">blockHash</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">Block</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// BlockExists returns true if the black hash exist, or returns false if none exists.</span>
+	<span class="nx">BlockExists</span><span class="p">(</span><span class="nx">blockHash</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="kt">bool</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// GetBlock returns a block given it&#39;s block height, or returns nil if none exists.</span>
+	<span class="nx">GetBlock</span><span class="p">(</span><span class="nx">height</span> <span class="kt">int64</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">Block</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// GetLastConfigBlock returns the last config block.</span>
+	<span class="nx">GetLastConfigBlock</span><span class="p">()</span> <span class="p">(</span><span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">Block</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// GetBlockByTx returns a block which contains a tx.</span>
+	<span class="nx">GetBlockByTx</span><span class="p">(</span><span class="nx">txId</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">Block</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// GetBlockWithRWSets returns a block and the corresponding rwsets given</span>
+	<span class="c1">// it&#39;s block height, or returns nil if none exists.</span>
+	<span class="nx">GetBlockWithRWSets</span><span class="p">(</span><span class="nx">height</span> <span class="kt">int64</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">BlockWithRWSet</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// GetTx retrieves a transaction by txid, or returns nil if none exists.</span>
+	<span class="nx">GetTx</span><span class="p">(</span><span class="nx">txId</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">Transaction</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// TxExists returns true if the tx exist, or returns false if none exists.</span>
+	<span class="nx">TxExists</span><span class="p">(</span><span class="nx">txId</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">bool</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// GetTxConfirmedTime returns the confirmed time for given tx</span>
+	<span class="nx">GetTxConfirmedTime</span><span class="p">(</span><span class="nx">txId</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">int64</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// GetLastBlock returns the last block.</span>
+	<span class="nx">GetLastBlock</span><span class="p">()</span> <span class="p">(</span><span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">Block</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// ReadObject returns the state value for given contract name and key, or returns nil if  none exists.</span>
+	<span class="nx">ReadObject</span><span class="p">(</span><span class="nx">contractName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">key</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// SelectObject returns an iterator that contains all the key-values between given key ranges.</span>
+	<span class="c1">// startKey is included in the results and limit is excluded.</span>
+	<span class="nx">SelectObject</span><span class="p">(</span><span class="nx">contractName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">startKey</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">limit</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="nx">Iterator</span>
+
+	<span class="c1">// GetTxRWSet returns an txRWSet for given txId, or returns nil if none exists.</span>
+	<span class="nx">GetTxRWSet</span><span class="p">(</span><span class="nx">txId</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">TxRWSet</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// GetTxRWSetsByHeight returns all the rwsets corresponding to the block,</span>
+	<span class="c1">// or returns nil if zhe block does not exist</span>
+	<span class="nx">GetTxRWSetsByHeight</span><span class="p">(</span><span class="nx">height</span> <span class="kt">int64</span><span class="p">)</span> <span class="p">([]</span><span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">TxRWSet</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// GetDBHandle returns the database handle for given dbName</span>
+	<span class="nx">GetDBHandle</span><span class="p">(</span><span class="nx">dbName</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">DBHandle</span>
+
+	<span class="c1">// Close closes all the store db instances and releases any resources held by BlockchainStore</span>
+	<span class="nx">Close</span><span class="p">()</span> <span class="kt">error</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2><span class="section-number">8.6. </span>数据库<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id8">
+<h3><span class="section-number">8.6.1. </span>概述<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>存储模块中的Block DB、State DB、History DB等都是封装后的DB对象，其具体实现要基于特定的数据库引擎，比如LevelDB、RocksDB、MySQL等数据库引擎。为了实现可插拔的数据库引擎，长安链在数据库引擎之上封装了一层接口，并将LevelDB、RocksDB、MySQL等数据库封装成DB provider。用户可以根据业务需求选择合适的数据库引擎作为长安链的底层存储组件。</p>
+<div class="section" id="id9">
+<h4><span class="section-number">8.6.1.1. </span>支持的数据库类型<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<p>长安链目前支持3种数据库引擎可供选择，分别是LevelDB、RocksDB、MySQL。</p>
+<ul class="simple">
+<li><p>LevelDB，默认采用的数据库引擎，LevelDB作为一款嵌入式KV数据库，默认集成在长安链节点中，无需部署，性能也相对关系型数据要更好。</p></li>
+<li><p>RocksDB，作为LevelDB的增强版本，也是嵌入式KV数据库，性能比LevelDB更高，但是需要额外的编译与安装部署。</p></li>
+<li><p>MySQL，关系型数据库，支持schema和富查询，性能较KV数据库低，目前关系型数据库与区块链的状态数据并不能很好的结合，导致很少有区块链采用关系型数据库作为状态数据库。原因主要有两点：1.区块链需要对智能合约所读写的状态数据做严格的控制和校验，而SQL语句相对区块链来说过于灵活，难以控制；2.需要提前创建库表和索引，需要针对不同的智能合约创建不同的数据库表结构，不够灵活。目前长安链支持MySQL存储引擎，在系统数据如Block DB上支持区块元信息、交易信息的关系型语义，但状态数据库仅支持kv的方式，不支持智能合约以SQL的方式读写状态数据(world state)。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id10">
+<h3><span class="section-number">8.6.2. </span>配置说明<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>节点本地配置文件chainmaker.yml中存储部分的配置说明</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>storage:
+	provider: LevelDB	#数据库类型，支持LevelDB，RocksDB，MySQL或分布式MySQL
+	store_path: ../data/ledgerData  #账本的存储路径， 包括LevelDB、RocksDB的数据目录，Block binary log的数据目录
+	write_buffer_size: 4	#LevelDB、RocksDB的write_buffer_size， 单位为MB，默认为4M
+	bloom_filter_bits: 10	#LevelDB、RocksDB的布隆过滤器参数，为每个key分配的额外bit空间，默认为10，如果少于或等于0，则不开启布隆过滤。
+	disable_historydb: false	#是否禁用历史读写集的存储功能， 默认为false，也就是保存历史读写集。
+	mysql:	#MySQL相关配置，只有provider选择MySQL时才需要配置，LevelDB和RocksDB可以忽略
+		dsn: user:password@tcp(ip:port)/	#mysql的连接信息，包括用户名、密码、ip、port等，示例：root:admin@tcp(127.0.0.1:3306)/
+		max_idle_conns: 10	#连接池中维持的最大的空闲连接数，默认为10
+		max_open_conns: 10	#最大的可用连接数，默认为10
+		conn_max_lifetime: 60	#连接维持的最长时间，单位秒，默认为60
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h3><span class="section-number">8.6.3. </span>安装说明<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="rocksdb">
+<h4><span class="section-number">8.6.3.1. </span>RocksDB安装部署<a class="headerlink" href="#rocksdb" title="Permalink to this headline">¶</a></h4>
+<p>如果选用RocksDB作为存储数据库，需要在本地安装RocksDB的环境，详细安装过程参考文档：</p>
+<p><a class="reference internal" href="RocksDB%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2.html"><span class="doc">RocksDB安装部署</span></a></p>
+</div>
+<div class="section" id="mysql">
+<h4><span class="section-number">8.6.3.2. </span>MySQL数据库表<a class="headerlink" href="#mysql" title="Permalink to this headline">¶</a></h4>
+<p>长安链支持选用MySQL作为账本存储引擎，节点启动会自动创建数据库，使用chainId作为数据库名，同时也会自动创建相应的表：</p>
+<ol>
+<li><p>区块元信息表</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">block_infos</span><span class="o">`</span> <span class="p">(</span>
+ <span class="o">`</span><span class="n">chain_id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">COLLATE</span> <span class="n">utf8mb4_general_ci</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;链标识&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">block_height</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;区块高度&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">pre_block_hash</span><span class="o">`</span> <span class="n">varbinary</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;上个区块的散列值&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">block_hash</span><span class="o">`</span> <span class="n">varbinary</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;本区块的散列值&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">pre_conf_height</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;上一次修改链配置的区块高度&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">block_version</span><span class="o">`</span> <span class="n">varbinary</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;区块版本&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">dag_hash</span><span class="o">`</span> <span class="n">varbinary</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;当前区块Dag的散列值&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">rw_set_root</span><span class="o">`</span> <span class="n">varbinary</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;区块读写集的Merkle Root&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">tx_root</span><span class="o">`</span> <span class="n">varbinary</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;区块交易的Merkle Root&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">block_timestamp</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;区块时间戳&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">proposer</span><span class="o">`</span> <span class="nb">blob</span> <span class="k">COMMENT</span> <span class="s1">&#39;区块的生产者标识&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">consensus_args</span><span class="o">`</span> <span class="nb">blob</span> <span class="k">COMMENT</span> <span class="s1">&#39;共识参数&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">tx_count</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;交易数量&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">signature</span><span class="o">`</span> <span class="nb">blob</span> <span class="k">COMMENT</span> <span class="s1">&#39;区块生成者的签名&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">dag</span><span class="o">`</span> <span class="nb">blob</span> <span class="k">COMMENT</span> <span class="s1">&#39;区块内交易的执行依赖顺序&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">tx_ids</span><span class="o">`</span> <span class="n">longtext</span> <span class="k">COLLATE</span> <span class="n">utf8mb4_general_ci</span> <span class="k">COMMENT</span> <span class="s1">&#39;区块中交易ID列表&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">additional_data</span><span class="o">`</span> <span class="n">longblob</span> <span class="k">COMMENT</span> <span class="s1">&#39;区块产生以后附加的数据&#39;</span><span class="p">,</span>
+ <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">block_height</span><span class="o">`</span><span class="p">),</span>
+ <span class="k">KEY</span> <span class="o">`</span><span class="n">idx_hash</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">block_hash</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span> <span class="k">COLLATE</span><span class="o">=</span><span class="n">utf8mb4_general_ci</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>交易表</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">tx_infos</span><span class="o">`</span> <span class="p">(</span>
+ <span class="o">`</span><span class="n">chain_id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">COLLATE</span> <span class="n">utf8mb4_general_ci</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;链标识&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">sender</span><span class="o">`</span> <span class="nb">blob</span> <span class="k">COMMENT</span> <span class="s1">&#39;交易发送者信息&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">tx_id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">COLLATE</span> <span class="n">utf8mb4_general_ci</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;交易ID&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">tx_type</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;交易类型&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">block_height</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;交易所在区块高度&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="k">offset</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;交易在区块链中的位置&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="k">timestamp</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;链标识生成交易的unix时间戳&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">expiration_time</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;交易过期的unix时间戳&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">request_payload</span><span class="o">`</span> <span class="n">longblob</span> <span class="k">COMMENT</span> <span class="s1">&#39;交易的载荷数据&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">request_signature</span><span class="o">`</span> <span class="nb">blob</span> <span class="k">COMMENT</span> <span class="s1">&#39;交易发送者的签名&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">code</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;交易执行结果的状态&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">contract_result</span><span class="o">`</span> <span class="n">longblob</span> <span class="k">COMMENT</span> <span class="s1">&#39;合约执行返回结果&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">rw_set_hash</span><span class="o">`</span> <span class="n">varbinary</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;交易执行结果的读写集哈希&#39;</span><span class="p">,</span>
+ <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">tx_id</span><span class="o">`</span><span class="p">),</span>
+ <span class="k">KEY</span> <span class="o">`</span><span class="n">idx_height_offset</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">block_height</span><span class="o">`</span><span class="p">,</span><span class="o">`</span><span class="k">offset</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span> <span class="k">COLLATE</span><span class="o">=</span><span class="n">utf8mb4_general_ci</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>世界状态表</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">state_infos</span><span class="o">`</span> <span class="p">(</span>
+ <span class="o">`</span><span class="n">contract_name</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">COLLATE</span> <span class="n">utf8mb4_general_ci</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;合约名&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">object_key</span><span class="o">`</span> <span class="n">varbinary</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;状态数据的key&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">object_value</span><span class="o">`</span> <span class="n">longblob</span> <span class="k">COMMENT</span> <span class="s1">&#39;状态数据的value&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">block_height</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;该状态数据被修改时的区块高度&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">updated_at</span><span class="o">`</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;该状态数据被修改时的节点本地时间&#39;</span><span class="p">,</span>
+ <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">contract_name</span><span class="o">`</span><span class="p">,</span><span class="o">`</span><span class="n">object_key</span><span class="o">`</span><span class="p">),</span>
+ <span class="k">KEY</span> <span class="o">`</span><span class="n">idx_height</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">block_height</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span> <span class="k">COLLATE</span><span class="o">=</span><span class="n">utf8mb4_general_ci</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>历史读写集表</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">history_infos</span><span class="o">`</span> <span class="p">(</span>
+ <span class="o">`</span><span class="n">tx_id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">COLLATE</span> <span class="n">utf8mb4_general_ci</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;交易ID&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">rw_sets</span><span class="o">`</span> <span class="n">longblob</span> <span class="k">COMMENT</span> <span class="s1">&#39;读写集序列化后的数据&#39;</span><span class="p">,</span> 
+ <span class="o">`</span><span class="n">block_height</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;该交易所在的区块高度&#39;</span><span class="p">,</span>
+ <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">tx_id</span><span class="o">`</span><span class="p">),</span>
+ <span class="k">KEY</span> <span class="o">`</span><span class="n">idx_height</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">block_height</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span> <span class="k">COLLATE</span><span class="o">=</span><span class="n">utf8mb4_general_ci</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="btn btn-neutral float-right" title="9. 身份权限管理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="RPC%E6%9C%8D%E5%8A%A1.html" class="btn btn-neutral float-left" title="7. RPC服务" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

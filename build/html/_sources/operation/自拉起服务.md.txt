@@ -1,0 +1,141 @@
+# 自拉起服务
+
+## 概述
+
+`ChainMaker`的安装包里提供了自拉起服务脚本，基于`linux`系统的`systemd`服务实现长安链节点开机后的自动重启，以及节点进程意外退出后的自动重启。
+
+## 操作步骤
+
+> 这里以`solo`节点为例，多节点情况下，采用类似方式进行操作
+
+### 生成solo节点
+
+```bash
+# 进入脚本目录
+$ cd chainmaker-go/scripts
+
+# 创建solo节点证书和配置
+$ ./prepare.sh 1 1
+
+# 生成安装包
+$ ./build_release.sh
+
+# 查看安装包
+$ tree ../build/release/
+../build/release/
+├── chainmaker-V1.0.0-wx-org.chainmaker.org-20210407122304-x86_64.tar.gz
+└── crypto-config-20210407122304.tar.gz
+```
+
+### 上传安装包到部署路径
+
+> 部署路径默认为：`/data/chainmaker`
+
+```bash
+$ cp ../build/release/chainmaker-V1.0.0-wx-org.chainmaker.org-20210407122304-x86_64.tar.gz /data/chainmaker
+```
+
+### 解压安装包
+
+```bash
+# 进入部署目录
+$ cd /data/chainmaker
+
+# 解压安装包
+$ tar -zxvf chainmaker-V1.0.0-wx-org.chainmaker.org-20210407122304-x86_64.tar.gz
+
+# 做软连接（采用默认路径，可以不用去修改自拉起脚本，否则需要相应修改自拉起脚本）
+$ ln -s chainmaker-V1.0.0-wx-org.chainmaker.org chainmaker-go
+```
+
+### 测试启动是否正常
+
+> 若打印出`ChainMaker`版本号并输出`start blockchain [xxx] success`的日志，说明节点启动正常
+
+```bash
+# 启动节点
+$ ./run.sh start
+chainmaker is startting, pls check log...
+
+# 查看启动日志
+$ tail -f ../log/system.log
+::ChainMaker::  version(V1.0.0)
+2021-04-07 12:31:04.435	[INFO]	[Blockchain] @chain1	blockchain/blockchain_start.go:53	START STEP (3/3) => start module[txPool] success :)
+2021-04-07 12:31:04.436	[INFO]	[Blockchain]	blockchain/chainmaker_server.go:185	[Core] start blockchain[chain1] success
+
+# 关闭节点
+$ ./run.sh stop
+chainmaker is stopped
+```
+
+### 配置自拉起服务
+
+> 执行`init.sh`脚本，完成自拉起服务的配置，脚本内容如下：
+>
+> ```bash
+> sudo cp chainmaker.service  /etc/systemd/system
+> sudo systemctl daemon-reload
+> sudo systemctl start chainmaker
+> sudo systemctl enable chainmaker
+> sudo systemctl status chainmaker
+> ```
+
+```bash
+$ ./init.sh 
+Created symlink /etc/systemd/system/multi-user.target.wants/chainmaker.service → /etc/systemd/system/chainmaker.service.
+● chainmaker.service - chainmaker
+   Loaded: loaded (/etc/systemd/system/chainmaker.service; enabled; vendor preset: enabled)
+   Active: active (running) since Wed 2021-04-07 12:48:39 CST; 174ms ago
+ Main PID: 5384 (chainmaker)
+    Tasks: 13 (limit: 4915)
+   CGroup: /system.slice/chainmaker.service
+           └─5384 ./chainmaker start -c ../config/wx-org.chainmaker.org/chainmaker.yml
+
+Apr 07 12:48:39 jasonruan-LB2 systemd[1]: Starting chainmaker...
+Apr 07 12:48:39 jasonruan-LB2 bash[5364]: chainmaker is startting, pls check log...
+Apr 07 12:48:39 jasonruan-LB2 systemd[1]: Started chainmaker.
+```
+
+### 检查&测试
+
+#### （1）查看进程是否存在
+
+```bash
+$ ps -ef|grep chainmaker | grep -v grep
+root      5384     1  0 12:48 ?        00:00:00 ./chainmaker start -c ../config/wx-org.chainmaker.org/chainmaker.yml
+```
+
+#### （2）kill掉进程，看看进程是否能自拉起
+
+```bash
+# kill进程
+$ sudo kill -9 5384
+
+# 进程ID发生变化，进程被自拉起
+$ ps -ef|grep chainmaker | grep -v grep
+root     13990     1 21 14:50 ?        00:00:00 ./chainmaker start -c ../config/wx-org.chainmaker.org/chainmaker.yml
+```
+
+### 重启节点进程
+
+```bash
+# 使用restart命令重启节点进程
+$ systemctl restart chainmaker
+
+# 进程ID发生变化，进程被自拉起
+$ ps -ef|grep chainmaker | grep -v grep
+root     14400     1 13 14:51 ?        00:00:00 ./chainmaker start -c ../config/wx-org.chainmaker.org/chainmaker.yml
+```
+
+### 关闭节点进程
+
+```bash
+# 使用stop命令关闭节点进程
+$ systemctl stop chainmaker
+
+# 查看不到相关进程
+$ ps -ef|grep chainmaker | grep -v grep
+```
+
+
+

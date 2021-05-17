@@ -1,0 +1,1329 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>ChainMaker Java SDK README &mdash; chainmaker-docs v1.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>ChainMaker Java SDK README</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/dev/chainmaker-java-sdk.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="chainmaker-java-sdk-readme">
+<h1>ChainMaker Java SDK README<a class="headerlink" href="#chainmaker-java-sdk-readme" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>基本概念定义<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Java SDK定义了User、Node、ChainClient、ChainManager和ResponseInfo几个类，分别介绍如下：</p>
+<ul class="simple">
+<li><p>User: 表示链的一个用户信息，主要包括证书和private key，用来给要发送的交易payload签名或者给多签的payload签名。</p></li>
+<li><p>Node：表示链的一个节点信息，它定义了节点的各种属性，如节点连接的RPC地址，连接所用的密钥信息等，一个ChainClient对象需要包含一个或多个Node，这样才能对过节点实现各种功能。</p></li>
+<li><p>ChainClient：客户端开发最重要也是使用最多的类，代表逻辑上的一条链，所有客户端对链的操作接口都来自ChainClient。</p></li>
+<li><p>ChainManager：负责管理所有创建过的链，是一个使用单例模式的链管理类，避免用户同一条链创建多个ChainClient。用户可以使用ChainManager来检查某条链是否已经创建，或者直接创建某条链，如果这条链已经创建，ChainManager会直接返回之前已经创建过的</p></li>
+<li><p>ResponseInfo：对于创建合约、更新合约、调用合约和查询合约几个接口返回响应内容，其中包括交易ID，用于当用户请求超时后，后续主动查询交易结果。</p></li>
+</ul>
+<p>ChainClient对象给用户使用。数据结构定义如下：</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="p">{</span>
+
+    <span class="c1">// the organization id of the user</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">orgId</span><span class="p">;</span>
+    <span class="c1">// user&#39;s private key used to sign transaction</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">PrivateKey</span> <span class="n">privateKey</span><span class="p">;</span>
+    <span class="c1">// user&#39;s certificate</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Certificate</span> <span class="n">certificate</span><span class="p">;</span>
+    <span class="c1">// the bytes of user&#39;s certificate</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">certBytes</span><span class="p">;</span>
+    <span class="c1">// the hash of the cert</span>
+    <span class="nd">@Getter</span>
+    <span class="kd">private</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">certHash</span><span class="p">;</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">CryptoSuite</span> <span class="n">cryptoSuite</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="p">{</span>
+    <span class="c1">// node grpc address</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">grpcUrl</span><span class="p">;</span>
+    <span class="c1">// rpc client private key bytes</span>
+    <span class="kd">private</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">clientKeyBytes</span><span class="p">;</span>
+    <span class="c1">// rpc client certificate bytes</span>
+    <span class="kd">private</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">clientCertBytes</span><span class="p">;</span>
+    <span class="c1">// the organization&#39;s ca cert bytes</span>
+    <span class="kd">private</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">tlsCertBytes</span><span class="p">;</span>
+    <span class="c1">// the hostname in client certificate</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">hostname</span><span class="p">;</span>
+    <span class="c1">// TLS or PLAINTEXT</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">negotiationType</span><span class="p">;</span>
+    <span class="c1">// OPENSSL or JDK</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">sslProvider</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ChainClient</span> <span class="p">{</span>
+    <span class="c1">// chainId is the identity of the chain</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">chainId</span><span class="p">;</span>
+    <span class="c1">// the nodes of the chain</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">Nodes</span><span class="p">;</span>
+    <span class="c1">// rpc clients used to send rpc command</span>
+    <span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Node</span><span class="p">,</span> <span class="n">RpcServiceClient</span><span class="o">&gt;</span> <span class="n">rpcServiceClients</span><span class="p">;</span>
+
+    <span class="c1">// the organization id of the user</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">orgId</span><span class="p">;</span>
+    <span class="c1">// user&#39;s private key used to sign transaction</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">PrivateKey</span> <span class="n">privateKey</span><span class="p">;</span>
+    <span class="c1">// user&#39;s certificate</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Certificate</span> <span class="n">certificate</span><span class="p">;</span>
+    <span class="c1">// the bytes of user&#39;s certificate</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">certBytes</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ChainManager</span> <span class="p">{</span>
+    <span class="c1">// chains&#39; map</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">ChainClient</span><span class="o">&gt;</span> <span class="n">chains</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="c1">// for singleton mode</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">ChainManager</span> <span class="n">chainManager</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ChainManager</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ResponseInfo</span> <span class="p">{</span>
+		<span class="c1">// response of request</span>
+    <span class="kd">private</span> <span class="n">ChainmakerResult</span><span class="p">.</span><span class="na">TxResponse</span> <span class="n">txResponse</span><span class="p">;</span>
+    <span class="c1">// txId of the request</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">txId</span><span class="p">;</span>
+    <span class="c1">// 同步获取交易执行的结果</span>
+    <span class="kd">private</span> <span class="n">ChainmakerTransaction</span><span class="p">.</span><span class="na">TransactionInfo</span> <span class="n">syncResultTxInfo</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="chainclient">
+<h2>ChainClient类接口定义<a class="headerlink" href="#chainclient" title="Permalink to this headline">¶</a></h2>
+<p>ChainClient类描述了所有用户能够对链进行操作的接口</p>
+<div class="section" id="id2">
+<h3>用户合约接口<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="payload">
+<h4>生成用于创建合约的待签名payload<a class="headerlink" href="#payload" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名</p></li>
+<li><p>version: 版本号</p></li>
+<li><p>runtimeType: 合约运行环境</p></li>
+<li><p>params: 合约初始化参数</p></li>
+<li><p>byteCodes: 合约字节数组</p></li>
+</ul>
+<p><strong>返回值说明</strong>
+返回payload字节数组</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfContractCreation</span><span class="p">(</span><span class="n">String</span> <span class="n">contractName</span><span class="p">,</span> <span class="n">String</span> <span class="n">version</span><span class="p">,</span> 
+                                                  <span class="n">Contract</span><span class="p">.</span><span class="na">RuntimeType</span> <span class="n">runtimeType</span><span class="p">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">params</span><span class="p">,</span> 
+                                                  <span class="kt">byte</span><span class="o">[]</span> <span class="n">byteCodes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h4>生成用于升级合约的待签名payload<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名</p></li>
+<li><p>version: 版本号</p></li>
+<li><p>runtimeType: 合约运行环境</p></li>
+<li><p>params: 合约初始化参数</p></li>
+<li><p>byteCodes: 合约字节数组</p></li>
+</ul>
+<p><strong>返回值说明</strong>
+返回payload字节数组</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfContractUpgrade</span><span class="p">(</span><span class="n">String</span> <span class="n">contractName</span><span class="p">,</span> <span class="n">String</span> <span class="n">version</span><span class="p">,</span>
+                                             <span class="n">Contract</span><span class="p">.</span><span class="na">RuntimeType</span> <span class="n">runtimeType</span><span class="p">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">params</span><span class="p">,</span>
+                                             <span class="kt">byte</span><span class="o">[]</span> <span class="n">byteCodes</span><span class="p">)</span> <span class="p">{</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h4>生成用于冻结合约的待签名payload<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名
+<strong>返回值说明</strong>
+返回payload字节数组</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfContractFreeze</span><span class="p">(</span><span class="n">String</span> <span class="n">contractName</span><span class="p">)</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h4>生成用于解冻合约的待签名payload<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名
+<strong>返回值说明</strong>
+返回payload字节数组</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfContractUnfreeze</span><span class="p">(</span><span class="n">String</span> <span class="n">contractName</span><span class="p">)</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h4>生成用于吊销合约的待签名payload<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名
+<strong>返回值说明</strong>
+返回payload字节数组</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfContractRevoke</span><span class="p">(</span><span class="n">String</span> <span class="n">contractName</span><span class="p">)</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="payloadpayload-payload">
+<h4>将多个带签名后的payload合并成一个带多个签名的payload，所有签名都放在一个payload后面<a class="headerlink" href="#payloadpayload-payload" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>payloads: 多个带签名的payload</p></li>
+</ul>
+<p><strong>返回值说明</strong>
+返回带多个签名的payload字节数组</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">mergeSignedPayloadsOfContractMgmt</span><span class="p">(</span><span class="kt">byte</span><span class="o">[][]</span> <span class="n">payloads</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h4>创建合约<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>payloadWithEndorsementsBytes: 带签名的合约内容</p></li>
+<li><p>rpcCallTimeout: 调用rcp接口超时时间, 单位：毫秒</p></li>
+<li><p>syncResultTimeout: 同步获取执行结果超时时间，小于等于0代表不等待执行结果，直接返回（返回信息里包含交易ID），单位：毫秒</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ResponseInfo</span> <span class="nf">createContract</span><span class="p">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">payloadWithEndorsementsBytes</span><span class="p">,</span> <span class="kt">long</span> <span class="n">rpcCallTimeout</span><span class="p">,</span>
+                                       <span class="kt">long</span> <span class="n">syncResultTimeout</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> 
+																				<span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h4>升级合约<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>payloadWithEndorsementsBytes: 带签名的合约内容</p></li>
+<li><p>rpcCallTimeout: 调用rcp接口超时时间, 单位：毫秒</p></li>
+<li><p>syncResultTimeout: 同步获取执行结果超时时间，小于等于0代表不等待执行结果，
+直接返回（返回信息里包含交易ID），单位：毫秒</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ResponseInfo</span> <span class="nf">upgradeContract</span><span class="p">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">payloadWithEndorsementsBytes</span><span class="p">,</span> <span class="kt">long</span> <span class="n">rpcCallTimeout</span><span class="p">,</span>
+                                        <span class="kt">long</span> <span class="n">syncResultTimeout</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> 
+																				<span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h4>冻结合约<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>payloadWithEndorsementsBytes: 带签名的合约内容</p></li>
+<li><p>rpcCallTimeout: 调用rcp接口超时时间, 单位：毫秒</p></li>
+<li><p>syncResultTimeout: 同步获取执行结果超时时间，小于等于0代表不等待执行结果，
+直接返回（返回信息里包含交易ID），单位：毫秒</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ResponseInfo</span> <span class="nf">freezeContract</span><span class="p">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">payloadWithEndorsementsBytes</span><span class="p">,</span> <span class="kt">long</span> <span class="n">rpcCallTimeout</span><span class="p">,</span>
+                                        <span class="kt">long</span> <span class="n">syncResultTimeout</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> 
+																				<span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h4>解冻合约<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>payloadWithEndorsementsBytes: 带签名的合约内容</p></li>
+<li><p>rpcCallTimeout: 调用rcp接口超时时间, 单位：毫秒</p></li>
+<li><p>syncResultTimeout: 同步获取执行结果超时时间，小于等于0代表不等待执行结果，
+直接返回（返回信息里包含交易ID），单位：毫秒</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ResponseInfo</span> <span class="nf">unfreezeContract</span><span class="p">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">payloadWithEndorsementsBytes</span><span class="p">,</span> <span class="kt">long</span> <span class="n">rpcCallTimeout</span><span class="p">,</span>
+                                       <span class="kt">long</span> <span class="n">syncResultTimeout</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> 
+																				<span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h4>吊销合约<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>payloadWithEndorsementsBytes: 带签名的合约内容</p></li>
+<li><p>rpcCallTimeout: 调用rcp接口超时时间, 单位：毫秒</p></li>
+<li><p>syncResultTimeout: 同步获取执行结果超时时间，小于等于0代表不等待执行结果，
+直接返回（返回信息里包含交易ID），单位：毫秒</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ResponseInfo</span> <span class="nf">revokeContract</span><span class="p">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">payloadWithEndorsementsBytes</span><span class="p">,</span> <span class="kt">long</span> <span class="n">rpcCallTimeout</span><span class="p">,</span>
+                                       <span class="kt">long</span> <span class="n">syncResultTimeout</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> 
+																				<span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h4>执行合约<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名</p></li>
+<li><p>method: 方法名</p></li>
+<li><p>params: 执行参数</p></li>
+<li><p>rpcCallTimeout: 调用rcp接口超时时间, 单位：毫秒</p></li>
+<li><p>syncResultTimeout: 同步获取执行结果超时时间，小于等于0代表不等待执行结果，直接返回（返回信息里包含交易ID），单位：毫秒</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ResponseInfo</span> <span class="nf">invokeContract</span><span class="p">(</span><span class="n">String</span> <span class="n">contractName</span><span class="p">,</span> <span class="n">String</span> <span class="n">method</span><span class="p">,</span>
+                                       <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">params</span><span class="p">,</span> <span class="kt">long</span> <span class="n">rpcCallTimeout</span><span class="p">,</span>
+                                       <span class="kt">long</span> <span class="n">syncResultTimeout</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> 
+																				<span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h4>查询合约接口<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名</p></li>
+<li><p>method: 方法名</p></li>
+<li><p>params: 执行参数</p></li>
+<li><p>timeout: 执行超时时间，单位毫秒</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ResponseInfo</span> <span class="nf">queryContract</span><span class="p">(</span><span class="n">String</span> <span class="n">contractName</span><span class="p">,</span> <span class="n">String</span> <span class="n">method</span><span class="p">,</span>
+                                      <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">params</span><span class="p">,</span> <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id14">
+<h3>系统合约接口<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id">
+<h4>根据交易Id查询交易<a class="headerlink" href="#id" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>txId: 交易ID</p></li>
+<li><p>timeout：超时时间，单位毫秒</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ChainmakerTransaction</span><span class="p">.</span><span class="na">TransactionInfo</span> <span class="nf">getTxByTxId</span><span class="p">(</span><span class="n">String</span> <span class="n">txId</span><span class="p">,</span> <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span>  <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id15">
+<h4>根据区块高度查询区块<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>blockHeight: 区块高度</p></li>
+<li><p>withRWSet: 是否返回读写集</p></li>
+<li><p>timeout：超时时间，单位毫秒</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ChainmakerBlock</span><span class="p">.</span><span class="na">BlockInfo</span> <span class="nf">getBlockByHeight</span><span class="p">(</span><span class="kt">long</span> <span class="n">blockHeight</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">withRWSet</span><span class="p">,</span> <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id16">
+<h4>根据区块哈希查询区块<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>blockHash: 区块高度</p></li>
+<li><p>withRWSet: 是否返回读写集</p></li>
+<li><p>timeout：超时时间，单位毫秒</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ChainmakerBlock</span><span class="p">.</span><span class="na">BlockInfo</span> <span class="nf">getBlockByHash</span><span class="p">(</span><span class="n">String</span> <span class="n">blockHash</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">withRWSet</span><span class="p">,</span> <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id17">
+<h4>根据交易Id查询区块<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>txId: 交易Id</p></li>
+<li><p>withRWSet: 是否返回读写集</p></li>
+<li><p>timeout：超时时间，单位毫秒</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ChainmakerBlock</span><span class="p">.</span><span class="na">BlockInfo</span> <span class="nf">getBlockByTxId</span><span class="p">(</span><span class="n">String</span> <span class="n">txId</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">withRWSet</span><span class="p">,</span> <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id18">
+<h4>查询上一个配置块<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>withRWSet: 是否返回读写集</p></li>
+<li><p>timeout：超时时间，单位毫秒</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ChainmakerBlock</span><span class="p">.</span><span class="na">BlockInfo</span> <span class="nf">getLastConfigBlock</span><span class="p">(</span><span class="kt">boolean</span> <span class="n">withRWSet</span><span class="p">,</span> <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id19">
+<h4>查询节点加入的链信息<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>timeout：超时时间，单位毫秒</p></li>
+</ul>
+<p><strong>返回值说明</strong></p>
+<ul class="simple">
+<li><p>返回ChainId清单</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">Discovery</span><span class="p">.</span><span class="na">ChainList</span> <span class="nf">getNodeChainList</span><span class="p">(</span><span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id20">
+<h4>查询链信息<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+<p><strong>返回值说明</strong></p>
+<ul class="simple">
+<li><p>包括：当前链最新高度，链节点信息</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">Discovery</span><span class="p">.</span><span class="na">ChainInfo</span> <span class="nf">getChainInfo</span><span class="p">(</span><span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id21">
+<h3>链配置接口<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<p>链配置信息定义如下：</p>
+<div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">ChainConfig</span> <span class="p">{</span>
+    <span class="kt">string</span>                          <span class="na">chain_id</span>         <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 链标识</span>
+    <span class="kt">string</span>                          <span class="na">version</span>          <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// 链版本</span>
+    <span class="kt">string</span>                          <span class="na">auth_type</span>        <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// 认证类型</span>
+    <span class="kt">uint64</span>                          <span class="na">sequence</span>         <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// 序列号</span>
+    <span class="n">CryptoConfig</span>                    <span class="na">crypto</span>           <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// 算法配置</span>
+    <span class="n">BlockConfig</span>                     <span class="na">block</span>            <span class="o">=</span> <span class="mi">6</span><span class="p">;</span> <span class="c1">// 区块配置</span>
+    <span class="n">CoreConfig</span>                      <span class="na">core</span>             <span class="o">=</span> <span class="mi">7</span><span class="p">;</span> <span class="c1">// core配置</span>
+    <span class="n">ConsensusConfig</span>                 <span class="na">consensus</span>        <span class="o">=</span> <span class="mi">8</span><span class="p">;</span> <span class="c1">// 共识配置</span>
+    <span class="k">repeated</span> <span class="n">TrustRootConfig</span>        <span class="na">trust_roots</span>      <span class="o">=</span> <span class="mi">9</span><span class="p">;</span> <span class="c1">// 联盟成员，联盟链配置初始成员；公链无需配置。key：节点标识；value：地址，节点公钥/CA证书</span>
+    <span class="k">repeated</span> <span class="n">Permission</span>             <span class="na">permissions</span>      <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// 权限配置</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">Permission</span><span class="p">{</span>
+    <span class="kt">string</span>          <span class="na">resource_name</span>   <span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// 方法名</span>
+    <span class="n">Principle</span>       <span class="na">principle</span>       <span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="c1">// 权限</span>
+<span class="p">}</span>
+
+<span class="c1">// crypto配置</span>
+<span class="kd">message</span> <span class="nc">CryptoConfig</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">hash</span>    <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 是否需要开启交易时间戳校验</span>
+<span class="p">}</span>
+
+<span class="c1">// 区块配置</span>
+<span class="kd">message</span> <span class="nc">BlockConfig</span> <span class="p">{</span>
+    <span class="kt">bool</span>   <span class="na">tx_timestamp_verify</span>      <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 是否需要开启交易时间戳校验</span>
+    <span class="kt">uint32</span> <span class="na">tx_timeout</span>               <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// 交易时间戳的过期时间(秒)</span>
+    <span class="kt">uint32</span> <span class="na">block_tx_capacity</span>        <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// 区块中最大交易数</span>
+    <span class="kt">uint32</span> <span class="na">block_size</span>               <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// 区块最大限制，单位MB</span>
+    <span class="kt">uint32</span> <span class="na">block_interval</span>           <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// 出块间隔，单位:ms</span>
+<span class="p">}</span>
+
+<span class="c1">// core配置</span>
+<span class="kd">message</span> <span class="nc">CoreConfig</span> <span class="p">{</span>
+    <span class="kt">uint64</span> <span class="na">tx_scheduler_timeout</span>                 <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// [0, 60] 交易调度器从交易池拿到交易后, 进行调度的时间</span>
+    <span class="kt">uint64</span> <span class="na">tx_scheduler_validate_timeout</span>        <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// [0, 60] 交易调度器从区块中拿到交易后, 进行验证的超时时间</span>
+<span class="p">}</span>
+
+<span class="c1">// 共识配置</span>
+<span class="kd">message</span> <span class="nc">ConsensusConfig</span> <span class="p">{</span>
+    <span class="n">ConsensusType</span>           <span class="na">type</span>            <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 共识类型</span>
+    <span class="k">repeated</span> <span class="n">OrgConfig</span>      <span class="na">nodes</span>           <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// 节点机构列表</span>
+    <span class="k">repeated</span> <span class="n">KeyValuePair</span>   <span class="na">ext_config</span>      <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// 扩展字段，记录难度、奖励等其他类共识算法配置</span>
+<span class="p">}</span>
+
+<span class="c1">// 机构配置</span>
+<span class="kd">message</span> <span class="nc">OrgConfig</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">org_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">repeated</span> <span class="kt">string</span> <span class="na">address</span> <span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="c1">// 机构下的地址列表</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">TrustRootConfig</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">org_id</span>   <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 组织名</span>
+    <span class="kt">string</span> <span class="na">root</span>     <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// root证书/公钥</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="id22">
+<h4>查询最新链配置<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ChainmakerConfig</span><span class="p">.</span><span class="na">ChainConfig</span> <span class="nf">getChainConfig</span><span class="p">(</span><span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id23">
+<h4>根据指定区块高度查询最近链配置<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>如果当前区块就是配置块，直接返回当前区块的链配置</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ChainmakerConfig</span><span class="p">.</span><span class="na">ChainConfig</span> <span class="nf">getChainConfigByBlockHeight</span><span class="p">(</span><span class="kt">int</span> <span class="n">blockHeight</span><span class="p">,</span> <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sequence">
+<h4>查询最新链配置序号Sequence<a class="headerlink" href="#sequence" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>用于链配置更新</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">long</span> <span class="nf">getChainConfigSequence</span><span class="p">(</span><span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="corepayload">
+<h4>更新Core模块待签名payload生成<a class="headerlink" href="#corepayload" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>txSchedulerTimeout: 交易调度器从交易池拿到交易后, 进行调度的时间，其值范围为[0, 60]，若无需修改，请置为-1</p></li>
+<li><p>txSchedulerValidateTimeout: 交易调度器从区块中拿到交易后, 进行验证的超时时间，其值范围为[0, 60]，
+若无需修改，请置为-1</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfChainConfigCoreUpdate</span><span class="p">(</span><span class="kt">int</span> <span class="n">txSchedulerTimeout</span><span class="p">,</span> <span class="kt">int</span> <span class="n">txSchedulerValidateTimeout</span><span class="p">,</span>
+    																									 <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainClientException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id24">
+<h4>更新Core模块待签名payload生成<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>txTimestampVerify: 是否需要开启交易时间戳校验</p></li>
+<li><p>(以下参数，若无需修改，请置为-1)</p></li>
+<li><p>txTimeout: 交易时间戳的过期时间(秒)，其值范围为[600, +∞)</p></li>
+<li><p>blockTxCapacity: 区块中最大交易数，其值范围为(0, +∞]</p></li>
+<li><p>blockSize: 区块最大限制，单位MB，其值范围为(0, +∞]</p></li>
+<li><p>blockInterval: 出块间隔，单位:ms，其值范围为[10, +∞]</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfChainConfigBlockUpdate</span><span class="p">(</span><span class="kt">boolean</span> <span class="n">txTimestampVerify</span><span class="p">,</span> <span class="kt">int</span> <span class="n">txTimeout</span><span class="p">,</span> 
+    																										<span class="kt">int</span> <span class="n">blockTxCapacity</span><span class="p">,</span> <span class="kt">int</span> <span class="n">blockSize</span><span class="p">,</span> <span class="kt">int</span> <span class="n">blockInterval</span><span class="p">,</span>
+                                                        <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainClientException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id25">
+<h4>添加信任组织根证书待签名payload生成<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>trustRootOrgId: 组织Id</p></li>
+<li><p>trustRootCrt: 根证书</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfChainConfigTrustRootAdd</span><span class="p">(</span><span class="n">String</span> <span class="n">trustRootOrgId</span><span class="p">,</span> <span class="n">String</span> <span class="n">trustRootCrt</span><span class="p">,</span> 
+    																										 <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id26">
+<h4>更新信任组织根证书待签名payload生成<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>trustRootOrgId: 组织Id</p></li>
+<li><p>trustRootCrt: 根证书</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfChainConfigTrustRootUpdate</span><span class="p">(</span><span class="n">String</span> <span class="n">trustRootOrgId</span><span class="p">,</span> <span class="n">String</span> <span class="n">trustRootCrt</span><span class="p">,</span> 
+    																												<span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id27">
+<h4>删除信任组织根证书待签名payload生成<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>trustRootOrgId: 组织Id</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfChainConfigTrustRootDelete</span><span class="p">(</span><span class="n">String</span> <span class="n">trustRootOrgId</span><span class="p">,</span> <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id28">
+<h4>添加权限配置待签名payload生成<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>permissionResourceName: 权限名</p></li>
+<li><p>principle: 权限规则</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfChainConfigPermissionAdd</span><span class="p">(</span><span class="n">String</span> <span class="n">permissionResourceName</span><span class="p">,</span>
+                                                          <span class="n">PrincipleOuterClass</span><span class="p">.</span><span class="na">Principle</span> <span class="n">principal</span><span class="p">,</span> <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id29">
+<h4>更新权限配置待签名payload生成<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>permissionResourceName: 权限名</p></li>
+<li><p>principle: 权限规则</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfChainConfigPermissionUpdate</span><span class="p">(</span><span class="n">String</span> <span class="n">permissionResourceName</span><span class="p">,</span>
+                                                             <span class="n">PrincipleOuterClass</span><span class="p">.</span><span class="na">Principle</span> <span class="n">principal</span><span class="p">,</span> 
+                                                             <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id30">
+<h4>删除权限配置待签名payload生成<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>permissionResourceName: 权限名</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfChainConfigPermissionDelete</span><span class="p">(</span><span class="n">String</span> <span class="n">permissionResourceName</span><span class="p">,</span> <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id31">
+<h4>添加共识节点地址待签名payload生成<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>nodeOrgId: 节点组织Id</p></li>
+<li><p>nodeAddresses: 节点地址</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfChainConfigConsensusNodeAddrAdd</span><span class="p">(</span><span class="n">String</span> <span class="n">nodeOrgId</span><span class="p">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">nodeAddresses</span><span class="p">,</span> 
+    																														 <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id32">
+<h4>更新共识节点地址待签名payload生成<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>nodeOrgId: 节点组织Id</p></li>
+<li><p>nodeOldAddress: 节点原地址</p></li>
+<li><p>nodeNewAddress: 节点新地址</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfChainConfigConsensusNodeAddrUpdate</span><span class="p">(</span><span class="n">String</span> <span class="n">nodeOrgId</span><span class="p">,</span> <span class="n">String</span> <span class="n">nodeOldAddress</span><span class="p">,</span>
+                                                                    <span class="n">String</span> <span class="n">nodeNewAddress</span><span class="p">,</span> <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id33">
+<h4>删除共识节点地址待签名payload生成<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>nodeOrgId: 节点组织Id</p></li>
+<li><p>nodeAddress: 节点地址</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfChainConfigConsensusNodeAddrDelete</span><span class="p">(</span><span class="n">String</span> <span class="n">nodeOrgId</span><span class="p">,</span> <span class="n">String</span> <span class="n">nodeAddress</span><span class="p">,</span> 
+    																																<span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id34">
+<h4>添加共识节点待签名payload生成<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>nodeOrgId: 节点组织Id</p></li>
+<li><p>nodeAddresses: 节点地址</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfChainConfigConsensusNodeOrgAdd</span><span class="p">(</span><span class="n">String</span> <span class="n">nodeOrgId</span><span class="p">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">nodeAddresses</span><span class="p">,</span> 
+    																														<span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id35">
+<h4>更新共识节点待签名payload生成<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>nodeOrgId: 节点组织Id</p></li>
+<li><p>nodeAddresses: 节点地址</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfChainConfigConsensusNodeOrgUpdate</span><span class="p">(</span><span class="n">String</span> <span class="n">nodeOrgId</span><span class="p">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">nodeAddresses</span><span class="p">,</span> 
+    																															 <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id36">
+<h4>删除共识节点待签名payload生成<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>nodeOrgId: 节点组织Id</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createChainConfigConsensusNodeOrgDeletePayload</span><span class="p">(</span><span class="n">String</span> <span class="n">nodeOrgId</span><span class="p">,</span> <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id37">
+<h4>添加共识扩展字段待签名payload生成<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>params: Map&lt;String, String&gt;</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfChainConfigConsensusExtAdd</span><span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">params</span><span class="p">,</span> <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id38">
+<h4>添加共识扩展字段待签名payload生成<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>params: Map&lt;String, String&gt;</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfChainConfigConsensusExtUpdatePayload</span><span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">params</span><span class="p">,</span> <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id39">
+<h4>添加共识扩展字段待签名payload生成<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>keys: 待删除字段</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfChainConfigConsensusExtDelete</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">keys</span><span class="p">,</span> <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id40">
+<h4>链配置更新Payload签名收集&amp;合并<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">mergeSignedPayloadsOfChainConfig</span><span class="p">(</span><span class="kt">byte</span><span class="o">[][]</span> <span class="n">payloads</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id41">
+<h4>发送链配置更新请求<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ResponseInfo</span> <span class="nf">updateChainConfig</span><span class="p">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">payloadWithEndorsementsBytes</span><span class="p">,</span> <span class="kt">long</span> <span class="n">rpcCallTimeout</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id42">
+<h3>证书管理接口<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id43">
+<h4>用户证书添加<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>rpcCallTimeout: 发送rpc请求的超时时间</p></li>
+<li><p>syncResultTimeout: 同步交易结果的超时时间</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ResponseInfo</span> <span class="nf">addCert</span><span class="p">(</span><span class="kt">long</span> <span class="n">rpcCallTimeout</span><span class="p">,</span> <span class="kt">long</span> <span class="n">syncResultTimeout</span><span class="p">)</span> 
+      <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id44">
+<h4>用户证书删除<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>certHashes: 证书Hash列表</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ResponseInfo</span> <span class="nf">deleteCert</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">certHashes</span><span class="p">,</span> <span class="kt">long</span> <span class="n">rpcCallTimeout</span><span class="p">,</span> <span class="kt">long</span> <span class="n">syncResultTimeout</span><span class="p">)</span> 
+      <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id45">
+<h4>生成用户证书冻结的待签名payload<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>certHashes: 冻结的证书内容列表</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>   <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfFreezeCerts</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">certs</span><span class="p">)</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id46">
+<h4>生成用户证书解冻的待签名payload<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>certHashes: 解冻的证书内容列表</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>   <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfFreezeCerts</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">certs</span><span class="p">)</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id47">
+<h4>生成用户证书吊销的待签名payload<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>certCrl: 吊销证书列表</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">createPayloadOfRevokeCerts</span><span class="p">(</span><span class="n">String</span> <span class="n">certCrl</span><span class="p">)</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id48">
+<h4>冻结证书<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>payload: 冻结证书交易的payload</p></li>
+<li><p>rpcCallTimeout: 发送rpc请求的超时时间</p></li>
+<li><p>syncResultTimeout: 同步交易结果的超时时间</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ResponseInfo</span> <span class="nf">freezeCerts</span><span class="p">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">payload</span><span class="p">,</span> <span class="kt">long</span> <span class="n">rpcCallTimeout</span><span class="p">,</span> <span class="kt">long</span> <span class="n">syncResultTimeout</span><span class="p">)</span> 
+      <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id49">
+<h4>解冻证书<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>payload: 解冻证书交易的payload</p></li>
+<li><p>rpcCallTimeout: 发送rpc请求的超时时间</p></li>
+<li><p>syncResultTimeout: 同步交易结果的超时时间</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ResponseInfo</span> <span class="nf">unfreezeCerts</span><span class="p">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">payload</span><span class="p">,</span> <span class="kt">long</span> <span class="n">rpcCallTimeout</span><span class="p">,</span> <span class="kt">long</span> <span class="n">syncResultTimeout</span><span class="p">)</span> 
+            <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id50">
+<h4>吊销证书<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>payload: 解冻证书交易的payload</p></li>
+<li><p>rpcCallTimeout: 发送rpc请求的超时时间</p></li>
+<li><p>syncResultTimeout: 同步交易结果的超时时间</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ResponseInfo</span> <span class="nf">revokeCerts</span><span class="p">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">payload</span><span class="p">,</span> <span class="kt">long</span> <span class="n">rpcCallTimeout</span><span class="p">,</span> <span class="kt">long</span> <span class="n">syncResultTimeout</span><span class="p">)</span> 
+            <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id51">
+<h4>用户证书查询<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>certHashes: 证书Hash列表</p></li>
+</ul>
+<p><strong>返回值说明</strong></p>
+<ul class="simple">
+<li><p>*pb.CertInfos: 包含证书Hash和证书内容的列表</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">ChainmakerResult</span><span class="p">.</span><span class="na">CertInfos</span> <span class="nf">queryCert</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">certHashes</span><span class="p">,</span> <span class="kt">long</span> <span class="n">timeout</span><span class="p">)</span>
+            <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id52">
+<h3>多签接口<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id53">
+<h4>发送多签交易请求<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>txType: 交易类型</p></li>
+<li><p>payload: 多签交易（未签名）的payload</p></li>
+<li><p>endorsement: 签名</p></li>
+<li><p>deadlineBlock: 交易有效截止的block高度</p></li>
+<li><p>rpcCallTimeout: 发送rpc请求的超时时间</p></li>
+<li><p>syncResultTimeout: 同步交易结果的超时时间</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">ResponseInfo</span> <span class="nf">sendMultiSignRequest</span><span class="p">(</span><span class="n">Request</span><span class="p">.</span><span class="na">TxType</span> <span class="n">txType</span><span class="p">,</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">payload</span><span class="p">,</span> 
+                                         <span class="n">Request</span><span class="p">.</span><span class="na">EndorsementEntry</span> <span class="n">endorsement</span><span class="p">,</span>                                      
+                                         <span class="kt">long</span> <span class="n">deadlineBlock</span><span class="p">,</span> <span class="kt">long</span> <span class="n">rpcCallTimeout</span><span class="p">,</span> 
+                                         <span class="kt">long</span> <span class="n">syncResultTimeout</span><span class="p">)</span> 
+  <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id54">
+<h4>发送多签交易投票<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>voteStatus: 投票状态</p></li>
+<li><p>multiSignReqTxId: 投票交易的交易Id</p></li>
+<li><p>payloadHash: 要投票交易的payloadHash</p></li>
+<li><p>endorsement: 签名</p></li>
+<li><p>deadlineBlock: 交易有效截止的block高度</p></li>
+<li><p>rpcCallTimeout: 发送rpc请求的超时时间</p></li>
+<li><p>syncResultTimeout: 同步交易结果的超时时间</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">ResponseInfo</span> <span class="nf">sendMultiSignVote</span><span class="p">(</span><span class="n">MultSign</span><span class="p">.</span><span class="na">VoteStatus</span> <span class="n">voteStatus</span><span class="p">,</span> <span class="n">String</span> <span class="n">multiSignReqTxId</span><span class="p">,</span> 
+                                      <span class="n">String</span> <span class="n">payloadHash</span><span class="p">,</span>
+                                      <span class="n">Request</span><span class="p">.</span><span class="na">EndorsementEntry</span> <span class="n">endorsement</span><span class="p">,</span> <span class="kt">long</span> <span class="n">rpcCallTimeout</span><span class="p">,</span>
+                                      <span class="kt">long</span> <span class="n">syncResultTimeout</span><span class="p">)</span> 
+  <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id55">
+<h3>消息订阅接口<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id56">
+<h4>区块订阅<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>startBlock: 订阅起始区块高度，若为-1，表示订阅实时最新区块</p></li>
+<li><p>endBlock: 订阅结束区块高度，若为-1，表示订阅实时最新区块</p></li>
+<li><p>withRwSet: 是否返回读写集</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">subscribeBlock</span><span class="p">(</span><span class="kt">long</span> <span class="n">startBlock</span><span class="p">,</span> <span class="kt">long</span> <span class="n">endBlock</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">withRwSet</span><span class="p">,</span>
+                                <span class="n">StreamObserver</span><span class="o">&lt;</span><span class="n">ChainmakerResult</span><span class="p">.</span><span class="na">SubscribeResult</span><span class="o">&gt;</span> <span class="n">blockStreamObserver</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id57">
+<h4>交易订阅<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>startBlock: 订阅起始区块高度，若为-1，表示订阅实时最新区块</p></li>
+<li><p>endBlock: 订阅结束区块高度，若为-1，表示订阅实时最新区块</p></li>
+<li><p>txType: 订阅交易类型,若为pb.TxType(-1)，表示订阅所有交易类型</p></li>
+<li><p>txIds: 订阅txId列表，若为空，表示订阅所有txId</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">subscribeTx</span><span class="p">(</span><span class="kt">long</span> <span class="n">startBlock</span><span class="p">,</span> <span class="kt">long</span> <span class="n">endBlock</span><span class="p">,</span> <span class="n">Request</span><span class="p">.</span><span class="na">TxType</span> <span class="n">txType</span><span class="p">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">txIds</span><span class="p">,</span>
+                            <span class="n">StreamObserver</span><span class="o">&lt;</span><span class="n">ChainmakerResult</span><span class="p">.</span><span class="na">SubscribeResult</span><span class="o">&gt;</span> <span class="n">txStreamObserver</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id58">
+<h3>管理类接口<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="sdk">
+<h4>SDK停止接口：关闭连接池连接，释放资源<a class="headerlink" href="#sdk" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">stop</span><span class="p">()</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="user">
+<h2>User类接口<a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id59">
+<h3>生成用于管理合约交易的签名后的payload<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h3>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>payload: 签名前的payload</p></li>
+</ul>
+<p><strong>返回值说明</strong></p>
+<ul class="simple">
+<li><p>返回带签名的payload字节数组</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">signPayloadOfContractMgmt</span><span class="p">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">payload</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">isEnabledCertHash</span><span class="p">)</span> 
+            <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id60">
+<h3>生成用于系统合约调用的签名后的payload<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h3>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>payload: 签名前的payload</p></li>
+</ul>
+<p><strong>返回值说明</strong></p>
+<ul class="simple">
+<li><p>返回带签名的payload字节数组</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">signPayloadOfSystemContract</span><span class="p">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">payloadBytes</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">isEnabledCertHash</span><span class="p">)</span> 
+            <span class="kd">throws</span> <span class="n">InvalidProtocolBufferException</span><span class="p">,</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id61">
+<h3>生成用于多签交易的payload<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h3>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>payload: 签名前的payload</p></li>
+</ul>
+<p><strong>返回值说明</strong></p>
+<ul class="simple">
+<li><p>返回包含签名的EndorsementEntry</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">Request</span><span class="p">.</span><span class="na">EndorsementEntry</span> <span class="nf">signPayloadOfMultiSign</span><span class="p">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">payload</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">isEnabledCertHash</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">ChainMakerCryptoSuiteException</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id62">
+<h2>使用过程<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h2>
+<p>客户端使用SDK的过程如下：</p>
+<ol class="simple">
+<li><p>创建User对象</p></li>
+<li><p>创建Node对象</p></li>
+<li><p>获取ChainManager单例对象</p></li>
+<li><p>使用ChainManager获取或创建链对象，创建ChainClient时需要将ChainNode对象作为参数传入</p></li>
+<li><p>调用ChainClient对象的接口进行操作</p></li>
+</ol>
+</div>
+<div class="section" id="id63">
+<h2>使用示例<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>初始化，创建ChainClient</p></li>
+</ol>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+       <span class="k">try</span> <span class="p">{</span>
+           <span class="n">ChainNode</span> <span class="n">chainNode</span> <span class="o">=</span> <span class="n">ChainNode</span><span class="p">.</span><span class="na">builder</span><span class="p">().</span><span class="na">clientKeyBytes</span><span class="p">(</span><span class="n">FileUtils</span><span class="p">.</span><span class="na">getResourceFileBytes</span><span class="p">(</span><span class="n">GRPC_TLS_KEY_PATH</span><span class="p">))</span>
+                   <span class="p">.</span><span class="na">clientCertBytes</span><span class="p">(</span><span class="n">FileUtils</span><span class="p">.</span><span class="na">getResourceFileBytes</span><span class="p">(</span><span class="n">GRPC_TLS_CERT_PATH</span><span class="p">))</span>
+                   <span class="p">.</span><span class="na">tlsCertBytes</span><span class="p">(</span><span class="n">FileUtils</span><span class="p">.</span><span class="na">getResourceFileBytes</span><span class="p">(</span><span class="n">GRPC_CERT_PATH</span><span class="p">))</span>
+                   <span class="p">.</span><span class="na">hostname</span><span class="p">(</span><span class="n">TLS_HOST_NAME</span><span class="p">).</span><span class="na">grpcUrl</span><span class="p">(</span><span class="n">NODE_GRPC_URL</span><span class="p">)</span>
+                   <span class="p">.</span><span class="na">sslProvider</span><span class="p">(</span><span class="s">&quot;openSSL&quot;</span><span class="p">).</span><span class="na">negotiationType</span><span class="p">(</span><span class="s">&quot;TLS&quot;</span><span class="p">).</span><span class="na">build</span><span class="p">();</span>
+           <span class="n">chainManager</span> <span class="o">=</span> <span class="n">ChainManager</span><span class="p">.</span><span class="na">getInstance</span><span class="p">();</span>
+           <span class="n">chainClient</span> <span class="o">=</span> <span class="n">chainManager</span><span class="p">.</span><span class="na">getChainClient</span><span class="p">(</span><span class="n">CHAIN_ID</span><span class="p">);</span>
+           <span class="k">if</span> <span class="p">(</span><span class="n">chainClient</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+               <span class="n">chainClient</span> <span class="o">=</span> <span class="n">chainManager</span><span class="p">.</span><span class="na">createChainClient</span><span class="p">(</span><span class="n">CHAIN_ID</span><span class="p">,</span> <span class="n">ORG_ID</span><span class="p">,</span> <span class="n">FileUtils</span><span class="p">.</span><span class="na">getResourceFileBytes</span><span class="p">(</span><span class="n">USER_KEY_PATH</span><span class="p">),</span>
+                       <span class="n">FileUtils</span><span class="p">.</span><span class="na">getResourceFileBytes</span><span class="p">(</span><span class="n">USER_CERT_PATH</span><span class="p">),</span> <span class="n">chainNode</span><span class="p">);</span>
+           <span class="p">}</span>
+       <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+           <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;test init exception&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+       <span class="p">}</span>
+   <span class="p">}</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>创建合约</p></li>
+</ol>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testCreateContract</span><span class="p">()</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="p">,</span> <span class="n">InterruptedException</span><span class="p">,</span> <span class="n">ExecutionException</span><span class="p">,</span> <span class="n">TimeoutException</span> <span class="p">{</span>
+       <span class="kt">byte</span><span class="o">[]</span> <span class="n">byteCode</span> <span class="o">=</span> <span class="n">FileUtils</span><span class="p">.</span><span class="na">getResourceFileBytes</span><span class="p">(</span><span class="n">CONTRACT_FILE_PATH</span><span class="p">);</span>
+   
+       <span class="c1">// 1. create payload</span>
+       <span class="kt">byte</span><span class="o">[]</span> <span class="n">payload</span> <span class="o">=</span> <span class="n">chainClient</span><span class="p">.</span><span class="na">createPayloadOfContractCreation</span><span class="p">(</span><span class="n">CONTRACT_NAME</span><span class="p">,</span>
+               <span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="n">Contract</span><span class="p">.</span><span class="na">RuntimeType</span><span class="p">.</span><span class="na">WASMER_RUST</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">byteCode</span><span class="p">);</span>
+   
+       <span class="c1">// 2. create payloads with endorsement</span>
+       <span class="kt">byte</span><span class="o">[]</span> <span class="n">payloadWithEndorsement1</span> <span class="o">=</span> <span class="n">chainClient</span><span class="p">.</span><span class="na">signPayloadOfContractMgmt</span><span class="p">(</span><span class="n">payload</span><span class="p">);</span>
+   
+       <span class="c1">// 3. merge endorsements using payloadsWithEndorsement</span>
+       <span class="kt">byte</span><span class="o">[][]</span> <span class="n">payloadsWithEndorsement</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">1</span><span class="o">][]</span><span class="p">;</span>
+       <span class="n">payloadsWithEndorsement</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">payloadWithEndorsement1</span><span class="p">;</span>
+       <span class="kt">byte</span><span class="o">[]</span> <span class="n">payloadWithEndorsement</span> <span class="o">=</span> <span class="n">chainClient</span><span class="p">.</span><span class="na">mergeSignedPayloadsOfContractMgmt</span><span class="p">(</span><span class="n">payloadsWithEndorsement</span><span class="p">);</span>
+   
+       <span class="c1">// 4. create contract</span>
+       <span class="n">ResponseInfo</span> <span class="n">responseInfo</span> <span class="o">=</span> <span class="n">chainClient</span><span class="p">.</span><span class="na">createContract</span><span class="p">(</span><span class="n">payloadWithEndorsement</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">);</span>
+   <span class="p">}</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>调用合约</p></li>
+</ol>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvokeContract</span><span class="p">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="p">{</span>
+
+       <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+       <span class="n">params</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;time&quot;</span><span class="p">,</span> <span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">()</span><span class="o">+</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+       <span class="n">params</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;file_hash&quot;</span><span class="p">,</span> <span class="n">UUID</span><span class="p">.</span><span class="na">randomUUID</span><span class="p">().</span><span class="na">toString</span><span class="p">());</span>
+       <span class="n">params</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;file_name&quot;</span><span class="p">,</span> <span class="n">UUID</span><span class="p">.</span><span class="na">randomUUID</span><span class="p">().</span><span class="na">toString</span><span class="p">()</span><span class="o">+</span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">());</span>
+       <span class="n">ResponseInfo</span> <span class="n">responseInfo</span> <span class="o">=</span> <span class="n">chainClient</span><span class="p">.</span><span class="na">invokeContract</span><span class="p">(</span><span class="n">QUERY_CONTRACT_NAME</span><span class="p">,</span> <span class="n">QUERY_CONTRACT_METHOD</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">);</span>
+   <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sdk-jar">
+<h2>SDK Jar包引用方式<a class="headerlink" href="#sdk-jar" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id64">
+<h3>编译<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>git clone https://git.code.tencent.com/ChainMaker/chainmaker-sdk-java.git
+// 说明：需要使用openjdk 1.8.151+并提前安装gradle，也可以使用intelliJ IDEA打开项目进行编译
+cd chainamker-sdk-java
+./gradle build
+</pre></div>
+</div>
+</div>
+<div class="section" id="id65">
+<h3>使用<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>导入Jar包，这里使用IntelliJ为示例引用Jar包，将编译好的jar包拷贝到需要使用sdk的项目下（一般可以在项目下建一个libs目录），然后打开IntelliJ IDEA-&gt;File-&gt;Project Structures，如下图点击“+”号，选择JARs or Directories，选中Jar包点击open即可。</p></li>
+</ol>
+<img src="../images/chainmaker-java-sdk-add-sdk-jar.png" style="zoom:50%;" /><ol>
+<li><p>引用</p>
+<p>在要使用sdk的源文件里使用import引用sdk包，如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">org.chainmaker.sdk.</span><span class="o">*</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

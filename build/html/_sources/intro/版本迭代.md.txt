@@ -1,0 +1,23 @@
+# 版本迭代
+
+本章节介绍了长安链版本、产品功能和对应的更新状态时间点。
+
+## 版本及特性
+
+| 版本                  | 时间点       | 主要内容                   |
+| -------------------- | -------- | -------------------- |
+| 1.0.0                  | 2021.01.27     | 1. 可装配、高性能整体框架；<br>2. 支持GAMS、WASMER、WXVM等三种合约引擎，golang、rust、c++等三种合约语言；<br>3. 支持SOLO、RAFT、TBFT等三种共识算法；<br>4. 支持基于冲突检测的块内智能合约交易并行执行；<br>5. 支持LevelDB、RocksDB、MySQL等存储引擎；<br>6. 存储模块支持内存加速，支持故障恢复；     |
+| 1.1.0 | 2021.05.12 | 1. 支持EVM合约引擎，兼容以太坊合约生态；<br/>2. 支持各类合约引擎的事件订阅机制和查询机制，增加智能合约易用性；<br/>3. 支持HotStuff流水线共识，当前支持在多链、存证交易场景下提供更高效的共识能力；<br/>4. 支持层级身份加密方案，满足联盟链数据层级可见性需求；<br/>5. 优化网络模块配置，增加本地配置种子节点和信任根，共识节点IP变更无需链上配置更新；<br/>6. 优化新旧版本兼容问题。 |
+
+
+
+## chainmaker docker 镜像地址
+
+**hub.docker官网主页：**<a href="https://hub.docker.com/r/chainmakerofficial/chainmaker" target="_blank">https://hub.docker.com/r/chainmakerofficial/chainmaker</a>
+
+
+| 版本  | 镜像地址                                           |
+| ----- | -------------------------------------------------- |
+| 1.0.0 | docker pull chainmakerofficial/chainmaker:v1.0.0_r |
+| 1.1.0 | docker pull chainmakerofficial/chainmaker:v1.1.0   |
+

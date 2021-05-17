@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>9. 身份权限管理 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10. 加密算法" href="%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html" />
+    <link rel="prev" title="8. 数据存储" href="%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. 身份权限管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">9.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">9.2. 用户标识</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">9.2.1. 用户标识方法（账户体系）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">9.2.2. 长安链用户体系</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">9.3. 权限管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">9.3.1. 角色类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">9.3.2. 权限定义方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">9.3.3. 权限管理流程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">9. </span>身份权限管理</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tech/身份权限管理.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">9. </span>身份权限管理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">9.1. </span>概述<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>在区块链中，身份权限模块负责解决两个问题：</p>
+<ul class="simple">
+<li><p>如何标识区块链节点、交易发送者等链上参与成员？</p></li>
+<li><p>如何管理发送交易、查询交易、配置更新等链上操作权限？</p></li>
+</ul>
+<p>传统的中心化信息系统中，往往采用用户名来标识用户，采用基于角色的权限控制 <code class="docutils literal notranslate"><span class="pre">role</span> <span class="pre">based</span> <span class="pre">access</span> <span class="pre">control,</span> <span class="pre">RBAC</span></code>模型、权限控制列表 <code class="docutils literal notranslate"><span class="pre">access</span> <span class="pre">control</span> <span class="pre">list,</span> <span class="pre">ACL</span></code> 等来管控操作权限。在区块链中，中心化的用户注册和登录不再可行，需采用基于密码学的方式进行用户标识，而权限控制仍可采用<code class="docutils literal notranslate"><span class="pre">RBAC、ACL</span></code>等传统方式。在长安链1.0版本中，面向<strong>联盟链</strong>场景，实现了一种<strong>基于数字证书的用户标识体系</strong>、<strong>基于角色的权限控制体系</strong>。后续迭代中，将支持更为丰富的身份权限管理模型。</p>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">9.2. </span>用户标识<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3><span class="section-number">9.2.1. </span>用户标识方法（账户体系）<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>区块链中，可采用公钥、地址（公钥哈希）、数字证书等方式来标识链上用户身份，具体对比如下表所示：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>标识方法</th>
+<th>标识长度</th>
+<th>外部依赖</th>
+<th>附加信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公钥/地址</td>
+<td>小</td>
+<td>无</td>
+<td>不能附加额外信息</td>
+</tr>
+<tr>
+<td>数字证书</td>
+<td>大</td>
+<td>需依赖CA版发数字证书</td>
+<td>可在证书字段中附加组织、角色等额外信息</td>
+</tr>
+<tr>
+<td>分布式数字身份 (DID)</td>
+<td>小</td>
+<td>需依赖 DID 支撑平台</td>
+<td>可在 DID 文档中附加额外信息</td>
+</tr>
+</tbody>
+</table><p>长安链1.0版本采用数字证书来标识链上成员。换言之，每个加入区块链网络中的节点和用户，需在加入前获得经认可的CA版发的数字证书，且每条发出的消息需附加数字签名，供其他成员进行合法性校验。</p>
+</div>
+<div class="section" id="id5">
+<h3><span class="section-number">9.2.2. </span>长安链用户体系<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>面向联盟链场景，长安链的链上用户体系如下图所示：</p>
+<img src="../images/身份权限管理-用户体系.png" alt="Raft共识与核心引擎交互图" style="zoom:70%;" /><p>一条链由多个组织构成，每个组织下拥有一个或多个区块链节点和用户（类型详见下文中*[角色类型](# 角色类型)*）。每个组织在创世块中的<code class="docutils literal notranslate"> <span class="pre">trust</span> <span class="pre">root</span></code> 字段定义组织根证书，若链上成员拥有某根证书版发的合法证书，则视为该成员为此组织下的合法用户。</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h2><span class="section-number">9.3. </span>权限管理<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>长安链1.0中采用了基于角色的权限控制模型，如下图所示。具体来说，需将用户绑定到某一组织的一个或多个角色上，再将链上资源（即链上需要进行权限管理的操作）绑定至特定的组织、角色，即可完成资源和用户的关联。</p>
+<img src="../images/身份权限管理-权限控制模型.png" alt="Raft共识与核心引擎交互图" style="width:900px;" /><div class="section" id="id7">
+<h3><span class="section-number">9.3.1. </span>角色类型<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>长安链中，定义了以下几种角色类型：</p>
+<ul class="simple">
+<li><p>共识节点 <code class="docutils literal notranslate"><span class="pre">consensus</span></code>：有权参与区块共识流程的链上节点；</p></li>
+<li><p>同步节点<code class="docutils literal notranslate"><span class="pre">common</span></code>：无权参与区块共识流程，但可在链上中同步数据的节点；</p></li>
+<li><p>管理员 <code class="docutils literal notranslate"><span class="pre">admin</span></code>：可代表组织进行链上治理的用户；</p></li>
+<li><p>用户 <code class="docutils literal notranslate"><span class="pre">client</span></code>：无权进行链上治理，但可发送和查询交易的用户。</p></li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h3><span class="section-number">9.3.2. </span>权限定义方法<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>长安链采用三段式语法定义资源的访问权限：规则 (<code class="docutils literal notranslate"><span class="pre">rule</span></code>)、组织列表 (<code class="docutils literal notranslate"><span class="pre">orgList</span></code>)、角色列表 (<code class="docutils literal notranslate"><span class="pre">roleList</span></code>)</p>
+<ul class="simple">
+<li><p>规则：以关键字的形式描述了需要多少个组织的用户共同认可才可访问资源，合法的规则包括：</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ALL</span></code>：要求 <code class="docutils literal notranslate"><span class="pre">orgList</span></code> 列表中所有组织参与，每个组织至少提供一个符合 <code class="docutils literal notranslate"><span class="pre">roleList</span></code> 要求角色的签名；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ANY</span></code>：要求 <code class="docutils literal notranslate"><span class="pre">orgList</span></code> 列表中任意一个组织提供符合 <code class="docutils literal notranslate"><span class="pre">roleList</span></code> 要求角色的签名；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MAJORITY</span></code>：要求联盟链中过半数组织提供各自 <code class="docutils literal notranslate"><span class="pre">admin</span></code> 角色的签名；</p></li>
+<li><p>一个以字符串形式表达的<strong>整数</strong> (e.g., “3”)：要求<code class="docutils literal notranslate"><span class="pre">orgList</span></code> 列表中大于或等于规定数目的组织提供符合 <code class="docutils literal notranslate"><span class="pre">roleList</span></code> 要求角色的签名；</p></li>
+<li><p>一个以字符串形式表达的<strong>分数</strong> (e.g., “2/3”) ：要求<code class="docutils literal notranslate"><span class="pre">orgList</span></code> 列表中大于或等于规定比例的组织提供符合 <code class="docutils literal notranslate"><span class="pre">roleList</span></code> 要求角色的签名；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SELF</span></code>：要求资源所属的组织提供符合 <code class="docutils literal notranslate"><span class="pre">roleList</span></code> 要求角色的签名，在此关键字下，<code class="docutils literal notranslate"><span class="pre">orgList</span></code>中的组织列表信息不生效，该规则目前只适用于修改组织根证书、修改组织共识节点地址这两个操作的权限配置；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FORBIDDEN</span></code>：此规则表示禁止所有人访问，在此关键字下，<code class="docutils literal notranslate"><span class="pre">orgList</span></code>和 <code class="docutils literal notranslate"><span class="pre">roleList</span></code> 不生效。</p></li>
+</ul>
+</li>
+<li><p>组织列表：合法的组织列表集合，组织需出现在配置文件的 <code class="docutils literal notranslate"><span class="pre">trust</span> <span class="pre">root</span></code> 中，若为空则默认出现在 <code class="docutils literal notranslate"><span class="pre">trust</span> <span class="pre">root</span></code> 中的所有组织；</p></li>
+<li><p>角色列表：合法的角色列表集合，若为空则默认所有角色。</p></li>
+</ul>
+<p>示例如下：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>权限定义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ALL</code> <code>[org1, org2, org3]</code> <code>[admin, client]</code></td>
+<td>三个组织各自提供至少一个管理员或普通用户提供签名才可访问对应资源</td>
+</tr>
+<tr>
+<td><code>1/2</code> <code>[]</code> <code>[admin]</code></td>
+<td>链上所有组织中过半数组织的管理员提供签名才可访问对应资源（自定义版本的<code>MAJORITY</code>规则）</td>
+</tr>
+<tr>
+<td><code>SELF</code> <code>[]</code> <code>[admin]</code></td>
+<td>资源所属组织的管理员提供签名才可访问对应资源，例如组织管理员有权修改各自组织的根证书</td>
+</tr>
+</tbody>
+</table><p>权限配置的方法可参考《<a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html"><span class="doc">配置变更</span></a>》部分。</p>
+</div>
+<div class="section" id="id9">
+<h3><span class="section-number">9.3.3. </span>权限管理流程<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>长安链中，权限控制的整体流程为：</p>
+<ol class="simple">
+<li><p><strong>配置加载</strong>：链初始化时，加载配置文件中定义的资源名称和权限的对应关系，若无则加载默认配置；</p></li>
+<li><p><strong>权限定位</strong>：需要鉴权时，根据上下文确定访问的资源名称，找到对应的权限定义；</p></li>
+<li><p><strong>签名校验</strong>：根据用户提供的签名背书列表，校验签名是否满足权限定义的最低要求，返回鉴权成功或失败。</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html" class="btn btn-neutral float-right" title="10. 加密算法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html" class="btn btn-neutral float-left" title="8. 数据存储" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

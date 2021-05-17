@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>4. 智能合约与虚拟机 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. 共识算法" href="%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html" />
+    <link rel="prev" title="3. 数据结构" href="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. 智能合约与虚拟机</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">4.1. 字节码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sdk">4.2. 智能合约SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">4.3. 智能合约生命周期管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">4.3.1. 合约创建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">4.3.2. 合约升级</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">4.3.3. 合约冻结</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">4.3.4. 合约解冻</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">4.3.5. 合约注销</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">4.4. 智能合约事件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">4. </span>智能合约与虚拟机</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tech/智能合约与虚拟机.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">4. </span>智能合约与虚拟机<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>智能合约是一种计算机程序或交易协议，记录了交易条款信息、事件、行为，旨在减少对可信中间人的需求、仲裁和执行成本。在长安链上，用户可以通过高级语言（C++、Go、Rust、JS）来编写智能合约，经过编译后，以WASM、EVM字节码的形式存储在区块链中。用户可以通过发送交易来触发执行智能合约中的代码。其中，ChainMaker对JS和EVM的支持已经开发完毕，将很快集成到ChainMaker中。</p>
+<br/><p>虚拟机为智能合约提供计算资源和运行容器。每个虚拟机都运行在隔离的环境中，确保资源访问安全性，只能修改属于该合约自身的状态记录。智能合约需要有执行终止条件，以限制对资源的消耗；终止条件可以是按照时间、指令数量、指令执行代价（类似ETH gas）等方式。</p>
+<br/><p>长安链支持多种智能合约编程语言和虚拟机，为虚拟机提供统一的数据访问和密码算法访问接口。当一批交易通过调度器被发送至虚拟机时，虚拟机将解析交易中的智能合约调用参数，并且在运行时，通过数据访问接口获取运行时必要的数据，最后执行生成交易的读写集、交易执行结果和交易执行的日志信息。</p>
+<img src="../images/智能合约与虚拟机-交易执行流程.png" style="width:850px;" /><div class="section" id="id2">
+<h2><span class="section-number">4.1. </span>字节码<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>长安链目前在软件上支持的虚拟机字节码包括两类：WASM（WebAssembly）和EVM字节码。</p>
+<ul class="simple">
+<li><p>WebAssembly 有一套完整的语义，实际上 wasm 是体积小且加载快的二进制格式， 其目标就是充分发挥硬件能力以达到原生执行效率。WebAssembly 设计了一个非常规整的文本格式用来开发、调试、测试、优化。</p></li>
+<li><p>EVM字节码是最初运用在以太坊上的一种虚拟机字节码，目前已经被广泛的运用在许多区块链平台上，有相对比较成熟的开发工具支持。</p></li>
+</ul>
+</div>
+<div class="section" id="sdk">
+<h2><span class="section-number">4.2. </span>智能合约SDK<a class="headerlink" href="#sdk" title="Permalink to this headline">¶</a></h2>
+<p>用户通过高级语言编写的智能合约一般情况而言，都需要存取区块链上的数据、API支持，ChainMaker为不同的高级语言提供了不同的SDK。当然，这些SDK提供的基本能力是相同的，包括读取数据、写入数据、查询区块链的一些状态等。</p>
+<br/><p>不同语言的SDK受限于语言本身特性和编译器的支撑能力，比如go语言支持函数同时返回多个数据，而tinygo编译器对垃圾回收支持存在缺陷，加上区块链系统本身为智能合约提供的运行内存大小受限、调用栈深度受限，用户编写合约时，需要注意这些特性。</p>
+<p>目前ChainMaker已经支持的智能合约开发SDK包括Rust、Go、C++。</p>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">4.3. </span>智能合约生命周期管理<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>长安链的整体生命周期管理流程如下图所示：</p>
+<img src="../images/智能合约与虚拟机-智能合约生命周期.png" style="zoom:50%;" /><div class="section" id="id4">
+<h3><span class="section-number">4.3.1. </span>合约创建<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>用户编写完成智能合约后，经过编译器编译为字节码，需要通过发送交易的形式部署到区块链上。发送的交易将被共识节点和同步节点接收和处理，在校验完成各项参数后，字节码将被存储在区块链数据库中。</p>
+<br/><p>在校验参数的过程中，如果下列校验出错，将把执行的错误信息记录在交易的执行结果中：</p>
+<ul class="simple">
+<li><p>同一条链上不允许存在重名的合约</p></li>
+<li><p>字节码不能为空</p></li>
+<li><p>指定的智能合约执行引擎必须有效</p></li>
+<li><p>版本信息不能为空</p></li>
+</ul>
+<img src="../images/智能合约与虚拟机-智能合约部署.png" style="zoom:60%;"  /><p>随后将调用执行合约的初始化方法：</p>
+<ul class="simple">
+<li><p>对于WASM而言，将调用合约的 <strong>init_contract()</strong> 方法，用户必须提供导出的 <strong>init_contract()</strong> 方法</p></li>
+<li><p>对于EVM而言，将调用合约的构造方法</p></li>
+</ul>
+<img src="../images/智能合约与虚拟机-智能合约调用.png" style="zoom:60%;"  /></div>
+<div class="section" id="id5">
+<h3><span class="section-number">4.3.2. </span>合约升级<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>ChainMaker支持对基于WASM和EVM的字节码进行升级</p>
+<ul class="simple">
+<li><p>对于WASM而言，将调用 <strong>upgrade_contract()</strong> 方法，用户必须提供导出的 <strong>upgrade_contract()</strong> 方法</p></li>
+<li><p>对于EVM而言，并不会调用任何方法，只是单纯更新字节码</p></li>
+</ul>
+<p>合约升级也需要校验参数，如果下列校验出错，将把执行的错误信息记录在交易的执行结果中：</p>
+<ul class="simple">
+<li><p>合约必须已经被部署成功</p></li>
+<li><p>字节码不能为空</p></li>
+<li><p>版本信息不能为空</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h3><span class="section-number">4.3.3. </span>合约冻结<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>用户可以对已经部署在ChainMaker的智能合约进行冻结操作，需要发送冻结类型的交易，并指定合约名称，就可以冻结合约。被冻结的合约不允许被用户调用执行。</p>
+</div>
+<div class="section" id="id7">
+<h3><span class="section-number">4.3.4. </span>合约解冻<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>用户可以对已经部署在长安链上已冻结的智能合约进行解冻操作，需要发送解冻类型的交易，并指定合约名称，就可以解冻合约。</p>
+</div>
+<div class="section" id="id8">
+<h3><span class="section-number">4.3.5. </span>合约注销<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>用户可以注销已经被安装的合约，合约一旦被注销，将无法再次对合约发起任何操作。</p>
+</div>
+</div>
+<div class="section" id="id9">
+<h2><span class="section-number">4.4. </span>智能合约事件<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>智能合约事件(contract event)是合约虚拟机中提供的一种智能合约向客户端发送通知消息的功能。当一笔交易触发了合约事件时，事件相数据会进行广播并记录在区块当中。</p>
+<ul>
+<li><p>事件的发送：用户可以在合约函数中指定合约事件topic和对应的合约事件数据，当一笔交易调用了包含合约事件的函数即可触发合约事件，ChainMaker会向指定的topic发送事件数据，从而进行合约事件发送。</p>
+<p>参见<a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html"><span class="doc">智能合约</span></a>章节，智能合约示例代码说明部分。</p>
+</li>
+<li><p>事件的订阅：用户可以使用ChainMaker SDK进行合约事件的订阅，如果用户对指定topic进行了订阅，当合约事件触发后，用户会收到对应topic的合约事件数据。</p>
+<p>参见<a class="reference internal" href="../dev/chainmaker-go-sdk.html"><span class="doc">chainmake-go-sdk</span></a>消息订阅章节。</p>
+</li>
+<li><p>事件的存储：合约事件功能支持用户可配置存储，目前支持<strong>mysql</strong>的可配置存储。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1">#chainmake.yml配置文件</span>
+
+<span class="nt">storage</span><span class="p">:</span>
+  <span class="nt">provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">leveldb</span>        <span class="c1">#合约事件功能适配支持levedb、rocksdb、mysql provider</span>
+  <span class="nt">store_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">../data/ledgerData1</span>
+  <span class="nt">enable_contract_eventdb</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class="c1">#是否开启合约事件存储功能， 默认为false，如果设置为true,需要配置mysql</span>
+  <span class="nt">mysql</span><span class="p">:</span>    <span class="c1">#MySQL相关配置，provider选择MySQL或者enable_contract_eventdb为true时需要配置</span>
+    <span class="nt">dsn</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root:password@tcp(127.0.0.1:3306)/</span>    <span class="c1">#mysql的连接信息，包括用户名、密码、ip、port等，示例：root:admin@tcp(127.0.0.1:3306)</span>
+    <span class="nt">max_idle_conns</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>    <span class="c1">#连接池中维持的最大的空闲连接数，默认为10</span>
+    <span class="nt">max_open_conns</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>    <span class="c1">#最大的可用连接数，默认为10</span>
+    <span class="nt">conn_max_lifetime</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60</span>    <span class="c1">#连接维持的最长时间，单位秒，默认为60</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>目前ChainMaker支持<strong>GO、C++、Rust</strong>的合约事件功能。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html" class="btn btn-neutral float-right" title="5. 共识算法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html" class="btn btn-neutral float-left" title="3. 数据结构" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>2. 背景 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. 基础术语" href="%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html" />
+    <link rel="prev" title="1. 长安链底层技术平台简介" href="%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. 背景</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.1. 长安链生态愿景</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2.2. 关键技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">2.3. 技术优势</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">2. </span>背景</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/intro/背景.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">2. </span>背景<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><br/>中共中央政治局第十八次集体学习时，习近平总书记强调要把区块链作为核心技术自主创新的重要突破口，加快推动区块链技术和产业创新发展。尽管区块链在产业发展中的作用愈加明显，但在发展中过程中仍存在以下问题：
+<br/><br/>1、区块链底层基础设施产品多采用国外开源技术，国内自主开发性、创新性能力薄弱。
+<br/>2、区块链技术与产业结合深度有待提高，区块链场景多集中在存证方向。区块链如何与产业深度融合，更好地发挥赋能价值流动的作用还需进一步研究。
+<br/>3、区块链底层基础设施该如何发展还未明确方向。
+<br/><br/>为解决这些问题，北京微芯区块链与边缘计算研究院联合多家知名高校和业内顶尖企业，合作研发国内首个自主可控区块链软硬件一体技术体系“长安链·ChainMaker”，运算速度超过10万TPS，“长安链”运算速度和安全性都处于全球领先水平。</p>
+<div class="section" id="id2">
+<h2><span class="section-number">2.1. </span>长安链生态愿景<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>构建基于“长安链·ChainMaker”的数字经济国家主链，以重大场景应用为牵引，构建长安链生态网络，汇集数据要素，增进业务协同，繁荣数字经济新生态。</p>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">2.2. </span>关键技术<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>“长安链·ChainMaker”秉承开源开放、共建共享的理念，已开放程序源码。“长安链·ChainMaker”坚持自主研发，秉承开源开放、共建共享的理念，面向大规模节点组网、高交易处理性能、强数据安全隐私等下一代区块链技术需求，融合区块链专用加速芯片硬件和可装配底层软件平台，为构建高性能、高可信、高安全的数字基础设施提供新的解决方案。
+<br/><br/><strong>并行调度</strong>
+<br/>在提案-验证整体框架下，支持基于DAG的块内交易并行调度提案和并行验证；调度支持确定性调度和随机调度等多种并行调度算法。</p>
+<p><strong>广域网络</strong>
+<br/>基于PubSub机制，支持多链隔离下P2P网络的复用与数据隔离；
+支持NAT穿透，复杂网络拓扑下的大规模节点组网，支持网络节点动态治理。</p>
+<p><strong>多链架构</strong>
+<br/>支持并行多链实现不同参与方间的数据隔离；
+可根据场景灵活扩展子链以支持业务和吞吐量的需求。</p>
+<p><strong>权限管理</strong>
+<br/>为链上每个操作定义访问权限，支持细粒度权限管理策略；
+结合组织、角色等提供灵活的身份权限配置方案。</p>
+</div>
+<div class="section" id="id4">
+<h2><span class="section-number">2.3. </span>技术优势<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p><strong>自主可控</strong>
+<br/>面向世界科技前沿，秉持自主创新原则，汇聚国内顶级工程师和科学家团队，长安链·ChainMaker构建了全球独创的底层技术框架，关键技术模块全部自研，成为国际区块链技术发展的新动能，为国家“新基建”提供自主、可控、安全的区块链数字经济基础设施。独创深度模块化、可装配、高性能并行执行的区块链底层技术架构；
+<br/><br/>覆盖国产密码算法、基于国密证书的加密通讯和国产CA证书颁发认证机构。</p>
+<p><strong>开源开放</strong>
+<br/>自诞生起，长安链践行开源、开放的理念，最大范围联合产、学、研、用各类科研力量，由顶尖高校、知名企业等优势力量共同开发，同时广泛拥抱个人和企业开发者，打造标准规范体系，共建开源开放充满活力的区块链技术生态；
+<br/><br/>采用友好的开源协议，开放软件源代码，推动多项技术体系标准化，建立标准化下的开发生态。</p>
+<p><strong>性能领先</strong>
+<br/>长安链拥有高效并行调度算法、高性能可信安全智能合约执行引擎、流水线共识算法等国际领先的区块链底层技术，具备高并发、低延时、大规模节点组网等先进技术优势，交易吞吐能力可达10万TPS，位居全球领先水平；
+<br/><br/>支持基于内存的数据系统，提升交易处理性能。</p>
+<p><strong>灵活装配</strong>
+<br/>长安链将区块链执行流程标准化、模块化，推进区块链技术从手工作业模式演进到自动装配生产模式，方便用户根据不同的业务需求搭建区块链系统，为技术的规模化应用提供基础；
+<br/><br/>可插拔、可分离的自主可控核心框架，可快速接入优势底层模块/单一定制化开发模块。</p>
+<p><br/><img src="../images/长安链介绍-背景-核心特色.png"  alt="长安链简介-核心特色" style="zoom:50%;margin:0 auto;" /></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html" class="btn btn-neutral float-right" title="3. 基础术语" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html" class="btn btn-neutral float-left" title="1. 长安链底层技术平台简介" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

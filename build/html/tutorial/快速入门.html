@@ -1,0 +1,973 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>1. 概述 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1. 整体架构" href="../tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html" />
+    <link rel="prev" title="5. 版本迭代" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id2">2. 环境依赖</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2.1. 硬件依赖</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">2.2. 软件依赖</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#git">2.2.1. git</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#golang">2.2.2. golang</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker">2.2.3. docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-compose">2.2.4. docker-compose</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#id5">3. 环境搭建</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id6">3.1. 使用脚本搭建</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">3.1.1. 源码下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">3.1.2. 源码编译</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">3.1.3. 证书及配置文件生成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">3.1.4. 编译及安装包制作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">3.1.5. 启动节点集群</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">3.1.6. 查看节点启动使用正常</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">3.2. 使用Docker搭建</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id14">3.2.1. 编译docker镜像</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solo">3.2.2. 启停solo节点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">3.2.3. 启停4节点集群</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#id16">4. 功能验证</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cmc">4.1. cmc命令行工具验证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#go-sdk">4.2. go sdk验证</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id17">4.2.1. 下载go sdk源码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">4.2.2. 关联证书</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">4.2.3. 配置修改</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">4.2.4. 执行存证合约单测</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">4.2.5. 执行资产合约单测</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#goland">5. 开发-goland启动链</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id22">5.1. 下载安装goland</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#go">5.2. 下载安装go</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">5.2.1. 安装go</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">5.2.2. 设置代理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id25">5.3. 下载源码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id26">5.4. 启动goland</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#chainmaker-go">5.4.1. 导入chainmaker-go</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">5.4.2. 配置goland</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">5.4.3. 启动项目（SOLO模式）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id29">5.4.4. 测试</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#id30">6. 常见问题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id31">6.1. 视频教程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id32">6.2. 编译时错误</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#missing-go-sum-entry">6.2.1. missing go.sum entry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#go-mod-no-such-file-or-directory">6.2.2. go.mod no such file or directory</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id33">6.3. 启动时错误</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#not-found-glibc-2-18">6.3.1. not found GLIBC_2.18</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#restart-sh">6.3.2. restart.sh 权限不足</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id34">6.4. 运行时错误</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#syscall-js-valueget-not-exported">6.4.1. syscall/js.valueGet not exported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#runtime-type-error">6.4.2. runtime type error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id35">6.4.3. 返回成功，但实际执行失败</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id36">6.5. 其他关键信息</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id37">6.5.1. 出块标记是什么</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id38">6.5.2. 组网成功标记是什么</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">1. </span>概述</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorial/快速入门.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">1. </span>概述<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>通过本文你将可以搭建起长安链多节点集群，并使用命令行工具和SDK完成长安链功能的体验。</p>
+</div>
+<div class="section" id="id2">
+<h1><span class="section-number">2. </span>环境依赖<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id3">
+<h2><span class="section-number">2.1. </span>硬件依赖<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>配置</th>
+<th>最低配置</th>
+<th>推荐配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>1.5GHz</td>
+<td>2.4GHz</td>
+</tr>
+<tr>
+<td>内存</td>
+<td>4GB</td>
+<td>8GB</td>
+</tr>
+<tr>
+<td>核心</td>
+<td>4核</td>
+<td>8核</td>
+</tr>
+<tr>
+<td>带宽</td>
+<td>2Mb</td>
+<td>10Mb</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="id4">
+<h2><span class="section-number">2.2. </span>软件依赖<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="git">
+<h3><span class="section-number">2.2.1. </span>git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h3>
+<p>下载地址：<a class="reference external" href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
+<p>安装步骤，请参看：<a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">https://git-scm.com/book/en/v2/Getting-Started-Installing-Git</a></p>
+</div>
+<div class="section" id="golang">
+<h3><span class="section-number">2.2.2. </span>golang<a class="headerlink" href="#golang" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>版本为1.15或以上</p>
+</div></blockquote>
+<p>下载地址：<a class="reference external" href="https://golang.org/dl/">https://golang.org/dl/</a></p>
+<p>安装步骤，请参看：<a class="reference external" href="https://golang.org/doc/install">https://golang.org/doc/install</a></p>
+</div>
+<div class="section" id="docker">
+<h3><span class="section-number">2.2.3. </span>docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>若不使用采用<code class="docutils literal notranslate"><span class="pre">docker</span></code>方式搭建集群，可以不安装</p>
+</div></blockquote>
+<p>安装步骤，请参看：<a class="reference external" href="https://docs.docker.com/engine/install/">https://docs.docker.com/engine/install/</a></p>
+</div>
+<div class="section" id="docker-compose">
+<h3><span class="section-number">2.2.4. </span>docker-compose<a class="headerlink" href="#docker-compose" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>若不使用采用<code class="docutils literal notranslate"><span class="pre">docker</span></code>方式搭建集群，可以不安装</p>
+</div></blockquote>
+<p>安装步骤，请参看：<a class="reference external" href="https://docs.docker.com/compose/install/">https://docs.docker.com/compose/install/</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h1><span class="section-number">3. </span>环境搭建<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id6">
+<h2><span class="section-number">3.1. </span>使用脚本搭建<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>适用于<code class="docutils literal notranslate"><span class="pre">Linux</span></code>、<code class="docutils literal notranslate"><span class="pre">MacOS</span></code></p>
+</div></blockquote>
+<div class="section" id="id7">
+<h3><span class="section-number">3.1.1. </span>源码下载<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>从<a class="reference external" href="https://www.chainmaker.org/">长安链官网</a>下载源码：<a class="reference external" href="https://git.chainmaker.org.cn/chainmaker/chainmaker-go">https://git.chainmaker.org.cn/chainmaker/chainmaker-go</a></p>
+<blockquote>
+<div><p>当前为私有仓库，需要先进行账号注册</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>下载<code class="docutils literal notranslate"><span class="pre">chainmaker</span></code>源码到本地</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone --recursive https://git.chainmaker.org.cn/chainmaker/chainmaker-go.git
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>下载证书生成工具源码到本地</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone --recursive https://git.chainmaker.org.cn/chainmaker/chainmaker-cryptogen.git
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3><span class="section-number">3.1.2. </span>源码编译<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>编译证书生成工具</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> chainmaker-cryptogen
+$ make
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3><span class="section-number">3.1.3. </span>证书及配置文件生成<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>将编译好的<code class="docutils literal notranslate"><span class="pre">chainmaker-cryptogen</span></code>，软连接或拷贝到<code class="docutils literal notranslate"><span class="pre">chainmaker-go/tools</span></code>目录</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 进入工具目录</span>
+$ <span class="nb">cd</span> chainmaker-go/tools
+
+<span class="c1"># 软连接chainmaker-cryptogen到tools目录下</span>
+$ ln -s ../../chainmaker-cryptogen/ .
+</pre></div>
+</div>
+<ul>
+<li><p>进入<code class="docutils literal notranslate"><span class="pre">chainmaker-go/scripts</span></code>目录，执行<code class="docutils literal notranslate"><span class="pre">prepare.sh</span></code>脚本生成单链4节点集群配置，存于路径<code class="docutils literal notranslate"><span class="pre">chainmaker-go/build</span></code>中</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">prepare.sh</span></code>脚本支持生成<code class="docutils literal notranslate"><span class="pre">solo</span></code>模式节点证书和配置，以及4/7/10/13/16节点的证书和配置</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 进入脚本目录</span>
+$ <span class="nb">cd</span> ../scripts
+
+<span class="c1"># 查看脚本帮助</span>
+$ ./prepare.sh -h
+Usage:  
+  prepare.sh node_cnt<span class="o">(</span><span class="m">1</span>/4/7/10/13/16<span class="o">)</span> chain_cnt<span class="o">(</span><span class="m">1</span>-4<span class="o">)</span> p2p_port_prefix<span class="o">(</span>default:11300<span class="o">)</span> rpc_port_prefix<span class="o">(</span>default:12300<span class="o">)</span>
+    eg1: prepare.sh <span class="m">4</span> <span class="m">1</span>
+    eg2: prepare.sh <span class="m">4</span> <span class="m">1</span> <span class="m">11300</span> <span class="m">12300</span>
+
+<span class="c1"># 生成单链4节点集群的证书和配置</span>
+$ ./prepare.sh <span class="m">4</span> <span class="m">1</span>
+begin check params...
+begin generate certs, cnt: <span class="m">4</span>
+input consensus type<span class="o">(</span>default <span class="m">1</span>/tbft<span class="o">)</span>: 
+input log level<span class="o">(</span>default INFO<span class="o">)</span>: 
+begin generate node1 config...
+begin generate node2 config...
+begin generate node3 config...
+begin generate node4 config...
+
+<span class="c1"># 查看生成好的节点证书和配置</span>
+$ tree -L <span class="m">3</span> ../build/
+../build/
+├── config
+│   ├── node1
+│   │   ├── certs
+│   │   ├── chainconfig
+│   │   ├── chainmaker.yml
+│   │   └── log.yml
+│   ├── node2
+│   │   ├── certs
+│   │   ├── chainconfig
+│   │   ├── chainmaker.yml
+│   │   └── log.yml
+│   ├── node3
+│   │   ├── certs
+│   │   ├── chainconfig
+│   │   ├── chainmaker.yml
+│   │   └── log.yml
+│   └── node4
+│       ├── certs
+│       ├── chainconfig
+│       ├── chainmaker.yml
+│       └── log.yml
+├── crypto-config
+│   ├── wx-org1.chainmaker.org
+│   │   ├── ca
+│   │   ├── node
+│   │   └── user
+│   ├── wx-org2.chainmaker.org
+│   │   ├── ca
+│   │   ├── node
+│   │   └── user
+│   ├── wx-org3.chainmaker.org
+│   │   ├── ca
+│   │   ├── node
+│   │   └── user
+│   └── wx-org4.chainmaker.org
+│       ├── ca
+│       ├── node
+│       └── user
+└── crypto_config.yml
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>关于自动生成的端口说明</p></li>
+</ul>
+<p>通过<code class="docutils literal notranslate"><span class="pre">prepare.sh</span></code>脚本生成的配置，默认是在单台服务器上部署，故自动生成的端口号，是从一个起始端口号开始依次递增，可以通过命令行参数修改起始端口号。</p>
+<p>主要有2个端口，<code class="docutils literal notranslate"><span class="pre">p2p</span></code>端口（用于节点互联）和<code class="docutils literal notranslate"><span class="pre">rpc</span></code>端口（用于客户端与节点通信），<code class="docutils literal notranslate"><span class="pre">p2p</span></code>起始端口为<code class="docutils literal notranslate"><span class="pre">11301</span></code>，<code class="docutils literal notranslate"><span class="pre">rpc</span></code>起始端口为<code class="docutils literal notranslate"><span class="pre">12301</span></code>。</p>
+<p>如果生成4个节点的配置，<code class="docutils literal notranslate"><span class="pre">p2p</span></code>端口分别为：<code class="docutils literal notranslate"><span class="pre">11301、11302、11303、11304</span></code>，<code class="docutils literal notranslate"><span class="pre">rpc</span></code>端口分别为：<code class="docutils literal notranslate"><span class="pre">12301、12302、12303、12304</span></code></p>
+<p>如果是在多机部署，希望生成固定的端口号，请参考：<a class="reference internal" href="../operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html"><span class="doc">【多机部署】</span></a></p>
+</div>
+<div class="section" id="id10">
+<h3><span class="section-number">3.1.4. </span>编译及安装包制作<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>执行<code class="docutils literal notranslate"><span class="pre">build_release.sh</span></code>脚本，将编译<code class="docutils literal notranslate"><span class="pre">chainmaker-go</span></code>模块，并打包生成安装，存于路径<code class="docutils literal notranslate"><span class="pre">chainmaker-go/build/release</span></code>中</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./build_release.sh
+$ tree ../build/release/
+../build/release/
+├── chainmaker-V1.0.0-wx-org1.chainmaker.org-20210406194833-x86_64.tar.gz
+├── chainmaker-V1.0.0-wx-org2.chainmaker.org-20210406194833-x86_64.tar.gz
+├── chainmaker-V1.0.0-wx-org3.chainmaker.org-20210406194833-x86_64.tar.gz
+├── chainmaker-V1.0.0-wx-org4.chainmaker.org-20210406194833-x86_64.tar.gz
+└── crypto-config-20210406194833.tar.gz
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h3><span class="section-number">3.1.5. </span>启动节点集群<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>执行<code class="docutils literal notranslate"><span class="pre">cluster_quick_start.sh</span></code>脚本，会解压各个安装包，调用<code class="docutils literal notranslate"><span class="pre">bin</span></code>目录中的<code class="docutils literal notranslate"><span class="pre">start.sh</span></code>脚本，启动<code class="docutils literal notranslate"><span class="pre">chainmaker</span></code>节点</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./cluster_quick_start.sh normal
+</pre></div>
+</div>
+<blockquote>
+<div><p>若需要关闭集群，使用脚本：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./cluster_quick_stop.sh
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id12">
+<h3><span class="section-number">3.1.6. </span>查看节点启动使用正常<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>查看进程是否存在</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ps -ef<span class="p">|</span>grep chainmaker <span class="p">|</span> grep -v grep
+jason    <span class="m">25261</span>  <span class="m">2146</span>  <span class="m">4</span> <span class="m">19</span>:55 pts/20   <span class="m">00</span>:00:01 ./chainmaker start -c ../config/wx-org1.chainmaker.org/chainmaker.yml
+jason    <span class="m">25286</span>  <span class="m">2146</span>  <span class="m">4</span> <span class="m">19</span>:55 pts/20   <span class="m">00</span>:00:01 ./chainmaker start -c ../config/wx-org2.chainmaker.org/chainmaker.yml
+jason    <span class="m">25309</span>  <span class="m">2146</span>  <span class="m">4</span> <span class="m">19</span>:55 pts/20   <span class="m">00</span>:00:01 ./chainmaker start -c ../config/wx-org3.chainmaker.org/chainmaker.yml
+jason    <span class="m">25335</span>  <span class="m">2146</span>  <span class="m">4</span> <span class="m">19</span>:55 pts/20   <span class="m">00</span>:00:01 ./chainmaker start -c ../config/wx-org4.chainmaker.org/chainmaker.yml
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>查看端口是否监听</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ netstat -lptn <span class="p">|</span> grep <span class="m">1230</span>
+tcp6       <span class="m">0</span>      <span class="m">0</span> :::12301                :::*                    LISTEN      <span class="m">25261</span>/./chainmaker  
+tcp6       <span class="m">0</span>      <span class="m">0</span> :::12302                :::*                    LISTEN      <span class="m">25286</span>/./chainmaker  
+tcp6       <span class="m">0</span>      <span class="m">0</span> :::12303                :::*                    LISTEN      <span class="m">25309</span>/./chainmaker  
+tcp6       <span class="m">0</span>      <span class="m">0</span> :::12304                :::*                    LISTEN      <span class="m">25335</span>/./chainmaker 
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>检查节点是否有<code class="docutils literal notranslate"><span class="pre">ERROR</span></code>日志</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat ../build/release/chainmaker-V1.0.0-wx-org1.chainmaker.org/bin/panic.log
+$ tail -f ../build/release/chainmaker-V1.0.0-wx-org1.chainmaker.org/log/system.log
+$ tail -f ../build/release/chainmaker-V1.0.0-wx-org1.chainmaker.org/log/system.log<span class="p">|</span>grep <span class="s2">&quot;ERROR\|put block\|all necessary&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id13">
+<h2><span class="section-number">3.2. </span>使用Docker搭建<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>适用于<code class="docutils literal notranslate"><span class="pre">Docker</span></code></p>
+</div></blockquote>
+<div class="section" id="id14">
+<h3><span class="section-number">3.2.1. </span>编译docker镜像<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> chainmaker-go
+<span class="c1"># 生成镜像名称为：chainmaker:v1.0.0_r，如需要修改版本，请修改Makefile文件</span>
+$ make docker-build
+</pre></div>
+</div>
+</div>
+<div class="section" id="solo">
+<h3><span class="section-number">3.2.2. </span>启停solo节点<a class="headerlink" href="#solo" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>为了方便使用，使用的配置文件及证书已放置于目录：<code class="docutils literal notranslate"><span class="pre">chainmaker-go/scripts/docker/config/solo</span></code></p>
+<p>如镜像名称有调整，请修改<code class="docutils literal notranslate"><span class="pre">solo.docker-compose.yml</span></code>文件</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> chainmaker-go/scripts/docker/
+<span class="c1"># 启动solo节点</span>
+$ ./solo_up.sh 
+<span class="c1"># 关闭solo节点</span>
+$ ./solo_down.sh
+</pre></div>
+</div>
+</div>
+<div class="section" id="id15">
+<h3><span class="section-number">3.2.3. </span>启停4节点集群<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>为了方便使用，使用的配置文件及证书已放置于目录：<code class="docutils literal notranslate"><span class="pre">chainmaker-go/scripts/docker/config/four-nodes</span></code></p>
+<p>如镜像名称有调整，请修改<code class="docutils literal notranslate"><span class="pre">four-nodes.docker-compose.yml</span></code>文件</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> chainmaker-go/scripts/docker/
+<span class="c1"># 启动4节点集群</span>
+$ ./four-nodes_up.sh 
+<span class="c1"># 关闭4节点集群</span>
+$ ./four-nodes_down.sh
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id16">
+<h1><span class="section-number">4. </span>功能验证<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h1>
+<p>为了验证所搭建的链功能是否正常，可以通过<code class="docutils literal notranslate"><span class="pre">cmc</span></code>命令行工具或<code class="docutils literal notranslate"><span class="pre">sdk</span></code>的单元测试用例来进行验证。</p>
+<div class="section" id="cmc">
+<h2><span class="section-number">4.1. </span>cmc命令行工具验证<a class="headerlink" href="#cmc" title="Permalink to this headline">¶</a></h2>
+<p>请参看：<a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html"><span class="doc">【命令行工具】</span></a></p>
+</div>
+<div class="section" id="go-sdk">
+<h2><span class="section-number">4.2. </span>go sdk验证<a class="headerlink" href="#go-sdk" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id17">
+<h3><span class="section-number">4.2.1. </span>下载go sdk源码<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone --recursive https://git.chainmaker.org.cn/chainmaker/chainmaker-sdk-go.git
+</pre></div>
+</div>
+</div>
+<div class="section" id="id18">
+<h3><span class="section-number">4.2.2. </span>关联证书<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>将通过<code class="docutils literal notranslate"><span class="pre">prepare.sh</span></code>工具生成的<code class="docutils literal notranslate"><span class="pre">crypto-config</span></code>目录，软连接到<code class="docutils literal notranslate"><span class="pre">chainmaker-sdk-go/testdata</span></code>目录</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> chainmaker-sdk-go/testdata
+
+<span class="c1"># 这里我们使用新生成的用户证书，请先将testdata已有的crypto-config移除</span>
+$ /bin/rm -rf crypto-config
+$ ln -s ../../chainmaker-go/build/crypto-config/ .
+</pre></div>
+</div>
+</div>
+<div class="section" id="id19">
+<h3><span class="section-number">4.2.3. </span>配置修改<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>修改sdk单元测试使用的配置文件：<code class="docutils literal notranslate"><span class="pre">chainmaker-sdk-go/testdata/sdk_config.yml</span></code></p>
+</div></blockquote>
+<p>根据需要修改节点地址：</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>    nodes:
+      - # 节点地址，格式为：IP:端口:连接数
+        node_addr: &quot;127.0.0.1:12301&quot;
+</pre></div>
+</div>
+<p>如果证书路径有调整，修改对应的证书路径配置：</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>    # 客户端用户私钥路径
+    user_key_file_path: &quot;./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key
+    # 客户端用户证书路径
+    user_crt_file_path: &quot;./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt&quot;
+    # 客户端用户交易签名私钥路径(若未设置，将使用user_key_file_path)
+    user_sign_key_file_path: &quot;./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.sign.key&quot;
+    # 客户端用户交易签名证书路径(若未设置，将使用user_crt_file_path)
+    user_sign_crt_file_path: &quot;./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.sign.crt&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="id20">
+<h3><span class="section-number">4.2.4. </span>执行存证合约单测<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<p>该单测会进行存证合约的部署、调用和查询。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> chainmaker-sdk-go
+$ go <span class="nb">test</span> -v -run UserContractClaim
+</pre></div>
+</div>
+<p>看到类似输出，说明功能验证成功：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">2021</span>-04-07 <span class="m">21</span>:45:25.510	<span class="o">[</span>DEBUG<span class="o">]</span>	<span class="o">[</span>SDK<span class="o">]</span>	chainmaker-sdk-go/sdk_client.go:343	<span class="o">[</span>SDK<span class="o">]</span> proposalRequest resp: message:<span class="s2">&quot;SUCCESS&quot;</span> contract_result:&lt;result:<span class="s2">&quot;{\&quot;file_hash\&quot;:\&quot;9387687162f344b79b39385c5e998f97\&quot;,\&quot;file_name\&quot;:\&quot;file_1617803123443\&quot;,\&quot;time\&quot;:\&quot;1617803123443\&quot;}&quot;</span> gas_used:25145486 &gt; 
+</pre></div>
+</div>
+</div>
+<div class="section" id="id21">
+<h3><span class="section-number">4.2.5. </span>执行资产合约单测<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<p>也可以跑资产合约的单测，该单测会创建A、B两个账号，每个账号初始资产为100000，A给B转账100，最后查看A和B的余额，分别为<code class="docutils literal notranslate"><span class="pre">99900</span></code>和<code class="docutils literal notranslate"><span class="pre">100100</span></code>。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ go <span class="nb">test</span> -v -run UserContractAsset
+</pre></div>
+</div>
+<p>看到类似输出，说明资产合约功能验证成功：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">2021</span>-04-07 <span class="m">21</span>:46:30.439	<span class="o">[</span>DEBUG<span class="o">]</span>	<span class="o">[</span>SDK<span class="o">]</span>	chainmaker-sdk-go/sdk_client.go:343	<span class="o">[</span>SDK<span class="o">]</span> proposalRequest resp: message:<span class="s2">&quot;SUCCESS&quot;</span> contract_result:&lt;result:<span class="s2">&quot;99900&quot;</span> gas_used:16058023 &gt; 
+
+<span class="m">2021</span>-04-07 <span class="m">21</span>:46:30.448	<span class="o">[</span>DEBUG<span class="o">]</span>	<span class="o">[</span>SDK<span class="o">]</span>	chainmaker-sdk-go/sdk_client.go:343	<span class="o">[</span>SDK<span class="o">]</span> proposalRequest resp: message:<span class="s2">&quot;SUCCESS&quot;</span> contract_result:&lt;result:<span class="s2">&quot;100100&quot;</span> gas_used:16120471 &gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="goland">
+<h1><span class="section-number">5. </span>开发-goland启动链<a class="headerlink" href="#goland" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id22">
+<h2><span class="section-number">5.1. </span>下载安装goland<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<p>略</p>
+</div>
+<div class="section" id="go">
+<h2><span class="section-number">5.2. </span>下载安装go<a class="headerlink" href="#go" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id23">
+<h3><span class="section-number">5.2.1. </span>安装go<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<p>略</p>
+</div>
+<div class="section" id="id24">
+<h3><span class="section-number">5.2.2. </span>设置代理<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<p>打开终端执行</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>go env -w  <span class="nv">GOPROXY</span><span class="o">=</span>https://goproxy.io,direct
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id25">
+<h2><span class="section-number">5.3. </span>下载源码<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone --recurse-submodules git@git.code.tencent.com:ChainMaker/chainmaker-go.git
+</pre></div>
+</div>
+</div>
+<div class="section" id="id26">
+<h2><span class="section-number">5.4. </span>启动goland<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="chainmaker-go">
+<h3><span class="section-number">5.4.1. </span>导入chainmaker-go<a class="headerlink" href="#chainmaker-go" title="Permalink to this headline">¶</a></h3>
+<p>略</p>
+</div>
+<div class="section" id="id27">
+<h3><span class="section-number">5.4.2. </span>配置goland<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<p>Ctrl+Alt+S 或者 File-&gt;Settings…</p>
+<p>Go–&gt;Go Modules –&gt; 勾上Enable Go Modules integration</p>
+<p>Go–&gt;GOROOT–&gt;添加已安装的go</p>
+<img src="../images/快速入门-goland-run-mod.jpg"></div>
+<div class="section" id="id28">
+<h3><span class="section-number">5.4.3. </span>启动项目（SOLO模式）<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>修改配置文件</p></li>
+</ul>
+<p>chainmaker-go/config/wx-org1/chainconfig/bc1.yml将 consensus.type修改为0：启用solo共识</p>
+<p>chainmaker-go/config/wx-org1/log.yml将 log_in_console修改为true：在控制台输出日志</p>
+<ul class="simple">
+<li><p>启动</p></li>
+</ul>
+<p>找到文件 chainmaker-go/main/main.go 直接运行，然后点击停止，修改启动参数为<code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">-c</span> <span class="pre">../config/wx-org1/chainmaker.yml</span></code>再次点击运行即可；见下图：</p>
+<img src="../images/快速入门-goland-run-main.jpg"><img src="../images/快速入门-goland-run-main-arg.jpg"></div>
+<div class="section" id="id29">
+<h3><span class="section-number">5.4.4. </span>测试<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<p>找到文件<code class="docutils literal notranslate"><span class="pre">chainmaker-go/test/send_proposal_request_solo/main.go</span></code>直接运行main即可</p>
+<p>若遇到文件未找到等错误，请将goland 的配置： working directory修改为当前目录，或者手动修改文件目录</p>
+</div>
+</div>
+</div>
+<div class="section" id="id30">
+<h1><span class="section-number">6. </span>常见问题<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id31">
+<h2><span class="section-number">6.1. </span>视频教程<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h2>
+<p>时间脚本:</p>
+<p>• 01-04分钟：长安链简介及大纲介绍；</p>
+<p>• 04-09分钟：环境安装演示；</p>
+<p>• 09-26分钟：单机部署；</p>
+<p>• 26-36分钟：智能合约开发（穿插常见问题）；</p>
+<p>• 36-54分钟：部署合约（穿插常见问题）；</p>
+<p>• 54—结束：常见问题及单机&amp;多级部署对照表。</p>
+<p><a href="https://mp.weixin.qq.com/s/zGV320UDlGVVw1tTJcOsQQ" target="_blank" title="点击跳转至播放页面" ><img src="../images/快速入门-直播.png" style="max-width:1200px;width:80%;padding-left:10%"/></a></p>
+<!--
+<iframe 
+    width="100%" 
+    height="450" 
+    src="http://mpvideo.qpic.cn/0bf2zyaecaaalianjimylbqfbtwdihhaaqia.f10002.mp4?dis_k=2e34203a3e5cc39388748cf49c2b68ef&dis_t=1620901511&spec_id=Mzg4NzU2NjYwMA%3D%3D1620901511&vid=wxv_1862610372268965888&format_id=10002" 
+    scrolling="no" 
+    border="0" 
+    frameborder="no" 
+    framespacing="0" 
+    allowfullscreen="true">
+</iframe>
+--></div>
+<div class="section" id="id32">
+<h2><span class="section-number">6.2. </span>编译时错误<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="missing-go-sum-entry">
+<h3><span class="section-number">6.2.1. </span>missing go.sum entry<a class="headerlink" href="#missing-go-sum-entry" title="Permalink to this headline">¶</a></h3>
+<p><strong>Q：</strong></p>
+<p>如果执行 ./build_release.sh 时 或者在启动时 报错：misssing go.sum entry: to add it，分别在 chainmaker-go/main 或者 chainmaker-go/common  和 chainmaker-go/tools/cmc 下执行 go mod download ，执行完后 再重试</p>
+<p>问题描述如下图：</p>
+<img src="../images/快速入门-misssing-go.sum-entry.png"><p><strong>A：</strong></p>
+<p>进入对应目录执行<code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">mod</span> <span class="pre">download</span></code></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span>  chainmaker-go/main
+go mod download
+
+<span class="nb">cd</span>  chainmaker-go/common
+go mod download
+
+<span class="nb">cd</span>  chainmaker-go/tools/cmc
+go mod download
+</pre></div>
+</div>
+</div>
+<div class="section" id="go-mod-no-such-file-or-directory">
+<h3><span class="section-number">6.2.2. </span>go.mod no such file or directory<a class="headerlink" href="#go-mod-no-such-file-or-directory" title="Permalink to this headline">¶</a></h3>
+<p><strong>Q:</strong></p>
+<p>编译时报错：</p>
+<blockquote>
+<div><p>go: chainmaker.org/chainmaker-go/blockchain&#64;v0.0.0 requires
+chainmaker.org/chainmaker-go/common&#64;v0.0.0: parsing ../common/go.mod: open /mnt/d/develop/workspace/go/noSubmodule/chainmaker-go/common/go.mod: no such file or directory</p>
+</div></blockquote>
+<p><strong>A:</strong></p>
+<p>一、可能是因为clone是未使用submodule模式，需初始化submodule，如下命令</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git submodule init
+git submodule update
+</pre></div>
+</div>
+<p>正确的clone方式：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone --recursive https://git.chainmaker.org.cn/chainmaker/chainmaker-go.git
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id33">
+<h2><span class="section-number">6.3. </span>启动时错误<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="not-found-glibc-2-18">
+<h3><span class="section-number">6.3.1. </span>not found GLIBC_2.18<a class="headerlink" href="#not-found-glibc-2-18" title="Permalink to this headline">¶</a></h3>
+<p><strong>Q:</strong></p>
+<p>若出现错误<code class="docutils literal notranslate"><span class="pre">./chainmaker:</span> <span class="pre">/lib64/libc.so.6:</span> <span class="pre">version</span> </code>GLIBC_2.18’ not found (required by /root/git-code/chainmaker-go/module/vm/wasmer/wasmer-go/libwasmer.so)`</p>
+<p><strong>A:</strong></p>
+<p>在linux下可进入chainmaker-go/scripts/3rd目录安装glibc-2.18.tar.gz依赖</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># 注：此操作为安装替换GCC版本，请慎重操作。一旦出错系统将不可用。</span>
+<span class="nb">cd</span> scripts/3rd
+sh install.sh
+</pre></div>
+</div>
+</div>
+<div class="section" id="restart-sh">
+<h3><span class="section-number">6.3.2. </span>restart.sh 权限不足<a class="headerlink" href="#restart-sh" title="Permalink to this headline">¶</a></h3>
+<p><strong>Q:</strong></p>
+<p>[root&#64;localhost scripts]# ./cluster_quick_start.sh normal ===&gt; Staring chainmaker cluster START ==&gt; /home/wx/chainmaker/chainmaker-go/build/release/chainmaker-V1.0.0-wx-org1.chainmaker.org ./cluster_quick_start.sh: line 51: ./restart.sh: Permission denied</p>
+<p><strong>A:</strong></p>
+<p>如果启动时 出现restart.sh 权限不足问题，给restart.sh 增加执行权限</p>
+<p>给项目源文件添加执行权限</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> chainmaker-go/script/bin
+chmod +x *.sh
+</pre></div>
+</div>
+<p>给部署文件添加执行权限</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># 进入四个节点的bin目录下 执行下面命令(以第一个节点 org1 为例)</span>
+<span class="nb">cd</span> chainmaker-go/build/release/chainmaker-V1.0.0-wx-org1.chainmaker.org/bin
+chmod +x *.sh
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id34">
+<h2><span class="section-number">6.4. </span>运行时错误<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="syscall-js-valueget-not-exported">
+<h3><span class="section-number">6.4.1. </span>syscall/js.valueGet not exported<a class="headerlink" href="#syscall-js-valueget-not-exported" title="Permalink to this headline">¶</a></h3>
+<p><strong>Q:</strong></p>
+<p>执行gasm合约时报错：resolve imports: syscall/js.valueGet not exported in module env</p>
+<p><strong>A:</strong></p>
+<p>tinygo不支持fmt等函数</p>
+</div>
+<div class="section" id="runtime-type-error">
+<h3><span class="section-number">6.4.2. </span>runtime type error<a class="headerlink" href="#runtime-type-error" title="Permalink to this headline">¶</a></h3>
+<p><strong>Q:</strong></p>
+<p>发送交易成功，但链打印错误信息：contract invoke failed, runtime type error, expect rust:[2], but got 4。同时根据该交易id查询到交易错误信息。</p>
+<p><strong>A:</strong></p>
+<p>执行交易时异步的（查询类交易除外），返回的状态为链成功接收到交易的状态。执行合约是，runtimeType选择错误，需要根据自己的合约语言选择对应的runtimeType</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>语言</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统合约</td>
+<td>RuntimeType_NATIVE = 1</td>
+</tr>
+<tr>
+<td>rust</td>
+<td>RuntimeType_WASMER = 2</td>
+</tr>
+<tr>
+<td>c++</td>
+<td>RuntimeType_WXVM = 3</td>
+</tr>
+<tr>
+<td>tinygo</td>
+<td>RuntimeType_GASM = 4</td>
+</tr>
+<tr>
+<td>solidity</td>
+<td>RuntimeType_EVM = 5</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="id35">
+<h3><span class="section-number">6.4.3. </span>返回成功，但实际执行失败<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h3>
+<p><strong>Q:</strong></p>
+<p>使用sdk执行安装、调用合约时，SDK 返回message为ok，但链和交易显示执行失败</p>
+<p><strong>A:</strong></p>
+<p>交易的执行是异步的。SDK返回的成功信息指的是链成功接收到该交易。</p>
+<p>获取查看交易实际结果的方式：</p>
+<ul class="simple">
+<li><p>根据txId查询该交易，解析出结果。</p></li>
+<li><p>使用SDK是选择同步发送交易，等待执行结果。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id36">
+<h2><span class="section-number">6.5. </span>其他关键信息<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id37">
+<h3><span class="section-number">6.5.1. </span>出块标记是什么<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>进入log目录，查看日志文件 筛选 <code class="docutils literal notranslate"><span class="pre">put</span> <span class="pre">block</span></code>即可</p>
+<p><code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">system.log|grep</span> <span class="pre">&quot;ERROR\|put</span> <span class="pre">block&quot;</span></code></p>
+<p>其中一行解释如下：</p>
+<p>2021-04-22 13:50:56.647 [INFO]  [Storage] &#64;chain1       store/blockstore_impl.go:241    chain[chain1]: put block[12] (txs:1 bytes:8078), time used (mashal:0, log:2, commit:5, total:7)</p>
+<p>时间 [日志级别] [模块] &#64;链名称 文件名.go:行数 链chain[链名称]:put block[区块高度](txs:交易个数 bytes:区块大小), 使用时间毫秒(mashal:0, log:2, commit:5, total:7)</p>
+</div></blockquote>
+<img src="../images/快速入门-qa-put-block.png"></div>
+<div class="section" id="id38">
+<h3><span class="section-number">6.5.2. </span>组网成功标记是什么<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h3>
+<p>组网成功后，即可发送交易。此时接收到的交易将进入到交易池当中，并且会广播给网络的每一个节点（共识、见证节点、轻节点），随后等待共识成功选举leader开始打包区块。</p>
+<p><strong>SOLO共识</strong></p>
+<blockquote>
+<div><p>start blockchain[chain1] success</p>
+</div></blockquote>
+<p><strong>其他共识</strong></p>
+<blockquote>
+<div><p>进入log目录，查看日志文件 筛选 <code class="docutils literal notranslate"><span class="pre">all</span> <span class="pre">necessary</span> <span class="pre">peers</span> <span class="pre">connected</span></code>和<code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">blockchain[chain1]</span> <span class="pre">success</span></code>可看到如下日志</p>
+<p><code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">system.log|grep</span> <span class="pre">&quot;init</span> <span class="pre">blockchain\|all</span> <span class="pre">necessary</span> <span class="pre">peers</span> <span class="pre">connected&quot;</span></code></p>
+<p>2021-04-22 16:13:07.520 [INFO]  [Net]   p2p/libp2p_connection_supervisor.go:91  [ConnSupervisor] all necessary peers connected.</p>
+</div></blockquote>
+<img src="../images/快速入门-qa-netrowk-ok.png" style="zoom:50%;" /><img src="../images/快速入门-qa-init-block-success.png" style="zoom:50%;" /><p><br><br></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html" class="btn btn-neutral float-right" title="1. 整体架构" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html" class="btn btn-neutral float-left" title="5. 版本迭代" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

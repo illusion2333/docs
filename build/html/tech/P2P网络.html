@@ -1,0 +1,493 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>6. P2P网络 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7. RPC服务" href="RPC%E6%9C%8D%E5%8A%A1.html" />
+    <link rel="prev" title="5. 共识算法" href="%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. P2P网络</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">6.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">6.2. 组网方式</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">6.2.1. 复杂网络环境场景支持</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">6.3. 节点身份验证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">6.4. 参数配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">6.5. 与其他模块交互</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">6.6. 接口说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">6.7. 节点地址格式说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">6.8. 网络消息数据格式说明（加密前）</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">6. </span>P2P网络</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tech/P2P网络.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="p2p">
+<h1><span class="section-number">6. </span>P2P网络<a class="headerlink" href="#p2p" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><span class="section-number">6.1. </span>概述<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>网络模块主要负责如下功能实现：</p>
+<ul class="simple">
+<li><p>节点组网</p></li>
+<li><p>具有安全保障的节点间数据通讯</p></li>
+<li><p>节点网络身份认证</p></li>
+<li><p>消息广播及订阅（pubsub）</p></li>
+<li><p>扩展支持节点自动发现、自动组网</p></li>
+<li><p>多链间网络消息数据隔离</p></li>
+<li><p>复杂网络环境场景解决方案的支持</p></li>
+</ul>
+<p>长安链1.0版本的网络模块是基于<a class="reference external" href="https://libp2p.io">libp2p</a>的v0.6.4版本实现并改进的。节点的网络地址遵循libp2p地址格式协议；为了满足长安链网络消息在多链场景下的数据隔离需求，我们修改了libp2p-gossip-pubsub模块源码，加入节点白名单机制，精确控制路由表，并让节点上的每条链都独享一个独立的Pubsub服务，保证了广播数据只会在链内的节点传播的确定性；为了满足国密加密算法的支持，我们还修改了libp2p-core核心包，增加了对国密TLS证书的支持。</p>
+<p><strong>基于libp2p的改进:</strong></p>
+<ul class="simple">
+<li><p>核心包增加对国密SM算法的支持；</p></li>
+<li><p>libp2p-gossip-pubsub功能模块增加白名单功能，实现对Gossip路由表的控制，达到广播消息隔离效果；</p></li>
+<li><p>引入StreamPool，实现stream复用提高性能、网络吞吐能力自动扩容等特性。</p></li>
+</ul>
+<p>我们还有自研网络开发计划，在后续版本迭代中会逐渐加入我们自研的网络模块实现。</p>
+</div>
+<div class="section" id="id2">
+<h2><span class="section-number">6.2. </span>组网方式<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>长安链支持自动发现、自动连接的组网方式，默认在线的每个节点都可以作为种子节点为其他节点提供网络发现服务，每个种子节点都会记录网内节点地址信息。当有新节点连接到某个种子节点时，新节点会向该种子节点查询网内其他可连接节点的地址，拿到其他节点地址后，新节点会主动尝试与这些节点建立连接；另外，种子节点在接受了新节点链接后，会通过网络发现服务将该新节点的地址通知给其他在线的种子节点，其他节点在获得该新节点地址后，也会主动尝试与该新节点建立连接。</p>
+<br/><p>长安链理论上可实现上万甚至更多节点同时在线组网。</p>
+<div class="section" id="id3">
+<h3><span class="section-number">6.2.1. </span>复杂网络环境场景支持<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>长安链可以针对复杂网络环境场景提供组网通讯解决方案，包括但不限于NAT穿透、代理节点转发等。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2><span class="section-number">6.3. </span>节点身份验证<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>节点身份是由组织CA签发的TLS证书确定，在节点入网时，会通过TLS握手协议校验TLS证书的合法性。</p></li>
+<li><p>每个节点使用的TLS证书的必须保证唯一性，不可多节点共用一个TLS证书。</p></li>
+<li><p>每个TLS证书都可对应生成一个NodeId唯一标识，该标识是节点网络地址的组成部分，是网络通讯环节重要的标识。</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2><span class="section-number">6.4. </span>参数配置<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>网络模块的参数配置主要在chainmaker.yml（-c 启动参数指定的文件）配置文件中net标签下，具体参数如下：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">net</span><span class="p">:</span>
+  <span class="c1"># 底层网络类型，必选项，目前只支持libp2p</span>
+  <span class="nt">provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">LibP2P</span>
+  <span class="c1"># 本地网路监听地址及端口，必选项</span>
+  <span class="nt">listen_addr</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/ip4/0.0.0.0/tcp/6666</span>
+  <span class="c1"># 每个节点连接stream池大小上限，可选项，不配默认为100</span>
+  <span class="nt">peer_stream_pool_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
+  <span class="c1"># 允许与本节点建立链接的节点总数量，可选项，不配默认为20</span>
+  <span class="nt">max_peer_count_allow</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+  <span class="c1"># 节点链接淘汰策略，可选项，1 Random, 2 FIFO, 3 LIFO。不配默认为3</span>
+  <span class="nt">peer_elimination_strategy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+  <span class="c1"># 种子节点地址列表，用于节点发现，可选项</span>
+  <span class="c1"># 建议将所有已知共识节点网络地址都配置为种子节点</span>
+  <span class="nt">seeds</span><span class="p">:</span> 
+    <span class="p p-Indicator">-</span> <span class="s">&quot;/ip4/127.0.0.1/tcp/6666/p2p/QmQZn3pZCcuEf34FSvucqkvVJEvfzpNjQTk17HS6CYMR35&quot;</span>
+  <span class="c1"># TLS认证相关配置</span>
+  <span class="nt">tls</span><span class="p">:</span>
+    <span class="c1"># TLS认证开关，必选项，当前必须为true</span>
+    <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="c1"># TLS证书配置，必选项</span>
+    <span class="nt">priv_key_file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./crypto-config/wx-org1.chainmaker.org/node/consensus1/consensus1.tls.key</span>
+    <span class="nt">cert_file</span><span class="p">:</span>     <span class="l l-Scalar l-Scalar-Plain">./crypto-config/wx-org1.chainmaker.org/node/consensus1/consensus1.tls.crt</span>
+  <span class="c1"># 组网黑名单配置，可选项，不配默认不开启黑名单</span>
+  <span class="nt">blacklist</span><span class="p">:</span>
+    <span class="c1"># 黑名单地址，可选项，[ip]:[port]或者[ip]两者均可</span>
+    <span class="nt">addresses</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;127.0.0.1:11305&quot;</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;192.168.1.8&quot;</span>
+    <span class="c1"># 黑名单节点ID，可选项</span>
+    <span class="nt">node_ids</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;QmeyNRs2DwWjcHTpcVHoUSaDAAif4VQZ2wQDQAUNDP33gH&quot;</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;QmVSCXfPweL1GRSNt8gjcw1YQ2VcCirAtTdLKGkgGKsHqi&quot;</span>
+</pre></div>
+</div>
+<p>在链初始化阶段，网络模块会将根据链配置（例如：bc1.xml）中的trust_roots配置的根证书创建TLS根证书池，在节点连接建立时，TLS握手阶段会依次使用每条链的TLS根证书池验证对方节点TLS证书，若认证通过则认为对方节点属于当前根证书池对应的链，确定链ID，并将对方节点ID加入到对应链的pubsub服务白名单中。这样就可以保证链内的广播消息不会发送给不属于该链组织的节点。</p>
+<br/><p>在多链场景下，只需要保证每个链的trust_roots里都配有该节点TLS证书对应的CA或根证书即可，不需要额外的其他配置。</p>
+<p>例如：</p>
+<p>1.假设节点N有两个链分别是blockchain1、blockchain2；</p>
+<p>2.假设节点N的TLS证书是由组织ID为“wx-org2.chainmaker.org”的CA证书签发；</p>
+<p>3.假设blockchain1链的配置文件为bc1.xml，blockchain2链的配置文件为bc2.xml。</p>
+<p>那么bc1.xml中trust_roots配置：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">trust_roots</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">org_id</span><span class="p">:</span> <span class="s">&quot;wx-org1.chainmaker.org&quot;</span>
+    <span class="nt">root</span><span class="p">:</span> <span class="s">&quot;../config/wx-org1/certs/ca/wx-org1.chainmaker.org/ca.crt&quot;</span>
+  <span class="p p-Indicator">-</span> <span class="nt">org_id</span><span class="p">:</span> <span class="s">&quot;wx-org2.chainmaker.org&quot;</span>
+    <span class="nt">root</span><span class="p">:</span> <span class="s">&quot;../config/wx-org2/certs/ca/wx-org2.chainmaker.org/ca.crt&quot;</span>
+</pre></div>
+</div>
+<p>bc2.xml中trust_roots配置：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">trust_roots</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">org_id</span><span class="p">:</span> <span class="s">&quot;wx-org2.chainmaker.org&quot;</span>
+    <span class="nt">root</span><span class="p">:</span> <span class="s">&quot;../config/wx-org2/certs/ca/wx-org2.chainmaker.org/ca.crt&quot;</span>
+  <span class="p p-Indicator">-</span> <span class="nt">org_id</span><span class="p">:</span> <span class="s">&quot;wx-org3.chainmaker.org&quot;</span>
+    <span class="nt">root</span><span class="p">:</span> <span class="s">&quot;../config/wx-org3/certs/ca/wx-org3.chainmaker.org/ca.crt&quot;</span>
+</pre></div>
+</div>
+<p>这样节点N就既属于blockchain1链也属于blockchain2链，但两个链间的数据是隔离的。</p>
+</div>
+<div class="section" id="id6">
+<h2><span class="section-number">6.5. </span>与其他模块交互<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>当前版本网络模块与其他模块交互都是异步的，都是通过MsgBus来进行数据互传，交互图如下：</p>
+<p><br><img src="../images/P2P网络-与其他模块交互图.png" alt="Raft共识与核心引擎交互图" style="zoom:90%;"/></p>
+</div>
+<div class="section" id="id7">
+<h2><span class="section-number">6.6. </span>接口说明<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">protocol</span>
+
+<span class="kd">type</span> <span class="nx">ChainNodeInfo</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">NodeUid</span>     <span class="kt">string</span>
+	<span class="nx">NodeAddress</span> <span class="p">[]</span><span class="kt">string</span>
+	<span class="nx">NodeTlsCert</span> <span class="p">[]</span><span class="kt">byte</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">MsgHandler</span> <span class="kd">func</span><span class="p">(</span><span class="nx">from</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">msg</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">msgType</span> <span class="nx">net</span><span class="p">.</span><span class="nx">NetMsg_MsgType</span><span class="p">)</span> <span class="kt">error</span>
+
+<span class="c1">// ChainNodesInfoProvider provide base node info list of chain.</span>
+<span class="kd">type</span> <span class="nx">ChainNodesInfoProvider</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="c1">// GetChainNodesInfo return base node info list of chain.</span>
+	<span class="nx">GetChainNodesInfo</span><span class="p">()</span> <span class="p">([]</span><span class="o">*</span><span class="nx">ChainNodeInfo</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">//  NetService</span>
+<span class="kd">type</span> <span class="nx">NetService</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="c1">// BroadcastMsg broadcast a msg to the net.</span>
+	<span class="nx">BroadcastMsg</span><span class="p">(</span><span class="nx">msg</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">msgType</span> <span class="nx">net</span><span class="p">.</span><span class="nx">NetMsg_MsgType</span><span class="p">)</span> <span class="kt">error</span>
+	<span class="c1">// Subscribe register a MsgHandler for subscribe.</span>
+	<span class="nx">Subscribe</span><span class="p">(</span><span class="nx">msgType</span> <span class="nx">net</span><span class="p">.</span><span class="nx">NetMsg_MsgType</span><span class="p">,</span> <span class="nx">handler</span> <span class="nx">MsgHandler</span><span class="p">)</span> <span class="kt">error</span>
+	<span class="c1">// CancelSubscribe cancel subscribe.</span>
+	<span class="nx">CancelSubscribe</span><span class="p">(</span><span class="nx">msgType</span> <span class="nx">net</span><span class="p">.</span><span class="nx">NetMsg_MsgType</span><span class="p">)</span> <span class="kt">error</span>
+	<span class="c1">// ConsensusBroadcastMsg broadcast a msg to the consensus nodes.</span>
+	<span class="nx">ConsensusBroadcastMsg</span><span class="p">(</span><span class="nx">msg</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">msgType</span> <span class="nx">net</span><span class="p">.</span><span class="nx">NetMsg_MsgType</span><span class="p">)</span> <span class="kt">error</span>
+	<span class="c1">// ConsensusSubscribe register a MsgHandler handle the msg from consensus nodes for subscribe.</span>
+	<span class="nx">ConsensusSubscribe</span><span class="p">(</span><span class="nx">msgType</span> <span class="nx">net</span><span class="p">.</span><span class="nx">NetMsg_MsgType</span><span class="p">,</span> <span class="nx">handler</span> <span class="nx">MsgHandler</span><span class="p">)</span> <span class="kt">error</span>
+	<span class="c1">// CancelConsensusSubscribe cancel subscribe.</span>
+	<span class="nx">CancelConsensusSubscribe</span><span class="p">(</span><span class="nx">msgType</span> <span class="nx">net</span><span class="p">.</span><span class="nx">NetMsg_MsgType</span><span class="p">)</span> <span class="kt">error</span>
+	<span class="c1">// SendMsg send msg to any nodes.</span>
+	<span class="nx">SendMsg</span><span class="p">(</span><span class="nx">msg</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">msgType</span> <span class="nx">net</span><span class="p">.</span><span class="nx">NetMsg_MsgType</span><span class="p">,</span> <span class="nx">to</span> <span class="o">...</span><span class="kt">string</span><span class="p">)</span> <span class="kt">error</span>
+	<span class="c1">// ReceiveMsg register a MsgHandler to handle the msg received from other node.</span>
+	<span class="nx">ReceiveMsg</span><span class="p">(</span><span class="nx">msgType</span> <span class="nx">net</span><span class="p">.</span><span class="nx">NetMsg_MsgType</span><span class="p">,</span> <span class="nx">handler</span> <span class="nx">MsgHandler</span><span class="p">)</span> <span class="kt">error</span>
+
+	<span class="c1">// Start the net service.</span>
+	<span class="nx">Start</span><span class="p">()</span> <span class="kt">error</span>
+
+	<span class="c1">// Stop the net service.</span>
+	<span class="nx">Stop</span><span class="p">()</span> <span class="kt">error</span>
+
+	<span class="c1">// GetNodeUidByCertId return node uid which mapped to the given cert id. If unmapped return error.</span>
+	<span class="nx">GetNodeUidByCertId</span><span class="p">(</span><span class="nx">certId</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// GetChainNodesInfoProvider return a implementation of ChainNodesInfoProvider.</span>
+	<span class="nx">GetChainNodesInfoProvider</span><span class="p">()</span> <span class="nx">ChainNodesInfoProvider</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ChainNodeInfo</span></code> 是链上节点信息结构体，主要存储某个链上与本地节点建立连接的节点NodeID、网络地址、TLS证书等信息。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MsgHandler</span></code>    是网络消息处理器，当网络模块收到来自其他节点或订阅的消息时，会根据消息类型回调给不同的消息处理器去处理接收到的消息。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ChainNodesInfoProvider</span></code> 是链上节点信息Provider接口定义，主要用于给rpcServer或VM提供查询当前链已连接节点信息功能。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NetService</span></code> 是网络服务接口定义，主要用于为其他模块提供网络服务支持。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BroadcastMsg</span></code>方法，向链内广播一条消息，需要指定消息类型。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Subscribe</span></code>方法，注册一个用于处理指定消息类型的订阅消息处理器，与<code class="docutils literal notranslate"><span class="pre">BroadcastMsg</span></code>配合使用。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CancelSubscribe</span></code>方法，注销一个用于处理指定消息类型的订阅消息处理器。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsensusBroadcastMsg</span></code>方法，向链内共识节点广播一条消息，需要指定消息类型。该方法只会把消息发给共识节点，非共识节点收不到该方法广播的消息。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsensusSubscribe</span></code>方法，注册一个用于处理指定消息类型的只发给共识节点的订阅消息处理器，与<code class="docutils literal notranslate"><span class="pre">ConsensusBroadcastMsg</span></code>配合使用。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CancelConsensusSubscribe</span></code>方法，注销一个用于处理指定消息类型的只发给共识节点的订阅消息处理器。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SendMsg</span></code>方法，向指定节点直接发送网络消息。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ReceiveMsg</span></code>方法，注册一个用于处理其他节点直接发送过来的消息处理器。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Start</span></code>方法，启动网络服务。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Stop</span></code>方法，停止网络服务。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GetNodeUidByCertId</span></code>方法，根据证书ID查询使用该证书ID对应的TLS证书节点的NodeID。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GetChainNodesInfoProvider</span></code>方法，返回<code class="docutils literal notranslate"><span class="pre">ChainNodesInfoProvider</span></code>接口实现。</p></li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h2><span class="section-number">6.7. </span>节点地址格式说明<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>长安链节点地址遵循libp2p网络地址格式协定，使用multaddr组件解析地址，例如：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/ip4/127.0.0.1/tcp/6666/p2p/QmQZn3pZCcuEf34FSvucqkvVJEvfzpNjQTk17HS6CYMR35
+</pre></div>
+</div>
+<p>或者</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/dns4/chainmaker.org/tcp/6666/p2p/QmQZn3pZCcuEf34FSvucqkvVJEvfzpNjQTk17HS6CYMR35
+</pre></div>
+</div>
+<p>地址以”/”开始，并以”/”分段，大多数情况下，各段说明如下：</p>
+<ul class="simple">
+<li><p>第一段：IP协议版本或DNS解析协议版本。ip4代表IPv4，ip6代表IPv6；dns4对应IPv4版本DNS服务，dns6对应IPv6版本DNS服务</p></li>
+<li><p>第二段：IP地址或域名，需要与第一段对应</p></li>
+<li><p>第三段：通讯网络协议，默认使用tcp</p></li>
+<li><p>第四段：监听端口</p></li>
+<li><p>第五段：固定协议，请勿改动，固定为”p2p”</p></li>
+<li><p>第六段：节点NodeId，与TLS证书配套，根据TLS证书通过特定算法计算而来</p></li>
+</ul>
+<p>以上只是最普通常用场景下节点地址举例，在复杂网络场景下（比如需要使用节点中继、NAT穿透等）地址格式会稍有不同。</p>
+</div>
+<div class="section" id="id9">
+<h2><span class="section-number">6.8. </span>网络消息数据格式说明（加密前）<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>加密前的消息数据是由 <code class="docutils literal notranslate"><span class="pre">8位byte表示数据长度</span> <span class="pre">+</span> <span class="pre">1位byte数据压缩标识</span> <span class="pre">+</span> <span class="pre">实际数据</span></code> 来组成。</p>
+<p>为了方便说明，我们使用如下例子：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[0 0 0 0 0 0 0 78 0 10 57 10 5 ...... 80 85 83 72]
+</pre></div>
+</div>
+<p>假设这是一条待发送的网络消息数据，其中：</p>
+<ul class="simple">
+<li><p>前8位，[0 0 0 0 0 0 0 78] 表示要发送数据的长度，在接收方接收数据时，若接收到的数据长度不足该值，则会尝试继续读取数据，直至接收全部长度的数据或接收失败。</p></li>
+<li><p>第9位，[0] 或 [1] 是数据压缩标记位，若是1，接收方在接收到完整数据后，会将接收到的数据进行解压缩，得到最终的数据结果。</p></li>
+<li><p>剩余位，[10 57 10 5 …… 80 85 83 72] 为要发送的原始数据或被压缩后的原始数据，是否压缩要与第9位压缩标识相对应。压缩/解压缩使用GZip工具包完成。</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="RPC%E6%9C%8D%E5%8A%A1.html" class="btn btn-neutral float-right" title="7. RPC服务" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html" class="btn btn-neutral float-left" title="5. 共识算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

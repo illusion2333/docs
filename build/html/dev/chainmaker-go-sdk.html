@@ -1,0 +1,1199 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>ChainMaker Go SDK README &mdash; chainmaker-docs v1.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>ChainMaker Go SDK README</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/dev/chainmaker-go-sdk.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="chainmaker-go-sdk-readme">
+<h1>ChainMaker Go SDK README<a class="headerlink" href="#chainmaker-go-sdk-readme" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>基本概念<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Node（节点）</strong>：代表一个链节点的基本信息，包括：节点地址、连接数、是否启用<code class="docutils literal notranslate"><span class="pre">TLS</span></code>认证等信息</p></li>
+<li><p><strong>ChainClient（链客户端）</strong>：所有客户端对链节点的操作接口都来自<code class="docutils literal notranslate"><span class="pre">ChainClient</span></code></p></li>
+<li><p><strong>压缩证书</strong>：可以为<code class="docutils literal notranslate"><span class="pre">ChainClient</span></code>开启证书压缩功能，开启后可以减小交易包大小，提升处理性能</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>下载安装<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone --recursive git@git.code.tencent.com:ChainMaker/chainmaker-sdk-go.git
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>使用示例<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3>创建节点<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// 创建节点</span>
+<span class="kd">func</span> <span class="nx">createNode</span><span class="p">(</span><span class="nx">nodeAddr</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">connCnt</span> <span class="kt">int</span><span class="p">)</span> <span class="o">*</span><span class="nx">NodeConfig</span> <span class="p">{</span>
+	<span class="nx">node</span> <span class="o">:=</span> <span class="nx">NewNodeConfig</span><span class="p">(</span>
+		<span class="c1">// 节点地址，格式：127.0.0.1:12301</span>
+		<span class="nx">WithNodeAddr</span><span class="p">(</span><span class="nx">nodeAddr</span><span class="p">),</span>
+		<span class="c1">// 节点连接数</span>
+		<span class="nx">WithNodeConnCnt</span><span class="p">(</span><span class="nx">connCnt</span><span class="p">),</span>
+		<span class="c1">// 节点是否启用TLS认证</span>
+		<span class="nx">WithNodeUseTLS</span><span class="p">(</span><span class="kc">true</span><span class="p">),</span>
+		<span class="c1">// 根证书路径，支持多个</span>
+		<span class="nx">WithNodeCAPaths</span><span class="p">(</span><span class="nx">caPaths</span><span class="p">),</span>
+		<span class="c1">// TLS Hostname</span>
+		<span class="nx">WithNodeTLSHostName</span><span class="p">(</span><span class="nx">tlsHostName</span><span class="p">),</span>
+	<span class="p">)</span>
+
+	<span class="k">return</span> <span class="nx">node</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="chainclient">
+<h3>创建ChainClient<a class="headerlink" href="#chainclient" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// 创建ChainClient</span>
+<span class="kd">func</span> <span class="nx">createClient</span><span class="p">()</span> <span class="p">(</span><span class="o">*</span><span class="nx">ChainClient</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nx">node1</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="c1">// 创建节点1</span>
+		<span class="nx">node1</span> <span class="p">=</span> <span class="nx">createNode</span><span class="p">(</span><span class="nx">nodeAddr1</span><span class="p">,</span> <span class="nx">connCnt1</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="k">if</span> <span class="nx">node2</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="c1">// 创建节点2</span>
+		<span class="nx">node2</span> <span class="p">=</span> <span class="nx">createNode</span><span class="p">(</span><span class="nx">nodeAddr2</span><span class="p">,</span> <span class="nx">connCnt2</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="nx">chainClient</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">NewChainClient</span><span class="p">(</span>
+		<span class="c1">// 设置归属组织</span>
+		<span class="nx">WithChainClientOrgId</span><span class="p">(</span><span class="nx">chainOrgId</span><span class="p">),</span>
+		<span class="c1">// 设置链ID</span>
+		<span class="nx">WithChainClientChainId</span><span class="p">(</span><span class="nx">chainId</span><span class="p">),</span>
+		<span class="c1">// 设置logger句柄，若不设置，将采用默认日志文件输出日志</span>
+		<span class="nx">WithChainClientLogger</span><span class="p">(</span><span class="nx">getDefaultLogger</span><span class="p">()),</span>
+		<span class="c1">// 设置客户端用户私钥路径</span>
+		<span class="nx">WithUserKeyFilePath</span><span class="p">(</span><span class="nx">userKeyPath</span><span class="p">),</span>
+		<span class="c1">// 设置客户端用户证书</span>
+		<span class="nx">WithUserCrtFilePath</span><span class="p">(</span><span class="nx">userCrtPath</span><span class="p">),</span>
+		<span class="c1">// 添加节点1</span>
+		<span class="nx">AddChainClientNodeConfig</span><span class="p">(</span><span class="nx">node1</span><span class="p">),</span>
+		<span class="c1">// 添加节点2</span>
+		<span class="nx">AddChainClientNodeConfig</span><span class="p">(</span><span class="nx">node2</span><span class="p">),</span>
+		<span class="p">)</span>
+
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">err</span>
+	<span class="p">}</span>
+
+	<span class="c1">//启用证书压缩（开启证书压缩可以减小交易包大小，提升处理性能）</span>
+	<span class="nx">err</span> <span class="p">=</span> <span class="nx">chainClient</span><span class="p">.</span><span class="nx">EnableCertHash</span><span class="p">()</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="nx">chainClient</span><span class="p">,</span> <span class="kc">nil</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>接口调用<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>具体接口调用示例，请参看单元测试用例中的用法。</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>功能</th>
+<th>单测代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户合约</td>
+<td>sdk_user_contract_test.go</td>
+</tr>
+<tr>
+<td>系统合约</td>
+<td>sdk_system_contract_test.go</td>
+</tr>
+<tr>
+<td>链配置</td>
+<td>sdk_chain_config_test.go</td>
+</tr>
+<tr>
+<td>证书管理</td>
+<td>sdk_cert_manage_test.go</td>
+</tr>
+<tr>
+<td>消息订阅</td>
+<td>sdk_subscribe_test.go</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" id="id6">
+<h2>接口说明<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h3>用户合约接口<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="payload">
+<h4>创建合约待签名payload生成<a class="headerlink" href="#payload" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名</p></li>
+<li><p>version: 版本号</p></li>
+<li><p>byteCode: 支持传入合约二进制文件路径或Base64编码的二进制内容</p></li>
+<li><p>runtime: 合约运行环境</p></li>
+<li><p>kvs: 合约初始化参数</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateContractCreatePayload</span><span class="p">(</span><span class="nx">contractName</span><span class="p">,</span> <span class="nx">version</span><span class="p">,</span> <span class="nx">byteCode</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">runtime</span> <span class="nx">common</span><span class="p">.</span><span class="nx">RuntimeType</span><span class="p">,</span> <span class="nx">kvs</span> <span class="p">[]</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">KeyValuePair</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h4>升级合约待签名payload生成<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名</p></li>
+<li><p>version: 版本号</p></li>
+<li><p>byteCode: 支持传入合约二进制文件路径或Base64编码的二进制内容</p></li>
+<li><p>runtime: 合约运行环境</p></li>
+<li><p>kvs: 合约升级参数</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateContractUpgradePayload</span><span class="p">(</span><span class="nx">contractName</span><span class="p">,</span> <span class="nx">version</span><span class="p">,</span> <span class="nx">byteCode</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">runtime</span> <span class="nx">common</span><span class="p">.</span><span class="nx">RuntimeType</span><span class="p">,</span> <span class="nx">kvs</span> <span class="p">[]</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">KeyValuePair</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h4>冻结合约payload生成<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateContractFreezePayload</span><span class="p">(</span><span class="nx">contractName</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h4>解冻合约payload生成<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateContractUnfreezePayload</span><span class="p">(</span><span class="nx">contractName</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h4>吊销合约payload生成<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateContractRevokePayload</span><span class="p">(</span><span class="nx">contractName</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h4>合约管理获取Payload签名<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>payloadBytes: 待签名payload</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">SignContractManagePayload</span><span class="p">(</span><span class="nx">payloadBytes</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h4>合约管理Payload签名收集&amp;合并<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>signedPayloadBytes: 已签名payload列表</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">MergeContractManageSignedPayload</span><span class="p">(</span><span class="nx">signedPayloadBytes</span> <span class="p">[][]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id14">
+<h4>发送合约管理请求（创建、更新、冻结、解冻、吊销）<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>multiSignedPayload: 多签结果</p></li>
+<li><p>timeout: 超时时间，单位：s，若传入-1，将使用默认超时时间：10s</p></li>
+<li><p>withSyncResult: 是否同步获取交易执行结果
+当为true时，若成功调用，common.TxResponse.ContractResult.Result为common.TransactionInfo
+当为false时，若成功调用，common.TxResponse.ContractResult.Result为txId</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">SendContractManageRequest</span><span class="p">(</span><span class="nx">mergeSignedPayloadBytes</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">timeout</span> <span class="kt">int64</span><span class="p">,</span> <span class="nx">withSyncResult</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">TxResponse</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id15">
+<h4>合约调用<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名称</p></li>
+<li><p>method: 合约方法</p></li>
+<li><p>txId: 交易ID
+格式要求：长度为64字节，字符在a-z0-9
+可为空，若为空字符串，将自动生成txId</p></li>
+<li><p>params: 合约参数</p></li>
+<li><p>timeout: 超时时间，单位：s，若传入-1，将使用默认超时时间：10s</p></li>
+<li><p>withSyncResult: 是否同步获取交易执行结果
+当为true时，若成功调用，common.TxResponse.ContractResult.Result为common.TransactionInfo
+当为false时，若成功调用，common.TxResponse.ContractResult.Result为txId</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">InvokeContract</span><span class="p">(</span><span class="nx">contractName</span><span class="p">,</span> <span class="nx">method</span><span class="p">,</span> <span class="nx">txId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">params</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">timeout</span> <span class="kt">int64</span><span class="p">,</span> <span class="nx">withSyncResult</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">TxResponse</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id16">
+<h4>合约查询接口调用<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名称</p></li>
+<li><p>method: 合约方法</p></li>
+<li><p>params: 合约参数</p></li>
+<li><p>timeout: 超时时间，单位：s，若传入-1，将使用默认超时时间：10s</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">QueryContract</span><span class="p">(</span><span class="nx">contractName</span><span class="p">,</span> <span class="nx">method</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">params</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">timeout</span> <span class="kt">int64</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">TxResponse</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id17">
+<h4>构造待发送交易体<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名称</p></li>
+<li><p>method: 合约方法</p></li>
+<li><p>txId: 交易ID
+格式要求：长度为64字节，字符在a-z0-9
+可为空，若为空字符串，将自动生成txId</p></li>
+<li><p>params: 合约参数</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">GetTxRequest</span><span class="p">(</span><span class="nx">contractName</span><span class="p">,</span> <span class="nx">method</span><span class="p">,</span> <span class="nx">txId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">params</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">TxRequest</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id18">
+<h4>发送已构造好的交易体<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>txRequest: 已构造好的交易体</p></li>
+<li><p>timeout: 超时时间，单位：s，若传入-1，将使用默认超时时间：10s</p></li>
+<li><p>withSyncResult: 是否同步获取交易执行结果
+当为true时，若成功调用，common.TxResponse.ContractResult.Result为common.TransactionInfo
+当为false时，若成功调用，common.TxResponse.ContractResult.Result为txId</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">SendTxRequest</span><span class="p">(</span><span class="nx">txRequest</span> <span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">TxRequest</span><span class="p">,</span> <span class="nx">timeout</span> <span class="kt">int64</span><span class="p">,</span> <span class="nx">withSyncResult</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">TxResponse</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id19">
+<h3>系统合约接口<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id">
+<h4>根据交易Id查询交易<a class="headerlink" href="#id" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>txId: 交易ID</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">GetTxByTxId</span><span class="p">(</span><span class="nx">txId</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">TransactionInfo</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id20">
+<h4>根据区块高度查询区块<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>blockHeight: 指定区块高度，若为-1，将返回最新区块</p></li>
+<li><p>withRWSet: 是否返回读写集</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">GetBlockByHeight</span><span class="p">(</span><span class="nx">blockHeight</span> <span class="kt">int64</span><span class="p">,</span> <span class="nx">withRWSet</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">BlockInfo</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id21">
+<h4>根据区块哈希查询区块<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>blockHash: 指定区块Hash</p></li>
+<li><p>withRWSet: 是否返回读写集</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">GetBlockByHash</span><span class="p">(</span><span class="nx">blockHash</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">withRWSet</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">BlockInfo</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id22">
+<h4>根据交易Id查询区块<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>txId: 交易ID</p></li>
+<li><p>withRWSet: 是否返回读写集</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">GetBlockByTxId</span><span class="p">(</span><span class="nx">txId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">withRWSet</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">BlockInfo</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id23">
+<h4>查询最新的配置块<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>withRWSet: 是否返回读写集</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">GetLastConfigBlock</span><span class="p">(</span><span class="nx">withRWSet</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">BlockInfo</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id24">
+<h4>查询节点加入的链信息<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>返回ChainId清单</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">GetNodeChainList</span><span class="p">()</span> <span class="p">(</span><span class="o">*</span><span class="nx">discovery</span><span class="p">.</span><span class="nx">ChainList</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id25">
+<h4>查询链信息<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>包括：当前链最新高度，链节点信息</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">GetChainInfo</span><span class="p">()</span> <span class="p">(</span><span class="o">*</span><span class="nx">discovery</span><span class="p">.</span><span class="nx">ChainInfo</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id26">
+<h3>链配置接口<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id27">
+<h4>查询最新链配置<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">GetChainConfig</span><span class="p">()</span> <span class="p">(</span><span class="o">*</span><span class="nx">config</span><span class="p">.</span><span class="nx">ChainConfig</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id28">
+<h4>根据指定区块高度查询最近链配置<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>如果当前区块就是配置块，直接返回当前区块的链配置</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">GetChainConfigByBlockHeight</span><span class="p">(</span><span class="nx">blockHeight</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">config</span><span class="p">.</span><span class="nx">ChainConfig</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sequence">
+<h4>查询最新链配置序号Sequence<a class="headerlink" href="#sequence" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>用于链配置更新</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">GetChainConfigSequence</span><span class="p">()</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id29">
+<h4>链配置更新获取Payload签名<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">SignChainConfigPayload</span><span class="p">(</span><span class="nx">payloadBytes</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id30">
+<h4>链配置更新Payload签名收集&amp;合并<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">MergeChainConfigSignedPayload</span><span class="p">(</span><span class="nx">signedPayloadBytes</span> <span class="p">[][]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id31">
+<h4>发送链配置更新请求<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">SendChainConfigUpdateRequest</span><span class="p">(</span><span class="nx">mergeSignedPayloadBytes</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">TxResponse</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>以下CreateChainConfigXXXXXXPayload方法，用于生成链配置待签名payload，在进行多签收集后(需机构Admin权限账号签名)，用于链配置的更新</p>
+</div>
+<div class="section" id="corepayload">
+<h4>更新Core模块待签名payload生成<a class="headerlink" href="#corepayload" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>txSchedulerTimeout: 交易调度器从交易池拿到交易后, 进行调度的时间，其值范围为[0, 60]，若无需修改，请置为-1</p></li>
+<li><p>txSchedulerValidateTimeout: 交易调度器从区块中拿到交易后, 进行验证的超时时间，其值范围为[0, 60]，若无需修改，请置为-1</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigCoreUpdatePayload</span><span class="p">(</span><span class="nx">txSchedulerTimeout</span><span class="p">,</span> <span class="nx">txSchedulerValidateTimeout</span> <span class="kt">int</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id32">
+<h4>更新Core模块待签名payload生成<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>txTimestampVerify: 是否需要开启交易时间戳校验</p></li>
+<li><p>(以下参数，若无需修改，请置为-1)</p></li>
+<li><p>txTimeout: 交易时间戳的过期时间(秒)，其值范围为[600, +∞)</p></li>
+<li><p>blockTxCapacity: 区块中最大交易数，其值范围为(0, +∞]</p></li>
+<li><p>blockSize: 区块最大限制，单位MB，其值范围为(0, +∞]</p></li>
+<li><p>blockInterval: 出块间隔，单位:ms，其值范围为[10, +∞]</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigBlockUpdatePayload</span><span class="p">(</span><span class="nx">txTimestampVerify</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">txTimeout</span><span class="p">,</span> <span class="nx">blockTxCapacity</span><span class="p">,</span> <span class="nx">blockSize</span><span class="p">,</span> <span class="nx">blockInterval</span> <span class="kt">int</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id33">
+<h4>添加信任组织根证书待签名payload生成<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>trustRootOrgId: 组织Id</p></li>
+<li><p>trustRootCrt: 根证书</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigTrustRootAddPayload</span><span class="p">(</span><span class="nx">trustRootOrgId</span><span class="p">,</span> <span class="nx">trustRootCrt</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id34">
+<h4>更新信任组织根证书待签名payload生成<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>trustRootOrgId: 组织Id</p></li>
+<li><p>trustRootCrt: 根证书</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigTrustRootUpdatePayload</span><span class="p">(</span><span class="nx">trustRootOrgId</span><span class="p">,</span> <span class="nx">trustRootCrt</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id35">
+<h4>删除信任组织根证书待签名payload生成<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>trustRootOrgId: 组织Id</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigTrustRootDeletePayload</span><span class="p">(</span><span class="nx">trustRootOrgId</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id36">
+<h4>添加权限配置待签名payload生成<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>permissionResourceName: 权限名</p></li>
+<li><p>policy: 权限规则</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigPermissionAddPayload</span><span class="p">(</span><span class="nx">permissionResourceName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">policy</span> <span class="o">*</span><span class="nx">accesscontrol</span><span class="p">.</span><span class="nx">Policy</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id37">
+<h4>更新权限配置待签名payload生成<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>permissionResourceName: 权限名</p></li>
+<li><p>policy: 权限规则</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigPermissionUpdatePayload</span><span class="p">(</span><span class="nx">permissionResourceName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">policy</span> <span class="o">*</span><span class="nx">accesscontrol</span><span class="p">.</span><span class="nx">Policy</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id38">
+<h4>删除权限配置待签名payload生成<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>permissionResourceName: 权限名</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigPermissionDeletePayload</span><span class="p">(</span><span class="nx">permissionResourceName</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id39">
+<h4>添加共识节点地址待签名payload生成<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>nodeOrgId: 节点组织Id</p></li>
+<li><p>nodeIds: 节点Id</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigConsensusNodeIdAddPayload</span><span class="p">(</span><span class="nx">nodeOrgId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">nodeIds</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id40">
+<h4>更新共识节点地址待签名payload生成<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>nodeOrgId: 节点组织Id</p></li>
+<li><p>nodeOldNodeId: 节点原Id</p></li>
+<li><p>nodeNewNodeId: 节点新Id</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigConsensusNodeIdUpdatePayload</span><span class="p">(</span><span class="nx">nodeOrgId</span><span class="p">,</span> <span class="nx">nodeOldNodeId</span><span class="p">,</span> <span class="nx">nodeNewNodeId</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id41">
+<h4>删除共识节点地址待签名payload生成<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>nodeOrgId: 节点组织Id</p></li>
+<li><p>nodeId: 节点Id</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigConsensusNodeIdDeletePayload</span><span class="p">(</span><span class="nx">nodeOrgId</span><span class="p">,</span> <span class="nx">nodeId</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id42">
+<h4>添加共识节点待签名payload生成<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>nodeOrgId: 节点组织Id</p></li>
+<li><p>nodeIds: 节点Id</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigConsensusNodeOrgAddPayload</span><span class="p">(</span><span class="nx">nodeOrgId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">nodeIds</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id43">
+<h4>更新共识节点待签名payload生成<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>nodeOrgId: 节点组织Id</p></li>
+<li><p>nodeIds: 节点Id</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigConsensusNodeOrgUpdatePayload</span><span class="p">(</span><span class="nx">nodeOrgId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">nodeIds</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id44">
+<h4>删除共识节点待签名payload生成<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>nodeOrgId: 节点组织Id</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigConsensusNodeOrgDeletePayload</span><span class="p">(</span><span class="nx">nodeOrgId</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id45">
+<h4>添加共识扩展字段待签名payload生成<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>kvs: 字段key、value对</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigConsensusExtAddPayload</span><span class="p">(</span><span class="nx">kvs</span> <span class="p">[]</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">KeyValuePair</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id46">
+<h4>添加共识扩展字段待签名payload生成<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>kvs: 字段key、value对</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigConsensusExtUpdatePayload</span><span class="p">(</span><span class="nx">kvs</span> <span class="p">[]</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">KeyValuePair</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id47">
+<h4>添加共识扩展字段待签名payload生成<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>keys: 待删除字段</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateChainConfigConsensusExtDeletePayload</span><span class="p">(</span><span class="nx">keys</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id48">
+<h3>证书管理接口<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id49">
+<h4>用户证书添加<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>在common.TxResponse.ContractResult.Result字段中返回成功添加的certHash</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">AddCert</span><span class="p">()</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">TxResponse</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id50">
+<h4>用户证书删除<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>certHashes: 证书Hash列表</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">DeleteCert</span><span class="p">(</span><span class="nx">certHashes</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">TxResponse</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id51">
+<h4>用户证书查询<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>certHashes: 证书Hash列表
+返回值说明：</p></li>
+<li><p>*common.CertInfos: 包含证书Hash和证书内容的列表</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">QueryCert</span><span class="p">(</span><span class="nx">certHashes</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">CertInfos</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id52">
+<h4>获取用户证书哈希<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">GetCertHash</span><span class="p">()</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id53">
+<h4>生成证书管理操作Payload（三合一接口）<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>method: CERTS_FROZEN(证书冻结)/CERTS_UNFROZEN(证书解冻)/CERTS_REVOCATION(证书吊销)</p></li>
+<li><p>kvs: 证书管理操作参数</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateCertManagePayload</span><span class="p">(</span><span class="nx">method</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">kvs</span> <span class="p">[]</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">KeyValuePair</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id54">
+<h4>生成证书冻结操作Payload<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>certs: X509证书列表</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateCertManageFrozenPayload</span><span class="p">(</span><span class="nx">certs</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id55">
+<h4>生成证书解冻操作Payload<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>certs: X509证书列表</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateCertManageUnfrozenPayload</span><span class="p">(</span><span class="nx">certs</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id56">
+<h4>生成证书吊销操作Payload<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>certs: X509证书列表</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateCertManageRevocationPayload</span><span class="p">(</span><span class="nx">certCrl</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id57">
+<h4>待签payload签名<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h4>
+<p><em>一般需要使用具有管理员权限账号进行签名</em>
+<strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>payloadBytes: 待签名payload</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">SignCertManagePayload</span><span class="p">(</span><span class="nx">payloadBytes</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id58">
+<h4>证书管理Payload签名收集&amp;合并<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>signedPayloadBytes: 已签名payload列表</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">MergeCertManageSignedPayload</span><span class="p">(</span><span class="nx">signedPayloadBytes</span> <span class="p">[][]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id59">
+<h4>发送证书管理请求（证书冻结、解冻、吊销）<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>multiSignedPayload: 多签结果</p></li>
+<li><p>timeout: 超时时间，单位：s，若传入-1，将使用默认超时时间：10s</p></li>
+<li><p>withSyncResult: 是否同步获取交易执行结果
+当为true时，若成功调用，common.TxResponse.ContractResult.Result为common.TransactionInfo
+当为false时，若成功调用，common.TxResponse.ContractResult.Result为txId</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">SendCertManageRequest</span><span class="p">(</span><span class="nx">mergeSignedPayloadBytes</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">timeout</span> <span class="kt">int64</span><span class="p">,</span> <span class="nx">withSyncResult</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">TxResponse</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id60">
+<h3>在线多签接口<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id61">
+<h4>待签payload签名<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h4>
+<p><em>一般需要使用具有管理员权限账号进行签名</em>
+<strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>payloadBytes: 待签名payload</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">SignMultiSignPayload</span><span class="p">(</span><span class="nx">payloadBytes</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">EndorsementEntry</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id62">
+<h4>多签请求<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>txType: 多签payload交易类型</p></li>
+<li><p>payloadBytes: 待签名payload</p></li>
+<li><p>endorsementEntry: 签名收集信息</p></li>
+<li><p>deadlineBlockHeight: 过期的区块高度，若设置为0，表示永不过期</p></li>
+<li><p>timeout: 超时时间，单位：s，若传入-1，将使用默认超时时间：10s
+<strong>返回值</strong>
+若成功调用，common.TxResponse.ContractResult.Result为txId</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">SendMultiSignReq</span><span class="p">(</span><span class="nx">txType</span> <span class="nx">common</span><span class="p">.</span><span class="nx">TxType</span><span class="p">,</span> <span class="nx">payloadBytes</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">endorsementEntry</span> <span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">EndorsementEntry</span><span class="p">,</span> <span class="nx">deadlineBlockHeight</span> <span class="kt">int</span><span class="p">,</span>
+		<span class="nx">timeout</span> <span class="kt">int64</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">TxResponse</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id63">
+<h4>多签投票<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>voteStatus: 投票状态（赞成、反对）</p></li>
+<li><p>multiSignReqTxId: 多签请求交易ID(txId或payloadHash至少填其一，txId优先)</p></li>
+<li><p>payloadHash: 待多签payload hash(txId或payloadHash至少填其一，txId优先)</p></li>
+<li><p>payloadBytes: 待签名payload</p></li>
+<li><p>endorsementEntry: 签名收集信息</p></li>
+<li><p>timeout: 超时时间，单位：s，若传入-1，将使用默认超时时间：10s
+<strong>返回值</strong>
+若成功调用，common.TxResponse.ContractResult.Result为txId</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">SendMultiSignVote</span><span class="p">(</span><span class="nx">voteStatus</span> <span class="nx">common</span><span class="p">.</span><span class="nx">VoteStatus</span><span class="p">,</span> <span class="nx">multiSignReqTxId</span><span class="p">,</span> <span class="nx">payloadHash</span> <span class="kt">string</span><span class="p">,</span>
+		<span class="nx">endorsementEntry</span> <span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">EndorsementEntry</span><span class="p">,</span> <span class="nx">timeout</span> <span class="kt">int64</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">TxResponse</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id64">
+<h4>投票查询<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>multiSignReqTxId: 多签请求交易ID(txId或payloadHash至少填其一，txId优先)</p></li>
+<li><p>payloadHash: 待多签payload hash(txId或payloadHash至少填其一，txId优先)</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">QueryMultiSignResult</span><span class="p">(</span><span class="nx">multiSignReqTxId</span><span class="p">,</span> <span class="nx">payloadHash</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">TxResponse</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id65">
+<h3>消息订阅接口<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id66">
+<h4>区块订阅<a class="headerlink" href="#id66" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>startBlock: 订阅起始区块高度，若为-1，表示订阅实时最新区块</p></li>
+<li><p>endBlock: 订阅结束区块高度，若为-1，表示订阅实时最新区块</p></li>
+<li><p>withRwSet: 是否返回读写集</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">SubscribeBlock</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">startBlock</span><span class="p">,</span> <span class="nx">endBlock</span> <span class="kt">int64</span><span class="p">,</span> <span class="nx">withRwSet</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="o">&lt;-</span><span class="kd">chan</span> <span class="kd">interface</span><span class="p">{},</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id67">
+<h4>交易订阅<a class="headerlink" href="#id67" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>startBlock: 订阅起始区块高度，若为-1，表示订阅实时最新区块</p></li>
+<li><p>endBlock: 订阅结束区块高度，若为-1，表示订阅实时最新区块</p></li>
+<li><p>txType: 订阅交易类型,若为common.TxType(-1)，表示订阅所有交易类型</p></li>
+<li><p>txIds: 订阅txId列表，若为空，表示订阅所有txId</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">SubscribeTx</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">startBlock</span><span class="p">,</span> <span class="nx">endBlock</span> <span class="kt">int64</span><span class="p">,</span> <span class="nx">txType</span> <span class="nx">common</span><span class="p">.</span><span class="nx">TxType</span><span class="p">,</span> <span class="nx">txIds</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">&lt;-</span><span class="kd">chan</span> <span class="kd">interface</span><span class="p">{},</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id68">
+<h4>多合一订阅<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>txType: 订阅交易类型，目前已支持：区块消息订阅(common.TxType_SUBSCRIBE_BLOCK_INFO)、交易消息订阅(common.TxType_SUBSCRIBE_TX_INFO)</p></li>
+<li><p>payloadBytes: 消息订阅参数payload</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">Subscribe</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">txType</span> <span class="nx">common</span><span class="p">.</span><span class="nx">TxType</span><span class="p">,</span> <span class="nx">payloadBytes</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="o">&lt;-</span><span class="kd">chan</span> <span class="kd">interface</span><span class="p">{},</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id69">
+<h3>证书压缩<a class="headerlink" href="#id69" title="Permalink to this headline">¶</a></h3>
+<p><em>开启证书压缩可以减小交易包大小，提升处理性能</em></p>
+<div class="section" id="id70">
+<h4>启用压缩证书功能<a class="headerlink" href="#id70" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">EnableCertHash</span><span class="p">()</span> <span class="kt">error</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id71">
+<h4>停用压缩证书功能<a class="headerlink" href="#id71" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">DisableCertHash</span><span class="p">()</span> <span class="kt">error</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id72">
+<h3>工具类<a class="headerlink" href="#id72" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="easycodecmap">
+<h4>将EasyCodec编码解码成map<a class="headerlink" href="#easycodecmap" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">EasyCodecItemToParamsMap</span><span class="p">(</span><span class="nx">items</span> <span class="p">[]</span><span class="o">*</span><span class="nx">serialize</span><span class="p">.</span><span class="nx">EasyCodecItem</span><span class="p">)</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="x-509evm">
+<h4>根据X.509证书路径得到EVM地址<a class="headerlink" href="#x-509evm" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>certFilePath: 证书文件路径</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">GetEVMAddressFromCertPath</span><span class="p">(</span><span class="nx">certFilePath</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id73">
+<h4>根据X.509证书内容得到EVM地址<a class="headerlink" href="#id73" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>certBytes: 证书内容</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">GetEVMAddressFromCertBytes</span><span class="p">(</span><span class="nx">certBytes</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id74">
+<h3>层级属性加密类接口<a class="headerlink" href="#id74" title="Permalink to this headline">¶</a></h3>
+<p>**注意：**层级属性加密模块 <code class="docutils literal notranslate"><span class="pre">Id</span></code> 使用 <code class="docutils literal notranslate"><span class="pre">/</span></code> 作为分隔符，例如： Org1/Ou1/Member1</p>
+<div class="section" id="id75">
+<h4>生成层级属性参数初始化交易 payload<a class="headerlink" href="#id75" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>orgId: 参与方组织 id</p></li>
+<li><p>hibeParams: 传入序列化后的hibeParams byte数组</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateHibeInitParamsTxPayloadParams</span><span class="p">(</span><span class="nx">orgId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">hibeParams</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id76">
+<h4>生成层级属性加密交易 payload，加密参数已知<a class="headerlink" href="#id76" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>plaintext: 待加密交易消息明文</p></li>
+<li><p>receiverIds: 消息接收者 id 列表，需和 paramsList 一一对应</p></li>
+<li><p>paramsBytesList: 消息接收者对应的加密参数，需和 receiverIds 一一对应</p></li>
+<li><p>txId: 以交易 Id 作为链上存储 hibeMsg 的 Key, 如果不提供存储的信息可能被覆盖</p></li>
+<li><p>keyType: 对明文进行对称加密的方法，请传入 common 中 crypto 包提供的方法，目前提供AES和SM4两种方法</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateHibeTxPayloadParamsWithHibeParams</span><span class="p">(</span><span class="nx">plaintext</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">receiverIds</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">paramsBytesList</span> <span class="p">[][]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">txId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">keyType</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">KeyType</span><span class="p">)</span> <span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id77">
+<h4>生成层级属性加密交易 payload，参数由链上查询得出<a class="headerlink" href="#id77" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名</p></li>
+<li><p>queryParamsMethod: 链上查询 hibe.Params 的合约方法</p></li>
+<li><p>plaintext: 待加密交易消息明文</p></li>
+<li><p>receiverIds: 消息接收者 id 列表，需和 paramsList 一一对应</p></li>
+<li><p>paramsList: 消息接收者对应的加密参数，需和 receiverIds 一一对应</p></li>
+<li><p>receiverOrgIds: 链上查询 hibe Params 的 Key 列表，需要和 receiverIds 一一对应</p></li>
+<li><p>txId: 以交易 Id 作为链上存储 hibeMsg 的 Key, 如果不提供存储的信息可能被覆盖</p></li>
+<li><p>keyType: 对明文进行对称加密的方法，请传入 common 中 crypto 包提供的方法，目前提供AES和SM4两种方法</p></li>
+<li><p>timeout: （内部查询 HibeParams 的）超时时间，单位：s，若传入-1，将使用默认超时时间：10s</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">CreateHibeTxPayloadParamsWithoutHibeParams</span><span class="p">(</span><span class="nx">contractName</span><span class="p">,</span> <span class="nx">queryParamsMethod</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">plaintext</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">receiverIds</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">receiverOrgIds</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">txId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">keyType</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">KeyType</span><span class="p">,</span> <span class="nx">timeout</span> <span class="kt">int64</span><span class="p">)</span> <span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="byte">
+<h4>查询某一组织的加密公共参数，返回其序列化后的byte数组<a class="headerlink" href="#byte" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>contractName: 合约名</p></li>
+<li><p>method: 查询的合约方法名</p></li>
+<li><p>orgId: 参与方 id</p></li>
+<li><p>timeout: 查询超时时间，单位：s，若传入-1，将使用默认超时时间：10s</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">QueryHibeParamsWithOrgId</span><span class="p">(</span><span class="nx">contractName</span><span class="p">,</span> <span class="nx">method</span><span class="p">,</span> <span class="nx">orgId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">timeout</span> <span class="kt">int64</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id78">
+<h4>已知交易id，根据私钥解密密文交易<a class="headerlink" href="#id78" title="Permalink to this headline">¶</a></h4>
+<p><strong>参数说明</strong></p>
+<ul class="simple">
+<li><p>localId: 本地层级属性加密 id</p></li>
+<li><p>hibeParams: hibeParams 序列化后的byte数组</p></li>
+<li><p>hibePrivKey: hibe私钥序列化后的byte数组</p></li>
+<li><p>txId: 层级属性加密交易 id</p></li>
+<li><p>keyType: 对加密信息进行对称解密的方法，请和加密时使用的方法保持一致，请传入 common 中 crypto 包提供的方法，目前提供AES和SM4两种方法</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">DecryptHibeTxByTxId</span><span class="p">(</span><span class="nx">localId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">hibeParams</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">hibePrvKey</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">txId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">keyType</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">KeyType</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id79">
+<h3>系统类接口<a class="headerlink" href="#id79" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="sdk">
+<h4>SDK停止接口<a class="headerlink" href="#sdk" title="Permalink to this headline">¶</a></h4>
+<p><em>关闭连接池连接，释放资源</em></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">Stop</span><span class="p">()</span> <span class="kt">error</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id80">
+<h4>获取链版本<a class="headerlink" href="#id80" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>	<span class="nx">GetChainMakerServerVersion</span><span class="p">()</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,457 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>ChainMaker身份分层加密方案介绍 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>ChainMaker身份分层加密方案介绍</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tech/ChainMaker身份分层加密方案介绍.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="chainmaker">
+<h1>ChainMaker身份分层加密方案介绍<a class="headerlink" href="#chainmaker" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>需求<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>需求概述<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>区块链技术由于可以在无需第三方的情况下实现所有数据的公开透明、不可篡改、不可伪造等特性，在诸如数字政务、数字货币、金融资产交易结算等领域具有广阔的应用场景。很多区块链应用场景中，都会存在数据按层级划分可见性的需求，也就是说，允许上层的用户/节点查看下层用户/节点的数据，但是处于下层的用户/节点无法查看上层用户/节点的数据，并且同一层级的用户/节点间的数据不可见。</p>
+</div>
+<div class="section" id="id3">
+<h3>具体场景<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>税务场景，税务总局可以查看所有省市相关数据，各省之间数据不互通，跨省的交易数据在相关方可见。</p></li>
+<li><p>大型企业场景，集团对所有数据可见，二级公司见数据互不可见，二级公司可查看下辖的三级公司数据，以此类推。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>身份分层加密<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3>身份分层加密概述<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>身份分层加密（ <em>Hierarchical Identity Based Encryption, HIBE</em> ）是对属性加密（ <em>Identity Based Encryption, IBE</em> ）的一种改进方案，它是一种由层级结构定义的属性加密。在传统的属性加密中，节点/用户之间没有层级结构关系，节点/用户的身份信息（属性）$I_i$作为公钥，由密钥生成中心（ <em>Private Key Generator , PKG</em> ）为每个节点/用户生成解密密钥并进行分配。<strong>HIBE</strong> 打破了传统的 <strong>IBE</strong> 方案，构造了一种层级结构关系，每一层节点/用户用来进行数据解密的解密密钥都由上一层级进行分配，也就是说，只有根节点/用户的密钥由 <strong>PKG</strong> 进行分配，这使得密钥的分配过程不再复杂，使得计算、权限分派变得简单，通信开销减少，适用于许多权限分级应用中。</p>
+<ul class="simple">
+<li><p>$\mathsf{Root.Setup}$(初始化算法): 该算法由 <strong>PKG</strong> 运行，输入安全参数$\lambda$，输出系统参数列表 $params$ 和主密钥 $msk$。</p></li>
+<li><p>$\mathsf{Key.Extraction}$ (密钥提取算法): 该算法由 <strong>PKG</strong> 运行，输入系统参数列表 $params$，主密钥 $msk$，第一层节点/用户的身份信息 $I_1$ 作为输入，输出第一层节点的解密密钥 $dk_1$。</p></li>
+<li><p>$\mathsf{Key.Delegation}$ (密钥分派算法): 该算法由第k-1层节点/用户运行，输入前$k-1$层节点/用户身份集合 $ID=[I_1, I_2, …I_{k-1}]$，系统参数列表$params$ 和上一层用户/节点解密密钥$dk_{k-1}$，输出第k层节点/用户的解密密钥$dk_k$，并且分配给第k层节点/用户。SS</p></li>
+<li><p>$\mathsf{Encryption}$ (加密算法): 该算法由任意节点/用户运行，输入节点/用户身份 $ID_k = [I_1, I_2, …I_k]$，系统参数列表$params$以及明文$m$,算法输出密文$CT$。</p></li>
+<li><p>$\mathsf{Decryption}$ (解密算法): 该算法由第k层节点/用户运行，输入节点/用户解密密钥 $dk_k$ , 系统参数列表 $params$ 以及密文 $CT$，输出解密后的明文 $m$。</p></li>
+</ul>
+<p>从上述算法我们可以看出，节点/用户的公钥为一组属性的集合 $ID_k = [I_1, I_2, …I_k]$ ，而前 <code class="docutils literal notranslate"><span class="pre">k</span></code> 层节点/用户（不包括第k层）节点/用户可以生成解密密钥，从而可以解密使用$[I_1, I_2, …I_k]$ 加密的信息。所以身份分层加密天然的适应于权限分级的应用场景，即上层节点/用户可以解密下层节点/用户的数据，而下层节点/用户却无法解密上层节点/用户数据。</p>
+</div>
+<div class="section" id="id6">
+<h3>身份分层加密流派<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>现有的 <strong>HIBE</strong> 方案大多是采用 <em>椭圆曲线</em> 的加密方式，也就是基于两个同素阶的椭圆曲线子群上的双线性映射 $e:G_1 \times G_2 -&gt; G_T$，$G_1$$ ,$ $G_2$上的点映射到了一个有限域 $G_T$上。 因此，<strong>HIBE</strong> 的安全证明大多基于双线性映射产生的一个困难问题，因为该困难问题多项式时间内不可解，<strong>HIBE</strong> 方案才能被证明是安全的。根据困难问题的类型不同，我们将现有的 <strong>HIBE</strong> 构造分为以下三类。</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th></th>
+<th>困难问题</th>
+<th>密文大小</th>
+<th>密钥大小</th>
+<th>参数大小</th>
+<th>匿名性</th>
+<th>椭圆曲线选取</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gentry-Silverberg方案</td>
+<td>BDH问题</td>
+<td>随层级数线性增加</td>
+<td>常数大小</td>
+<td>常数大小</td>
+<td>非匿名性</td>
+<td>困难</td>
+</tr>
+<tr>
+<td>Gentry等人方案</td>
+<td>BDH问题</td>
+<td>随层级数线性增加</td>
+<td>常数大小</td>
+<td>随节点数和层数线性增加</td>
+<td>非匿名性</td>
+<td>易构造</td>
+</tr>
+<tr>
+<td>Boneh等人方案</td>
+<td>l-wDBDHI问题</td>
+<td>常数大小</td>
+<td>随层级数线性减小</td>
+<td>随层级数线性增加</td>
+<td>非匿名性</td>
+<td>易构造</td>
+</tr>
+<tr>
+<td>Seo等人方案</td>
+<td>l-wDBDHI问题</td>
+<td>常数大小</td>
+<td>随层级数线性减小</td>
+<td>层级数线性增加</td>
+<td>非匿名性</td>
+<td>易构造</td>
+</tr>
+<tr>
+<td>Boneh-Waters方案</td>
+<td>DLIN&amp;BDH问题</td>
+<td>随层级数线性增加</td>
+<td>随层级数多项式增加</td>
+<td>随层级数多项式增加</td>
+<td>匿名性</td>
+<td>困难</td>
+</tr>
+</tbody>
+</table><div class="section" id="bilinear-diffie-hellman-bdh-sup-1-sup">
+<h4>Bilinear Diffie-Hellman (BDH)<a class="reference external" href="#refer1"><sup>1</sup></a><a class="headerlink" href="#bilinear-diffie-hellman-bdh-sup-1-sup" title="Permalink to this headline">¶</a></h4>
+<p><strong>BDH</strong> 困难问题是指给定 $g,g^a,g^b,g^c \in G_1$ ，我们需要去计算$g^{abc}$（等价于计算$e(g,g)^{abc}$），这个计算过程在多项式时间内无法计算。</p>
+<p><em>Gentry</em> 和 <em>Silverberg<a class="reference external" href="#refer2"><sup>2</sup></a></em> 第一次通过扩展传统的 <strong>IBE</strong>，构造了第一个 <strong>HIBE</strong> 方案，也就是 <strong>Gentry-Silverberg HIBE</strong> 。该方案基于标准的 <strong>BDH</strong> 假设，并且将节点/用户的身份组映射到一组线性群上，构造了一种下层节点/用户无法解密上层节点/用户的结构式 <strong>IBE</strong> 方案。但是该方案的密文大小以及双线性对的数量都会随着层级的加深而增多，并且其安全性降低也会随着层级的加深呈指数增长趋势。此外，在椭圆曲线上构造具有均匀分布范围空间的哈希函数也很困难。这限制了曲线的选择，因为在多项式时间内生成系统参数的约束条件下，必须均匀地哈希到一个可以保持离散对数问题的困难性的子群上。许多基于 <strong>Gentry-Silverberg HIBE</strong> 的方案<a class="reference external" href="#refer3"><sup>3</sup></a>虽然改善了原方案的安全性上的缺点，但是却限制了密钥查询次数。此外，<strong>Gentry-Silverberg HIBE</strong> 是接收方不匿名的方案，也就是加密的数据由谁解密是公开的。</p>
+</div>
+<div class="section" id="weak-decision-bilinear-diffie-hellman-inversion-l-wdbdhi">
+<h4>Weak Decision Bilinear Diffie- Hellman Inversion (l-wDBDHI)<a class="headerlink" href="#weak-decision-bilinear-diffie-hellman-inversion-l-wdbdhi" title="Permalink to this headline">¶</a></h4>
+<p><strong>l-wDBDHI</strong> 困难问题是指给定 $(g,h,g^{\alpha}, g^{\alpha^2},…, g^{\alpha^l}) \in G_1$ , 计算 $e(g,h)^{1/\alpha}$ （等价于$e(g,h)^{\alpha^{l+1}}$ )，同样的，这个计算过程也是多项式时间内无解的。</p>
+<p><em>Boneh</em> 等人<a class="reference external" href="#refer4"><sup>4</sup></a>在2005年第一次提出了基于 <strong>l-wDBDHI</strong> 的 <strong>HIBE</strong> 方案，该方案使密文大小固定，不再随着层级数加深而增加，弥补了 <strong>Gentry-Silverberg HIBE</strong> 方案的缺点。并且该方案是基于一个对称的双线性对，那么在椭圆曲线上构造具有均匀分布范围空间的哈希函数相对而言不是那么困难，使得我们椭圆曲线的选择更加灵活。除此之外，该方案的密钥随着层次结构的加深而减少。但是，该方案并不具备匿名性的特点，也就是说，在该方案中所有节点/用户的身份都是公开透明的。事实上，许多 <strong>HIBE</strong> 方案安全性都是基于 <strong>l-wDBDHI</strong> 困难问题，<strong>Seo</strong> 等人<a class="reference external" href="#refer5"><sup>5</sup></a>在2015年就提出了一种基于 <strong>l-wDBDHI</strong> 困难问题的可撤销的 <strong>HIBE</strong> 方案，通过建立 <strong>Complete Tree（CT）</strong> 和<strong>Subset tree（ST）</strong> 提供了一种 <strong>撤销权限的HIBE方案</strong>，但是其增加了密钥分发和更新时间。</p>
+</div>
+<div class="section" id="decision-linear-dlin-sup-6-sup">
+<h4>Decision Linear （DLIN) <a class="reference external" href="#refer6"><sup>6</sup></a><a class="headerlink" href="#decision-linear-dlin-sup-6-sup" title="Permalink to this headline">¶</a></h4>
+<p><strong>DLIN</strong> 困难问题是指给定 $g, g^a, g^b, g^{ac_1}, g^{bc_2} \in G_1$ , 那么计算 $g^{c_1 + c_2}$ 是多项式时间内无法解决的困难问题。</p>
+<p><strong>DLIN</strong> 困难问题被用于证明 <strong>HIBE</strong> 方案具有匿名性，<em>Boneh</em> 和*Waters<a class="reference external" href="#refer7"><sup>7</sup></a>*就结合 <strong>BDH</strong> 和 <strong>DLIN</strong> 提出了一种匿名的 <strong>HIBE</strong> 方案，该方案的每次生成密钥的时候，都需要重新更新安全参数列表，其安全证明相对来说也非常复杂。目前来说，采用 <strong>DLIN</strong> 困难问题提供方案安全定义的<strong>HIBE</strong> 方案也并不常见。</p>
+<p>除此之外，层次属性加密其实根据其实现需求不同，也可以分为基本 <strong>HIBE</strong> 方案，<strong>可撤销的HIBE</strong> 方案**（RIBE) <a class="reference external" href="#refer8#refer9"><sup>8,9</sup></a>**，匿名的HIBE方案<a class="reference external" href="#refer10#refer11#refer12"><sup>10,11,12</sup></a>。依据不同的需求目的，我们可以选择合适的层次属性加密方案。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>长安链采用的身份分层加密方案<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h4>基本概念<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<p>本文所采用的身份分层加密方案是由 <em>Boneh</em> 等人提出的基于 <strong>l-wDBDHI</strong> 的 <strong>HIBE</strong> 方案（即 <strong>Bonen-HIBE</strong> ），该方案将传统的 <strong>IBE</strong> 方案变成了一种层次结构的加密方案，同时<strong>Bonen-HIBE</strong>方案生成的密文仅有3个群元素组成，并且解密仅需要两个双线对的运算，提高了计算效率。</p>
+<p>在 <strong>Bonen-HIBE</strong> 中，节点/用户的身份由一个数组表示，即第 <code class="docutils literal notranslate"><span class="pre">k</span></code> 层的节点/用户的身份可以表示成 $ID_k = [I_1, I_2, \dots, I_k]$。
+该方案主要由  $\mathsf{Setup, KeyGen, Encrypt, Decrypt}$ 四个算法组成。<strong>Bonen-HIBE</strong> 将 <strong>PKG</strong> 作为层次结构的根节点，位于层次节点的第 <code class="docutils literal notranslate"><span class="pre">0</span></code> 层，因此它将 <strong>HIBE</strong> 方案中的 <strong>Key.Extraction</strong> 与 <strong>Key.Delegation</strong> 算法融合成了$\mathsf{KeyGen}$。Bonen-HIBE算法具体构造如下。</p>
+</div>
+<div class="section" id="id9">
+<h4>前提假设<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
+<li><p>$G$ 为一个素数阶为$p$的双线性群。</p></li>
+<li><p>$e: G \times G -&gt; G_T$ 是一个对称的双线性映射。</p></li>
+<li><p>$H: {0,1}^* -&gt; (Z_p^*)^k$ 是一个抗碰撞的哈希函数。</p></li>
+<li><p>在第 $k$ 层的公钥（ID）为 $(I_1, I_2, …, I_k) \in (Z_p^*)^k$，即可由在有限域内的 $k$ 个整数表示。</p></li>
+<li><p>待加密数据$m$在双线性群上$\mathbb{G}$。</p></li>
+</ol>
+</div>
+<div class="section" id="id10">
+<h4>算法构造<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<p><strong>$\mathsf{Setup}$</strong></p>
+<ul class="simple">
+<li><p>随机生成元 $g \in \mathbb{G}$</p></li>
+<li><p>随机整数 $\alpha \in \mathbb{Z}_p$ 及 $g_1=g^\alpha$</p></li>
+<li><p>随机数 $g_2, g_3, h_1, …, h_l \in \mathbb{G}$，其中 $l$ 为最大层级数</p></li>
+</ul>
+<p>此时，我们有</p>
+<ul class="simple">
+<li><p>系统参数 $params = (g, g_1, g_2, g_3, h_1, …, h_l)$</p></li>
+<li><p>master key = $g_2^\alpha$</p></li>
+</ul>
+<p><strong>$\mathsf{KeyGen}$</strong></p>
+<p>对于某一层级的公钥，私钥生成有两种方式：</p>
+<ol class="simple">
+<li><p>由master key生成：$d_{ID}=(g_2^\alpha \cdot (h_1^{I_1}…h_k^{I_k}g_3)^r, g^r, h_{k+1}^r, …, h_l^r) \in \mathbb{G}^{2+l-k}$</p></li>
+<li><p>由上一级私钥生成：记$d_{ID|k-1}=(g_2^\alpha \cdot (h_1^{I_1}…h_k^{I_k}g_3)^r, g^r, h_{k+1}^r, …, h_l^r)=(a_0, a_1, b_k, …, b_l)$，则下级私钥为$d_{ID|k}={(a_0 \cdot b_k^{I_k}} \cdot (h_1^{I_1} … h_k^{I_k} \cdot g_3)^t, a_1 \cdot g^t, b_{k+1} \cdot h_{k+1}^t, …, b_l \cdot h_l^t)$</p></li>
+<li><p><strong>$\mathsf{Encrypt}$</strong></p></li>
+</ol>
+<p>给定：</p>
+<ul class="simple">
+<li><p>信息 $M \in \mathbb{G}_1$</p></li>
+<li><p>公钥 $(I_1, I_2, …, I_k) \in (\mathbb{Z}_p^*)^k$</p></li>
+</ul>
+<p>加密结果：$CT = (e(g_1, g_2)^s \cdot M, g^s, (h_1^{I_1}…h_k^{I^k} \cdot g_3)^s) \in \mathbb{G}_1 \times \mathbb{G}^2$</p>
+<p><strong>$\mathsf{Decrypt}$</strong></p>
+<p>给定：</p>
+<ul class="simple">
+<li><p>密文 $CT=(A, B, C)$</p></li>
+<li><p>私钥 $d_{ID}=(a_0, a_1, b_{k+1}, …, b_l)$</p></li>
+</ul>
+<p>解密方案： $A \cdot e(a_1, C) / e(B, a_0) = M$</p>
+</div>
+<div class="section" id="id11">
+<h4>算法拓展<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<p>基本方案通过结合Boneh-Boyen HIBE方案 <a class="reference external" href="#refer13"><sup>13</sup></a>，实现了密钥长度随层次深度次线性的增长。其基本思想是将$ID$表示为一对$(k,I)$, 其中$I$表示为一个由$I_1,\dots,I_2$组成的$l_1 \times l_2$的矩阵，$k$表示其为第几个$I$。每一行的$I_i$的加密密钥由上一层节点利用Boneh-Boyen HIBE方案生成，列与列之间加密密钥则是利用基本方案生成。由于Boneh-Boyen HIBE方案密钥的长度是随层次增加而线性增长, 本方案密钥长度则是随层次增加而线性减少，所以通过控制$l_1$, $l_2$的大小，就可以制衡密钥长度。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>长安链身份分层加密方案描述<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id13">
+<h3>整体架构<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<img src="../images/加密算法-HIBE-方案架构.png" style="zoom:50%;" /></div>
+<div class="section" id="id14">
+<h3>方案描述<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<img src="../images/加密算法-HIBE-方案流程.png" style="zoom:50%;" /></div>
+</div>
+<div class="section" id="id15">
+<h2>参考<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<p>[1]Joux A. A one round protocol for tripartite Diffie-Hellman. Journal of Cryptol- ogy 20 0 0;17(4):263–76. doi: 10.10 07/s0 0145-0 04-0312-y .</p>
+<div id="refer2"></div><p>[2] Gentry C, Silverberg A. Hierarchical id-based cryptography. In: Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelli- gence and Lecture Notes in Bioinformatics), 2501; 2002. p. 548–66. doi: 10. 1007/3- 540- 36178- 2 _ 34 .</p>
+<div id="refer3"></div><p>[3] Gentry C, Halevi S. Hierarchical Identity Based Encryption with Polynomially Many Levels. In: Reingold O, editor. Theory of Cryptography Conference, TCC 2009, Lecture Notes in Computer Science, Vol 54 4 4. Springer; 2009. p. 437–56. doi: 10.1007/978- 3- 642- 00457- 5 _ 26 .</p>
+<div id="refer4"></div><p>[4] Boneh D, Boyen X, Goh E. Hierarchical Identity Based Encryption with Con- stant Size Ciphertext. In: Cramer R, editor. Annual International Conference on the Theory and Applications of Cryptographic Techniques EUROCRYPT 2005, Lecture Notes in Computer Science, Vol. 3494. Springer; 2005. p. 440–56. doi: 10.1007/11426639 _ 26 .</p>
+<div id="refer5"></div><p>[5] Seo JH, Emura K. Revocable hierarchical identity-based encryption. Theoretical Computer Science, Elsevier B.V. 2014;542:44–62. doi: 10.1016/j.tcs.2014.04.031.</p>
+<div id="refer6"></div><p>[6] Ramanna SC, Sarkar P. Efficient (Anonymous) Compact HIBE from Standard As- sumptions. In: Chow SS, Liu JK, Hui LCK, Yiu SM, editors. International Confer- ence on Provable Security,ProvSec 2014. Lecture Notes in Computer Science, Vol. 8782. Springer; 2014. p. 243–58. doi: 10.1007/978- 3- 319- 12475- 9 _ 17.</p>
+<div id="refer7"></div><p>[7] Boyen X, Waters B. Anonymous Hierarchical Identity-Based Encryption (With- out Random Oracles). In: Dwork C, editor. Annual International Cryptol- ogy Conference CRYPTO 2006, Lecture Notes in Computer Science, Vol. 4117. Springer; 2006. p. 290–307. doi: 10.1007/11818175 _ 17.</p>
+<div id="refer8"></div><p>[8] Seo JH, Emura K. Revocable Hierarchical Identity-Based Encryption: History- Free Update, Security Against Insiders, and Short Ciphertexts. In: Nyberg K, ed- itor. Cryptographers’ Track at the RSA Conference, CT-RSA 2015, Lecture Notes in Computer Science, Vol. 9048. Springer; 2015. p. 106–23. 2015b. doi: 10.1007/ 978- 3- 319- 16715- 2 _ 6 .</p>
+<div id="refer9"></div><p>[9] Lee K, Park S. Revocable Hierarchical Identity-Based Encryption with Shorter Private Keys and Update Keys. IACR Cryptology ePrint Archive 2016;460:1–34. Available at: https://eprint.iacr.org/2016/460 .</p>
+<div id="refer10"></div><p>[10]Ducas L. Anonymity from asymmetry: New constructions for anonymous HIBE. In: Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics), 5985 LNCS; 2010. p. 148–64. doi: 10.1007/978- 3- 642- 11925- 5 _ 11 .</p>
+<div id="refer11"></div><p>[11]Lee K, Park JH, Lee DH. Anonymous HIBE with short ciphertexts: full security in prime order groups. Designs, Codes, and Cryptography 2015;74(2):395–425. doi: 10.1007/s10623- 013- 9868- 6 .</p>
+<div id="refer12"></div><p>[12]Ramanna SC, Sarkar P. Efficient (Anonymous) Compact HIBE from Standard As- sumptions. In: Chow SS, Liu JK, Hui LCK, Yiu SM, editors. International Confer- ence on Provable Security,ProvSec 2014. Lecture Notes in Computer Science, Vol. 8782. Springer; 2014. p. 243–58. doi: 10.1007/978- 3- 319- 12475- 9 _ 17 .</p>
+<div id="refer13"></div><p>[13] D. Boneh and X. Boyen. Efficient selective-ID identity based encryption without random
+oracles. In C. Cachin and J. Camenisch, editors, Proceedings of Eurocrypt 2004, volume 3027
+of LNCS, pages 223–38. Springer, 2004.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

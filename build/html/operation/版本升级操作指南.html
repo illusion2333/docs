@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>6. 版本升级操作指南 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1. 供应链金融" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html" />
+    <link rel="prev" title="5. HIBE 教程" href="HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. 版本升级操作指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">6.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v1-0-0-v1-1-0">6.2. v1.0.0版本 -&gt; v1.1.0版本 升级指南</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v1-1-0v1-0-0">6.2.1. v1.1.0版本与v1.0.0版本配置变更说明：</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">6.2.1.1. 链配置项中共识节点配置变更说明：</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#v1-0-0v1-1-0">6.2.2. 将v1.0.0版本升级为v1.1.0版本操作步骤：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">6.2.3. 将v1.0.0版本升级为v1.1.0版本后，需要新添加节点注意事项：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">6. </span>版本升级操作指南</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/operation/版本升级操作指南.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">6. </span>版本升级操作指南<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">6.1. </span>概述<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>本文档主要描述将已在运行的chainmaker旧版本升级为新版本的步骤，正常情况下，伴随着新版发布，都会有相应的升级描述。本文档根据版本号倒序排版，即最新版本升级描述会在最前面，请读者注意。</p>
+</div>
+<div class="section" id="v1-0-0-v1-1-0">
+<h2><span class="section-number">6.2. </span>v1.0.0版本 -&gt; v1.1.0版本 升级指南<a class="headerlink" href="#v1-0-0-v1-1-0" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="v1-1-0v1-0-0">
+<h3><span class="section-number">6.2.1. </span>v1.1.0版本与v1.0.0版本配置变更说明：<a class="headerlink" href="#v1-1-0v1-0-0" title="Permalink to this headline">¶</a></h3>
+<p>从v1.1.0版本开始，共识节点的节点网络地址不再上链，改为只将共识节点的节点ID（NodeID）上链。目的是让节点IP发生变更时，减少运维的操作复杂度，运维人员只需修改本地<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>文件中的网络配置即可，无需发起链配置变更交易。</p>
+<div class="section" id="id3">
+<h4><span class="section-number">6.2.1.1. </span>链配置项中共识节点配置变更说明：<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>v1.0.0版本<code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>中共识配置及权限配置：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1">#共识配置</span>
+<span class="nt">consensus</span><span class="p">:</span>
+  <span class="c1"># 共识类型(0-SOLO,1-TBFT,2-MBFT,3-HOTSTUFF,4-RAFT,10-POW)</span>
+  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+  <span class="c1"># 共识节点列表，组织必须出现在trust_roots的org_id中，每个组织可配置多个共识节点，节点地址采用libp2p格式</span>
+  <span class="nt">nodes</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">org_id</span><span class="p">:</span> <span class="s">&quot;wx-org1.chainmaker.org&quot;</span>
+      <span class="nt">address</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;/ip4/127.0.0.1/tcp/11301/p2p/QmcQHCuAXaFkbcsPUj7e37hXXfZ9DdN7bozseo5oX4qiC4&quot;</span>
+    <span class="p p-Indicator">-</span> <span class="nt">org_id</span><span class="p">:</span> <span class="s">&quot;wx-org2.chainmaker.org&quot;</span>
+      <span class="nt">address</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;/ip4/127.0.0.1/tcp/11302/p2p/QmeyNRs2DwWjcHTpcVHoUSaDAAif4VQZ2wQDQAUNDP33gH&quot;</span>
+    <span class="p p-Indicator">-</span> <span class="nt">org_id</span><span class="p">:</span> <span class="s">&quot;wx-org3.chainmaker.org&quot;</span>
+      <span class="nt">address</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;/ip4/127.0.0.1/tcp/11303/p2p/QmXf6mnQDBR9aHauRmViKzSuZgpumkn7x6rNxw1oqqRr45&quot;</span>
+    <span class="p p-Indicator">-</span> <span class="nt">org_id</span><span class="p">:</span> <span class="s">&quot;wx-org4.chainmaker.org&quot;</span>
+      <span class="nt">address</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;/ip4/127.0.0.1/tcp/11304/p2p/QmRRWXJpAVdhFsFtd9ah5F4LDQWFFBDVKpECAF8hssqj6H&quot;</span>
+<span class="c1"># 权限配置（只能整体添加、修改、删除）</span>
+<span class="nt">resource_policies</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">resource_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NODE_ADDR_UPDATE</span>
+    <span class="nt">policy</span><span class="p">:</span>
+      <span class="nt">rule</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SELF</span> <span class="c1"># 规则（ANY，MAJORITY...，全部大写，自动转大写）</span>
+      <span class="nt">org_list</span><span class="p">:</span> <span class="c1"># 组织名称（组织名称，区分大小写）</span>
+      <span class="nt">role_list</span><span class="p">:</span> <span class="c1"># 角色名称（role，全部小写，自动转小写）</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">admin</span>
+</pre></div>
+</div>
+<p>v1.1.0版本<code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>中共识配置变更为：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1">#共识配置</span>
+<span class="nt">consensus</span><span class="p">:</span>
+  <span class="c1"># 共识类型(0-SOLO,1-TBFT,2-MBFT,3-HOTSTUFF,4-RAFT,10-POW)</span>
+  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+  <span class="c1"># 共识节点列表，组织必须出现在trust_roots的org_id中，每个组织可配置多个共识节点</span>
+  <span class="nt">nodes</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">org_id</span><span class="p">:</span> <span class="s">&quot;wx-org1.chainmaker.org&quot;</span>
+      <span class="nt">node_id</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;QmcQHCuAXaFkbcsPUj7e37hXXfZ9DdN7bozseo5oX4qiC4&quot;</span>
+    <span class="p p-Indicator">-</span> <span class="nt">org_id</span><span class="p">:</span> <span class="s">&quot;wx-org2.chainmaker.org&quot;</span>
+      <span class="nt">node_id</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;QmeyNRs2DwWjcHTpcVHoUSaDAAif4VQZ2wQDQAUNDP33gH&quot;</span>
+    <span class="p p-Indicator">-</span> <span class="nt">org_id</span><span class="p">:</span> <span class="s">&quot;wx-org3.chainmaker.org&quot;</span>
+      <span class="nt">node_id</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;QmXf6mnQDBR9aHauRmViKzSuZgpumkn7x6rNxw1oqqRr45&quot;</span>
+    <span class="p p-Indicator">-</span> <span class="nt">org_id</span><span class="p">:</span> <span class="s">&quot;wx-org4.chainmaker.org&quot;</span>
+      <span class="nt">node_id</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;QmRRWXJpAVdhFsFtd9ah5F4LDQWFFBDVKpECAF8hssqj6H&quot;</span>
+<span class="c1"># 权限配置（只能整体添加、修改、删除）</span>
+<span class="nt">resource_policies</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">resource_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NODE_ID_UPDATE</span>
+    <span class="nt">policy</span><span class="p">:</span>
+      <span class="nt">rule</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SELF</span> <span class="c1"># 规则（ANY，MAJORITY...，全部大写，自动转大写）</span>
+      <span class="nt">org_list</span><span class="p">:</span> <span class="c1"># 组织名称（组织名称，区分大小写）</span>
+      <span class="nt">role_list</span><span class="p">:</span> <span class="c1"># 角色名称（role，全部小写，自动转小写）</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">admin</span>
+</pre></div>
+</div>
+<p><strong>v1.1.0版本将权限配置中<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_ADD</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_UPDATE</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_DELETE</span></code>全部改为<code class="docutils literal notranslate"><span class="pre">NODE_ID_ADD</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ID_UPDATE</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ID_DELETE</span></code>，原<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_ADD</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_UPDATE</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_DELETE</span></code>已全部弃用。</strong></p>
+<p>v1.0.0版本<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>中网络配置：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">net</span><span class="p">:</span>
+  <span class="nt">provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">LibP2P</span>
+  <span class="nt">listen_addr</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/ip4/0.0.0.0/tcp/11301</span>
+  <span class="nt">tls</span><span class="p">:</span>
+    <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">priv_key_file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">../config/wx-org1/certs/node/consensus1/consensus1.tls.key</span>
+    <span class="nt">cert_file</span><span class="p">:</span>     <span class="l l-Scalar l-Scalar-Plain">../config/wx-org1/certs/node/consensus1/consensus1.tls.crt</span>
+</pre></div>
+</div>
+<p>v1.1.0版本<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>中网络配置变更为：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">net</span><span class="p">:</span>
+  <span class="nt">provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">LibP2P</span>
+  <span class="nt">listen_addr</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/ip4/0.0.0.0/tcp/11301</span>
+  <span class="c1"># 所有共识节点的完整网络地址需要配在seeds中</span>
+  <span class="nt">seeds</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="s">&quot;/ip4/127.0.0.1/tcp/11301/p2p/QmcQHCuAXaFkbcsPUj7e37hXXfZ9DdN7bozseo5oX4qiC4&quot;</span>
+    <span class="p p-Indicator">-</span> <span class="s">&quot;/ip4/127.0.0.1/tcp/11302/p2p/QmeyNRs2DwWjcHTpcVHoUSaDAAif4VQZ2wQDQAUNDP33gH&quot;</span>
+    <span class="p p-Indicator">-</span> <span class="s">&quot;/ip4/127.0.0.1/tcp/11303/p2p/QmXf6mnQDBR9aHauRmViKzSuZgpumkn7x6rNxw1oqqRr45&quot;</span>
+    <span class="p p-Indicator">-</span> <span class="s">&quot;/ip4/127.0.0.1/tcp/11304/p2p/QmRRWXJpAVdhFsFtd9ah5F4LDQWFFBDVKpECAF8hssqj6H&quot;</span>
+  <span class="nt">tls</span><span class="p">:</span>
+    <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">priv_key_file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">../config/wx-org1/certs/node/consensus1/consensus1.tls.key</span>
+    <span class="nt">cert_file</span><span class="p">:</span>     <span class="l l-Scalar l-Scalar-Plain">../config/wx-org1/certs/node/consensus1/consensus1.tls.crt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="v1-0-0v1-1-0">
+<h3><span class="section-number">6.2.2. </span>将v1.0.0版本升级为v1.1.0版本操作步骤：<a class="headerlink" href="#v1-0-0v1-1-0" title="Permalink to this headline">¶</a></h3>
+<p>*<strong>写在最前面：建议所有操作都备份</strong></p>
+<p>1.停止所有向节点发交易请求，即不要再让链出新块。</p>
+<p>2.确认现有全部节点状态已同步到一致，即块高度一致。</p>
+<p>3.停止所有节点服务。</p>
+<p>4.编译v1.1.0版本的可执行文件，并替换原v1.0.0版本的可执行文件。</p>
+<p>5.修改所有节点的<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>，将<code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>中的共识节点地址添加至<code class="docutils literal notranslate"><span class="pre">net:seeds:</span></code>中。 <code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>不要修改!!! <code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>不要修改!!! <code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>不要修改!!!</p>
+<p>6.启动所有节点，观察日志有无错误信息。</p>
+<p>7.正常情况下，至此版本升级成功。</p>
+<p>8.如果有使用<code class="docutils literal notranslate"><span class="pre">sdk</span></code>或者<code class="docutils literal notranslate"><span class="pre">cmc</span></code>工具，请将<code class="docutils literal notranslate"><span class="pre">sdk</span></code>或<code class="docutils literal notranslate"><span class="pre">cmc</span></code>版本升级为v1.1.0,否则可能会导致交易失败。</p>
+</div>
+<div class="section" id="id4">
+<h3><span class="section-number">6.2.3. </span>将v1.0.0版本升级为v1.1.0版本后，需要新添加节点注意事项：<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>1.新节点的<code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>文件必须与v1.0.0版本时期保持一致，无需修改为v1.1.0版本。v1.1.0版本程序已对其做了兼容，如果修改<code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>会导致创世块不一致，无法完成同步。</p>
+<p>2.新节点的<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>文件需要与v1.1.0版本保持一致，即需要将共识节点地址添加至<code class="docutils literal notranslate"><span class="pre">net:seeds:</span></code>配置项中。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html" class="btn btn-neutral float-right" title="1. 供应链金融" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html" class="btn btn-neutral float-left" title="5. HIBE 教程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

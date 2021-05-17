@@ -1,0 +1,669 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>3. 数据结构 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. 智能合约与虚拟机" href="%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html" />
+    <link rel="prev" title="2. 核心流程" href="%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. 数据结构</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">3.1. 核心数据模型</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3.1.1. 区块</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">3.1.1.1. 结构示意图</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">3.1.1.2. 整体结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">3.1.1.3. 区块头</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">3.1.2. 交易结构</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">3.1.2.1. 交易结构示意图</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">3.1.2.2. 交易结构定义</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">3.1.2.3. 交易头</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">3.1.2.4. 交易结果</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">3.1.3. 交易请求结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">3.1.4. 交易响应结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">3.1.5. 交易执行结果的读写集</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id15">3.1.5.1. 读写集</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">3.1.5.2. 读对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">3.1.5.3. 写对象</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">3. </span>数据结构</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tech/数据结构.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">3. </span>数据结构<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>长安链（ChainMaker）核心数据结构皆采用protobuf3语法进行定义，以方便在不同的语言之间进行通信。长安链数据结构模型定义在chainmaker-go/pb/proto目录下，并按功能和使用范围，分为：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">accesscontrol</span></code> 与访问控制相关的用户账户、组织角色等对象</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">api</span></code> 与客户端SDK相关的对象</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">common</span></code> 核心区块头、交易、结果对象</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code> 区块节点配置和网络配置等相关对象</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">consensus</span></code> 与共识相关的对象，不同的共识算法会有不同的共识对象</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">discovery</span></code> 用于P2P网络发现的对象</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">net</span></code> 用于P2P网络广播的消息对象</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">store</span></code> 进行账本和状态数据存储使用的对象</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sync</span></code> 同步数据使用的相关对象</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txpool</span></code> 交易池相关对象</p></li>
+</ul>
+<p>ChainMaker官方提供ChainMaker协议的Golang实现，根据protobuf3数据模型定义，生成Golang代码在chainmaker-go/pb/protogo目录下。</p>
+<div class="section" id="id2">
+<h2><span class="section-number">3.1. </span>核心数据模型<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3><span class="section-number">3.1.1. </span>区块<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h4><span class="section-number">3.1.1.1. </span>结构示意图<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<img src="../images/数据结构-区块结构.png" style="width:900px;" /></div>
+<div class="section" id="id5">
+<h4><span class="section-number">3.1.1.2. </span>整体结构<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Block definition</span>
+<span class="nx">message</span> <span class="nx">Block</span> <span class="p">{</span>
+    <span class="c1">// header of the block</span>
+    <span class="nx">BlockHeader</span> <span class="nx">header</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="c1">// execution sequence of intra block transactions is generated by proposer</span>
+    <span class="nx">DAG</span> <span class="nx">dag</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// 本块交易的DAG</span>
+    <span class="nx">repeated</span> <span class="nx">Transaction</span> <span class="nx">txs</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
+
+    <span class="c1">// stores the voting information of the current block</span>
+    <span class="c1">// not included in block hash value calculation</span>
+    <span class="nx">AdditionalData</span> <span class="nx">additional_data</span> <span class="p">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// block additional data</span>
+<span class="nx">message</span> <span class="nx">AdditionalData</span> <span class="p">{</span>
+    <span class="c1">// extra data, with map type, excluded in hash calculation</span>
+    <span class="kd">map</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="nx">bytes</span><span class="p">&gt;</span> <span class="nx">extra_data</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// transaction execution sequence</span>
+<span class="c1">// Using adjacency table storage</span>
+<span class="nx">message</span> <span class="nx">DAG</span> <span class="p">{</span>
+    <span class="c1">// Neighbor node: related party transactions with reading and writing conflicts</span>
+    <span class="nx">message</span> <span class="nx">Neighbor</span> <span class="p">{</span>
+        <span class="nx">repeated</span> <span class="kt">int32</span> <span class="nx">neighbors</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// sequence number of transaction topological sort</span>
+    <span class="c1">//the sequence number of the transaction topological sort associated with the transaction</span>
+    <span class="nx">repeated</span> <span class="nx">Neighbor</span> <span class="nx">vertexes</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Header：区块头</p></li>
+<li><p>Dag：块内交易的执行依赖顺序，由Proposer生成，如果为空则表示本区块的所有交易都可以并行执行，不存在前后依赖关系</p></li>
+<li><p>Txs：块内交易列表</p></li>
+<li><p>AdditionalData：区块产生以后附加的数据，不参与区块的散列值计算。可用于存储当前区块的投票信息，交易过滤等，具体内容根据链上配置的内容而决定</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h4><span class="section-number">3.1.1.3. </span>区块头<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// header of the block</span>
+<span class="nx">message</span> <span class="nx">BlockHeader</span> <span class="p">{</span>
+    <span class="c1">// blockchain identifier</span>
+    <span class="kt">string</span> <span class="nx">chain_id</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="c1">// block height</span>
+    <span class="kt">int64</span> <span class="nx">block_height</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="c1">// previous block hash</span>
+    <span class="nx">bytes</span> <span class="nx">pre_block_hash</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
+
+    <span class="c1">// block hash (block identifier)</span>
+    <span class="nx">bytes</span> <span class="nx">block_hash</span> <span class="p">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// 本块哈希（块标识），除block_hash和signature以外，其余字段参与block_hash计算</span>
+
+    <span class="c1">// previous config block height, used to trace anc check if chain config is valid</span>
+    <span class="kt">int64</span> <span class="nx">pre_conf_height</span> <span class="p">=</span> <span class="mi">5</span><span class="p">;</span>
+
+    <span class="c1">// block version</span>
+    <span class="nx">bytes</span> <span class="nx">block_version</span> <span class="p">=</span> <span class="mi">6</span><span class="p">;</span>
+
+    <span class="c1">// Save the DAG feature summary, and hash the DAG after Pb serialization</span>
+    <span class="c1">// hash of serialized DAG</span>
+    <span class="nx">bytes</span> <span class="nx">dag_hash</span> <span class="p">=</span> <span class="mi">7</span><span class="p">;</span>
+
+    <span class="c1">// The root hash of Merkle tree generated by read_write_set_digest in the result of each transaction in the block</span>
+    <span class="c1">// used to verify the read-write set of the block</span>
+    <span class="nx">bytes</span> <span class="nx">rw_set_root</span> <span class="p">=</span> <span class="mi">8</span><span class="p">;</span>
+
+    <span class="c1">// merkle root of transactions</span>
+    <span class="c1">// used to verify the existence of this transactions</span>
+    <span class="nx">bytes</span> <span class="nx">tx_root</span> <span class="p">=</span> <span class="mi">9</span><span class="p">;</span>
+
+    <span class="c1">// the time stamp of the block</span>
+    <span class="kt">int64</span> <span class="nx">block_timestamp</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span>
+
+    <span class="c1">// proposal node identifier</span>
+    <span class="nx">bytes</span> <span class="nx">proposer</span> <span class="p">=</span> <span class="mi">11</span><span class="p">;</span>
+
+    <span class="c1">// consensus parameters</span>
+    <span class="c1">// used to store information include in block hash calculation</span>
+    <span class="nx">bytes</span> <span class="nx">consensus_args</span> <span class="p">=</span> <span class="mi">12</span><span class="p">;</span>
+
+    <span class="c1">// count of transactions</span>
+    <span class="kt">int64</span> <span class="nx">tx_count</span> <span class="p">=</span> <span class="mi">13</span><span class="p">;</span>
+
+    <span class="c1">// signature of proposer</span>
+    <span class="nx">bytes</span> <span class="nx">signature</span> <span class="p">=</span> <span class="mi">14</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>ChainId：链标识，用于区分不同的链，在多子链的情况下可区分不同的子链</p></li>
+<li><p>BlockHeight：区块高度，创世区块高度为0</p></li>
+<li><p>PreBlockHash：上个区块的散列值</p></li>
+<li><p>BlockHash：本区块的散列值</p></li>
+<li><p>PreConfHeight：上一次修改链配置的区块高度，在这个高度的区块中，只存在一笔交易，为配置交易，其中保存了区块链的配置信息，包括本区块应该采用的共识算法，加密算法等</p></li>
+<li><p>BlockVersion：区块版本</p></li>
+<li><p>DagHash：当前区块Dag的散列值</p></li>
+<li><p>RwSetRoot：区块读写集的Merkle Root</p></li>
+<li><p>TxRoot：区块交易的Merkle Root</p></li>
+<li><p>BlockTimestamp：区块的时间戳</p></li>
+<li><p>Proposer：区块的生成者标识</p></li>
+<li><p>ConsensusArgs：共识参数</p></li>
+<li><p>TxCount：交易数量</p></li>
+<li><p>Signature：区块生成者的签名</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id7">
+<h3><span class="section-number">3.1.2. </span>交易结构<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h4><span class="section-number">3.1.2.1. </span>交易结构示意图<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<img src="../images/数据结构-Transaction结构.png" style="width:700px;" /></div>
+<div class="section" id="id9">
+<h4><span class="section-number">3.1.2.2. </span>交易结构定义<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// a transaction includes request and its result</span>
+<span class="nx">message</span> <span class="nx">Transaction</span> <span class="p">{</span>
+    <span class="c1">// header of the transaction</span>
+    <span class="nx">TxHeader</span> <span class="nx">header</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="c1">// payload of the request</span>
+    <span class="nx">bytes</span> <span class="nx">request_payload</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="c1">// signature of request bytes(including header and payload)</span>
+    <span class="nx">bytes</span> <span class="nx">request_signature</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
+
+    <span class="c1">// result of the transaction, can be marshalled according to tx_type in header</span>
+    <span class="nx">Result</span> <span class="nx">result</span> <span class="p">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Header：交易头</p></li>
+<li><p>RequestPayload：交易的载荷数据，根据TxType可以反序列化出Payload具体的数据类型</p></li>
+<li><p>RequestSignature：交易发送者的签名</p></li>
+<li><p>Result：交易结果，由Proposer生成区块时进行计算、赋值</p></li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h4><span class="section-number">3.1.2.3. </span>交易头<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// header of the request</span>
+<span class="nx">message</span> <span class="nx">TxHeader</span> <span class="p">{</span>
+    <span class="c1">// blockchain identifier</span>
+    <span class="kt">string</span> <span class="nx">chain_id</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="c1">// sender identifier</span>
+    <span class="nx">accesscontrol</span><span class="p">.</span><span class="nx">SerializedMember</span> <span class="nx">sender</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="c1">// transaction type</span>
+    <span class="nx">TxType</span> <span class="nx">tx_type</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
+
+    <span class="c1">// transaction id set by sender, should be unique</span>
+    <span class="kt">string</span> <span class="nx">tx_id</span> <span class="p">=</span> <span class="mi">4</span><span class="p">;</span>
+
+    <span class="c1">// transaction timestamp, in unix timestamp format, seconds</span>
+    <span class="kt">int64</span> <span class="nx">timestamp</span> <span class="p">=</span> <span class="mi">5</span><span class="p">;</span>
+
+    <span class="c1">// expiration timestamp in unix timestamp format</span>
+    <span class="c1">// after that the transaction is invalid if it is not included in block yet</span>
+    <span class="kt">int64</span> <span class="nx">expiration_time</span> <span class="p">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Serialized member of blockchain</span>
+<span class="nx">message</span> <span class="nx">SerializedMember</span> <span class="p">{</span>
+    <span class="c1">// organization identifier of the member</span>
+    <span class="kt">string</span> <span class="nx">org_id</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="c1">// member identity related info bytes</span>
+    <span class="nx">bytes</span> <span class="nx">member_info</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="c1">// use cert compression</span>
+    <span class="c1">// todo: is_full_cert -&gt; compressed</span>
+    <span class="kt">bool</span> <span class="nx">is_full_cert</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>ChainId：链标识，表名本交易是针对哪条链的，防止一个交易在多个链中被打包</p></li>
+<li><p>Sender：交易发送者信息</p>
+<ul>
+<li><p>OrgId：成员所属机构编号</p></li>
+<li><p>MemberInfo：成员的身份信息，可以是证书信息也可以是证书标识，依赖于IsFullCert字段</p></li>
+<li><p>IsFullCert：是否为全量证书，如果是，则MemberInfo填写用户证书的信息；如果不是，则MemberInfo填写用户证书标识（该标识需通过证书上链接口提前在链上登记）</p></li>
+</ul>
+</li>
+<li><p>TxType：交易类型，有8种</p></li>
+<li><p>TxId：交易ID，用做该交易的全局唯一性标识</p></li>
+<li><p>Timestamp：生成交易的unix时间戳，当proposer从交易池获取交易时，用来检测该交易是否超时未上链；如果超时，该交易将从交易池删除</p></li>
+<li><p>ExpirationTime：交易的到期的unix时间，单位秒，不为0时，交易必须在该时间戳之前被打包上链</p></li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h4><span class="section-number">3.1.2.4. </span>交易结果<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// tx result, part of a transaction in block</span>
+<span class="nx">message</span> <span class="nx">Result</span> <span class="p">{</span>
+    <span class="c1">// response code</span>
+    <span class="nx">TxStatusCode</span> <span class="nx">code</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="c1">// returned data, set in smart contract</span>
+    <span class="nx">ContractResult</span> <span class="nx">contract_result</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="c1">// hash of the transaction&#39;s read-write set</span>
+    <span class="nx">bytes</span> <span class="nx">rw_set_hash</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// invoke user contract method return UserContractReturnPayload</span>
+<span class="c1">// Unmarshal from TransactResult.TxResponse.payload</span>
+<span class="nx">message</span> <span class="nx">ContractResult</span> <span class="p">{</span>
+    <span class="c1">// user contract defined return code, 0-ok, 1-error. for example, insufficient balance in token transfer</span>
+    <span class="nx">ContractResultCode</span> <span class="nx">code</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="c1">// user contract defined result</span>
+    <span class="nx">bytes</span> <span class="nx">result</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="c1">// user contract defined result message</span>
+    <span class="kt">string</span> <span class="nx">message</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="c1">// gas used by current contract(include contract call)</span>
+    <span class="kt">int64</span>  <span class="nx">gas_used</span> <span class="p">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">TxStatusCode</span> <span class="kt">int32</span>
+<span class="kd">type</span> <span class="nx">ContractResultCode</span> <span class="kt">int32</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Code：交易执行结果的状态</p></li>
+<li><p>ContractResult：合约执行结果</p>
+<ul>
+<li><p>Code：合约执行结果的状态</p></li>
+<li><p>Result：合约执行返回的结果</p></li>
+<li><p>Message：合约执行后的消息</p></li>
+<li><p>GasUsed：合约执行消耗的Gas数量</p></li>
+</ul>
+</li>
+<li><p>RwSetHash：交易执行结果的读写集哈希</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id12">
+<h3><span class="section-number">3.1.3. </span>交易请求结构<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// transaction request proposed by user</span>
+<span class="nx">message</span> <span class="nx">TxRequest</span> <span class="p">{</span>
+    <span class="c1">// header of the request</span>
+    <span class="nx">TxHeader</span> <span class="nx">header</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="c1">// payload of the request, can be unmarshalled according to tx_type in header</span>
+    <span class="nx">bytes</span> <span class="nx">payload</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="c1">// signature of [header bytes || payload bytes]</span>
+    <span class="nx">bytes</span> <span class="nx">signature</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>用户发起一个交易请求的完整结构，包括：</p>
+<ul class="simple">
+<li><p>Header：交易头，详解见上述描述</p></li>
+<li><p>Payload：交易载荷数据，根据Header中的TxType决定具体的载荷数据类型</p></li>
+<li><p>Signature：用户对这个交易请求的签名</p></li>
+</ul>
+</div>
+<div class="section" id="id13">
+<h3><span class="section-number">3.1.4. </span>交易响应结构<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// tx request - tx response, only for RPC response</span>
+<span class="nx">message</span> <span class="nx">TxResponse</span> <span class="p">{</span>
+    <span class="c1">// response code</span>
+    <span class="nx">TxStatusCode</span> <span class="nx">code</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="c1">// response message</span>
+    <span class="kt">string</span> <span class="nx">message</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="c1">// returned data, set in smart contract</span>
+    <span class="nx">ContractResult</span> <span class="nx">contract_result</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span> 
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Code：交易执行结果的状态</p></li>
+<li><p>Message：交易执行后，合约输出的消息</p></li>
+<li><p>ContractResult：合约执行结果</p></li>
+</ul>
+</div>
+<div class="section" id="id14">
+<h3><span class="section-number">3.1.5. </span>交易执行结果的读写集<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h4><span class="section-number">3.1.5.1. </span>读写集<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// TxRWSet describes all the operations of a transaction on ledger</span>
+<span class="nx">message</span> <span class="nx">TxRWSet</span> <span class="p">{</span>
+    <span class="c1">// transaction identifier</span>
+    <span class="kt">string</span> <span class="nx">tx_id</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="c1">// read set</span>
+    <span class="nx">repeated</span> <span class="nx">TxRead</span> <span class="nx">tx_reads</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="c1">// write set</span>
+    <span class="nx">repeated</span> <span class="nx">TxWrite</span> <span class="nx">tx_writes</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>读写集为交易合约正常执行后对其世界状态的改变情况的反应，主要包括：</p>
+<ul class="simple">
+<li><p>TxId 本读写集是由哪个交易产生的</p></li>
+<li><p>TxRead 读集列表</p></li>
+<li><p>TxWrite 写集列表</p></li>
+</ul>
+</div>
+<div class="section" id="id16">
+<h4><span class="section-number">3.1.5.2. </span>读对象<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
+<p>读集主要用于在并发执行合约交易后判断并发的交易之间是否存在数据（版本）冲突，如果冲突则需要在DAG结构中反映交易之间的依赖情况，并调整冲突交易的执行顺序，重新执行合约。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// TxRead describes a read operation on a key</span>
+<span class="nx">message</span> <span class="nx">TxRead</span> <span class="p">{</span>
+    <span class="c1">// read key</span>
+    <span class="nx">bytes</span> <span class="nx">key</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="c1">// the value of the key</span>
+    <span class="nx">bytes</span> <span class="nx">value</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="c1">// contract name, used in cross-contract calls</span>
+    <span class="c1">// set to null if only the contract in transaction request is called</span>
+    <span class="kt">string</span> <span class="nx">contract_name</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="c1">// read key version</span>
+    <span class="nx">KeyVersion</span> <span class="nx">version</span> <span class="p">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>一条交易读主要包括：</p>
+<ul class="simple">
+<li><p>ContractName 本读记录是读的哪个合约的状态数据</p></li>
+<li><p>Key 本记录读取的状态键值信息</p></li>
+<li><p>Version 读取到的版本</p></li>
+<li><p>Value 读取到的值，后期考虑将Value移除，只需要依靠Version即可进行冲突判断。</p></li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h4><span class="section-number">3.1.5.3. </span>写对象<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
+<p>交易正常执行完毕后，如果世界状态发生了更改，那么写集就会记录详细的更改记录。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// TxRead describes a write/delete operation on a key</span>
+<span class="nx">message</span> <span class="nx">TxWrite</span> <span class="p">{</span>
+    <span class="c1">// write key</span>
+    <span class="nx">bytes</span> <span class="nx">key</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="c1">// write value</span>
+    <span class="nx">bytes</span> <span class="nx">value</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="c1">// contract name, used in cross-contract calls</span>
+    <span class="c1">// set to null if only the contract in transaction request is called</span>
+    <span class="kt">string</span> <span class="nx">contract_name</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>交易写包括以下内容：</p>
+<ul class="simple">
+<li><p>ContractName 对哪个合约的状态数据进行了更改</p></li>
+<li><p>Key 被修改的状态键值</p></li>
+<li><p>Value 修改后的状态值</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html" class="btn btn-neutral float-right" title="4. 智能合约与虚拟机" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html" class="btn btn-neutral float-left" title="2. 核心流程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

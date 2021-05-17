@@ -1,0 +1,568 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>2. 运维监控 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. 自拉起服务" href="%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html" />
+    <link rel="prev" title="1. 多机部署" href="%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. 运维监控</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2.2. 环境依赖</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#docker">2.2.1. docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-compose">2.2.2. docker-compose</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">2.3. 操作步骤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">2.3.1. 链启动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2.3.2. 配置修改</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#prometheus">2.3.2.1. 配置Prometheus监控目标</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grafana">2.3.2.2. 配置Grafana</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mysql">2.3.2.3. MySQL账号创建</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">2.3.3. 组件启动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#influx">2.3.4. 配置Influx</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">2.3.4.1. 创建账号和数据库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">2.3.4.2. 查看表</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">2.3.5. 监控状态查询</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">2.3.6. 配置Grafana</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id12">2.3.6.1. 登录控制台</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">2.3.6.2. 添加数据源</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">2.3.6.3. 导入仪表盘</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id15">2.4. 监控效果展示</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">2. </span>运维监控</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/operation/监控运维.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">2. </span>运维监控<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">2.1. </span>概述<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>长安链采用了普罗米修斯（<code class="docutils literal notranslate"><span class="pre">Prometheus</span></code>）的监控体系，提供了脚本文件，帮助用户快速搭建基于<code class="docutils literal notranslate"><span class="pre">Docker</span></code>的普罗米修斯可视化监控环境，并基于该环境进行长安链节点的可视化监控。</p>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">2.2. </span>环境依赖<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="docker">
+<h3><span class="section-number">2.2.1. </span>docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>centos系统</strong></p></li>
+</ul>
+<blockquote>
+<div><p>参考：https://docs.docker.com/engine/install/centos/</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ yum install docker-io
+$ service docker restart
+Redirecting to /bin/systemctl restart docker.service
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>ubuntu系统</strong></p></li>
+</ul>
+<blockquote>
+<div><p>参考：https://docs.docker.com/engine/install/ubuntu/</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ sudo apt-get remove docker docker-engine docker.io containerd runc
+ 
+ $ sudo apt-get update
+ 
+ $ sudo apt-get install <span class="se">\</span>
+    apt-transport-https <span class="se">\</span>
+    ca-certificates <span class="se">\</span>
+    curl <span class="se">\</span>
+    gnupg <span class="se">\</span>
+    lsb-release
+ 
+ $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="p">|</span> sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+ 
+ $ <span class="nb">echo</span> <span class="se">\</span>
+  <span class="s2">&quot;deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \</span>
+<span class="s2">  </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> stable&quot;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+ 
+ $ sudo apt-get update
+ 
+ $ sudo apt-get install docker-ce docker-ce-cli containerd.io
+</pre></div>
+</div>
+</div>
+<div class="section" id="docker-compose">
+<h3><span class="section-number">2.2.2. </span>docker-compose<a class="headerlink" href="#docker-compose" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>参考：https://docs.docker.com/compose/install/</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo curl -L <span class="s2">&quot;https://github.com/docker/compose/releases/download/1.28.6/docker-compose-</span><span class="k">$(</span>uname -s<span class="k">)</span><span class="s2">-</span><span class="k">$(</span>uname -m<span class="k">)</span><span class="s2">&quot;</span> -o /usr/local/bin/docker-compose
+$ sudo chmod +x /usr/local/bin/docker-compose
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2><span class="section-number">2.3. </span>操作步骤<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3><span class="section-number">2.3.1. </span>链启动<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>详细说明，请见【快速入门】，这里描述下关键步骤</p>
+<p>注：配置文件<code class="docutils literal notranslate"><span class="pre">chainmaker/config/config_tpl/chainmaker.yml</span></code>的<code class="docutils literal notranslate"><span class="pre">monitor</span></code>开关需要开启，默认是开启状态</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>monitor:
+  enabled: <span class="nb">true</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 进入脚本目录</span>
+$ <span class="nb">cd</span> chainmaker-go/scripts
+
+<span class="c1"># 创建单链4节点集群配置文件及证书</span>
+$ ./prepare.sh <span class="m">4</span> <span class="m">1</span>
+
+<span class="c1"># 生成安装包</span>
+$ ./build_release.sh
+
+<span class="c1"># 启动链</span>
+$ ./cluster_quick_start.sh normal
+
+<span class="c1"># 查看节点启动情况</span>
+$ ps -ef<span class="p">|</span>grep chainmaker
+jason    <span class="m">30219</span>  <span class="m">2326</span>  <span class="m">3</span> <span class="m">17</span>:56 pts/5    <span class="m">00</span>:00:03 ./chainmaker start -c ../config/wx-org1.chainmaker.org/chainmaker.yml
+jason    <span class="m">30239</span>  <span class="m">2326</span>  <span class="m">4</span> <span class="m">17</span>:56 pts/5    <span class="m">00</span>:00:03 ./chainmaker start -c ../config/wx-org2.chainmaker.org/chainmaker.yml
+jason    <span class="m">30256</span>  <span class="m">2326</span>  <span class="m">4</span> <span class="m">17</span>:56 pts/5    <span class="m">00</span>:00:03 ./chainmaker start -c ../config/wx-org3.chainmaker.org/chainmaker.yml
+jason    <span class="m">30277</span>  <span class="m">2326</span>  <span class="m">4</span> <span class="m">17</span>:56 pts/5    <span class="m">00</span>:00:03 ./chainmaker start -c ../config/wx-org4.chainmaker.org/chainmaker.yml
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3><span class="section-number">2.3.2. </span>配置修改<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="prometheus">
+<h4><span class="section-number">2.3.2.1. </span>配置Prometheus监控目标<a class="headerlink" href="#prometheus" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><p>配置文件路径：<code class="docutils literal notranslate"><span class="pre">chainmaker-go/monitor/prometheus.yml</span></code></p>
+<p>修改以下配置：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">job_name</span></code>：为节点的<code class="docutils literal notranslate"><span class="pre">org_id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">targets</span></code>：为节点地址</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="nt">job_name</span><span class="p">:</span> <span class="s">&#39;wx-org1.chainmaker.org&#39;</span>
+    <span class="nt">scrape_interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1s</span>
+    <span class="nt">static_configs</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">targets</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;172.29.0.1:14321&#39;</span><span class="p p-Indicator">]</span>
+  <span class="p p-Indicator">-</span> <span class="nt">job_name</span><span class="p">:</span> <span class="s">&#39;wx-org2.chainmaker.org&#39;</span>
+    <span class="nt">scrape_interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1s</span>
+    <span class="nt">static_configs</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">targets</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;172.29.0.1:14322&#39;</span><span class="p p-Indicator">]</span>
+  <span class="p p-Indicator">-</span> <span class="nt">job_name</span><span class="p">:</span> <span class="s">&#39;wx-org3.chainmaker.org&#39;</span>
+    <span class="nt">scrape_interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1s</span>
+    <span class="nt">static_configs</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">targets</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;172.29.0.1:14323&#39;</span><span class="p p-Indicator">]</span>
+  <span class="p p-Indicator">-</span> <span class="nt">job_name</span><span class="p">:</span> <span class="s">&#39;wx-org4.chainmaker.org&#39;</span>
+    <span class="nt">scrape_interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1s</span>
+    <span class="nt">static_configs</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">targets</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;172.29.0.1:14324&#39;</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="grafana">
+<h4><span class="section-number">2.3.2.2. </span>配置Grafana<a class="headerlink" href="#grafana" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><p>配置文件路径：<code class="docutils literal notranslate"><span class="pre">chainmaker-go/monitor/grafana.ini</span></code></p>
+<p>主要是修改<code class="docutils literal notranslate"><span class="pre">[database]</span></code>栏位配置，其他配置按需修改</p>
+</div></blockquote>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">database</span><span class="p">]</span>                            
+<span class="n">type</span> <span class="o">=</span> <span class="n">mysql</span>                          
+<span class="n">host</span> <span class="o">=</span> <span class="mf">172.29.0.5</span><span class="p">:</span><span class="mi">3306</span>                
+<span class="n">name</span> <span class="o">=</span> <span class="n">grafana</span>                        
+<span class="n">user</span> <span class="o">=</span> <span class="n">chainmaker</span>                     
+<span class="n">password</span> <span class="o">=</span> <span class="n">chainmaker</span>                 
+<span class="n">url</span> <span class="o">=</span>  
+</pre></div>
+</div>
+</div>
+<div class="section" id="mysql">
+<h4><span class="section-number">2.3.2.3. </span>MySQL账号创建<a class="headerlink" href="#mysql" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><p>执行脚本：<code class="docutils literal notranslate"><span class="pre">chainmaker-go/monitor/mysql.sql</span></code></p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CREATE DATABASE grafana DEFAULT CHARACTER SET utf8mb4<span class="p">;</span>
+CREATE USER <span class="s1">&#39;chainmaker&#39;</span>@<span class="s1">&#39;%&#39;</span> IDENTIFIED BY <span class="s1">&#39;chainmaker&#39;</span><span class="p">;</span>
+GRANT all privileges ON grafana.* TO <span class="s1">&#39;chainmaker&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="p">;</span>
+FLUSH PRIVILEGES<span class="p">;</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3><span class="section-number">2.3.3. </span>组件启动<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose -f docker-compose.yml up -d
+Creating network <span class="s2">&quot;monitor_prometheus&quot;</span> with driver <span class="s2">&quot;bridge&quot;</span>
+Creating volume <span class="s2">&quot;monitor_prometheus_data&quot;</span> with default driver
+Creating volume <span class="s2">&quot;monitor_influxdb_data&quot;</span> with default driver
+Creating volume <span class="s2">&quot;monitor_grafana_data&quot;</span> with default driver
+Creating volume <span class="s2">&quot;monitor_mysql_data&quot;</span> with default driver
+Creating mysql ... 
+Creating influxdb ... 
+Creating influxdb
+Creating influxdb ... <span class="k">done</span>
+Creating prom ... 
+Creating prom ... <span class="k">done</span>
+Creating grafana ... 
+Creating grafana ... <span class="k">done</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="influx">
+<h3><span class="section-number">2.3.4. </span>配置Influx<a class="headerlink" href="#influx" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h4><span class="section-number">2.3.4.1. </span>创建账号和数据库<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker <span class="nb">exec</span> -it influxdb bash
+root@influxdb:/# influx
+Connected to http://localhost:8086 version <span class="m">1</span>.8.1
+InfluxDB shell version: <span class="m">1</span>.8.1
+&gt; CREATE USER chainmaker WITH PASSWORD <span class="s1">&#39;chainmaker&#39;</span> WITH ALL PRIVILEGES<span class="p">;</span>
+&gt; CREATE DATABASE prometheus<span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h4><span class="section-number">2.3.4.2. </span>查看表<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; use prometheus<span class="p">;</span>
+Using database prometheus
+
+&gt; show measurements<span class="p">;</span>
+name: measurements
+name
+----
+chainmaker_committer_metric_block_commit_time_bucket
+chainmaker_committer_metric_block_commit_time_count
+chainmaker_committer_metric_block_commit_time_sum
+chainmaker_committer_metric_block_counter
+chainmaker_committer_metric_block_size_bucket
+chainmaker_committer_metric_block_size_count
+chainmaker_committer_metric_block_size_sum
+chainmaker_committer_metric_tx_counter
+chainmaker_grpc_grpc_msg_received_time_bucket
+chainmaker_grpc_grpc_msg_received_time_count
+chainmaker_grpc_grpc_msg_received_time_sum
+chainmaker_grpc_grpc_msg_received_total
+chainmaker_proposer_metric_block_package_time_bucket
+chainmaker_proposer_metric_block_package_time_count
+chainmaker_proposer_metric_block_package_time_sum
+chainmaker_rpcserver_metric_invoke_request_counter
+chainmaker_rpcserver_metric_query_request_counter
+chainmaker_scheduler_metric_vm_run_time_bucket
+chainmaker_scheduler_metric_vm_run_time_count
+chainmaker_scheduler_metric_vm_run_time_sum
+chainmaker_txpool_metric_tx_pool_size
+chainmaker_verifier_metric_block_verify_time_bucket
+chainmaker_verifier_metric_block_verify_time_count
+chainmaker_verifier_metric_block_verify_time_sum
+etcd_disk_wal_fsync_duration_seconds_bucket
+etcd_disk_wal_fsync_duration_seconds_count
+etcd_disk_wal_fsync_duration_seconds_sum
+etcd_disk_wal_write_bytes_total
+......
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3><span class="section-number">2.3.5. </span>监控状态查询<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>登录普罗米修斯控制台，查看目标服务连接是否正常</p>
+<blockquote>
+<div><p>控制台： http://localhost:9090/targets</p>
+</div></blockquote>
+<img src="../images/运维监控-监控状态查询.png" style="zoom:50%;" /></div>
+<div class="section" id="id11">
+<h3><span class="section-number">2.3.6. </span>配置Grafana<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h4><span class="section-number">2.3.6.1. </span>登录控制台<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><p>http://localhost:3000/login</p>
+<p>用户名：<code class="docutils literal notranslate"><span class="pre">admin</span></code></p>
+<p>密码：<code class="docutils literal notranslate"><span class="pre">chainmaker</span></code></p>
+</div></blockquote>
+<img src="../images/运维监控-登录控制台.png" style="zoom:50%;" /></div>
+<div class="section" id="id13">
+<h4><span class="section-number">2.3.6.2. </span>添加数据源<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><p>http://localhost:3000/datasources</p>
+</div></blockquote>
+<p>选择<code class="docutils literal notranslate"><span class="pre">Prometheus</span></code>数据源，填入<code class="docutils literal notranslate"><span class="pre">URL</span></code>后，点击<code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">&amp;</span> <span class="pre">Test</span></code>按钮进行测试，测试通过会显示<code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">source</span> <span class="pre">is</span> <span class="pre">working</span></code>的提示。</p>
+<img src="../images/运维监控-添加数据源.png" style="zoom:50%;" /></div>
+<div class="section" id="id14">
+<h4><span class="section-number">2.3.6.3. </span>导入仪表盘<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><p>http://localhost:3000/dashboard/import</p>
+<p>仪表盘模板存放路径：<code class="docutils literal notranslate"><span class="pre">chainmaker-go/monitor/dashboard.json</span></code></p>
+</div></blockquote>
+<img src="../images/运维监控-导入仪表盘.png" style="zoom:50%;" /></div>
+</div>
+</div>
+<div class="section" id="id15">
+<h2><span class="section-number">2.4. </span>监控效果展示<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>导入仪表盘后，便可查看到监控效果</p>
+</div></blockquote>
+<img src="../images/运维监控-监控效果展示.png" style="zoom:50%;" /></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html" class="btn btn-neutral float-right" title="3. 自拉起服务" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html" class="btn btn-neutral float-left" title="1. 多机部署" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

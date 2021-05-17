@@ -1,0 +1,76 @@
+# 多机部署
+
+## 概述
+
+在[【快速入门】](../tutorial/快速入门.md)中，使用的`prepare.sh`脚本，生成的多节点的配置，默认使用本地回环地址（`127.0.0.1`）和自动生成的端口号，如果需要在生产环境不同的服务器上部署或使用固定的端口号，需要在使用`prepare.sh`生成配置文件和证书之后修改生成好的配置文件，再执行`build_release.sh`脚本打包。具体步骤如下。
+
+## 操作步骤
+
+### 执行`prepare.sh`脚本生成配置文件及证书
+
+```bash
+$ ./prepare.sh 4 1
+begin check params...
+begin generate certs, cnt: 4
+input consensus type(default 1/tbft): 
+input log level(default INFO): 
+begin generate node1 config...
+begin generate node2 config...
+begin generate node3 config...
+begin generate node4 config...
+```
+
+### 配置指定端口
+
+> 配置文件路径：`chainmaker-go/build/config/nodeN/chainmaker.yml` (N为从1开始的递增值)
+
+使用`prepare.sh`脚本会自动生成端口号，如果实际环境需要固定端口，可以通过修改下面的配置，将`{xxx}`修改为指定的端口，后续执行脚本时，就不会进行端口的修改。
+
+```yaml
+rpc: 
+  port: {rpc_port}
+
+net: 
+  listen_addr: /ip4/0.0.0.0/tcp/{net_port}
+
+monitor:
+  port: {monitor_port}
+     
+pprof:
+  port: {pprof_port}
+```
+
+### 配置指定IP
+
+> 配置文件路径：`chainmaker-go/build/config/nodeN/chainmaker.yml` (N为从1开始的递增值)
+
+使用prepare.sh脚本会自动将所有共识节点的地址都会添加至`net.seeds`中,需要将`127.0.0.1`修改为集群各个节点实际所在机器的IP地址，需要将`113XX`修改为集群各个节点实际监听端口，监听端口与上一步中`{net_port}`一致。
+
+```yaml
+net:
+  seeds:
+    - "/ip4/127.0.0.1/tcp/11301/p2p/QmQ3sHDwwcacnDdRzQpk7N3Bgeju4NPuTGkVYmrk99sQw8"
+    - "/ip4/127.0.0.1/tcp/11302/p2p/QmXvhGFjSA6XqifZvsiHRNuDo9LEPWhqq36BSyqZMdmtuq"
+    - "/ip4/127.0.0.1/tcp/11303/p2p/QmeDWYtVkSiR8DUq6NfrsVEYGzh8zMSUjro3VnbTagg3nX"
+    - "/ip4/127.0.0.1/tcp/11304/p2p/QmakPkAJYPQdMtmW88iuz8XtBcAfJbiB8U7E673q4ribCt"
+```
+
+### 生成节点安装包
+
+```bash
+
+$ ./build_release.sh 
+
+$ tree ../build/release/
+../build/release/
+├── chainmaker-V1.0.0-wx-org1.chainmaker.org-20210407153351-x86_64.tar.gz
+├── chainmaker-V1.0.0-wx-org2.chainmaker.org-20210407153351-x86_64.tar.gz
+├── chainmaker-V1.0.0-wx-org3.chainmaker.org-20210407153351-x86_64.tar.gz
+├── chainmaker-V1.0.0-wx-org4.chainmaker.org-20210407153351-x86_64.tar.gz
+└── crypto-config-20210407153351.tar.gz
+```
+
+后续上传各节点安装包，到指定的服务器上，部署解压后使用。
+
+如果需要配置自拉起方式启动，请参考：[【自拉起服务】](../operation/自拉起服务.md)
+

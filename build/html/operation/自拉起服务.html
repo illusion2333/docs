@@ -1,0 +1,431 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>3. 自拉起服务 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. 配置变更" href="%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html" />
+    <link rel="prev" title="2. 运维监控" href="%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. 自拉起服务</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">3.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">3.2. 操作步骤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#solo">3.2.1. 生成solo节点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">3.2.2. 上传安装包到部署路径</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">3.2.3. 解压安装包</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">3.2.4. 测试启动是否正常</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">3.2.5. 配置自拉起服务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">3.2.6. 检查&amp;测试</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">3.2.6.1. （1）查看进程是否存在</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kill">3.2.6.2. （2）kill掉进程，看看进程是否能自拉起</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">3.2.7. 重启节点进程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">3.2.8. 关闭节点进程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">3. </span>自拉起服务</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/operation/自拉起服务.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">3. </span>自拉起服务<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">3.1. </span>概述<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ChainMaker</span></code>的安装包里提供了自拉起服务脚本，基于<code class="docutils literal notranslate"><span class="pre">linux</span></code>系统的<code class="docutils literal notranslate"><span class="pre">systemd</span></code>服务实现长安链节点开机后的自动重启，以及节点进程意外退出后的自动重启。</p>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">3.2. </span>操作步骤<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>这里以<code class="docutils literal notranslate"><span class="pre">solo</span></code>节点为例，多节点情况下，采用类似方式进行操作</p>
+</div></blockquote>
+<div class="section" id="solo">
+<h3><span class="section-number">3.2.1. </span>生成solo节点<a class="headerlink" href="#solo" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 进入脚本目录</span>
+$ <span class="nb">cd</span> chainmaker-go/scripts
+
+<span class="c1"># 创建solo节点证书和配置</span>
+$ ./prepare.sh <span class="m">1</span> <span class="m">1</span>
+
+<span class="c1"># 生成安装包</span>
+$ ./build_release.sh
+
+<span class="c1"># 查看安装包</span>
+$ tree ../build/release/
+../build/release/
+├── chainmaker-V1.0.0-wx-org.chainmaker.org-20210407122304-x86_64.tar.gz
+└── crypto-config-20210407122304.tar.gz
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3><span class="section-number">3.2.2. </span>上传安装包到部署路径<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>部署路径默认为：<code class="docutils literal notranslate"><span class="pre">/data/chainmaker</span></code></p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cp ../build/release/chainmaker-V1.0.0-wx-org.chainmaker.org-20210407122304-x86_64.tar.gz /data/chainmaker
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3><span class="section-number">3.2.3. </span>解压安装包<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 进入部署目录</span>
+$ <span class="nb">cd</span> /data/chainmaker
+
+<span class="c1"># 解压安装包</span>
+$ tar -zxvf chainmaker-V1.0.0-wx-org.chainmaker.org-20210407122304-x86_64.tar.gz
+
+<span class="c1"># 做软连接（采用默认路径，可以不用去修改自拉起脚本，否则需要相应修改自拉起脚本）</span>
+$ ln -s chainmaker-V1.0.0-wx-org.chainmaker.org chainmaker-go
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3><span class="section-number">3.2.4. </span>测试启动是否正常<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>若打印出<code class="docutils literal notranslate"><span class="pre">ChainMaker</span></code>版本号并输出<code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">blockchain</span> <span class="pre">[xxx]</span> <span class="pre">success</span></code>的日志，说明节点启动正常</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 启动节点</span>
+$ ./run.sh start
+chainmaker is startting, pls check log...
+
+<span class="c1"># 查看启动日志</span>
+$ tail -f ../log/system.log
+::ChainMaker::  version<span class="o">(</span>V1.0.0<span class="o">)</span>
+<span class="m">2021</span>-04-07 <span class="m">12</span>:31:04.435	<span class="o">[</span>INFO<span class="o">]</span>	<span class="o">[</span>Blockchain<span class="o">]</span> @chain1	blockchain/blockchain_start.go:53	START STEP <span class="o">(</span><span class="m">3</span>/3<span class="o">)</span> <span class="o">=</span>&gt; start module<span class="o">[</span>txPool<span class="o">]</span> success :<span class="o">)</span>
+<span class="m">2021</span>-04-07 <span class="m">12</span>:31:04.436	<span class="o">[</span>INFO<span class="o">]</span>	<span class="o">[</span>Blockchain<span class="o">]</span>	blockchain/chainmaker_server.go:185	<span class="o">[</span>Core<span class="o">]</span> start blockchain<span class="o">[</span>chain1<span class="o">]</span> success
+
+<span class="c1"># 关闭节点</span>
+$ ./run.sh stop
+chainmaker is stopped
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3><span class="section-number">3.2.5. </span>配置自拉起服务<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>执行<code class="docutils literal notranslate"><span class="pre">init.sh</span></code>脚本，完成自拉起服务的配置，脚本内容如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo cp chainmaker.service  /etc/systemd/system
+sudo systemctl daemon-reload
+sudo systemctl start chainmaker
+sudo systemctl <span class="nb">enable</span> chainmaker
+sudo systemctl status chainmaker
+</pre></div>
+</div>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./init.sh 
+Created symlink /etc/systemd/system/multi-user.target.wants/chainmaker.service → /etc/systemd/system/chainmaker.service.
+● chainmaker.service - chainmaker
+   Loaded: loaded <span class="o">(</span>/etc/systemd/system/chainmaker.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
+   Active: active <span class="o">(</span>running<span class="o">)</span> since Wed <span class="m">2021</span>-04-07 <span class="m">12</span>:48:39 CST<span class="p">;</span> 174ms ago
+ Main PID: <span class="m">5384</span> <span class="o">(</span>chainmaker<span class="o">)</span>
+    Tasks: <span class="m">13</span> <span class="o">(</span>limit: <span class="m">4915</span><span class="o">)</span>
+   CGroup: /system.slice/chainmaker.service
+           └─5384 ./chainmaker start -c ../config/wx-org.chainmaker.org/chainmaker.yml
+
+Apr <span class="m">07</span> <span class="m">12</span>:48:39 jasonruan-LB2 systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Starting chainmaker...
+Apr <span class="m">07</span> <span class="m">12</span>:48:39 jasonruan-LB2 bash<span class="o">[</span><span class="m">5364</span><span class="o">]</span>: chainmaker is startting, pls check log...
+Apr <span class="m">07</span> <span class="m">12</span>:48:39 jasonruan-LB2 systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Started chainmaker.
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3><span class="section-number">3.2.6. </span>检查&amp;测试<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h4><span class="section-number">3.2.6.1. </span>（1）查看进程是否存在<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ps -ef<span class="p">|</span>grep chainmaker <span class="p">|</span> grep -v grep
+root      <span class="m">5384</span>     <span class="m">1</span>  <span class="m">0</span> <span class="m">12</span>:48 ?        <span class="m">00</span>:00:00 ./chainmaker start -c ../config/wx-org.chainmaker.org/chainmaker.yml
+</pre></div>
+</div>
+</div>
+<div class="section" id="kill">
+<h4><span class="section-number">3.2.6.2. </span>（2）kill掉进程，看看进程是否能自拉起<a class="headerlink" href="#kill" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># kill进程</span>
+$ sudo <span class="nb">kill</span> -9 <span class="m">5384</span>
+
+<span class="c1"># 进程ID发生变化，进程被自拉起</span>
+$ ps -ef<span class="p">|</span>grep chainmaker <span class="p">|</span> grep -v grep
+root     <span class="m">13990</span>     <span class="m">1</span> <span class="m">21</span> <span class="m">14</span>:50 ?        <span class="m">00</span>:00:00 ./chainmaker start -c ../config/wx-org.chainmaker.org/chainmaker.yml
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3><span class="section-number">3.2.7. </span>重启节点进程<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用restart命令重启节点进程</span>
+$ systemctl restart chainmaker
+
+<span class="c1"># 进程ID发生变化，进程被自拉起</span>
+$ ps -ef<span class="p">|</span>grep chainmaker <span class="p">|</span> grep -v grep
+root     <span class="m">14400</span>     <span class="m">1</span> <span class="m">13</span> <span class="m">14</span>:51 ?        <span class="m">00</span>:00:00 ./chainmaker start -c ../config/wx-org.chainmaker.org/chainmaker.yml
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h3><span class="section-number">3.2.8. </span>关闭节点进程<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用stop命令关闭节点进程</span>
+$ systemctl stop chainmaker
+
+<span class="c1"># 查看不到相关进程</span>
+$ ps -ef<span class="p">|</span>grep chainmaker <span class="p">|</span> grep -v grep
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html" class="btn btn-neutral float-right" title="4. 配置变更" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html" class="btn btn-neutral float-left" title="2. 运维监控" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
