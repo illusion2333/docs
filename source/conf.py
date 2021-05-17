@@ -240,7 +240,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   (master_doc, 'Recommonmark.tex', u'ChainMaker-docs',
-   u'chainmaker.org@烛夜'),
+   u'chainmaker.org@烛夜','manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
