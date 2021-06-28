@@ -1,0 +1,357 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>15. 跨链方案 &mdash; chainmaker-docs v1.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="16. 隐私合约" href="%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6.html" />
+    <link rel="prev" title="14. SPV 轻节点" href="SPV.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+            
+            <img src="../_static/chainmakerLOGO-09.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/Q%26A.html">7. Q&amp;A</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html">13. SQL合约支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SPV.html">14. SPV 轻节点</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">15. 跨链方案</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">15.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">15.2. 主要流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">15.3. 模块分层设计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">15.4. 数据流转</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">15.5. 事件详细分类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uitp">15.6. UITP协议</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">15.6.1. 协议概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crossevent">15.6.2. CrossEvent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transactionevent">15.6.3. TransactionEvent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crossresp">15.6.4. CrossResp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transactioneventresp">15.6.5. TransactionEventResp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6.html">16. 隐私合约</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B5%8F%E8%A7%88%E5%99%A8.html">7. 区块链浏览器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html">8. SPV 部署和使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%B7%A8%E9%93%BE%E4%BD%BF%E7%94%A8.html">9. 跨链使用</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">15. </span>跨链方案</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tech/跨链方案.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">15. </span>跨链方案<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">15.1. </span>概述<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>什么是跨链？简单理解就是两条或多条链之间进行数据交换，以一个简单易懂的案例来说明，假设有两条链，其中一条链是招行（用户A在该银行中有存款），另外一条链是建行（用户B在该银行中有存款），如果用户A想将自己在招行的存款转账给用户B（建行），那么就需要进行跨链操作。</p>
+<p>初版跨链采用网关的方案实现，该方案基于一个假设：在联盟链环境中，所有节点都是可信的，会存在异常节点，但不会存在恶意节点。为了解决可信性的问题，后续在新的版本中会采用Relay的方案。</p>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">15.2. </span>主要流程<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>为了能够兼容多种异构链，经过多方调研，本跨链方案采用正/逆向操作的合约实现方式，即用户需要提供正向与逆向的具体业务交易。还是以银行转账为例，对于用户A而言，其在整个跨链事务中的操作中对招行链的操作需要提供两个业务交易，第一个就是正常的存款减少交易，第二个则是逆向业务交易，即出现异常时的回滚操作，通常而言对应的是存款的增加。</p>
+<p><img alt="主要设计" src="../_images/main-design.png" /></p>
+<p>为了在一定程度上对跨链事务进行控制，本跨链方案中增加了事务合约的概念，用户的具体业务合约不会直接执行，而是通过事务合约进行调用，对于每一次跨链操作，系统会分配一个唯一的跨链ID，事务合约通过该ID对跨链的流程进行控制，防止重复执行的发生。</p>
+</div>
+<div class="section" id="id4">
+<h2><span class="section-number">15.3. </span>模块分层设计<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>跨链代理采用了模块化分层设计，主要分为三层：基础层、组件层和业务层。</p>
+<ul class="simple">
+<li><p>基础层：为跨链代理各个组件提供基础服务，主要包括日志、数据库和网络处理等；</p></li>
+<li><p>组件层：提供业务流程调用的各种组件，包括但不限于通道、路由、监听器、证明器、适配器等；</p></li>
+<li><p>业务层：主要的业务流程控制，包括了多种Handler以及事务管理器。</p></li>
+</ul>
+<p><img alt="模块及分层" src="../_images/module-layer.png" /></p>
+</div>
+<div class="section" id="id5">
+<h2><span class="section-number">15.4. </span>数据流转<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>下面是整个数据流在跨链协议（包括内部模块）中基本的流转情况，在不同模块之间流转通过UITP协议。</p>
+<p><img alt="数据流" src="../_images/data-stream.png" /></p>
+</div>
+<div class="section" id="id6">
+<h2><span class="section-number">15.5. </span>事件详细分类<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>在跨链代理中，所有的数据流（包括直接传输和间接传输）都被称为Event（事件），下面是Event的详细分类。</p>
+<p><img alt="事件详细分类" src="../_images/event-types.png" /></p>
+</div>
+<div class="section" id="uitp">
+<h2><span class="section-number">15.6. </span>UITP协议<a class="headerlink" href="#uitp" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h3><span class="section-number">15.6.1. </span>协议概述<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>UITP协议是跨链代理间数据交换的协议，它只是对主要数据结构的一种描述，不限制开发者使用何种传输方式。</p>
+</div>
+<div class="section" id="crossevent">
+<h3><span class="section-number">15.6.2. </span>CrossEvent<a class="headerlink" href="#crossevent" title="Permalink to this headline">¶</a></h3>
+<p>CrossEvent即跨链事件，描述的是用户通过跨链SDK发送到跨链代理的数据对象。</p>
+<p><img alt="UITP-CrossEvent" src="../_images/UITP-CrossEvent.png" /></p>
+</div>
+<div class="section" id="transactionevent">
+<h3><span class="section-number">15.6.3. </span>TransactionEvent<a class="headerlink" href="#transactionevent" title="Permalink to this headline">¶</a></h3>
+<p>TransactionEvent即交易事件，描述的是两个跨链代理服务之间的消息传递。</p>
+<p><img alt="UITP-TxEvent" src="../_images/UITP-TxEvent.png" /></p>
+</div>
+<div class="section" id="crossresp">
+<h3><span class="section-number">15.6.4. </span>CrossResp<a class="headerlink" href="#crossresp" title="Permalink to this headline">¶</a></h3>
+<p>CrossResp即跨链事件应答，是跨链代理完成后（也可以是异步）对客户端的应答结果。</p>
+<p><img alt="UITP-CrossResp" src="../_images/UITP-CrossResp.png" /></p>
+</div>
+<div class="section" id="transactioneventresp">
+<h3><span class="section-number">15.6.5. </span>TransactionEventResp<a class="headerlink" href="#transactioneventresp" title="Permalink to this headline">¶</a></h3>
+<p>TransactionEventResp即事务事件应答，是对TransactionEvent的应答。</p>
+<p><img alt="UITP-TxEventResp" src="../_images/UITP-TxEventResp.png" /></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6.html" class="btn btn-neutral float-right" title="16. 隐私合约" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="SPV.html" class="btn btn-neutral float-left" title="14. SPV 轻节点" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

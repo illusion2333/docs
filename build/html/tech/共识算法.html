@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>5. 共识算法 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  <title>5. 共识算法 &mdash; chainmaker-docs v1.2.0 documentation</title>
   
 
   
@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
 
   
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
 
   
@@ -57,13 +59,16 @@
           
 
           
+            
+            <img src="../_static/chainmakerLOGO-09.png" class="logo" alt="Logo"/>
+          
           </a>
 
           
             
             
               <div class="version">
-                v1.1.0
+                v1.2.0
               </div>
             
           
@@ -88,7 +93,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+              <p class="caption"><span class="caption-text">长安链介绍</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
@@ -104,8 +109,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/Q%26A.html">7. Q&amp;A</a></li>
 </ul>
-<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<p class="caption"><span class="caption-text">技术设计文档</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
@@ -147,6 +153,14 @@
 <li class="toctree-l4"><a class="reference internal" href="#id20">5.2.4.2. 配置参数</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#dpos">5.2.5. DPoS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id21">5.2.5.1. 质押规则</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id22">5.2.5.2. 验证人选举规则</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23">5.2.5.3. 接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24">5.2.5.4. 系统合约</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">5.2.5.5. 配置参数</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -158,6 +172,10 @@
 <li class="toctree-l1"><a class="reference internal" href="%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html">13. SQL合约支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SPV.html">14. SPV 轻节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html">15. 跨链方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6.html">16. 隐私合约</a></li>
 </ul>
 <p class="caption"><span class="caption-text">开发指南</span></p>
 <ul>
@@ -174,6 +192,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B5%8F%E8%A7%88%E5%99%A8.html">7. 区块链浏览器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html">8. SPV 部署和使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%B7%A8%E9%93%BE%E4%BD%BF%E7%94%A8.html">9. 跨链使用</a></li>
 </ul>
 <p class="caption"><span class="caption-text">应用场景</span></p>
 <ul>
@@ -304,7 +325,7 @@
 </div>
 <div class="section" id="id6">
 <h2><span class="section-number">5.2. </span>长安链中的共识<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-<p>长安链1.0开源版本目前支持Solo，Raft，TBFT 三种共识类型。三种共识对比如下：</p>
+<p>长安链自v1.1.0开源版本起支持Solo，Raft，TBFT，HotStuff 四种共识类型。四种共识对比如下：</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -398,7 +419,7 @@ Stop 方法用来停止Raft实例。</p>
 <p>Raft共识建议配置节点数为2n+1(n&gt;=0)，将链配置（参见配置模块，链配置章节）的共识算法进行如下修改，清除数据启动即可：</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1">#共识配置</span>
 consensus:
-  <span class="c1"># 共识类型(0-SOLO,1-TBFT,2-MBFT,3-HOTSTUFF,4-RAFT,10-POW)</span>
+  <span class="c1"># 共识类型(0-SOLO,1-TBFT,2-MBFT,3-HOTSTUFF,4-RAFT,5-DPoS,10-POW)</span>
   type: <span class="m">4</span>
   nodes:                                                                                                                                 
     - org_id: <span class="s2">&quot;wx-org1.chainmaker.org&quot;</span>                                                                                                   
@@ -440,7 +461,7 @@ TBFT 的每轮共识可以分为5个步骤：</p>
 </div>
 <div class="section" id="msgbus">
 <h4><span class="section-number">5.2.3.3. </span>与msgbus交互流程<a class="headerlink" href="#msgbus" title="Permalink to this headline">¶</a></h4>
-<img src="../images/共识算法-tbft与msgbus交互图.png" alt="Raft共识与核心引擎交互图" style="zoom:80%;"/><p><code class="docutils literal notranslate"><span class="pre">ProposaState</span></code>: TBFT发送给核心引擎本节点在当前高度是否是leader节点，核心引擎判断是否需要打包区块 <br>
+<img src="../images/Consensus-tbft-interaction-msgbus.png" alt="Raft共识与核心引擎交互图" style="zoom:80%;"/><p><code class="docutils literal notranslate"><span class="pre">ProposaState</span></code>: TBFT发送给核心引擎本节点在当前高度是否是leader节点，核心引擎判断是否需要打包区块 <br>
 <code class="docutils literal notranslate"><span class="pre">Proposal</span></code>: 核心引擎打包区块并发送给TBFT <br>
 <code class="docutils literal notranslate"><span class="pre">Verify</span></code>: 当本节点收到主节点发来的区块后，向核心引擎验证区块读写集等信息 <br>
 <code class="docutils literal notranslate"><span class="pre">VerifyResult</span></code>: 核心引擎返回给TBFT Verify的结果，当区块合法时，本节点将会投票给区块 <br>
@@ -557,7 +578,7 @@ TBFT 的每轮共识可以分为5个步骤：</p>
 <li><p>QC(quorum certificate)：(n−f)个节点对指定proposal消息的签名投票集合。</p></li>
 <li><p>TC(timeout quorum certificate)：(n−f)个节点对共识view的超时消息的签名投票集合。</p></li>
 </ul>
-<img src="../images/共识算法-pipieline-hotstuff.png"  alt="hotstuff-投票处理" style="zoom:100%;"/><div class="section" id="id19">
+<img src="../images/Consensus-pipieline-hotstuff.png"  alt="hotstuff-投票处理" style="zoom:100%;"/><div class="section" id="id19">
 <h4><span class="section-number">5.2.4.1. </span>模块设计<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
 <p>共识模块主要由几个组件组成，分别是：状态机<code class="docutils literal notranslate"><span class="pre">chainedbftSMR</span></code>、安全服务<code class="docutils literal notranslate"><span class="pre">SafetyRules</span></code>、活性服务<code class="docutils literal notranslate"><span class="pre">Pacemaker</span></code>、信息同步<code class="docutils literal notranslate"><span class="pre">syncManager</span></code>、定时器服务<code class="docutils literal notranslate"><span class="pre">TimerService</span></code>，互相配合在<code class="docutils literal notranslate"><span class="pre">ConsensusChainedBftImpl</span></code>中实现了Hotstuff协议。</p>
 <ul class="simple">
@@ -577,6 +598,120 @@ TBFT 的每轮共识可以分为5个步骤：</p>
 <li><p>HOTSTUFF_proposer_timeout_milli：proposer生成区块时基础的超时时间</p></li>
 <li><p>HOTSTUFF_proposer_timeout_delta_milli：proposer生成区块时，每次超时后增加的delta时间</p></li>
 </ol>
+</div>
+</div>
+<div class="section" id="dpos">
+<h3><span class="section-number">5.2.5. </span>DPoS<a class="headerlink" href="#dpos" title="Permalink to this headline">¶</a></h3>
+<p>DPoS(Delegated Proof of Stake)委托权益证明共识算法，类似于公司董事会制度，在DPoS共识制度下，会选出一定数量的节点，来负责生成、验证区块。节点的选举根据节点质押的权益来进行，被选出来的节点代表其他所有的节点进行小范围共识出块。正常生产区块的节点可以获得额外的权益激励，但如果节点不履行生产区块的职责，或者作恶，会被剔除出去，并且依据事先设定的惩罚规则进行惩罚（如扣除质押的部分权益）。</p>
+<p>DPoS共识是由DPoS委托质押算法、TBFT拜占庭共识算法组合实现的；DPoS委托质押算法负责节点的权益质押、验证人集合的选举、激励、惩罚这些操作，TBFT共识算法负责对Proposer生成的区块进行验证，保证大多数验证者节点对区块达成一致；</p>
+<p>chainmaker【v1.2.0版本】的DPoS共识实现是基于证书体系构建的，所以新节点准备参与共识过程时，除了DPoS共识自身所需的权益质押，还需要使用证书体系的管理机制（即：系统配置合约的操作），将新节点添加到网络中。</p>
+<p>DPoS共识中，设置指定数量区块的区块构成一个世代，每个世代包含一批从候选人中依据质押的权益选举出来的验证者，作为世代的验证者集合，每个验证者轮流作为Proposer进行出块，其它不出块的验证者对Proposer生成的区块进行TBFT共识，保证大多数验证者对该区块达成一致，每个世代的最后一个区块选举下一个世代的验证者集合，并将选举结果写入区块以便其它验证者节点进行校验。因此在区块链上存在三种节点：普通节点、候选人节点、验证人节点；普通节点通过质押一定数量的权益资产，成为候选人节点，每个世代的最后一个区块，依据候选人质押的权益，选举一批节点作为下一个世代的验证者集合。</p>
+<img src="../images/candidates-validators.png" alt="candidates" style="zoom:100%;"/><div class="section" id="id21">
+<h4><span class="section-number">5.2.5.1. </span>质押规则<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
+<p>普通节点通过质押权益成为候选人，具有如下的规则：</p>
+<ul class="simple">
+<li><p>成为候选人的节点自身需要至少抵押该<code class="docutils literal notranslate"><span class="pre">stake.minSelfDelegation</span></code>数量的权益</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">stake.minSelfDelegation</span></code>为链启动时配置的参数，候选人最少抵押的权益数量</p></li>
+</ul>
+</li>
+<li><p>任何人/组织都可以将权益委托质押给某个候选人，候选人质押的权益数量越多，被选为验证者的几率越大</p></li>
+<li><p>所有质押的权益会被一直冻结，直到用户退出质押且在一段时间后<code class="docutils literal notranslate"><span class="pre">stake.completionUnbondingEpochNum</span></code>，所冻结的质押资产才会退还给用户</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">stake.completionUnbondingEpochNum</span></code>为链启动时配置的参数，用户退出质押后，间隔几个世代再将用户的资产退还到相应的账户</p></li>
+</ul>
+</li>
+<li><p>用户的质押权益会转入stake合约的系统账户地址中，该系统账户地址是由合约名通过算法生成的</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">stakeAddress</span> <span class="pre">=</span> <span class="pre">base58(sha256(stakeContractName))</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id22">
+<h4><span class="section-number">5.2.5.2. </span>验证人选举规则<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
+<p>每个世代会从候选人中选择一批验证者进行共识，为了在参考候选人质押资金的同时，也可以尽可能维护系统的公平性，设计了如下概率性选择算法，使所有候选人都有成为验证者的可能：</p>
+<ul class="simple">
+<li><p>候选人的数量为M，选举的验证者集合的数量为N；依据候选人质押资金将其分为两个集合，质押资金topN的候选人为优先级集合，其余为普通集合</p></li>
+<li><p>从优先级集合中选举N/2的节点作为验证者，剩余未被选中节点合并至普通集合，参与剩余的N/2个验证者的选举</p></li>
+</ul>
+</div>
+<div class="section" id="id23">
+<h4><span class="section-number">5.2.5.3. </span>接口<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">DPoS</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="nx">CreateDPoSRWSet</span><span class="p">(</span><span class="nx">preBlkHash</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">proposedBlock</span> <span class="o">*</span><span class="nx">consensuspb</span><span class="p">.</span><span class="nx">ProposalBlock</span><span class="p">)</span> <span class="kt">error</span>
+	<span class="nx">VerifyConsensusArgs</span><span class="p">(</span><span class="nx">block</span> <span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">Block</span><span class="p">,</span> <span class="nx">blockTxRwSet</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">TxRWSet</span><span class="p">)</span> <span class="kt">error</span>
+	<span class="nx">GetValidators</span><span class="p">()</span> <span class="p">([]</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CreateDPoSRWSet</span></code>: 依据节点提案的区块和链上数据，生成DPoS共识的读写集，并将读写集添加至区块中</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VerifyConsensusArgs</span></code>: 验证区块中包含的DPoS读写集是否正确</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GetValidators</span></code>: 获取当前世代的验证者</p></li>
+</ul>
+</div>
+<div class="section" id="id24">
+<h4><span class="section-number">5.2.5.4. </span>系统合约<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
+<p>DPoS共识使用了两个系统合约来分别处理、存储一些状态；使用ERC20系统合约，存储链上所有用户的资产，并处理权益的转移、增发、燃烧等逻辑；使用Stake系统合约，存储共识中的质押、退出质押、世代(每个世代包含验证者集合、下一个世代的创建高度)等信息，并处理用户的质押、退出质押、关联NodeID逻辑；</p>
+<ul class="simple">
+<li><p>注意：关联NodeID操作的原因，NodeID是由节点证书内包含的公钥生成的，用于表示节点在链上的身份，且验证者生成的区块是用该证书对应的私钥进行签名的，因此该私钥需要放置在运行节点的服务器上；为了保证用户质押资金的安全，使用了另一套证书来标示用户的身份，用户的资金存储在该证书内公钥生成的地址上，该证书可以离线存储，以保证资金的安全。</p></li>
+<li><p>因此，节点质押资金成为候选人时，需要先在链上关联用户质押地址对应的NodeID。</p></li>
+</ul>
+</div>
+<div class="section" id="id25">
+<h4><span class="section-number">5.2.5.5. </span>配置参数<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>consensus:
+  # 共识类型(0-SOLO,1-TBFT,2-MBFT,3-HOTSTUFF,4-RAFT,5-DPoS,10-POW)
+  type: 5
+</pre></div>
+</div>
+<div class="highlight-YML notranslate"><div class="highlight"><pre><span></span>  dpos_config:
+    #ERC20合约配置
+    - key: erc20.total
+      value: &quot;1250000000000000000000000&quot;
+    - key: erc20.owner
+      value: &quot;4WUXfiUpLkx7meaNu8TNS5rNM7YtZk6fkNWXihc54PbM&quot;
+    - key: erc20.decimals
+      value: &quot;18&quot;
+    - key: erc20.account:SYSTEM_CONTRACT_DPOS_STAKE
+      value: &quot;1000000000000000000000000&quot;
+    - key: erc20.account:4QUXfiUpNmj7meaNu8TNS5rNM7YtZk6fkNWXihc589kN
+      value: &quot;250000000000000000000000&quot;
+    #Stake合约配置
+    - key: stake.minSelfDelegation
+      value: &quot;25000000000000000000000&quot;
+    - key: stake.epochValidatorNum
+      value: &quot;4&quot;
+    - key: stake.epochBlockNum
+      value: &quot;10&quot;
+    - key: stake.completionUnbondingEpochNum
+      value: &quot;1&quot;
+    - key: stake.candidate:4WUXfiUpLkx7meaNu8TNS5rNM7YtZk6fkNWXihc54PbM
+      value: &quot;250000000000000000000000&quot;
+    ......
+    - key: stake.nodeID:4WUXfiUpLkx7meaNu8TNS5rNM7YtZk6fkNWXihc54PbM
+      value: &quot;QmRmTtfm7w5KwVAJALLU23y9TyiCNTUiqVbcErfBqhenrh&quot;
+		......
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">erc20.total</span></code>: ERC20合约发行权益的总量</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">erc20.owner</span></code>: ERC20合约的管理员，拥有增发权益的权利</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">erc20.decimals</span></code>: ERC20合约中权益的精度</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">erc20.account:&lt;addr&gt;</span></code>: ERC20合约中创世块时每个账户所拥有的资金</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">SYSTEM_CONTRACT_DPOS_STAKE</span></code>: 由于stake合约地址是由合约名通过sha256计算后base58编码得到的，为固定值；但base58的值可读、可写不便，容易配置出错，因此，对于stake合约的地址配置为合约名</p></li>
+<li><p>其它的账户的初始资金配置，使用用户的地址进行配置</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stake.minSelfDelegation</span></code>: 候选人自身最少质押的权益数量</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stake.epochValidatorNum</span></code>: 每个世代验证者的数量</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stake.epochBlockNum</span></code> : 每个世代的区块数量</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stake.completionUnbondingEpochNum</span></code>：用户退出质押后间隔几个世代将资金退还给用户</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stake.candidate:&lt;addr&gt;</span></code>: 创世块时每个候选人质押的资金</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stake.nodeID</span></code>:创世块时每个候选人关联的NodeID</p></li>
+</ul>
 </div>
 </div>
 </div>

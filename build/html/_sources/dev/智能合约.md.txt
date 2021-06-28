@@ -1,845 +1,37 @@
 # 智能合约
 
-ChainMaker目前已经支持使用C++、Go、Rust进行智能合约开发，很快将支持Solidity和JavaScript。
+“长安链·ChainMaker”目前已经支持使用C++、Go、Rust、Solidity进行智能合约开发，很快将支持AssemblyScript(JavaScript)。
 
-## 使用C++进行智能合约开发
 
-读者对象：本章节主要描述使用C++进行ChainMaker合约编写的方法，主要面向于使用C++进行ChainMaker的合约开发的开发者。
 
-### 用Docker镜像进行开发
+本章节将介绍各种语言的合约的编写环境、编写、编译等相关知识。
 
-ChainMaker官方已经将容器发布至GitHub
 
-拉取镜像
-```sh
-docker pull chainmakeroffcial/chainmaker-cpp-contract:1.1.0
-```
 
-请指定你本机的工作目录$WORK_DIR，例如C:\tmp，挂载到docker容器中以方便后续进行必要的一些文件拷贝
+将合约编译为wasm文件后，可以使用命令行工具安装、调用、查询合约，请参看：[【命令行工具】](../dev/命令行工具.md)，也可使用SDK进行合约的安装、调用、查询，请参看：[【SDK】](../dev/SDK.md)
 
-```sh
-docker run -it --name chainmaker-cpp-contract -v $WORK_DIR:/home chainmakeroffcial/chainmaker-cpp-contract:1.1.0 bash
-# 或者先后台启动
-docker run -d --name chainmaker-cpp-contract -v $WORK_DIR:/home chainmakeroffcial/chainmaker-cpp-contract:1.1.0 bash -c "while true; do echo hello world; sleep 5;done"
-# 再进入容器
-docker exec -it chainmaker-cpp-contract /bin/sh
-```
 
-编译合约
 
-```sh
-cd /home/
-tar xvf /data/contract_cpp_template.tar.gz
-cd contract_cpp
-emmake make
-```
+### 约束条件和已知问题
 
-生成合约的字节码文件在
+- 在安装**CPP**智能合约时，要求共识节点、非共识节点必须安装GCC。
+- **TinyGo**对wasm的支持不太完善，对内存逃逸分析、GC等方面有不足之处，比较容易造成栈溢出。在开发合约时，应尽可能减少循环、内存申请等业务逻辑，使变量的栈内存地址在64K以内。
+- **TinyGo**对导入的包支持有限，请参考：https://tinygo.org/lang-support/stdlib/ 对列表中显示已支持的包，实际测试发现支持的并不完整，会发生一些错误，需要在实际开发过程中进行测试检验
+- **TinyGo**引擎不支持`fmt`包
 
-```
-/home/contract_cpp/main.wasm
-```
 
-通过本地模拟环境运行合约(首次编译运行合约可能需要10秒左右，下面以存证作为示例)
 
-```
-# wxvm main.wasm save time 20210304 file_hash 12345678 file_name a.txt
+### 合约开发语言和虚拟机
 
-2021-03-25 09:10:36.441      [DEBUG] [Vm]    xvm/context_service.go:257      wxvm log >>[1234567890123456789012345678901234567890123456789012345678901234] [1] call save() tx_id:
-2021-03-25 09:10:36.463 [DEBUG] [Vm]    xvm/context_service.go:257      wxvm log >>[1234567890123456789012345678901234567890123456789012345678901234] [1] call save() file_hash:12345678
-2021-03-25 09:10:36.464 [DEBUG] [Vm]    xvm/context_service.go:257      wxvm log >>[1234567890123456789012345678901234567890123456789012345678901234] [1] call save() file_name:a.txt
-2021-03-25 09:10:36.465 [DEBUG] [Vm]    xvm/context_service.go:257      wxvm log >>[1234567890123456789012345678901234567890123456789012345678901234] [1] put success: a.txt 12345678
-2021-03-25 09:10:36.466 [DEBUG] [Vm]    xvm/context_service.go:257      wxvm log >>[1234567890123456789012345678901234567890123456789012345678901234] [1] save====================================end
-2021-03-25 09:10:36.467 [DEBUG] [Vm]    xvm/context_service.go:257      wxvm log >>[1234567890123456789012345678901234567890123456789012345678901234] [1] 
-2021-03-25 09:10:36.467 [DEBUG] [Vm]    xvm/context_service.go:257      wxvm log >>[1234567890123456789012345678901234567890123456789012345678901234] [1] result:  a.txt 12345678
-2021-03-25 09:10:36.469 [INFO]  [Vm] @chain01   main/main.go:31 contractResult :result:" a.txt 12345678"
-```
+“长安链·ChainMaker”目前已经支持使用C++、Go、Rust、Solidity进行智能合约开发，每种开发语言实现的合约由不同的虚拟机执行，在将合约发布到链上时通过Runtime Type来指定虚拟机类型，语言和类型的对应关系如下：
 
-其中存证的合约方法定义为：
-
-```c++
-#include "chainmaker/chainmaker.h"
-
-using namespace chainmaker;
-
-class Counter : public Contract {
-public:
-	...
-	...
-    void save()
-    {
-        Context *ctx = context();
-
-        std::string file_hash;
-        std::string file_name;
-        std::string tx_id;
-
-        ctx->arg("file_hash", file_hash);
-        ctx->arg("file_name", file_name);
-        ctx->arg("tx_id", tx_id);
-        ctx->log("call save() tx_id:" + tx_id);
-        ctx->log("call save() file_hash:" + file_hash);
-        ctx->log("call save() file_name:" + file_name);
-        ctx->emit_event("topic_vx",2,file_hash.c_str(),file_name.c_str());
-        std::string test_str = tx_id + " " + file_name + " " + file_hash;
-        ctx->put_object(file_hash, test_str);
-        ctx->log("put success:" + test_str);
-        ctx->log("save====================================end");
-        std::string value;
-        std::string value_str;
-        EasyCodecItems *value_items;
-        ctx->get_object(file_hash, &value);
-        ctx->log(value);
-        value_items = easy_unmarshal((byte *)value.data());
-        value_str = (char *)value_items->get_value((char *)"value");
-        ctx->log("result: " + value_str);
-        ctx->success(test_str);
-        delete (value_items);
-    }
-    ...
-    ...
-}
-
-WASM_EXPORT void save() {
-    Counter counter;
-    counter.save();
-}
-```
-
-
-
-#### 框架描述
-
-解压缩contract_cpp_template.tar.gz后，文件描述如下：
-
-- chainmaker
-  - basic_iterator.cc：  迭代器实现
-  - basic_iterator.h： 迭代器头文件声明
-  - chainmaker.h： sdk主要接口头文件声明，详情见[SDK API描述](#sdk-api)
-  - context_impl.cc：  与链交互接口实现
-  - context_impl.h：  与链交互头文件声明
-  - contract.cc： 合约基础工具类
-  - error.h： 异常处理类
-  - exports.js：  编译合约导出函数
-  - safemath.h：  assert异常处理
-  - syscall.cc： 与链交互入口
-  - syscall.h：  与链交互头文件声明
-- pb
-  - contract.pb.cc：与链交互数据协议
-  - contract.pb.h：与链交互数据协议头文件声明
-- main.cc： 用户写合约入口，[如下](#fact)
-- Makefile： 常用build命令
-
-#### 示例代码说明
-
-存证合约示例：main.cc，实现功能：
-
-1、存储文件哈希和文件名称和该交易的ID
-
-2、通过文件哈希查询该条记录
-
-```c++
-#include "chainmaker/chainmaker.h"
-
-using namespace chainmaker;
-
-class Counter : public Contract {
-public:
-    void init_contract() {}
-    void upgrade() {}
-    // 保存
-    void save() {
-        // 获取SDK 接口上下文
-        Context* ctx = context();
-        // 定义变量
-        std::string time;
-        std::string file_hash;
-        std::string file_name;
-        std::string tx_id;
-		// 获取参数
-        ctx->arg("time", time);
-        ctx->arg("file_hash", file_hash);
-        ctx->arg("file_name", file_name);
-        ctx->arg("tx_id", tx_id);
-        // 发送合约事件
-        // 向topic:"topic_vx"发送2个event数据，file_hash,file_name
-        ctx->emit_event("topic_vx",2,file_hash.c_str(),file_name.c_str());
-		// 存储数据
-        ctx->put_object("fact"+ file_hash,  tx_id+" "+time+" "+file_hash+" "+file_name);
-        // 记录日志
-        ctx->log("call save() result:" + tx_id+" "+time+" "+file_hash+" "+file_name);
-        // 返回结果
-        ctx->success(tx_id+" "+time+" "+file_hash+" "+file_name);
-    }
-
-    // 查询
-    void find_by_file_hash() {
-        // 获取SDK 接口上下文
-    	Context* ctx = context();
-
-		// 获取参数
-        std::string file_hash;
-        ctx->arg("file_hash", file_hash);
-		
-        // 查询数据
-    	std::string value;
-        ctx->get_object("fact"+ file_hash, &value);
-        // 记录日志
-        ctx->log("call find_by_file_hash()-" + file_hash + ",result:" + value);
-        // 返回结果
-        ctx->success(value);
-    }
-
-};
-
-// 在创建本合约时, 调用一次init方法. ChainMaker不允许用户直接调用该方法.
-WASM_EXPORT void init_contract() {
-    Counter counter;
-    counter.init_contract();
-}
-
-// 在升级本合约时, 对于每一个升级的版本调用一次upgrade方法. ChainMaker不允许用户直接调用该方法.
-WASM_EXPORT void upgrade() {
-    Counter counter;
-    counter.upgrade();
-}
-
-WASM_EXPORT void save() {
-    Counter counter;
-    counter.save();
-}
-
-WASM_EXPORT void find_by_file_hash() {
-    Counter counter;
-    counter.find_by_file_hash();
-}
-```
-
-
-
-#### 代码编写规则
-
-
-**对链暴露方法写法为：**
-
-- `WASM_EXPORT`： 必须，暴露声明
-- `void`： 必须，无返回值
-- `method_name()`： 必须，暴露方法名称
-
-```c++
-// 示例
-WASM_EXPORT void init_contract() {
-    
-}
-```
-
-**其中init_contract、upgrade方法必须有且对外暴露**
-
-- `init_contract`：创建合约会执行该方法
-- `upgrade`： 升级合约会执行该方法
-
-```c++
-
-// 在创建本合约时, 调用一次init方法. ChainMaker不允许用户直接调用该方法.
-WASM_EXPORT void init_contract() {
-    // 安装时的业务逻辑，可为空
-    
-}
-
-// 在升级本合约时, 对于每一个升级的版本调用一次upgrade方法. ChainMaker不允许用户直接调用该方法.
-WASM_EXPORT void upgrade() {
-    // 升级时的业务逻辑，可为空
-    
-}
-```
-
-**获取SDK 接口上下文**
-
-```go
-Context* ctx = context();
-```
-
-#### 编译说明
-
-在ChainMaker提供的Docker容器中中集成了编译器，可以对合约进行编译，集成的编译器是emcc 1.38.48版本，protobuf 使用3.7.1版本。用户如果手工编译需要先使用emcc 编译 protobuf ，编译之后执行emmake make即可。
-
-### 合约发布过程
-
-请参考：[《chainmaker-go-sdk》](../dev/chainmaker-go-sdk.md)发送创建合约请求的部分，或者[《chainmaker-java-sdk》](../dev/chainmaker-java-sdk.md)创建合约的部分。
-
-### 合约调用过程
-
-请参考：[《chainmaker-go-sdk》](../dev/chainmaker-go-sdk.md)合约调用的部分，或者[《chainmaker-java-sdk》](../dev/chainmaker-java-sdk.md)执行合约的部分。
-
-
-
-### C++ SDK API描述 
-
-<span id="sdk-api">arg</span>
-
-
-
-```c++
-// 该接口可返回属性名为 “name” 的参数的属性值。
-// @param name: 要获取值的参数名称
-// @param value: 获取的参数值
-// @return: 是否成功
-bool arg(const std::string& name, std::string& value){}
-```
-
-需要注意的是通过arg接口返回的参数，全都都是字符串，合约开发者有必要将其他数据类型的参数与字符串做转换，包括atoi、itoa、自定义序列化方式等。
-
-get_object
-
-```c++
-// 获取key为"key"的值
-// @param key: 获取对象的key
-// @param value: 获取的对象值
-// @return: 是否成功
-bool get_object(const std::string& key, std::string* value){}
-```
-
-put_object
-
-```c++
-// 存储key为"key"的值
-// @param key: 存储的对象key，注意key长度不允许超过64，且只允许大小写字母、数字、下划线、减号、小数点符号
-// @param value: 存储的对象值install
-// @return: 是否成功
-bool put_object(const std::string& key, const std::string& value){}
-```
-
-delete_object
-
-```c++
-// 删除key为"key"的值
-// @param key: 删除的对象key
-// @return: 是否成功
-bool delete_object(const std::string& key) {}
-```
-
-emit_event
-
-```c++
-// 发送合约事件
-// @param topic: 合约事件主题
-// @data_amount: 合约事件数据数量(data)，data_amount的值必须要和data数量一致，最多不可大于16，最少不可小于1,不可为空
-// @data ...: 可变参数合约事件数据，数量与data_amount一致。
-bool emit_event(const std::string &topic, int data_amount, const std::string data, ...)
-```
-
-success
-
-```c++
-// 返回成功的结果
-// @param body: 成功信息
-void success(const std::string& body) {}
-```
-
-error
-
-```c++
-// 返回失败结果
-// @param body: 失败信息
-void error(const std::string& body) {}
-```
-
-call
-
-```c++
-// 跨合约调用
-// @param contract: 合约名称
-// @param method: 合约方法
-// @param args: 调用合约的参数，调用参数仅仅接受字符串类型的key、value
-// @param response: 调用合约的响应
-// @return: 是否成功
-bool call(const std::string& contract,
-                      const std::string& method,
-                      const std::map<std::string, std::string>& args,
-                      Response* response){}
-```
-
-log
-
-```c++
-// 输出日志事件
-// @param body: 事件信息
-void log(const std::string& body) {}
-```
-
-## 使用Go(TinyGo)进行智能合约开发
-
-读者对象：本章节主要描述使用Go进行ChainMaker合约编写的方法，主要面向于使用Go进行ChainMaker的合约开发的开发者。为了最小化wasm文件尺寸，使用的是TinyGO编译器。
-
-### 使用Docker镜像进行合约开发
-
-ChainMaker官方已经将容器发布至GitHub
-
-拉取镜像
-```
-docker pull chainmakeroffcial/chainmaker-go-contract:1.1.0
-```
-
-请指定你本机的工作目录$WORK_DIR，例如C:\tmp，挂载到docker容器中以方便后续进行必要的一些文件拷贝
-
-```sh
-docker run -it --name chainmaker-go-contract -v $WORK_DIR:/home chainmakeroffcial/chainmaker-go-contract:1.1.0 bash
-# 或者先后台启动
-docker run -d  --name chainmaker-go-contract -v $WORK_DIR:/home chainmakeroffcial/chainmaker-go-contract:1.1.0 bash -c "while true; do echo hello world; sleep 5;done"
-# 再进入容器
-docker exec -it chainmaker-go-contract /bin/sh
-```
-
-编译合约
-
-```sh
-cd /home/
-tar xvf /data/contract_go_template.tar.gz
-cd contract_tinygo
-sh build.sh
-```
-
-生成合约的字节码文件在
-
-```
-/home/contract_go/main.wasm
-```
-
-通过本地模拟环境运行合约(首次编译运行合约可能需要10秒左右，下面以存证作为示例)
-
-```
-# gasm main.wasm test_function test_key 20210304 file_hash 12345678 file_name a.txt
-2021-03-09 03:53:46.307      [DEBUG] [Vm]    waci/waci.go:34 waci log>> [test-TxId] get val:{"txId":"","time":"20210304","fileHash":"12345678","fileName":"a.txt"}
-2021-03-09 03:53:46.329 [DEBUG] [Vm]    gasm/runtime.go:190     invoke gasm success, tx id:test-TxId, gas cost 18012689,[IGNORE: ret [], retTypes []]
-2021-03-09 03:53:46.331 [INFO]  [Vm] @chain01   main/main.go:27 contractResult :result:"{\"txId\":\"\",\"time\":\"20210304\",\"fileHash\":\"12345678\",\"fileName\":\"a.txt\"}" gas_used:18012689
-```
-
-其中该处的合约方法定义为：
-
-```go
-package main
-
-
-// 安装合约时会执行此方法，必须
-//export init_contract
-func initContract() {
-
-}
-
-// 升级合约时会执行此方法，必须
-//export upgrade
-func upgrade() {
-
-}
-
-//export save
-func save() {
-	// 获取参数
-	txId, _ := GetTxId()
-	time, _ := Arg("time")
-	fileHash, _ := Arg("file_hash")
-	fileName, _ := Arg("file_name")
-
-	// 组装
-	stone := make(map[string]string, 4)
-	stone["txId"] = txId
-	stone["time"] = time
-	stone["fileHash"] = fileHash
-	stone["fileName"] = fileName
-    //发送事件
-    //向topic:"topic_vx"发送2个event数据，file_hash,time
-	EmitEvent("topic_vx", fileHash, time)
-  
-	// 序列化为json bytes
-	items := ParamsMapToEasyCodecItem(stone)
-	jsonStr := EasyCodecItemToJsonStr(items)
-
-	// 存储数据
-	PutState("fact", fileHash, jsonStr)
-	// 返回结果
-	SuccessResult("ok")
-}
-
-//export find_by_file_hash
-func findByFileHash() {
-	// 获取参数
-	fileHash, _ := Arg("file_hash")
-	// 查询
-	if result, resultCode := GetStateByte("fact", fileHash); resultCode != SUCCESS {
-		// 返回结果
-		ErrorResult("failed to call get_state, only 64 letters and numbers are allowed. got key:" + "fact" + ", field:" + fileHash)
-	} else {
-		// 记录日志
-		LogMessage("get val:" + string(result))
-		// 返回结果
-		SuccessResultByte(result)
-	}
-}
-func main() {
-
-}
-
-```
-
-#### 示例代码说明
-
-**存证合约示例**，实现功能
-
-1、存储文件哈希和文件名称和该交易的ID。
-
-2、通过文件哈希查询该条记录
-
-```go
-package main
-
-
-// 安装合约时会执行此方法，必须
-//export init_contract
-func initContract() {
-
-}
-
-// 升级合约时会执行此方法，必须
-//export upgrade
-func upgrade() {
-
-}
-
-//export save
-func save() {
-	// 获取参数
-	txId, _ := GetTxId()
-	time, _ := Arg("time")
-	fileHash, _ := Arg("file_hash")
-	fileName, _ := Arg("file_name")
-
-	// 组装
-	stone := make(map[string]string, 4)
-	stone["txId"] = txId
-	stone["time"] = time
-	stone["fileHash"] = fileHash
-	stone["fileName"] = fileName
-
-    //发送事件
-    //向topic:"topic_vx"发送2个event数据，file_hash,time
-	EmitEvent("topic_vx", fileHash, time)
-  
-	// 序列化为json bytes
-	items := ParamsMapToEasyCodecItem(stone)
-	jsonStr := EasyCodecItemToJsonStr(items)
-
-	// 存储数据
-	PutState("fact", fileHash, jsonStr)
-	// 返回结果
-	SuccessResult("ok")
-}
-
-//export find_by_file_hash
-func findByFileHash() {
-	// 获取参数
-	fileHash, _ := Arg("file_hash")
-	// 查询
-	if result, resultCode := GetStateByte("fact", fileHash); resultCode != SUCCESS {
-		// 返回结果
-		ErrorResult("failed to call get_state, only 64 letters and numbers are allowed. got key:" + "fact" + ", field:" + fileHash)
-	} else {
-		// 记录日志
-		LogMessage("get val:" + string(result))
-		// 返回结果
-		SuccessResultByte(result)
-	}
-}
-func main() {
-
-}
-
-```
-
-#### 代码编写规则
-
-**代码入口**
-
-```go
-func main() { // sdk代码中，有且仅有一个main()方法
-	// 空，不做任何事。仅用于对tinygo编译支持
-}
-
-```
-
-**对链暴露方法写法为：**
-
-- //export upgrade
-- func  method_name(): 不可带参数，无返回值
-
-```rust
-//export init_contract 表明对外暴露方法名称
-func init_contract() {
-
-}
-```
-
-**其中init_contract、upgrade方法必须有且对外暴露**
-
-- init_contract：创建合约会执行该方法
-- upgrade： 升级合约会执行该方法
-
-```rust
-// 安装合约时会执行此方法，必须。ChainMaker不允许用户直接调用该方法。
-//export init_contract
-func init_contract() {
-
-}
-// 升级合约时会执行此方法，必须。ChainMaker不允许用户直接调用该方法。
-//export upgrade
-func upgrade() {
-
-}
-```
-
-#### 编译说明
-
-在ChainMaker IDE中集成了编译器，可以对合约进行编译。集成的编译器是 TinyGo。用户如果手工编译，需要将 SDK 和用户编写的智能合约放入同一个文件夹，并在此文件夹的当前路径执行如下编译命令：
-
-```sh
-tinygo build -no-debug -opt=s -o name.wasm -target wasm
-```
-
-命令中 “name.wasm” 为生成的WASM 字节码的文件名，由用户自行指定。
-
-### 合约发布过程
-
-请参考：[《chainmaker-go-sdk》](../dev/chainmaker-go-sdk.md)发送创建合约请求的部分，或者[《chainmaker-java-sdk》](../dev/chainmaker-java-sdk.md)创建合约的部分。
-
-### 合约调用过程
-
-请参考：[《chainmaker-go-sdk》](../dev/chainmaker-go-sdk.md)合约调用的部分，或者[《chainmaker-java-sdk》](../dev/chainmaker-java-sdk.md)执行合约的部分。
-
-
-
-### Go SDK API描述 
-
-#### 用户与链交互接口
-
-```go
-type SimContextCommon interface {
-	// common
-	Arg(key string) (string, ResultCode)
-	Args() []*EasyCodecItem
-	Log(msg string)
-	SuccessResult(msg string)
-	SuccessResultByte(msg []byte)
-	ErrorResult(msg string)
-	CallContract(contractName string, method string, param map[string]string) ([]byte, ResultCode)
-	GetCreatorOrgId() (string, ResultCode)
-	GetCreatorRole() (string, ResultCode)
-	GetCreatorPk() (string, ResultCode)
-	GetSenderOrgId() (string, ResultCode)
-	GetSenderRole() (string, ResultCode)
-	GetSenderPk() (string, ResultCode)
-	GetBlockHeight() (string, ResultCode)
-	GetTxId() (string, ResultCode)
-  EmitEvent(topic string, data ...string) ResultCode
-}
-
-type SimContext interface {
-	SimContextCommon
-	// kv method
-	GetState(key string, field string) (string, ResultCode)
-	GetStateByte(key string, field string) ([]byte, ResultCode)
-	GetStateFromKey(key string) ([]byte, ResultCode)
-	PutState(key string, field string, value string) ResultCode
-	PutStateByte(key string, field string, value []byte) ResultCode
-	PutStateFromKey(key string, value string) ResultCode
-	PutStateFromKeyByte(key string, value []byte) ResultCode
-	DeleteState(key string, field string) ResultCode
-	DeleteStateFromKey(key string) ResultCode
-}
-```
-
-
-
-GetState
-
-```  go
-// 获取合约账户信息。该接口可从链上获取类别 “key” 下属性名为 “field” 的状态信息。
-// @param key: 需要查询的key值
-// @param field: 需要查询的key值下属性名为field
-// @return1: 查询到的value值
-// @return2: 0: success, 1: failed
-func GetState(key string, field string) (string, ResultCode) {} 
-```
-
-GetStateFromKey
-
-```go
-// 获取合约账户信息。该接口可以从链上获取类别为key的状态信息
-// @param key: 需要查询的key值
-// @return1: 查询到的值
-// @return: 0: success, 1: failed
-func GetStateFromKey(key string) (string, ResultCode) {}
-```
-
-PutState
-
-```go
-// 写入合约账户信息。该接口可把类别 “key” 下属性名为 “filed” 的状态更新到链上。更新成功返回0，失败则返回1。
-// @param key: 需要存储的key值，注意key长度不允许超过64，且只允许大小写字母、数字、下划线、减号、小数点符号
-// @param field: 需要存储的key值下属性名为field，注意field长度不允许超过64，且只允许大小写字母、数字、下划线、减号、小数点符号
-// @param value: 需要存储的value值，注意存储的value字节长度不能超过200
-// @return: 0: success, 1: failed
-func PutState(key string, field string, value string) ResultCode {}
-```
-
-PutStateFromKey
-
-```go
-// 写入合约账户信息。
-// @param key: 需要存储的key值
-// @param value: 需要存储的value值
-// @return: 0: success, 1: failed
-func PutStateFromKey(key string, value string) ResultCode
-```
-
-DeleteState
-
-```go
-// 删除合约账户信息。该接口可把类别 “key” 下属性名为 “name” 的状态从链上删除。
-// @param key: 需要删除的key值
-// @param field: 需要删除的key值下属性名为field
-// @return: 0: success, 1: failed
-func DeleteState(key string, field string) ResultCode {}
-```
-
-CallContract
-
-```go
-// 跨合约调用。
-// @param contractName 合约名称
-// @param method 合约方法
-// @param param 参数
-// @return 0:合约返回结果， 1：合约执行结果
-func CallContract(contractName string, method string, param map[string]string) ([]byte, ResultCode) {}
-```
-
-Args
-
-```go
-// 该接口调用 getArgsMap() 接口，把 json 格式的数据反序列化，并将解析出的数据返还给用户。
-// @return: 参数map
-func Args() map[string]interface{} {}  
-```
-
-Arg
-
-```go
-// 该接口可返回属性名为 “key” 的参数的属性值。
-// @param key: 获取的参数名
-// @return: 获取的参数值
-func Arg(key string) interface{} {}  
-```
-
-SuccessResult
-
-```go
-// 该接口可记录用户操作成功的信息，并将操作结果记录到链上。
-// @param msg: 成功信息
-func SuccessResult(msg string) {}  
-```
-
- ErrorResult
-
-```go
-// 该接口可记录用户操作失败的信息，并将操作结果记录到链上。
-// @param msg: 失败信息
-func ErrorResult(msg string) {}
-```
-
-LogMessage
-
-```go
-// 该接口可记录事件日志。
-// @param msg: 事件信息
-func LogMessage(msg string) {}
-```
-
-GetCreatorOrgId
-
-```go
-// 获取合约创建者所属组织ID
-// @return: 合约创建者的组织ID
-func GetCreatorOrgId() string {}  
-```
-
-GetCreatorRole
-
-```go
-// 获取合约创建者角色
-// @return: 合约创建者的角色
-func GetCreatorRole() string {}  
-```
-
-GetCreatorPk
-
-```go
-// 获取合约创建者公钥
-// @return: 合约创建者的公钥
-func GetCreatorPk() string {} 
-```
-
-GetSenderOrgId
-
-```go
-// 获取交易发起者所属组织ID
-// @return: 交易发起者的组织ID
-func GetSenderOrgId() string {}  
-```
-
-GetSenderRole
-
-```go
-// 获取交易发起者角色
-// @return: 交易发起者角色
-func GetSenderRole() string {} 
-```
-
-GetSenderPk()
-
-```go
-// 获取交易发起者公钥
-// @return 交易发起者的公钥
-func GetSenderPk() string {}  
-```
-
-GetBlockHeight
-
-```go
-// 获取当前区块高度
-// @return: 当前块高度
-func GetBlockHeight() string {} 
-```
-
-GetTxId
-
-```go
-// 获取交易ID
-// @return 交易ID
-func GetTxId() string {}
-
-```
-
-EmitEvent
-
-```go
-// 发送合约事件
-// @param topic: 合约事件主题
-// @data ...: 可变参数,合约事件数据，参数数量不可大于16，不可小于1。
-func EmitEvent(topic string, data ...string) ResultCode {}
-
-```
-
-
-
-
+| 语言     | 类型                   |
+| -------- | ---------------------- |
+| 系统合约 | RuntimeType_NATIVE = 1 |
+| rust     | RuntimeType_WASMER = 2 |
+| c++      | RuntimeType_WXVM = 3   |
+| tinygo   | RuntimeType_GASM = 4   |
+| solidity | RuntimeType_EVM = 5    |
 
 
 
@@ -849,19 +41,19 @@ func EmitEvent(topic string, data ...string) ResultCode {}
 
 ### 使用Docker镜像进行合约开发
 
-ChainMaker官方已经将容器发布至GitHub
+ChainMaker官方已经将容器发布至 https://hub.docker.com/u/chainmakerofficial
 
 拉取镜像
 ```sh
-docker pull chainmakeroffcial/chainmaker-rust-contract:1.1.0
+docker pull chainmakerofficial/chainmaker-rust-contract:1.1.1
 ```
 
 请指定你本机的工作目录$WORK_DIR，例如C:\tmp，挂载到docker容器中以方便后续进行必要的一些文件拷贝
 
 ```sh
-docker run -it --name chainmaker-rust-contract -v $WORK_DIR:/home chainmakeroffcial/chainmaker-rust-contract:1.1.0 bash
+docker run -it --name chainmaker-rust-contract -v $WORK_DIR:/home chainmakerofficial/chainmaker-rust-contract:1.1.1 bash
 # 或者先后台启动
-docker run -d  --name chainmaker-rust-contract -v $WORK_DIR:/home chainmakeroffcial/chainmaker-rust-contract:1.1.0 bash -c "while true; do echo hello world; sleep 5;done"
+docker run -d  --name chainmaker-rust-contract -v $WORK_DIR:/home chainmakerofficial/chainmaker-rust-contract:1.1.1 bash -c "while true; do echo hello world; sleep 5;done"
 # 再进入容器
 docker exec -it chainmaker-rust-contract /bin/sh
 ```
@@ -1357,20 +549,852 @@ fn emit_event(&mut self, topic: &str, data: &Vec<String>) -> result_code{}
 
 
 
+## 使用Go(TinyGo)进行智能合约开发
+
+读者对象：本章节主要描述使用Go进行ChainMaker合约编写的方法，主要面向于使用Go进行ChainMaker的合约开发的开发者。为了最小化wasm文件尺寸，使用的是TinyGO编译器。
+
+### 使用Docker镜像进行合约开发
+
+ChainMaker官方已经将容器发布至GitHub
+
+拉取镜像
+```
+docker pull chainmakerofficial/chainmaker-go-contract:1.1.1
+```
+
+请指定你本机的工作目录$WORK_DIR，例如C:\tmp，挂载到docker容器中以方便后续进行必要的一些文件拷贝
+
+```sh
+docker run -it --name chainmaker-go-contract -v $WORK_DIR:/home chainmakerofficial/chainmaker-go-contract:1.1.1 bash
+# 或者先后台启动
+docker run -d  --name chainmaker-go-contract -v $WORK_DIR:/home chainmakerofficial/chainmaker-go-contract:1.1.1 bash -c "while true; do echo hello world; sleep 5;done"
+# 再进入容器
+docker exec -it chainmaker-go-contract /bin/sh
+```
+
+编译合约
+
+```sh
+cd /home/
+tar xvf /data/contract_go_template.tar.gz
+cd contract_tinygo
+sh build.sh
+```
+
+生成合约的字节码文件在
+
+```
+/home/contract_go/main.wasm
+```
+
+通过本地模拟环境运行合约(首次编译运行合约可能需要10秒左右，下面以存证作为示例)
+
+```
+# gasm main.wasm save time 20210304 file_hash 12345678 file_name a.txt
+2021-06-22 15:03:56.963	[DEBUG]	[Vm]	wasi/wasi.go:206	EmitEvent EventData :12345678
+2021-06-22 15:03:56.964	[DEBUG]	[Vm]	wasi/wasi.go:206	EmitEvent EventData :a.txt
+2021-06-22 15:03:56.966	[DEBUG]	[Vm]	waci/waci.go:44	waci log>> [12345678] 【save】 fileHash=12345678
+2021-06-22 15:03:56.966	[DEBUG]	[Vm]	waci/waci.go:44	waci log>> [12345678] 【save】 fileName=a.txt
+2021-06-22 15:03:56.966	[DEBUG]	[Vm]	gasm/runtime.go:195	invoke gasm success, tx id:12345678, gas cost 10655783,[IGNORE: ret [], retTypes []]
+2021-06-22 15:03:56.966	[INFO]	[Vm] @chain01	main/main.go:46	ContractResult Code:OK
+2021-06-22 15:03:56.967	[INFO]	[Vm] @chain01	main/main.go:47	ContractResult ContractEvent:[topic:"topic_vx" tx_id:"12345678" contract_name:"contract01" contract_version:"v1.0.0" event_data:"12345678" event_data:"a.txt" ]
+2021-06-22 15:03:56.967	[INFO]	[Vm] @chain01	main/main.go:48	ContractResult GasUsed:10655783
+2021-06-22 15:03:56.967	[INFO]	[Vm] @chain01	main/main.go:49	ContractResult Message:
+2021-06-22 15:03:56.967	[INFO]	[Vm] @chain01	main/main.go:50	ContractResult Result:612E7478743132333435363738
+```
+
+其中该处的合约方法定义为：
+
+```go
+package main
 
 
-### 约束条件和已知问题
+// 安装合约时会执行此方法，必须
+//export init_contract
+func initContract() {
 
-- 在安装**CPP**智能合约时，要求共识节点、非共识节点必须安装GCC。
-- **TinyGo**对wasm的支持不太完善，对内存逃逸分析、GC等方面有不足之处，比较容易造成栈溢出。在开发合约时，应尽可能减少循环、内存申请等业务逻辑，使变量的栈内存地址在64K以内。
-- **TinyGo**对导入的包支持有限，请参考：https://tinygo.org/lang-support/stdlib/ 对列表中显示已支持的包，实际测试发现支持的并不完整，会发生一些错误，需要在实际开发过程中进行测试检验
-- **TinyGo**引擎不支持`fmt`包
+}
+
+// 升级合约时会执行此方法，必须
+//export upgrade
+func upgrade() {
+
+}
+
+//export save
+func save() {
+	// 获取参数
+	txId, _ := GetTxId()
+	time, _ := Arg("time")
+	fileHash, _ := Arg("file_hash")
+	fileName, _ := Arg("file_name")
+
+	// 组装
+	stone := make(map[string]string, 4)
+	stone["txId"] = txId
+	stone["time"] = time
+	stone["fileHash"] = fileHash
+	stone["fileName"] = fileName
+    //发送事件
+    //向topic:"topic_vx"发送2个event数据，file_hash,time
+	EmitEvent("topic_vx", fileHash, time)
+  
+	// 序列化为json bytes
+	items := ParamsMapToEasyCodecItem(stone)
+	jsonStr := EasyCodecItemToJsonStr(items)
+
+	// 存储数据
+	PutState("fact", fileHash, jsonStr)
+	// 返回结果
+	SuccessResult("ok")
+}
+
+//export find_by_file_hash
+func findByFileHash() {
+	// 获取参数
+	fileHash, _ := Arg("file_hash")
+	// 查询
+	if result, resultCode := GetStateByte("fact", fileHash); resultCode != SUCCESS {
+		// 返回结果
+		ErrorResult("failed to call get_state, only 64 letters and numbers are allowed. got key:" + "fact" + ", field:" + fileHash)
+	} else {
+		// 记录日志
+		LogMessage("get val:" + string(result))
+		// 返回结果
+		SuccessResultByte(result)
+	}
+}
+func main() {
+
+}
+
+```
+
+#### 示例代码说明
+
+**存证合约示例**，实现功能
+
+1、存储文件哈希和文件名称和该交易的ID。
+
+2、通过文件哈希查询该条记录
+
+```go
+package main
+
+
+// 安装合约时会执行此方法，必须
+//export init_contract
+func initContract() {
+
+}
+
+// 升级合约时会执行此方法，必须
+//export upgrade
+func upgrade() {
+
+}
+
+//export save
+func save() {
+	// 获取参数
+	txId, _ := GetTxId()
+	time, _ := Arg("time")
+	fileHash, _ := Arg("file_hash")
+	fileName, _ := Arg("file_name")
+
+	// 组装
+	stone := make(map[string]string, 4)
+	stone["txId"] = txId
+	stone["time"] = time
+	stone["fileHash"] = fileHash
+	stone["fileName"] = fileName
+
+    //发送事件
+    //向topic:"topic_vx"发送2个event数据，file_hash,time
+	EmitEvent("topic_vx", fileHash, time)
+  
+	// 序列化为json bytes
+	items := ParamsMapToEasyCodecItem(stone)
+	jsonStr := EasyCodecItemToJsonStr(items)
+
+	// 存储数据
+	PutState("fact", fileHash, jsonStr)
+	// 返回结果
+	SuccessResult("ok")
+}
+
+//export find_by_file_hash
+func findByFileHash() {
+	// 获取参数
+	fileHash, _ := Arg("file_hash")
+	// 查询
+	if result, resultCode := GetStateByte("fact", fileHash); resultCode != SUCCESS {
+		// 返回结果
+		ErrorResult("failed to call get_state, only 64 letters and numbers are allowed. got key:" + "fact" + ", field:" + fileHash)
+	} else {
+		// 记录日志
+		LogMessage("get val:" + string(result))
+		// 返回结果
+		SuccessResultByte(result)
+	}
+}
+func main() {
+
+}
+
+```
+
+#### 代码编写规则
+
+**代码入口**
+
+```go
+func main() { // sdk代码中，有且仅有一个main()方法
+	// 空，不做任何事。仅用于对tinygo编译支持
+}
+
+```
+
+**对链暴露方法写法为：**
+
+- //export upgrade
+- func  method_name(): 不可带参数，无返回值
+
+```rust
+//export init_contract 表明对外暴露方法名称
+func init_contract() {
+
+}
+```
+
+**其中init_contract、upgrade方法必须有且对外暴露**
+
+- init_contract：创建合约会执行该方法
+- upgrade： 升级合约会执行该方法
+
+```rust
+// 安装合约时会执行此方法，必须。ChainMaker不允许用户直接调用该方法。
+//export init_contract
+func init_contract() {
+
+}
+// 升级合约时会执行此方法，必须。ChainMaker不允许用户直接调用该方法。
+//export upgrade
+func upgrade() {
+
+}
+```
+
+#### 编译说明
+
+在ChainMaker IDE中集成了编译器，可以对合约进行编译。集成的编译器是 TinyGo。用户如果手工编译，需要将 SDK 和用户编写的智能合约放入同一个文件夹，并在此文件夹的当前路径执行如下编译命令：
+
+```sh
+tinygo build -no-debug -opt=s -o name.wasm -target wasm
+```
+
+命令中 “name.wasm” 为生成的WASM 字节码的文件名，由用户自行指定。
+
+### 合约发布过程
+
+请参考：[《chainmaker-go-sdk》](../dev/chainmaker-go-sdk.md)发送创建合约请求的部分，或者[《chainmaker-java-sdk》](../dev/chainmaker-java-sdk.md)创建合约的部分。
+
+### 合约调用过程
+
+请参考：[《chainmaker-go-sdk》](../dev/chainmaker-go-sdk.md)合约调用的部分，或者[《chainmaker-java-sdk》](../dev/chainmaker-java-sdk.md)执行合约的部分。
+
+
+
+### Go SDK API描述 
+
+#### 用户与链交互接口
+
+```go
+type SimContextCommon interface {
+	// common
+	Arg(key string) (string, ResultCode)
+	Args() []*EasyCodecItem
+	Log(msg string)
+	SuccessResult(msg string)
+	SuccessResultByte(msg []byte)
+	ErrorResult(msg string)
+	CallContract(contractName string, method string, param map[string]string) ([]byte, ResultCode)
+	GetCreatorOrgId() (string, ResultCode)
+	GetCreatorRole() (string, ResultCode)
+	GetCreatorPk() (string, ResultCode)
+	GetSenderOrgId() (string, ResultCode)
+	GetSenderRole() (string, ResultCode)
+	GetSenderPk() (string, ResultCode)
+	GetBlockHeight() (string, ResultCode)
+	GetTxId() (string, ResultCode)
+  EmitEvent(topic string, data ...string) ResultCode
+}
+
+type SimContext interface {
+	SimContextCommon
+	// kv method
+	GetState(key string, field string) (string, ResultCode)
+	GetStateByte(key string, field string) ([]byte, ResultCode)
+	GetStateFromKey(key string) ([]byte, ResultCode)
+	PutState(key string, field string, value string) ResultCode
+	PutStateByte(key string, field string, value []byte) ResultCode
+	PutStateFromKey(key string, value string) ResultCode
+	PutStateFromKeyByte(key string, value []byte) ResultCode
+	DeleteState(key string, field string) ResultCode
+	DeleteStateFromKey(key string) ResultCode
+}
+```
+
+
+
+GetState
+
+```  go
+// 获取合约账户信息。该接口可从链上获取类别 “key” 下属性名为 “field” 的状态信息。
+// @param key: 需要查询的key值
+// @param field: 需要查询的key值下属性名为field
+// @return1: 查询到的value值
+// @return2: 0: success, 1: failed
+func GetState(key string, field string) (string, ResultCode) {} 
+```
+
+GetStateFromKey
+
+```go
+// 获取合约账户信息。该接口可以从链上获取类别为key的状态信息
+// @param key: 需要查询的key值
+// @return1: 查询到的值
+// @return: 0: success, 1: failed
+func GetStateFromKey(key string) (string, ResultCode) {}
+```
+
+PutState
+
+```go
+// 写入合约账户信息。该接口可把类别 “key” 下属性名为 “filed” 的状态更新到链上。更新成功返回0，失败则返回1。
+// @param key: 需要存储的key值，注意key长度不允许超过64，且只允许大小写字母、数字、下划线、减号、小数点符号
+// @param field: 需要存储的key值下属性名为field，注意field长度不允许超过64，且只允许大小写字母、数字、下划线、减号、小数点符号
+// @param value: 需要存储的value值，注意存储的value字节长度不能超过200
+// @return: 0: success, 1: failed
+func PutState(key string, field string, value string) ResultCode {}
+```
+
+PutStateFromKey
+
+```go
+// 写入合约账户信息。
+// @param key: 需要存储的key值
+// @param value: 需要存储的value值
+// @return: 0: success, 1: failed
+func PutStateFromKey(key string, value string) ResultCode
+```
+
+DeleteState
+
+```go
+// 删除合约账户信息。该接口可把类别 “key” 下属性名为 “name” 的状态从链上删除。
+// @param key: 需要删除的key值
+// @param field: 需要删除的key值下属性名为field
+// @return: 0: success, 1: failed
+func DeleteState(key string, field string) ResultCode {}
+```
+
+CallContract
+
+```go
+// 跨合约调用。
+// @param contractName 合约名称
+// @param method 合约方法
+// @param param 参数
+// @return 0:合约返回结果， 1：合约执行结果
+func CallContract(contractName string, method string, param map[string]string) ([]byte, ResultCode) {}
+```
+
+Args
+
+```go
+// 该接口调用 getArgsMap() 接口，把 json 格式的数据反序列化，并将解析出的数据返还给用户。
+// @return: 参数map
+func Args() map[string]interface{} {}  
+```
+
+Arg
+
+```go
+// 该接口可返回属性名为 “key” 的参数的属性值。
+// @param key: 获取的参数名
+// @return: 获取的参数值
+func Arg(key string) interface{} {}  
+```
+
+SuccessResult
+
+```go
+// 该接口可记录用户操作成功的信息，并将操作结果记录到链上。
+// @param msg: 成功信息
+func SuccessResult(msg string) {}  
+```
+
+ ErrorResult
+
+```go
+// 该接口可记录用户操作失败的信息，并将操作结果记录到链上。
+// @param msg: 失败信息
+func ErrorResult(msg string) {}
+```
+
+LogMessage
+
+```go
+// 该接口可记录事件日志。
+// @param msg: 事件信息
+func LogMessage(msg string) {}
+```
+
+GetCreatorOrgId
+
+```go
+// 获取合约创建者所属组织ID
+// @return: 合约创建者的组织ID
+func GetCreatorOrgId() string {}  
+```
+
+GetCreatorRole
+
+```go
+// 获取合约创建者角色
+// @return: 合约创建者的角色
+func GetCreatorRole() string {}  
+```
+
+GetCreatorPk
+
+```go
+// 获取合约创建者公钥
+// @return: 合约创建者的公钥
+func GetCreatorPk() string {} 
+```
+
+GetSenderOrgId
+
+```go
+// 获取交易发起者所属组织ID
+// @return: 交易发起者的组织ID
+func GetSenderOrgId() string {}  
+```
+
+GetSenderRole
+
+```go
+// 获取交易发起者角色
+// @return: 交易发起者角色
+func GetSenderRole() string {} 
+```
+
+GetSenderPk()
+
+```go
+// 获取交易发起者公钥
+// @return 交易发起者的公钥
+func GetSenderPk() string {}  
+```
+
+GetBlockHeight
+
+```go
+// 获取当前区块高度
+// @return: 当前块高度
+func GetBlockHeight() string {} 
+```
+
+GetTxId
+
+```go
+// 获取交易ID
+// @return 交易ID
+func GetTxId() string {}
+
+```
+
+EmitEvent
+
+```go
+// 发送合约事件
+// @param topic: 合约事件主题
+// @data ...: 可变参数,合约事件数据，参数数量不可大于16，不可小于1。
+func EmitEvent(topic string, data ...string) ResultCode {}
+
+```
 
 
 
 
 
+## 使用C++进行智能合约开发
 
+读者对象：本章节主要描述使用C++进行ChainMaker合约编写的方法，主要面向于使用C++进行ChainMaker的合约开发的开发者。
+
+### 用Docker镜像进行开发
+
+ChainMaker官方已经将容器发布至GitHub
+
+拉取镜像
+```sh
+docker pull chainmakerofficial/chainmaker-cpp-contract:1.1.1
+```
+
+请指定你本机的工作目录$WORK_DIR，例如C:\tmp，挂载到docker容器中以方便后续进行必要的一些文件拷贝
+
+```sh
+docker run -it --name chainmaker-cpp-contract -v $WORK_DIR:/home chainmakerofficial/chainmaker-cpp-contract:1.1.1 bash
+# 或者先后台启动
+docker run -d --name chainmaker-cpp-contract -v $WORK_DIR:/home chainmakerofficial/chainmaker-cpp-contract:1.1.1 bash -c "while true; do echo hello world; sleep 5;done"
+# 再进入容器
+docker exec -it chainmaker-cpp-contract /bin/sh
+```
+
+编译合约
+
+```sh
+cd /home/
+tar xvf /data/contract_cpp_template.tar.gz
+cd contract_cpp
+make clean
+emmake make
+```
+
+生成合约的字节码文件在
+
+```
+/home/contract_cpp/main.wasm
+```
+
+通过本地模拟环境运行合约(首次编译运行合约可能需要10秒左右，下面以存证作为示例)
+
+```
+# wxvm main.wasm save time 20210304 file_hash 12345678 file_name a.txt
+
+2021-03-25 09:10:36.441      [DEBUG] [Vm]    xvm/context_service.go:257      wxvm log >>[1234567890123456789012345678901234567890123456789012345678901234] [1] call save() tx_id:
+2021-03-25 09:10:36.463 [DEBUG] [Vm]    xvm/context_service.go:257      wxvm log >>[1234567890123456789012345678901234567890123456789012345678901234] [1] call save() file_hash:12345678
+2021-03-25 09:10:36.464 [DEBUG] [Vm]    xvm/context_service.go:257      wxvm log >>[1234567890123456789012345678901234567890123456789012345678901234] [1] call save() file_name:a.txt
+2021-03-25 09:10:36.465 [DEBUG] [Vm]    xvm/context_service.go:257      wxvm log >>[1234567890123456789012345678901234567890123456789012345678901234] [1] put success: a.txt 12345678
+2021-03-25 09:10:36.466 [DEBUG] [Vm]    xvm/context_service.go:257      wxvm log >>[1234567890123456789012345678901234567890123456789012345678901234] [1] save====================================end
+2021-03-25 09:10:36.467 [DEBUG] [Vm]    xvm/context_service.go:257      wxvm log >>[1234567890123456789012345678901234567890123456789012345678901234] [1] 
+2021-03-25 09:10:36.467 [DEBUG] [Vm]    xvm/context_service.go:257      wxvm log >>[1234567890123456789012345678901234567890123456789012345678901234] [1] result:  a.txt 12345678
+2021-03-25 09:10:36.469 [INFO]  [Vm] @chain01   main/main.go:31 contractResult :result:" a.txt 12345678"
+```
+
+其中存证的合约方法定义为：
+
+```c++
+#include "chainmaker/chainmaker.h"
+
+using namespace chainmaker;
+
+class Counter : public Contract {
+public:
+	...
+	...
+    void save()
+    {
+        Context *ctx = context();
+
+        std::string file_hash;
+        std::string file_name;
+        std::string tx_id;
+
+        ctx->arg("file_hash", file_hash);
+        ctx->arg("file_name", file_name);
+        ctx->arg("tx_id", tx_id);
+        ctx->log("call save() tx_id:" + tx_id);
+        ctx->log("call save() file_hash:" + file_hash);
+        ctx->log("call save() file_name:" + file_name);
+        ctx->emit_event("topic_vx",2,file_hash.c_str(),file_name.c_str());
+        std::string test_str = tx_id + " " + file_name + " " + file_hash;
+        ctx->put_object(file_hash, test_str);
+        ctx->log("put success:" + test_str);
+        ctx->log("save====================================end");
+        std::string value;
+        std::string value_str;
+        EasyCodecItems *value_items;
+        ctx->get_object(file_hash, &value);
+        ctx->log(value);
+        value_items = easy_unmarshal((byte *)value.data());
+        value_str = (char *)value_items->get_value((char *)"value");
+        ctx->log("result: " + value_str);
+        ctx->success(test_str);
+        delete (value_items);
+    }
+    ...
+    ...
+}
+
+WASM_EXPORT void save() {
+    Counter counter;
+    counter.save();
+}
+```
+
+
+
+#### 框架描述
+
+解压缩contract_cpp_template.tar.gz后，文件描述如下：
+
+- chainmaker
+  - basic_iterator.cc：  迭代器实现
+  - basic_iterator.h： 迭代器头文件声明
+  - chainmaker.h： sdk主要接口头文件声明，详情见[SDK API描述](#sdk-api)
+  - context_impl.cc：  与链交互接口实现
+  - context_impl.h：  与链交互头文件声明
+  - contract.cc： 合约基础工具类
+  - error.h： 异常处理类
+  - exports.js：  编译合约导出函数
+  - safemath.h：  assert异常处理
+  - syscall.cc： 与链交互入口
+  - syscall.h：  与链交互头文件声明
+- pb
+  - contract.pb.cc：与链交互数据协议
+  - contract.pb.h：与链交互数据协议头文件声明
+- main.cc： 用户写合约入口，[如下](#fact)
+- Makefile： 常用build命令
+
+#### 示例代码说明
+
+存证合约示例：main.cc，实现功能：
+
+1、存储文件哈希和文件名称和该交易的ID
+
+2、通过文件哈希查询该条记录
+
+```c++
+#include "chainmaker/chainmaker.h"
+
+using namespace chainmaker;
+
+class Counter : public Contract {
+public:
+    void init_contract() {}
+    void upgrade() {}
+    // 保存
+    void save() {
+        // 获取SDK 接口上下文
+        Context* ctx = context();
+        // 定义变量
+        std::string time;
+        std::string file_hash;
+        std::string file_name;
+        std::string tx_id;
+		// 获取参数
+        ctx->arg("time", time);
+        ctx->arg("file_hash", file_hash);
+        ctx->arg("file_name", file_name);
+        ctx->arg("tx_id", tx_id);
+        // 发送合约事件
+        // 向topic:"topic_vx"发送2个event数据，file_hash,file_name
+        ctx->emit_event("topic_vx",2,file_hash.c_str(),file_name.c_str());
+		// 存储数据
+        ctx->put_object("fact"+ file_hash,  tx_id+" "+time+" "+file_hash+" "+file_name);
+        // 记录日志
+        ctx->log("call save() result:" + tx_id+" "+time+" "+file_hash+" "+file_name);
+        // 返回结果
+        ctx->success(tx_id+" "+time+" "+file_hash+" "+file_name);
+    }
+
+    // 查询
+    void find_by_file_hash() {
+        // 获取SDK 接口上下文
+    	Context* ctx = context();
+
+		// 获取参数
+        std::string file_hash;
+        ctx->arg("file_hash", file_hash);
+		
+        // 查询数据
+    	std::string value;
+        ctx->get_object("fact"+ file_hash, &value);
+        // 记录日志
+        ctx->log("call find_by_file_hash()-" + file_hash + ",result:" + value);
+        // 返回结果
+        ctx->success(value);
+    }
+
+};
+
+// 在创建本合约时, 调用一次init方法. ChainMaker不允许用户直接调用该方法.
+WASM_EXPORT void init_contract() {
+    Counter counter;
+    counter.init_contract();
+}
+
+// 在升级本合约时, 对于每一个升级的版本调用一次upgrade方法. ChainMaker不允许用户直接调用该方法.
+WASM_EXPORT void upgrade() {
+    Counter counter;
+    counter.upgrade();
+}
+
+WASM_EXPORT void save() {
+    Counter counter;
+    counter.save();
+}
+
+WASM_EXPORT void find_by_file_hash() {
+    Counter counter;
+    counter.find_by_file_hash();
+}
+```
+
+
+
+#### 代码编写规则
+
+
+**对链暴露方法写法为：**
+
+- `WASM_EXPORT`： 必须，暴露声明
+- `void`： 必须，无返回值
+- `method_name()`： 必须，暴露方法名称
+
+```c++
+// 示例
+WASM_EXPORT void init_contract() {
+    
+}
+```
+
+**其中init_contract、upgrade方法必须有且对外暴露**
+
+- `init_contract`：创建合约会执行该方法
+- `upgrade`： 升级合约会执行该方法
+
+```c++
+
+// 在创建本合约时, 调用一次init方法. ChainMaker不允许用户直接调用该方法.
+WASM_EXPORT void init_contract() {
+    // 安装时的业务逻辑，可为空
+    
+}
+
+// 在升级本合约时, 对于每一个升级的版本调用一次upgrade方法. ChainMaker不允许用户直接调用该方法.
+WASM_EXPORT void upgrade() {
+    // 升级时的业务逻辑，可为空
+    
+}
+```
+
+**获取SDK 接口上下文**
+
+```go
+Context* ctx = context();
+```
+
+#### 编译说明
+
+在ChainMaker提供的Docker容器中中集成了编译器，可以对合约进行编译，集成的编译器是emcc 1.38.48版本，protobuf 使用3.7.1版本。用户如果手工编译需要先使用emcc 编译 protobuf ，编译之后执行emmake make即可。
+
+### 合约发布过程
+
+请参考：[《chainmaker-go-sdk》](../dev/chainmaker-go-sdk.md)发送创建合约请求的部分，或者[《chainmaker-java-sdk》](../dev/chainmaker-java-sdk.md)创建合约的部分。
+
+### 合约调用过程
+
+请参考：[《chainmaker-go-sdk》](../dev/chainmaker-go-sdk.md)合约调用的部分，或者[《chainmaker-java-sdk》](../dev/chainmaker-java-sdk.md)执行合约的部分。
+
+
+
+### C++ SDK API描述 
+
+<span id="sdk-api">arg</span>
+
+
+
+```c++
+// 该接口可返回属性名为 “name” 的参数的属性值。
+// @param name: 要获取值的参数名称
+// @param value: 获取的参数值
+// @return: 是否成功
+bool arg(const std::string& name, std::string& value){}
+```
+
+需要注意的是通过arg接口返回的参数，全都都是字符串，合约开发者有必要将其他数据类型的参数与字符串做转换，包括atoi、itoa、自定义序列化方式等。
+
+get_object
+
+```c++
+// 获取key为"key"的值
+// @param key: 获取对象的key
+// @param value: 获取的对象值
+// @return: 是否成功
+bool get_object(const std::string& key, std::string* value){}
+```
+
+put_object
+
+```c++
+// 存储key为"key"的值
+// @param key: 存储的对象key，注意key长度不允许超过64，且只允许大小写字母、数字、下划线、减号、小数点符号
+// @param value: 存储的对象值install
+// @return: 是否成功
+bool put_object(const std::string& key, const std::string& value){}
+```
+
+delete_object
+
+```c++
+// 删除key为"key"的值
+// @param key: 删除的对象key
+// @return: 是否成功
+bool delete_object(const std::string& key) {}
+```
+
+emit_event
+
+```c++
+// 发送合约事件
+// @param topic: 合约事件主题
+// @data_amount: 合约事件数据数量(data)，data_amount的值必须要和data数量一致，最多不可大于16，最少不可小于1,不可为空
+// @data ...: 可变参数合约事件数据，数量与data_amount一致。
+bool emit_event(const std::string &topic, int data_amount, const std::string data, ...)
+```
+
+success
+
+```c++
+// 返回成功的结果
+// @param body: 成功信息
+void success(const std::string& body) {}
+```
+
+error
+
+```c++
+// 返回失败结果
+// @param body: 失败信息
+void error(const std::string& body) {}
+```
+
+call
+
+```c++
+// 跨合约调用
+// @param contract: 合约名称
+// @param method: 合约方法
+// @param args: 调用合约的参数，调用参数仅仅接受字符串类型的key、value
+// @param response: 调用合约的响应
+// @return: 是否成功
+bool call(const std::string& contract,
+                      const std::string& method,
+                      const std::map<std::string, std::string>& args,
+                      Response* response){}
+```
+
+log
+
+```c++
+// 输出日志事件
+// @param body: 事件信息
+void log(const std::string& body) {}
+```
 
 ## 使用Solidity进行智能合约开发
 
@@ -1388,15 +1412,15 @@ ChainMaker官方已经将容器发布至GitHub
 
 拉取镜像
 ```sh
-docker pull chainmakeroffcial/chainmaker-solidity-contract:1.1.0
+docker pull chainmakerofficial/chainmaker-solidity-contract:1.1.1
 ```
 
 请指定你本机的工作目录$WORK_DIR，例如C:\tmp，挂载到docker容器中以方便后续进行必要的一些文件拷贝
 
 ```sh
-docker run -it --name chainmaker-solidity-contract -v $WORK_DIR:/home chainmakeroffcial/chainmaker-solidity-contract:1.1.0 bash
+docker run -it --name chainmaker-solidity-contract -v $WORK_DIR:/home chainmakerofficial/chainmaker-solidity-contract:1.1.1 bash
 # 或者先后台启动
-docker run -d --name chainmaker-solidity-contract -v $WORK_DIR:/home chainmakeroffcial/chainmaker-solidity-contract:1.1.0 bash -c "while true; do echo hello world; sleep 5;done"
+docker run -d --name chainmaker-solidity-contract -v $WORK_DIR:/home chainmakerofficial/chainmaker-solidity-contract:1.1.1 bash -c "while true; do echo hello world; sleep 5;done"
 # 再进入容器
 docker exec -it chainmaker-solidity-contract /bin/sh
 ```
@@ -1657,4 +1681,12 @@ func MakeAddress(data []byte) *Int {
 func BigToAddress(b *Int) Address { return BytesToAddress(b.Bytes()) }
 
 ```
+
+
+
+
+
+
+
+<br><br>
 

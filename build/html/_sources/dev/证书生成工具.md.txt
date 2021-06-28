@@ -147,7 +147,7 @@ crypto-config/
 
 ### 证书目录结构
 
-<img src="../images/证书生成工具-证书目录结构.png" style="zoom:50%;" />
+<img src="../images/CertificateGeneration-DirectoryStructure.png" style="zoom:50%;" />
 
 ```
 $ tree crypto-config/wx-org1.chainmaker.org/
@@ -206,4 +206,12 @@ crypto-config/wx-org1.chainmaker.org/
 ```bash
 $ ./chainmaker-cryptogen extend
 ```
+
+
+
+
+
+
+
+<br><br>
 

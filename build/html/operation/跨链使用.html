@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>9. 跨链使用 &mdash; chainmaker-docs v1.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1. 供应链金融" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html" />
+    <link rel="prev" title="8. SPV 部署和使用" href="%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+            
+            <img src="../_static/chainmakerLOGO-09.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/Q%26A.html">7. Q&amp;A</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html">13. SQL合约支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/SPV.html">14. SPV 轻节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html">15. 跨链方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6.html">16. 隐私合约</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B5%8F%E8%A7%88%E5%99%A8.html">7. 区块链浏览器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html">8. SPV 部署和使用</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. 跨链使用</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">9.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">9.2. 跨链部署</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">9.2.1. 安装业务合约</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">9.2.2. 安装事务合约</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">9.2.3. 部署方式选择</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">9.2.4. 程序编译</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">9.2.5. 修改配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#adapter">9.2.5.1. Adapter配置调整</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#router">9.2.5.2. Router配置调整</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spv">9.2.5.3. SPV配置调整</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">9.2.5.4. 其他配置调整</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">9.2.6. 跨链代理启动</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sdk">9.3. 跨链SDK使用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">9.3.1. 跨链SDK配置调整</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">9.3.2. 跨链SDK代码调用</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">9.4. 跨链服务验证</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id14">9.4.1. 安装验证示例业务合约</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">9.4.2. 调用跨链SDK进行验证</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">9. </span>跨链使用</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/operation/跨链使用.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">9. </span>跨链使用<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">9.1. </span>概述<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>根据长安链的跨链设计，完成一次跨链操作需要跨链代理（网关）、SPV、事务合约等几部分组成。目前版本的跨链代理中已经集成了SPV功能，因此SPV节点不需要再单独部署。跨链使用强依赖于ChainMaker本身，因此请在阅读该跨链使用前先对ChainMaker进行一定程度上的熟悉，否则可能会存在无法部署成功或使用的情况。</p>
+<blockquote>
+<div><p>温馨提示：长安链将在v1.2.0起将支持跨链服务</p>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">9.2. </span>跨链部署<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>跨链的部署核心是进行合约的安装和跨链网关的部署，其步骤主要包括如下步骤：</p>
+<ol class="simple">
+<li><p>业务合约/事务合约安装；</p></li>
+<li><p>下载源码并编译跨链代理程序；</p></li>
+<li><p>修改主配置文件<code class="docutils literal notranslate"><span class="pre">cross_chain.yml</span></code>；</p></li>
+<li><p>修改其他配置文件，包括SDK、SPV配置等；</p></li>
+<li><p>启动跨链代理；</p></li>
+<li><p>调用跨链SDK进行验证；</p></li>
+</ol>
+<div class="section" id="id4">
+<h3><span class="section-number">9.2.1. </span>安装业务合约<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>一个具体的跨链业务通常需要跨两条链，每条链都需要部署具体的业务合约以便于跨链服务进行调用。业务合约即普通的合约，是用户进行具体跨链操作的合约。例如在转账跨链操作中，该合约即转账合约，由用户自主编写。</p>
+<p>需要注意的是，业务合约需要提供正逆向操作的接口，正向接口即业务完成需要调用的合约入口，逆向接口即当正向接口操作失败进行业务回滚时调用的合约入口。</p>
+<p>业务合约的安装属于普通合约安装，此处不再赘述。</p>
+</div>
+<div class="section" id="id5">
+<h3><span class="section-number">9.2.2. </span>安装事务合约<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>事务合约是调用具体业务合约的入口，该合约是所有业务合约进行跨链操作的入口，该合约的主要作用有以下几点：</p>
+<ul class="simple">
+<li><p>完成对具体业务合约的调用；</p></li>
+<li><p>记录事务的状态，保证事务操作的唯一性，防止重复操作；</p></li>
+</ul>
+<p>对于每个需要跨链的具体业务链而言，该合约必须进行安装，且在正常情况下每条链只需要安装一次。目前该合约基于ChainMaker的版本已经编写好，具体业务链维护人员在业务链部署完成后，便可直接部署该合约，该合约的信息如下：</p>
+<ul class="simple">
+<li><p>路径：{项目路径}/contract/transaction_contract/transaction.wasm</p></li>
+<li><p>信息：该合约采用go语言，合约执行环境选择：RuntimeType_GASM RuntimeType = 4</p></li>
+<li><p>合约名称：推荐使用 <code class="docutils literal notranslate"><span class="pre">TransactionStable</span></code></p></li>
+</ul>
+<p>该合约虽然是事务调度合约，但本质仍是普通合约，其安装流程此处不再赘述。</p>
+</div>
+<div class="section" id="id6">
+<h3><span class="section-number">9.2.3. </span>部署方式选择<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>跨链代理支持两种部署方式，一种是一对多模型，即直接访问多条链实现跨链操作，如下图所示：</p>
+<p><img alt="独立部署" src="../_images/independent-deployment.png" /></p>
+<p>在该模型中，只需要部署一个跨链代理即可完成链A与B的跨链操作，在该部署模式下，跨链代理需要同时可以访问两条链（A与B，通过Adapter配置）并可以对两条链的交易执行结果进行验证（SPV对应的A与B）。</p>
+<p>该部署模型非常简单，只需要部署一个跨链代理即可，但要求该跨链代理可同时访问两条链。</p>
+<p>另外一种则是一对一模型，即每个跨链代理只访问一条业务链，其中一个跨链代理可以称之为 <strong>主跨链代理</strong> ，该跨链代理用于接收业务客户端发来的跨链消息，这里需要说明的是，每个跨链代理都可以是主跨链代理，仅仅是是否接收业务客户端发送的跨链消息的区别。不同的跨链代理之间通过UITP协议进行通信，每个跨链代理将访问独立的链，并且可以对另外的链交易结果进行验证，部署方式如下所示：</p>
+<p><img alt="多网关部署" src="../_images/many-deployment.png" /></p>
+<p>该部署方式用于网络环境较为复杂的环境，采用该方案会部署多个跨链代理，要求每个跨链代理可访问自己处理的业务链，并同时可通过spv模块获取到另外链的信息。</p>
+<p>业务系统在进行跨链时，可根据实际的网络情况选择部署方式，从性能和稳定性角度讲，推荐使用一对多（第一种）的部署方式，具体部署时如何配置将会在后续章节进行描述。</p>
+</div>
+<div class="section" id="id7">
+<h3><span class="section-number">9.2.4. </span>程序编译<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>下载跨链代理服务源码：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git --recursive clone https://git.code.tencent.com/ChainMaker/chainmaker-cross-chain.git
+</pre></div>
+</div>
+<p>进入项目主路径，运行install.sh脚本：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> chainmaker-cross-chain
+./install.sh
+</pre></div>
+</div>
+<p>脚本执行成功后会在主路径下产生一个release路径，进入该目录，其结构如下所示：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> release
+tree 
+├── bin
+│   ├── shutdown.sh
+│   └── start.sh
+├── config
+│   ├── chainmaker
+│   │   ├── chainmaker_chain1_sdk.yml
+│   │   ├── chainmaker_chain1_spv.yml
+│   │   ├── chainmaker_chain2_sdk.yml
+│   │   ├── chainmaker_chain2_spv.yml
+│   │   ├── crypto-config
+│   │   │   └── wx-org1.chainmaker.org
+│   │   │       ├── ca
+│   │   │       │   ├── ca.crt
+│   │   │       │   └── ca.key
+│   │   │       ├── node
+│   │   │       │   ├── common1
+│   │   │       │   │   ├── common1.nodeid
+│   │   │       │   │   ├── common1.sign.crt
+│   │   │       │   │   ├── common1.sign.key
+│   │   │       │   │   ├── common1.tls.crt
+│   │   │       │   │   └── common1.tls.key
+│   │   │       │   └── consensus1
+│   │   │       │       ├── consensus1.nodeid
+│   │   │       │       ├── consensus1.sign.crt
+│   │   │       │       ├── consensus1.sign.key
+│   │   │       │       ├── consensus1.tls.crt
+│   │   │       │       └── consensus1.tls.key
+│   │   │       └── user
+│   │   │           ├── admin1
+│   │   │           │   ├── admin1.sign.crt
+│   │   │           │   ├── admin1.sign.key
+│   │   │           │   ├── admin1.tls.crt
+│   │   │           │   └── admin1.tls.key
+│   │   │           └── client1
+│   │   │               ├── client1.sign.crt
+│   │   │               ├── client1.sign.key
+│   │   │               ├── client1.tls.crt
+│   │   │               └── client1.tls.key
+│   │   └── spv_config.yml
+│   ├── cross_chain.yml
+│   └── ecprikey.key
+├── lib
+│   └── cross-chain
+├── logs
+└── storage
+</pre></div>
+</div>
+<p>其中config目录下的<code class="docutils literal notranslate"><span class="pre">chainmaker</span></code>目录内容为测试使用，实际用户部署时可能看不到该目录。</p>
+</div>
+<div class="section" id="id8">
+<h3><span class="section-number">9.2.5. </span>修改配置<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>跨链配置文件位于release目录下的config中，它的主配置文件名为<code class="docutils literal notranslate"><span class="pre">cross_chain.yml</span></code>，业务方根据自己的实际部署方式及业务链情况对其中的内容进行修改。其核心的修改主要包括：adapter、router及spv三部分。</p>
+<div class="section" id="adapter">
+<h4><span class="section-number">9.2.5.1. </span>Adapter配置调整<a class="headerlink" href="#adapter" title="Permalink to this headline">¶</a></h4>
+<p>adapter指的是适配器，可以理解为对链SDK的一种封装，它的配置是用于描述直接访问业务链的信息，配置信息如下所示：</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span># 适配器配置，用于配置访问具体类型的业务链的适配器信息
+adapters:
+  - provider: chainmaker    # 表示该链的类型，后面配置信息将是访问该链的配置信息
+    chain_id: chain1    # 该链的唯一ID标识
+    config_path: chainmaker/chainmaker_chain1_sdk.yml    # 该链对应Adapter（通常为SDK）的配置路径
+
+  - provider: chainmaker    # 表示该链的类型，后面配置信息将是访问该链的配置信息
+    chain_id: chain2    # 该链的唯一ID标识
+    config_path: chainmaker/chainmaker_chain2_sdk.yml    # 该链对应Adapter的配置路径
+</pre></div>
+</div>
+<p>每项配置的说明可参见其中的注释部分，其中需要重点说明的是<code class="docutils literal notranslate"><span class="pre">config_path</span></code>，它的内容是一个配置路径，该路径即访问某条业务链的SDK配置文件路径，<code class="docutils literal notranslate"><span class="pre">chainmaker/chainmaker_chain1_sdk.yml</span></code>的配置内容如下所示：</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>chain_client:
+  # 链ID
+  chain_id: &quot;chain1&quot;
+  # 组织ID
+  org_id: &quot;wx-org1.chainmaker.org&quot;
+  # 客户端用户私钥路径，使用绝对路径
+  user_key_file_path: &quot;/root/wx-org1.chainmaker.org/user/client1/client1.tls.key&quot;
+  # 客户端用户证书路径，使用绝对路径
+  user_crt_file_path: &quot;/root/wx-org1.chainmaker.org/user/client1/client1.tls.crt&quot;
+  # 客户端用户交易签名私钥路径(若未设置，将使用user_key_file_path)，使用绝对路径
+  user_sign_key_file_path: &quot;/root/wx-org1.chainmaker.org/user/client1/client1.tls.key&quot;
+  # 客户端用户交易签名证书路径(若未设置，将使用user_crt_file_path)，使用绝对路径
+  user_sign_crt_file_path: &quot;/root/wx-org1.chainmaker.org/user/client1/client1.tls.crt&quot;
+
+  nodes:
+    - # 节点地址，格式为：IP:端口:连接数
+      node_addr: &quot;192.168.1.1:12301&quot;
+      # 节点连接数
+      conn_cnt: 5
+      # RPC连接是否启用双向TLS认证
+      enable_tls: true
+      # 信任证书池路径，使用绝对路径
+      trust_root_paths:
+        - &quot;/root/wx-org1.chainmaker.org/ca&quot;
+        - &quot;/root/wx-org2.chainmaker.org/ca&quot;
+      # TLS hostname
+      tls_host_name: &quot;chainmaker.org&quot;
+    - # 节点地址，格式为：IP:端口:连接数
+      node_addr: &quot;192.168.1.1:12302&quot;
+      # 节点连接数
+      conn_cnt: 5
+      # RPC连接是否启用双向TLS认证
+      enable_tls: true
+      # 信任证书池路径，使用绝对路径
+      trust_root_paths:
+        - &quot;/root/wx-org1.chainmaker.org/ca&quot;
+        - &quot;/root/wx-org2.chainmaker.org/ca&quot;
+      # TLS hostname
+      tls_host_name: &quot;chainmaker.org&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="router">
+<h4><span class="section-number">9.2.5.2. </span>Router配置调整<a class="headerlink" href="#router" title="Permalink to this headline">¶</a></h4>
+<p>Router，顾名思义就是路由的概念，在跨链网关（代理）中，路由描述的就是另外的跨链代理的访问方式，该配置即用于对另外的跨链代理进行配置，那么很明显，该配置只在第二种部署方式中适用，它的配置信息如下：</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span># 路由集配置，用于配置其他跨链代理节点的访问信息
+routers:
+  - provider: libp2p    # 远端跨链代理1的网络访问方式，下面的配置信息将是该协议下的配置方式
+    libp2p: # 远端跨链代理1网络的具体信息
+      address: /ip4/192.168.12.39/tcp/19527/p2p/Qme7gKTmZVFMY8sjNQiAZTQ1vJ5oU3GZHfGPJGTxamJ54j    # 远端跨链代理1基于libp2p访问下的地址
+      protocol_id: /listener    # 协议ID，该值需要和对端ChannelListener的协议ID一致
+      delimit: &quot;\n&quot;    # 发送到该跨链代理的消息处理分割符，通过该分割符对消息进行区分，必须使用双引号
+    chain_ids:    # 远端跨链代理1可直接操作的链集合，该集合为远端跨链代理adapters配置中支持的链列表
+      - chain2
+
+  - provider: libp2p    # 远端跨链代理2的网络访问方式，下面的配置信息将是该协议下的配置方式
+    libp2p: # 远端跨链代理2网络的具体信息
+      address: /ip4/192.168.1.101/tcp/19527/p2p/Qme8hrTmZVFMY8sjNQiAZTQ1vJ5oU3GZHfGPJGTxbcL32a    # 远端跨链代理2基于libp2p访问下的地址
+      protocol_id: /listener    # 协议ID，该值需要和对端ChannelListener的协议ID一致
+      delimit: &quot;\n&quot;    # 发送到该跨链代理的消息处理分割符，通过该分割符对消息进行区分，必须使用双引号
+    chain_ids:    # 远端跨链代理2可直接操作的链集合，该集合为远端跨链代理adapters配置中支持的链列表
+      - chain3
+      - chain4
+</pre></div>
+</div>
+<p>需要特别注意的是，目前网络访问支持libp2p的访问方式，该访问路径需要知道另外节点的地址信息，该地址为另外的跨链代理启动时配置的channel地址（该配置会在后面描述）。</p>
+</div>
+<div class="section" id="spv">
+<h4><span class="section-number">9.2.5.3. </span>SPV配置调整<a class="headerlink" href="#spv" title="Permalink to this headline">¶</a></h4>
+<p>SPV即轻节点的概念，它用于提供交易证明，即对交易的信息进行验证，它的配置与Adapter类似，也是需要通过SDK访问具体的业务链，其配置信息如下：</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span># 证明集配置，用于配置当前跨链代理可访问的支持证明节点的信息
+provers:
+  - provider: spv    # 可提供证明的类型，可选择：spv和trust，spv配置如下所示
+    config_path: chainmaker/chainmaker_chain1_spv.yml    # 该链对应的spv节点的配置路径
+    chain_ids:    # 该证明类型下支持的链列表
+      - chain1
+
+  - provider: trust    # 可提供证明的类型，spv和trust，trust不需要配置其他信息，它表示所有验证全部通过，通常用于自测使用
+    chain_ids: # 该证明类型下支持的链列表
+      - chain2
+</pre></div>
+</div>
+<p>其中<code class="docutils literal notranslate"><span class="pre">config_path</span></code>的内容是用于描述该链对应的SPV的配置路径，<code class="docutils literal notranslate"><span class="pre">chainmaker/chainmaker_chain1_spv.yml</span></code>的内容格式如下：</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span># 链ID
+chain_id: &quot;chain1&quot;
+
+# 同步配置，同步链信息的时间间隔
+sync_chainInfo_interval: 10000    # 同步链中节点区块最新高度信息的时间间隔，单位：毫秒
+
+# sdk配置，该配置指的是对应链的SDK配置，为了更好的访问该配置，建议配置为绝对路径
+sdk_config_path: &quot;/root/chainmaker/chainmaker_chain1_sdk.yml&quot;    #  sdk配置文件路径
+
+# 存储配置，用于配置当前SPV对区块头和交易哈希的存储记录
+storage:
+  provider: &quot;leveldb&quot;    #  当前存储采用的类型
+  leveldb:    # 存储采用leveldb的情况下，对应leveldb的详细配置
+    store_path: &quot;../data/spv_state_db1&quot;    # leveldb的存储路径
+    write_buffer_size: 4    # leveldb的写入Buffer大小，单位：M
+    bloom_filter_bits: 10    # leveldb的布隆过滤器的bit长度
+
+# 日志配置，用于配置日志的打印
+log:
+  system:     # 当前默认配置，当模块找不到相关配置时统一采用该配置
+    log_level: &quot;INFO&quot;    # 日志打印级别
+    file_path: &quot;../data/log/spv.logger&quot;     # 日志文件路径
+    max_age: 365                  # 日志最长保存时间，单位：天
+    rotation_time: 1              # 日志滚动时间，单位：小时
+    log_in_console: false         # 是否展示日志到终端，仅限于调试使用
+    show_color: true              # 是否打印颜色日志
+</pre></div>
+</div>
+<p>配置的参数含义不再赘述，其中需要说明的是对应的<code class="docutils literal notranslate"><span class="pre">sdk_config_path</span></code>配置，该配置描述的是访问某条链的SDK的配置，对于长安链而言，该配置与<code class="docutils literal notranslate"><span class="pre">Adapter中配置的SDK配置</span></code>文件内容格式一致，可参考Adapter配置调整章节。</p>
+</div>
+<div class="section" id="id9">
+<h4><span class="section-number">9.2.5.4. </span>其他配置调整<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<p>除了上述配置等关键配置外，默认还有其他的配置需要进行调整，主要包括三部分：Web监听配置、Channel监听配置及存储配置。</p>
+<p>首先是Web监听配置，该配置描述的是跨链SDK访问的对端，即接收业务系统调用跨链SDK时发送的跨链事件的入口配置，其详细配置信息如下所示：</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span># 监听器配置，包括WebListener和ChannelListener
+listener:
+  # WebListener配置，用于监听跨链SDK发送的跨链请求
+  web:
+    address: 127.0.0.1    # Web服务监听网卡地址
+    port: 8080  # Web服务监听端口
+</pre></div>
+</div>
+<p>然后是Channel监听配置，该配置描述的是用于接收另外的跨链代理发送的事务事件消息，其详细配置如下所示：</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span># ChannelListener配置，用于监听其他跨链代理发送的事务请求
+channel:
+  provider: libp2p    # Channel监听方式，libp2p表示采用libp2p协议
+  libp2p:
+    address: /ip4/0.0.0.0/tcp/19527    # Channel监听的地址
+    priv_key_file: crypto/channel_listener.key    # Channel监听服务对应的私钥信息
+    protocol_id: /listener    # Channel监听协议ID
+    delimit: &quot;\n&quot;    # Channel监听消息的处理分割符，通过该分割符对消息进行分割
+</pre></div>
+</div>
+<p>最后是存储配置 ，目前存储实现只支持leveldb，其详细配置如下所示：</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span># 存储配置，用于配置当前跨链代理对所有跨链请求的处理存储记录
+storage:
+  provider: leveldb    #  当前存储采用的类型
+  leveldb:    # 存储采用leveldb的情况下，对应leveldb的详细配置
+    store_path: ../storage/statedb    # leveldb的存储路径
+    write_buffer_size: 4    # leveldb的写入Buffer大小，单位：M
+    bloom_filter_bits: 10    # leveldb的布隆过滤器的bit长度
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3><span class="section-number">9.2.6. </span>跨链代理启动<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>按照上述方式完成修改后，可使用release路径下的启动脚本开启服务：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>在 <code class="docutils literal notranslate"><span class="pre">logs</span></code> 中查看当前服务的活动日志，也可以使用 <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">-ef</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">cross_chain</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-v</span> <span class="pre">grep</span> <span class="pre">|</span> <span class="pre">awk</span> <span class="pre">'{print</span> <span class="pre">$2}'</span></code>  命令查看是否启动成功。</p>
+</div>
+</div>
+<div class="section" id="sdk">
+<h2><span class="section-number">9.3. </span>跨链SDK使用<a class="headerlink" href="#sdk" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id11">
+<h3><span class="section-number">9.3.1. </span>跨链SDK配置调整<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>跨链SDK是提供给业务方使用的SDK，通过该SDK，业务方用户可以构建跨链请求，发送至对应的跨链网关（主跨链网关）。</p>
+<p>跨链SDK在使用时也需要配置一些信息，这些信息用于生成跨链SDK的工厂对象，其配置内容如下所示：</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>configs:
+  - chain_id: &quot;chain1&quot;
+    chain_client_config_path: chainmaker/chainmaker_chain1_sdk.yml # 链 sdk 的配置路径
+    # 事物合约参数
+    transaction_contract_name: &quot;TransactionStable&quot; # 事物合约名，一般一条链复用一个事务合约，合约提供通用的 执行、确认、回滚 方法
+    transaction_execute_method: &quot;Execute&quot; # 事物合约 执行方法 名
+    transaction_commit_method: &quot;Commit&quot; # 事物合约 确认方法 名
+    transaction_rollback_method: &quot;Rollback&quot; # 事物合约 回滚方法 名
+    # 事物合约参数
+    transaction_execute_data_key: &quot;executeData&quot; # 调用事物合约执行方法，执行数据入参的键
+    transaction_rollback_data_key: &quot;rollbackData&quot; # 调用事物合约执行方法，回滚数据入参的键
+
+    business_cross_id_key: &quot;crossID&quot; # 跨链交易ID的键
+    business_contract_name_key: &quot;contractName&quot; # 事务合约执行跨合约调用时，解析业务合约 合约名 的键
+    business_method_key: &quot;method&quot; # 事务合约执行跨合约调用时，解析业务合约 合约方法 的键
+    business_params_key: &quot;params&quot; # 事务合约执行跨合约调用时，解析业务合约 合约入参 的键
+
+  - chain_id: &quot;chain2&quot; # 链ID
+    # 链sdk配置路径
+    chain_client_config_path: chainmaker/chainmaker_chain2_sdk.yml # 链 sdk 的配置路径
+    # 事物合约参数
+    transaction_contract_name: &quot;TransactionStable&quot; # 事物合约名，一般一条链复用一个事务合约，合约提供通用的 执行、确认、回滚 方法
+    transaction_execute_method: &quot;Execute&quot; # 事物合约 执行方法 名
+    transaction_commit_method: &quot;Commit&quot; # 事物合约 确认方法 名
+    transaction_rollback_method: &quot;Rollback&quot; # 事物合约 回滚方法 名
+    # 事物合约参数
+    transaction_execute_data_key: &quot;executeData&quot; # 调用事物合约执行方法，执行数据入参的键
+    transaction_rollback_data_key: &quot;rollbackData&quot; # 调用事物合约执行方法，回滚数据入参的键
+
+    business_cross_id_key: &quot;crossID&quot; # 跨链交易ID的键
+    business_contract_name_key: &quot;contractName&quot; # 事务合约执行跨合约调用时，解析业务合约 合约名 的键
+    business_method_key: &quot;method&quot; # 事务合约执行跨合约调用时，解析业务合约 合约方法 的键
+    business_params_key: &quot;params&quot; # 事务合约执行跨合约调用时，解析业务合约 合约入参 的键
+</pre></div>
+</div>
+<p>按照之前流程配置的话，里面的参数中只需要修改对应的<code class="docutils literal notranslate"><span class="pre">chain_id</span></code>和<code class="docutils literal notranslate"><span class="pre">chain_client_config_path</span></code>即可，<code class="docutils literal notranslate"><span class="pre">chain_client_config_path</span></code>为对应链SDK的配置路径，该配置内容请参考<code class="docutils literal notranslate"><span class="pre">Adapter配置调整</span></code>章节。</p>
+</div>
+<div class="section" id="id12">
+<h3><span class="section-number">9.3.2. </span>跨链SDK代码调用<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<p>下面是跨链SDK的使用方式：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
+<span class="c1">// 创建 UITPCrossEvent 对象</span>
+<span class="nx">uitpEvent</span> <span class="o">:=</span> <span class="nx">ccsdk</span><span class="p">.</span><span class="nx">NewUITPCrossEvent</span><span class="p">()</span>
+<span class="c1">// 获取本地跨链sdk配置</span>
+<span class="nx">configM</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">conf</span><span class="p">.</span><span class="nx">InitConfigByFilepath</span><span class="p">(</span><span class="s">&quot;./config/template/cross_chain_sdk.yml&quot;</span><span class="p">)</span>
+<span class="nx">require</span><span class="p">.</span><span class="nx">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+<span class="c1">// 获取平行链 chain1 的 MultiTXBuilder，chain1是链的ID</span>
+<span class="nx">mtxBuilder1</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">MultiTxFactory</span><span class="p">(</span><span class="nx">parallels</span><span class="p">.</span><span class="nx">ChainChainMaker</span><span class="p">,</span> <span class="s">&quot;chain1&quot;</span><span class="p">,</span> <span class="nx">configM</span><span class="p">)</span>
+<span class="nx">require</span><span class="p">.</span><span class="nx">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+<span class="nx">require</span><span class="p">.</span><span class="nx">NotNil</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">mtxBuilder1</span><span class="p">)</span>
+<span class="c1">// 生成 CrossTx</span>
+<span class="nx">crossTx1</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">mtxBuilder1</span><span class="p">.</span><span class="nx">GetClient</span><span class="p">().</span><span class="nx">BuildTxRequestData</span><span class="p">(</span>
+    <span class="nx">uitpEvent</span><span class="p">.</span><span class="nx">GetCrossID</span><span class="p">(),</span>                     <span class="c1">//  固定的crossID</span>
+    <span class="s">&quot;BalanceStable&quot;</span><span class="p">,</span>                            <span class="c1">//  业务合约名称</span>
+    <span class="s">&quot;Minus&quot;</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;number&quot;</span><span class="p">:</span> <span class="s">&quot;1&quot;</span><span class="p">},</span>  <span class="c1">//  Execute执行函数名及其入参，该函数意义为将内置账号减1个token</span>
+    <span class="s">&quot;Plus&quot;</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;number&quot;</span><span class="p">:</span> <span class="s">&quot;1&quot;</span><span class="p">},</span>   <span class="c1">//  Rollback执行函数名及其入参，该函数意义为添加1个token给内置账号</span>
+    <span class="mi">0</span><span class="p">,</span>                                          <span class="c1">//  当前操作在跨链中的序号</span>
+<span class="p">)</span>
+
+<span class="c1">// 获取平行链 chain2 的 MultiTXBuilder，chain2 是链的ID</span>
+<span class="nx">mtxBuilder2</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">MultiTxFactory</span><span class="p">(</span><span class="nx">parallels</span><span class="p">.</span><span class="nx">ChainChainMaker</span><span class="p">,</span> <span class="s">&quot;chain2&quot;</span><span class="p">,</span> <span class="nx">configM</span><span class="p">)</span>
+<span class="nx">require</span><span class="p">.</span><span class="nx">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+<span class="nx">require</span><span class="p">.</span><span class="nx">NotNil</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">mtxBuilder2</span><span class="p">)</span>
+<span class="c1">// 可以通过获取 client 实例，调用非 SDKInterface 提供的方法，提供平行链非通用接口的入口</span>
+<span class="nx">crossTx2</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">mtxBuilder2</span><span class="p">.</span><span class="nx">GetClient</span><span class="p">().(</span><span class="o">*</span><span class="nx">chainmaker</span><span class="p">.</span><span class="nx">ChainClient</span><span class="p">).</span><span class="nx">BuildTxRequestData</span><span class="p">(</span>
+    <span class="nx">uitpEvent</span><span class="p">.</span><span class="nx">GetCrossID</span><span class="p">(),</span>
+    <span class="s">&quot;BalanceStable&quot;</span><span class="p">,</span>
+    <span class="s">&quot;Plus&quot;</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;number&quot;</span><span class="p">:</span> <span class="s">&quot;10000&quot;</span><span class="p">},</span>  <span class="c1">// 该函数含义为将内置账号增加10000个token</span>
+    <span class="s">&quot;Minus&quot;</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;number&quot;</span><span class="p">:</span> <span class="s">&quot;10000&quot;</span><span class="p">},</span> <span class="c1">// 该函数含义为从内置账号中减去10000个token</span>
+    <span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">// 组装 CrossTx</span>
+<span class="nx">uitpEvent</span><span class="p">.</span><span class="nx">WithMultiTxs</span><span class="p">(</span><span class="nx">crossTx1</span><span class="p">,</span> <span class="nx">crossTx2</span><span class="p">)</span>
+<span class="c1">// 提交到 CrossProxy 节点，该路径为 CrossProxy 对应的 WebListener 的访问路径</span>
+<span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">uitpEvent</span><span class="p">.</span><span class="nx">DeliverEvent</span><span class="p">(</span><span class="s">&quot;http://localhost:8080&quot;</span><span class="p">)</span>
+<span class="nx">require</span><span class="p">.</span><span class="nx">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+<span class="nx">t</span><span class="p">.</span><span class="nx">Log</span><span class="p">(</span><span class="s">&quot;crossID: &quot;</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">CrossID</span><span class="p">)</span>
+<span class="nx">require</span><span class="p">.</span><span class="nx">NotEmpty</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">CrossID</span><span class="p">)</span>
+<span class="c1">// 异步查询跨链结果</span>
+<span class="c1">// 使用 event 对象查询跨链执行结果</span>
+<span class="nx">result</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">uitpEvent</span><span class="p">.</span><span class="nx">ShowCrossResult</span><span class="p">(</span><span class="s">&quot;http://localhost:8080&quot;</span><span class="p">)</span>
+<span class="nx">require</span><span class="p">.</span><span class="nx">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+<span class="nx">t</span><span class="p">.</span><span class="nx">Log</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+<span class="c1">// 也可以直接使用 crossID 查询跨链执行结果，需要注意尽量延时访问，以便于跨链操作完成</span>
+<span class="nx">_</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">ShowCrossResult</span><span class="p">(</span><span class="s">&quot;http://localhost:8080&quot;</span><span class="p">,</span> <span class="nx">uitpEvent</span><span class="p">.</span><span class="nx">GetCrossID</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id13">
+<h2><span class="section-number">9.4. </span>跨链服务验证<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>安装上述流程完成部署后，可以通过系统提供的转账的示例合约进行验证，该合约只是一个示例，其内容比较简单，可作为参考，但不建议直接作为实际业务合约使用。</p>
+<div class="section" id="id14">
+<h3><span class="section-number">9.4.1. </span>安装验证示例业务合约<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<p>目前在代码库的contract目录下创建了一个可以进行测试的合约示例，名称为：<code class="docutils literal notranslate"><span class="pre">balance.wasm</span></code>，其查看方式如下：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tree contract/balance
+contract/balance
+├── balance.wasm
+├── chainmaker.go
+├── contract_test.go
+├── easycodec.go
+└── main.go
+</pre></div>
+</div>
+<p>其中main.go中为该合约的核心源码，可供参考。该示例合约是一个转账合约，它主要包括四个函数：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>Show()：显示内置账号的余额；
+Plus()：增加指定数量的token；
+Minus()：减少指定数量的token；
+Reset()：将token数量重置为1000；
+</pre></div>
+</div>
+<p>该合约采用go语言编写，合约执行环境选择：RuntimeType_GASM RuntimeType = 4，然后通过chainmaker-sdk-go在 <strong>两条链</strong> 上安装该合约。</p>
+</div>
+<div class="section" id="id15">
+<h3><span class="section-number">9.4.2. </span>调用跨链SDK进行验证<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<p>根据<code class="docutils literal notranslate"><span class="pre">跨链SDK使用</span></code>章节，可对结果跨链服务是否安装成功进行验证，若前面的操作完全按照文档完成，那么跨链SDK的调用基本不需要做修改，主要修改的地方不要忘记CrossProxy的访问地址。</p>
+<p>一次完成的跨链操作完成后，预期chain1（第一条链）中账号的token变为<code class="docutils literal notranslate"><span class="pre">999</span></code>，chain2中账号的token变为<code class="docutils literal notranslate"><span class="pre">11000</span></code>，这两个值的结果可以通过分别调用两个业务合约的Show()方法查询实现。若查询结果与上述一致，则表明跨链服务成功，若不一致则表明跨链服务部署失败，需要查看日志以确认失败原因。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html" class="btn btn-neutral float-right" title="1. 供应链金融" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html" class="btn btn-neutral float-left" title="8. SPV 部署和使用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

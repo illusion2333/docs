@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>5. 版本迭代 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  <title>5. 版本迭代 &mdash; chainmaker-docs v1.2.0 documentation</title>
   
 
   
@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
 
   
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
 
   
@@ -57,13 +59,16 @@
           
 
           
+            
+            <img src="../_static/chainmakerLOGO-09.png" class="logo" alt="Logo"/>
+          
           </a>
 
           
             
             
               <div class="version">
-                v1.1.0
+                v1.2.0
               </div>
             
           
@@ -88,7 +93,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+              <p class="caption"><span class="caption-text">长安链介绍</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
@@ -96,7 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">5. 版本迭代</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">5.1. 版本及特性</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#chainmaker-docker">5.2. chainmaker docker 镜像地址</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker">5.2. Docker 镜像地址</a></li>
 </ul>
 </li>
 </ul>
@@ -108,8 +113,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/Q%26A.html">7. Q&amp;A</a></li>
 </ul>
-<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<p class="caption"><span class="caption-text">技术设计文档</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
@@ -123,6 +129,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html">13. SQL合约支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/SPV.html">14. SPV 轻节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html">15. 跨链方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6.html">16. 隐私合约</a></li>
 </ul>
 <p class="caption"><span class="caption-text">开发指南</span></p>
 <ul>
@@ -139,6 +149,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B5%8F%E8%A7%88%E5%99%A8.html">7. 区块链浏览器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html">8. SPV 部署和使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%B7%A8%E9%93%BE%E4%BD%BF%E7%94%A8.html">9. 跨链使用</a></li>
 </ul>
 <p class="caption"><span class="caption-text">应用场景</span></p>
 <ul>
@@ -223,6 +236,7 @@
   <div class="section" id="id1">
 <h1><span class="section-number">5. </span>版本迭代<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>本章节介绍了长安链版本、产品功能和对应的更新状态时间点。</p>
+<p>若要查看<a class="reference external" href="https://docs.chainmaker.org.cn">最新文档</a>请点击跳转。</p>
 <div class="section" id="id2">
 <h2><span class="section-number">5.1. </span>版本及特性<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="docutils">
@@ -240,15 +254,25 @@
 <td>1. 可装配、高性能整体框架；<br>2. 支持GAMS、WASMER、WXVM等三种合约引擎，golang、rust、c++等三种合约语言；<br>3. 支持SOLO、RAFT、TBFT等三种共识算法；<br>4. 支持基于冲突检测的块内智能合约交易并行执行；<br>5. 支持LevelDB、RocksDB、MySQL等存储引擎；<br>6. 存储模块支持内存加速，支持故障恢复；</td>
 </tr>
 <tr>
-<td>1.1.0</td>
+<td><a href="https://docs.chainmaker.org.cn/v1.1.0/html/index.html">1.1.0</a></td>
 <td>2021.05.12</td>
 <td>1. 支持EVM合约引擎，兼容以太坊合约生态；<br/>2. 支持各类合约引擎的事件订阅机制和查询机制，增加智能合约易用性；<br/>3. 支持HotStuff流水线共识，当前支持在多链、存证交易场景下提供更高效的共识能力；<br/>4. 支持层级身份加密方案，满足联盟链数据层级可见性需求；<br/>5. 优化网络模块配置，增加本地配置种子节点和信任根，共识节点IP变更无需链上配置更新；<br/>6. 优化新旧版本兼容问题。</td>
 </tr>
+<tr>
+<td><a href="https://docs.chainmaker.org.cn/v1.1.1/html/index.html">1.1.1</a></td>
+<td>2021.05.21</td>
+<td>1. 合约引擎（GASM&amp;WASMER）支持SQL操作状态数据；<br/>2. 新增区块链浏览器；<br/>3. 网络模块修复动态创建新链时数据同步问题。</td>
+</tr>
+<tr>
+<td><a href="https://docs.chainmaker.org.cn/">1.2.0(当前文档)</a></td>
+<td>2021.06.19</td>
+<td>1. 合约增加支持同态加密模块<br>2. rust、tinygo合约SDK增加kv前缀查询</td>
+</tr>
 </tbody>
 </table></div>
-<div class="section" id="chainmaker-docker">
-<h2><span class="section-number">5.2. </span>chainmaker docker 镜像地址<a class="headerlink" href="#chainmaker-docker" title="Permalink to this headline">¶</a></h2>
-<p><strong>hub.docker官网主页：</strong><a href="https://hub.docker.com/r/chainmakerofficial/chainmaker" target="_blank">https://hub.docker.com/r/chainmakerofficial/chainmaker</a></p>
+<div class="section" id="docker">
+<h2><span class="section-number">5.2. </span>Docker 镜像地址<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h2>
+<p><strong>Docker Hub主页：</strong><a href="https://hub.docker.com/r/chainmakerofficial/chainmaker" target="_blank">https://hub.docker.com/r/chainmakerofficial/chainmaker</a></p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -264,6 +288,18 @@
 <tr>
 <td>1.1.0</td>
 <td>docker pull chainmakerofficial/chainmaker:v1.1.0</td>
+</tr>
+<tr>
+<td>1.1.1</td>
+<td>docker pull chainmakerofficial/chainmaker:v1.1.1</td>
+</tr>
+<tr>
+<td>1.2.0</td>
+<td>docker pull chainmakerofficial/chainmaker:v1.2.0</td>
+</tr>
+<tr>
+<td><br><br></td>
+<td></td>
 </tr>
 </tbody>
 </table></div>

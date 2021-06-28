@@ -2,8 +2,8 @@
 
 本文分为两部分：
 
-1. 方案接口、工具介绍：对 ChainMaker·长安链的 HIBE SDK 接口、cmc 工具和 common 库提供的算法的介绍。
-2. 用例：介绍了如何使用 ChainMaker·长安链 HIBE 特性，从 HIBE 系统初始化、编写智能合约，到使用 SDK（本文使用 go 的 SDK） 进行数据的加密上链、获取链上数据解密。
+1. 方案接口、工具介绍：对 ChainMaker的 HIBE SDK 接口、cmc 工具和 common 库提供的算法的介绍。
+2. 用例：介绍了如何使用 ChainMakerHIBE 特性，从 HIBE 系统初始化、编写智能合约，到使用 SDK（本文使用 go 的 SDK） 进行数据的加密上链、获取链上数据解密。
 
 
 
@@ -17,7 +17,7 @@
 
 CMC 中的 hibe 命令是管理、使用HIBE身份层级加密的辅助工具，用于初始化一个公司的系统层级，生成`params`、`MasterKey`、根据参数生成成员的`privateKey`，并保存到本地文件，由上司去分发。
 
-使用命令`./cmc -hibe -h` 查看命令该子命令详细提示：
+使用命令`./cmc hibe -h` 查看命令该子命令详细提示：
 
 ```sh
 ./cmc hibe -h
@@ -336,7 +336,7 @@ DecryptHibeTxByTxId(localId string, hibeParams []byte, hibePrvKey []byte, txId s
 [wx-topL secondL thirdL] privateKey storage file path: ./hibe-data/wx-org1.chainmaker.org/privateKeys/wx-topL#secondL#thirdL.privateKey
 ```
 
-注意，所有的私钥都平铺在指定目录（这里是 *./hibe-data/wx-org1.chainmaker.org/privateKeys* ）下进行管理，并且会以 `_` 替换 `/` 之后的*ID.privatekey*命名，此时的文件夹结构及子密钥名称如下：
+注意，所有的私钥都平铺在指定目录（这里是 *./hibe-data/wx-org1.chainmaker.org/privateKeys* ）下进行管理，并且会以 `#` 替换 `/` 之后的*ID.privatekey*命名，此时的文件夹结构及子密钥名称如下：
 
 ```go
 ./hibe-data/
@@ -878,3 +878,6 @@ func testUserHibeContractMsgGoQuery(t *testing.T, client *ChainClient) {
 PASS
 ```
 
+
+
+<br><br>

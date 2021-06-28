@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>3. 命令行工具 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  <title>3. 命令行工具 &mdash; chainmaker-docs v1.2.0 documentation</title>
   
 
   
@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
 
   
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
 
   
@@ -57,13 +59,16 @@
           
 
           
+            
+            <img src="../_static/chainmakerLOGO-09.png" class="logo" alt="Logo"/>
+          
           </a>
 
           
             
             
               <div class="version">
-                v1.1.0
+                v1.2.0
               </div>
             
           
@@ -88,7 +93,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+              <p class="caption"><span class="caption-text">长安链介绍</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
@@ -104,8 +109,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/Q%26A.html">7. Q&amp;A</a></li>
 </ul>
-<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<p class="caption"><span class="caption-text">技术设计文档</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
@@ -119,6 +125,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html">13. SQL合约支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/SPV.html">14. SPV 轻节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html">15. 跨链方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6.html">16. 隐私合约</a></li>
 </ul>
 <p class="caption"><span class="caption-text">开发指南</span></p>
 <ul class="current">
@@ -128,7 +138,15 @@
 <li class="toctree-l2"><a class="reference internal" href="#id2">3.1. 简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cmc">3.2. cmc编译</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id3">3.3. cmc功能</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id4">3.3.1. 示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">3.3.1. 示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">3.3.1.1. 私钥管理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">3.3.1.2. 证书管理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">3.3.1.3. 交易功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">3.3.1.4. 查询链上数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">3.3.1.5. 链配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">3.3.1.6. 归档功能</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -143,6 +161,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B5%8F%E8%A7%88%E5%99%A8.html">7. 区块链浏览器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html">8. SPV 部署和使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%B7%A8%E9%93%BE%E4%BD%BF%E7%94%A8.html">9. 跨链使用</a></li>
 </ul>
 <p class="caption"><span class="caption-text">应用场景</span></p>
 <ul>
@@ -233,12 +254,21 @@
 <div class="section" id="cmc">
 <h2><span class="section-number">3.2. </span>cmc编译<a class="headerlink" href="#cmc" title="Permalink to this headline">¶</a></h2>
 <p>cmc工具的编译方式如下：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone --recurse-submodules https://git.chainmaker.org.cn/chainmaker/chainmaker-go.git
-<span class="nb">cd</span> chainmaker-go/tools/cmc
-go mod download
-go build
-<span class="c1">#拷贝sdk的配置文件和示例里cmc命令行需要使用的文件</span>
-cp -r ../sdk/testdata ./
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ mkdir ~/chainmaker
+$ <span class="nb">cd</span> ~/chainmaker
+$ git clone https://git.chainmaker.org.cn/chainmaker/chainmaker-go.git
+$ <span class="nb">cd</span> chainmaker-go/tools/cmc
+$ go mod download
+$ go build
+<span class="c1"># 方式一：使用默认自带的证书，拷贝sdk的配置文件和示例里cmc命令行需要使用的文件</span>
+$ <span class="nb">cd</span> ~/chainmaker
+$ git clone https://git.chainmaker.org.cn/chainmaker/sdk-go.git
+$ cp -r ~/chainmaker/sdk-go/testdata ~/chainmaker/chainmaker-go/tools/cmc
+<span class="c1"># 方式二：使用刚生成的证书</span>
+$ <span class="nb">cd</span> ~/chainmaker/chainmaker-go/tools/cmc
+$ mkdir testdata
+$ cp ~/chainmaker/sdk-go/testdata/sdk_config.yml testdata/
+$ cp -r ~/chainmaker/chainmaker-go/build/crypto-config/ testdata/
 </pre></div>
 </div>
 </div>
@@ -249,15 +279,18 @@ cp -r ../sdk/testdata ./
 <li><p>私钥管理：私钥生成功能</p></li>
 <li><p>证书管理：包括生成ca证书、生成crl列表、生成csr、颁发证书、根据证书获取节点Id等功能</p></li>
 <li><p>交易功能：主要包括链管理、用户合约发布、升级、吊销、冻结、调用、查询等功能</p></li>
+<li><p>查询链上数据：查询链上block和transaction</p></li>
+<li><p>链配置：查询及更新链配置</p></li>
+<li><p>归档功能：将链上数据转移到独立存储上，归档后的数据具备可查询、可恢复到链上的特性</p></li>
 <li><p>帮助功能：提供所有命令的帮助查询</p></li>
 </ul>
 <div class="section" id="id4">
 <h3><span class="section-number">3.3.1. </span>示例<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<ul>
-<li><p>私钥管理</p>
+<div class="section" id="id5">
+<h4><span class="section-number">3.3.1.1. </span>私钥管理<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <p>生成私钥</p>
 <p><strong>参数说明</strong>：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>tianlehan@DANAHAN-MB0 cmc % ./cmc key gen -h 
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ./cmc key gen -h 
 Private key generate
 Usage:
   cmc key gen <span class="o">[</span>flags<span class="o">]</span>
@@ -270,16 +303,17 @@ Flags:
 </pre></div>
 </div>
 <p><strong>示例：</strong></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cmc key gen -a ECC_P256 -n ca.key -p ./
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ./cmc key gen -a ECC_P256 -n ca.key -p ./
 </pre></div>
 </div>
-</li>
-<li><p>证书管理</p>
+</div>
+<div class="section" id="id6">
+<h4><span class="section-number">3.3.1.2. </span>证书管理<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><p>生成ca证书</p>
 <p>生成ca证书之前需要先生成ca的私钥文件，然后在生成ca证书时使用-k参数指定生成的私钥文件路径</p>
 <p><strong>参数说明</strong></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>tianlehan@DANAHAN-MB0 cmc % ./cmc cert ca -h 
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ./cmc cert ca -h 
 Create certificate authority crtificate
 Usage:
   cmc cert ca <span class="o">[</span>flags<span class="o">]</span>
@@ -296,14 +330,14 @@ Flags:
 </pre></div>
 </div>
 <p><strong>示例</strong></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cmc cert ca -c wx-org1.chainmaker.org -k ca.key -H sha256 --ou root-ca -n ca.crt -p ./ --org wx-org1
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ./cmc cert ca -c wx-org1.chainmaker.org -k ca.key -H sha256 --ou root-ca -n ca.crt -p ./ --org wx-org1
 </pre></div>
 </div>
 </li>
 <li><p>生成crl列表</p>
 <p>crl列表用于撤消证书请求，首先将要撤消的证书生成一个crl列表，然后再发送请求到链上</p>
 <p><strong>参数说明</strong></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>tianlehan@DANAHAN-MB0 cmc % ./cmc cert crl -h  
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ./cmc cert crl -h  
 create cert crl
 
 Usage:
@@ -318,15 +352,13 @@ Flags:
 </pre></div>
 </div>
 <p><strong>示例</strong></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cmc cert crl -C ./ca.crt -K ca.key --crl-path<span class="o">=</span>./client1.crl --crt-path<span class="o">=</span>../sdk/testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ./cmc cert crl -C ./ca.crt -K ca.key --crl-path<span class="o">=</span>./client1.crl --crt-path<span class="o">=</span>../sdk/testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt
 </pre></div>
 </div>
 </li>
-</ul>
-</li>
 <li><p>生成csr文件</p>
 <p><strong>参数说明</strong></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>tianlehan@DANAHAN-MB0 cmc % ./cmc cert csr -h
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ./cmc cert csr -h
 Create certificate request
 
 Usage:
@@ -343,13 +375,13 @@ Flags:
 </pre></div>
 </div>
 <p><strong>示例</strong></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cmc cert csr -c wx-org1.chainmaker.org -k ../sdk/testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key -n client1.csr -p ./ --ou root-ca -o wx-org1
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ./cmc cert csr -c wx-org1.chainmaker.org -k ../sdk/testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key -n client1.csr -p ./ --ou root-ca -o wx-org1
 </pre></div>
 </div>
 </li>
 <li><p>颁发证书</p>
 <p><strong>参数说明</strong></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>tianlehan@DANAHAN-MB0 cmc % ./cmc cert issue -h
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ./cmc cert issue -h
 Issue certificate
 
 Usage:
@@ -367,13 +399,13 @@ Flags:
 </pre></div>
 </div>
 <p><strong>示例</strong></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cmc cert issue -C ca.crt -K ca.key -r client1.csr -H sha256 -n client1.crt -p ./
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ./cmc cert issue -C ca.crt -K ca.key -r client1.csr -H sha256 -n client1.crt -p ./
 </pre></div>
 </div>
 </li>
 <li><p>根据证书获取节点Id</p>
 <p><strong>参数说明</strong></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>tianlehan@DANAHAN-MB0 cmc % ./cmc cert nid -h
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ./cmc cert nid -h
 Get node id of node cert
 
 Usage:
@@ -385,12 +417,15 @@ Flags:
 </pre></div>
 </div>
 <p><strong>示例</strong></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>tianlehan@DANAHAN-MB0 cmc % ./cmc cert nid --node-cert-path<span class="o">=</span>../sdk/testdata/crypto-config/wx-org1.chainmaker.org/node/consensus1/consensus1.tls.crt
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ./cmc cert nid --node-cert-path<span class="o">=</span>../sdk/testdata/crypto-config/wx-org1.chainmaker.org/node/consensus1/consensus1.tls.crt
 node id : QmcQHCuAXaFkbcsPUj7e37hXXfZ9DdN7bozseo5oX4qiC4
 </pre></div>
 </div>
 </li>
-<li><p>交易功能</p>
+</ul>
+</div>
+<div class="section" id="id7">
+<h4><span class="section-number">3.3.1.3. </span>交易功能<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
 <p>cmc的交易功能用来发送交易和链进行交互，主要参数说明如下：</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>	--admin-key-file-paths：指定admin用户的私钥文件路径
 	--admin-crt-file-paths：指定admin用户的证书文件路径
@@ -415,64 +450,85 @@ node id : QmcQHCuAXaFkbcsPUj7e37hXXfZ9DdN7bozseo5oX4qiC4
 </div>
 <ul>
 <li><p>创建合约</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cmc client contract user create <span class="se">\</span>
---admin-key-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.key <span class="se">\</span>
---admin-crt-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.crt <span class="se">\</span>
---org-id<span class="o">=</span>wx-org1.chainmaker.org <span class="se">\</span>
---client-crt-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt <span class="se">\</span>
---client-key-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key <span class="se">\</span>
---byte-code-path<span class="o">=</span>../../test/wasm/rust-asset-management-1.0.0.wasm <span class="se">\</span>
---contract-name<span class="o">=</span>asset --runtime-type<span class="o">=</span>WASMER <span class="se">\</span>
---sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
---version<span class="o">=</span><span class="m">1</span>.0 <span class="se">\</span>
---sync-result<span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
---params<span class="o">=</span><span class="s2">&quot;{\&quot;issue_limit\&quot;:\&quot;1000\&quot;,\&quot;total_supply\&quot;:\&quot;100000000\&quot;}&quot;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>  $ ./cmc client contract user create <span class="se">\</span>
+  --contract-name<span class="o">=</span>fact <span class="se">\</span>
+  --runtime-type<span class="o">=</span>WASMER <span class="se">\</span>
+  --byte-code-path<span class="o">=</span>../../test/wasm/rust-fact-1.1.1.wasm <span class="se">\</span>
+  --version<span class="o">=</span><span class="m">1</span>.0 <span class="se">\</span>
+  --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
+  --admin-key-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.key <span class="se">\</span>
+  --admin-crt-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.crt <span class="se">\</span>
+  --org-id<span class="o">=</span>wx-org1.chainmaker.org <span class="se">\</span>
+  --client-crt-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt <span class="se">\</span>
+  --client-key-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key <span class="se">\</span>
+  --sync-result<span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
+  --params<span class="o">=</span><span class="s2">&quot;{}&quot;</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>如下返回表示成功：</p>
+<p>create contract resp: message:”OK” contract_result:&lt;gas_used:73738 &gt;</p>
+</div></blockquote>
+<p>注：智能合约编写及生成wasm文件参见：<a class="reference internal" href="%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html"><span class="doc">智能合约开发</span></a></p>
 </li>
 <li><p>调用合约</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cmc client contract user invoke <span class="se">\</span>
---contract-name<span class="o">=</span>asset --method<span class="o">=</span>register <span class="se">\</span>
---org-id<span class="o">=</span>wx-org2.chainmaker.org <span class="se">\</span>
---client-crt-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org2.chainmaker.org/user/client1/client1.tls.crt <span class="se">\</span>
---client-key-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org2.chainmaker.org/user/client1/client1.tls.key <span class="se">\</span>
---sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
---sync-result<span class="o">=</span><span class="nb">true</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>  $ ./cmc client contract user invoke <span class="se">\</span>
+  --contract-name<span class="o">=</span>fact <span class="se">\</span>
+  --method<span class="o">=</span>save <span class="se">\</span>
+  --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
+  --params<span class="o">=</span><span class="s2">&quot;{\&quot;faile_name\&quot;:\&quot;name007\&quot;,\&quot;file_hash\&quot;:\&quot;ab3456df5799b87c77e7f88\&quot;,\&quot;time\&quot;:\&quot;6543234\&quot;}&quot;</span> <span class="se">\</span>
+  --org-id<span class="o">=</span>wx-org1.chainmaker.org <span class="se">\</span>
+  --client-crt-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt <span class="se">\</span>
+  --client-key-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key <span class="se">\</span>
+  --sync-result<span class="o">=</span><span class="nb">true</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>如下返回表示成功：</p>
+<p>INVOKE contract resp, [code:0]/[msg:OK]/[contractResult:gas_used:13282710 ]</p>
+</div></blockquote>
 </li>
 <li><p>查询合约</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cmc client contract user get <span class="se">\</span>
---contract-name<span class="o">=</span>asset <span class="se">\</span>
---method<span class="o">=</span>query_address <span class="se">\</span>
---sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
---org-id<span class="o">=</span>wx-org1.chainmaker.org <span class="se">\</span>
---client-crt-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt <span class="se">\</span>
---client-key-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>  $ ./cmc client contract user get <span class="se">\</span>
+  --contract-name<span class="o">=</span>fact <span class="se">\</span>
+  --method<span class="o">=</span>find_by_file_hash <span class="se">\</span>
+  --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
+  --params<span class="o">=</span><span class="s2">&quot;{\&quot;file_hash\&quot;:\&quot;ab3456df5799b87c77e7f88\&quot;}&quot;</span> <span class="se">\</span>
+  --org-id<span class="o">=</span>wx-org1.chainmaker.org <span class="se">\</span>
+  --client-crt-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt <span class="se">\</span>
+  --client-key-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key
 </pre></div>
 </div>
+<blockquote>
+<div><p>如下返回表示成功：</p>
+<p>QUERY contract resp: message:”SUCCESS” contract_result:&lt;result:”{“file_hash”:”ab3456df5799b87c77e7f88”,”file_name”:””,”time”:”6543234”}” gas_used:24034881 &gt;</p>
+</div></blockquote>
 </li>
 <li><p>升级合约</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cmc client contract user create <span class="se">\</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ./cmc client contract user upgrade <span class="se">\</span>
+--contract-name<span class="o">=</span>fact <span class="se">\</span>
+--runtime-type<span class="o">=</span>WASMER <span class="se">\</span>
+--byte-code-path<span class="o">=</span>../../test/wasm/rust-fact-1.1.1.wasm <span class="se">\</span>
+--version<span class="o">=</span><span class="m">2</span>.0 <span class="se">\</span>
+--sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
 --admin-key-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.key <span class="se">\</span>
 --admin-crt-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.crt <span class="se">\</span>
 --org-id<span class="o">=</span>wx-org1.chainmaker.org <span class="se">\</span>
 --client-crt-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt <span class="se">\</span>
 --client-key-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key <span class="se">\</span>
---byte-code-path<span class="o">=</span>../../test/wasm/rust-asset-management-1.0.0.wasm <span class="se">\</span>
---contract-name<span class="o">=</span>asset <span class="se">\</span>
---runtime-type<span class="o">=</span>WASMER <span class="se">\</span>
---sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
---version<span class="o">=</span><span class="m">1</span>.0 <span class="se">\</span>
 --sync-result<span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
---params<span class="o">=</span><span class="s2">&quot;{\&quot;issue_limit\&quot;:\&quot;1000\&quot;,\&quot;total_supply\&quot;:\&quot;100000000\&quot;}&quot;</span>
+--params<span class="o">=</span><span class="s2">&quot;{}&quot;</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>如下返回表示成功：其中result结果为用户自定义，每个合约可能不一样，也可能没有。</p>
+<p>upgrade contract resp: message:”OK” contract_result:&lt;result:”upgrade ok” gas_used:4787624 &gt;</p>
+</div></blockquote>
 </li>
 <li><p>冻结合约</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cmc client contract user freeze <span class="se">\</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ./cmc client contract user freeze <span class="se">\</span>
+--contract-name<span class="o">=</span>fact <span class="se">\</span>
 --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
---contract-name<span class="o">=</span>asset <span class="se">\</span>
 --admin-key-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.key <span class="se">\</span>
 --admin-crt-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.crt <span class="se">\</span>
 --org-id<span class="o">=</span>wx-org1.chainmaker.org <span class="se">\</span>
@@ -481,11 +537,16 @@ node id : QmcQHCuAXaFkbcsPUj7e37hXXfZ9DdN7bozseo5oX4qiC4
 --sync-result<span class="o">=</span><span class="nb">true</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>此时再执行查询、调用合约则会失败：会报如下错误：</p>
+<p>QUERY contract resp: code:CONTRACT_FREEZE_FAILED message:”36, 1, contractName[fact] method[find_by_file_hash] txType[QUERY_USER_CONTRACT], failed to run user contract, fact has been frozen.” contract_result:&lt;code:FAIL message:”failed to run user contract, fact has been frozen.” &gt;</p>
+<p>$ ./cmc client contract user get <br />–contract-name=fact <br />–method=find_by_file_hash <br />–sdk-conf-path=./testdata/sdk_config.yml <br />–params=”{“file_hash”:”ab3456df5799b87c77e7f88”}” <br />–org-id=wx-org1.chainmaker.org <br />–client-crt-file-paths=./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt <br />–client-key-file-paths=./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key</p>
+</div></blockquote>
 </li>
 <li><p>解冻合约</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cmc client contract user unfreeze <span class="se">\</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ./cmc client contract user unfreeze <span class="se">\</span>
+--contract-name<span class="o">=</span>fact <span class="se">\</span>
 --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
---contract-name<span class="o">=</span>asset <span class="se">\</span>
 --admin-key-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.key <span class="se">\</span>
 --admin-crt-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.crt <span class="se">\</span>
 --org-id<span class="o">=</span>wx-org1.chainmaker.org <span class="se">\</span>
@@ -494,44 +555,181 @@ node id : QmcQHCuAXaFkbcsPUj7e37hXXfZ9DdN7bozseo5oX4qiC4
 --sync-result<span class="o">=</span><span class="nb">true</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>解冻后的合约可正常使用</p>
+</div></blockquote>
 </li>
 <li><p>吊销合约</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cmc client contract user revoke <span class="se">\</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ./cmc client contract user revoke <span class="se">\</span>
+--contract-name<span class="o">=</span>fact <span class="se">\</span>
 --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
---contract-name<span class="o">=</span>asset <span class="se">\</span>
 --admin-key-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.key <span class="se">\</span>
 --admin-crt-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.crt <span class="se">\</span>
 --org-id<span class="o">=</span>wx-org1.chainmaker.org <span class="se">\</span>
 --client-crt-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt <span class="se">\</span>
 --client-key-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key <span class="se">\</span>
 --sync-result<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>吊销合约后，不可恢复，且不能对该合约执行任何操作，包括查询。</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h4><span class="section-number">3.3.1.4. </span>查询链上数据<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<p>查询链上block和transaction 主要参数说明如下：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>	--sdk-conf-path：指定cmc使用sdk的配置文件路径
+	--chain-id：指定链Id
+</pre></div>
+</div>
+<ul>
+<li><p>根据区块高度查询链上未归档区块</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>  ./cmc query block-by-height <span class="o">[</span>blockheight<span class="o">]</span> <span class="se">\</span>
+  --chain-id<span class="o">=</span>chain1 <span class="se">\</span>
+  --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml
+</pre></div>
+</div>
+</li>
+<li><p>根据区块hash查询链上未归档区块</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>  ./cmc query block-by-hash <span class="o">[</span>blockhash<span class="o">]</span> <span class="se">\</span>
+  --chain-id<span class="o">=</span>chain1 <span class="se">\</span>
+  --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml
+</pre></div>
+</div>
+</li>
+<li><p>根据txid查询链上未归档区块</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>  ./cmc query block-by-txid <span class="o">[</span>txid<span class="o">]</span> <span class="se">\</span>
+  --chain-id<span class="o">=</span>chain1 <span class="se">\</span>
+  --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml
+</pre></div>
+</div>
+</li>
+<li><p>根据txid查询链上未归档tx</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>  ./cmc query tx <span class="o">[</span>txid<span class="o">]</span> <span class="se">\</span>
+  --chain-id<span class="o">=</span>chain1 <span class="se">\</span>
+  --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml
 </pre></div>
 </div>
 </li>
 </ul>
-</li>
+</div>
+<div class="section" id="id9">
+<h4><span class="section-number">3.3.1.5. </span>链配置<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<ul>
 <li><p>查询链配置</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cmc client chainconfig query <span class="se">\</span>
---sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
---org-id<span class="o">=</span>wx-org1.chainmaker.org <span class="se">\</span>
---client-crt-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt <span class="se">\</span>
---client-key-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>  ./cmc client chainconfig query <span class="se">\</span>
+  --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
+  --org-id<span class="o">=</span>wx-org1.chainmaker.org <span class="se">\</span>
+  --client-crt-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt <span class="se">\</span>
+  --client-key-file-paths<span class="o">=</span>./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key
 </pre></div>
 </div>
 </li>
 <li><p>更新链配置（出块时间间隔）</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cmc client chainconfig block updateblockinterval <span class="se">\</span>
---org-id<span class="o">=</span>wx-org1.chainmaker.org <span class="se">\</span>
---client-crt-file-paths<span class="o">=</span>../sdk/testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt <span class="se">\</span>
---client-key-file-paths<span class="o">=</span>../sdk/testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key <span class="se">\</span>
---sdk-conf-path<span class="o">=</span>../sdk/testdata/sdk_config.yml <span class="se">\</span>
---admin-crt-file-paths<span class="o">=</span>../sdk/testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.crt <span class="se">\</span>
---admin-key-file-paths<span class="o">=</span>../sdk/testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.key <span class="se">\</span>
---block-interval <span class="m">1000</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>  ./cmc client chainconfig block updateblockinterval <span class="se">\</span>
+  --org-id<span class="o">=</span>wx-org1.chainmaker.org <span class="se">\</span>
+  --client-crt-file-paths<span class="o">=</span>../sdk/testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt <span class="se">\</span>
+  --client-key-file-paths<span class="o">=</span>../sdk/testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key <span class="se">\</span>
+  --sdk-conf-path<span class="o">=</span>../sdk/testdata/sdk_config.yml <span class="se">\</span>
+  --admin-crt-file-paths<span class="o">=</span>../sdk/testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.crt <span class="se">\</span>
+  --admin-key-file-paths<span class="o">=</span>../sdk/testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.key <span class="se">\</span>
+  --block-interval <span class="m">1000</span>
 </pre></div>
 </div>
 </li>
 </ul>
+</div>
+<div class="section" id="id10">
+<h4><span class="section-number">3.3.1.6. </span>归档功能<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<p>cmc的归档功能是指将链上数据转移到独立存储上，归档后的数据具备可查询、可恢复到链上的特性。<br>
+为了保持数据一致性和防止误操作，cmc实现了分布式锁，同一时刻只允许一个cmc进程进行转储。<br>
+cmc支持增量转储和恢复、断点中继转储和恢复，中途退出不影响数据一致性。<br><br>
+主要参数说明如下：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>	--sdk-conf-path：指定cmc使用sdk的配置文件路径
+	--chain-id：指定链Id
+	--type：指定链下独立存储类型，如 --type<span class="o">=</span>mysql 默认mysql，目前只支持mysql
+	--dest：指定链下独立存储目标地址，mysql类型的格式如 --dest<span class="o">=</span>user:password:localhost:port
+	--target：指定转储目标区块高度，在达到这个高度后停止转储<span class="o">(</span>包括这个块<span class="o">)</span> --target<span class="o">=</span><span class="m">100</span>
+            也可指定转存目标日期，转储在此日期之前的所有区块 --target<span class="o">=</span><span class="s2">&quot;2021-06-01 15:01:41&quot;</span>
+	--blocks：指定本次要转储的块数量，注意：对于target和blocks这两个参数，cmc会就近原则采用先符合条件的参数
+	--start-block-height：指定链数据恢复时的起始区块高度，如设置为100，则从已转储并且未恢复的最大区块开始降序恢复链数据至第100区块
+	--secret-key：指定密码，用于链数据转储和链数据恢复时数据一致性校验，转储和恢复时密码需要一致
+</pre></div>
+</div>
+<ul>
+<li><p>根据时间转储，将链上数据转移到独立存储上，需要权限：admin</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>  ./cmc archive dump --type<span class="o">=</span>mysql <span class="se">\</span>
+  --dest<span class="o">=</span>root:password:localhost:3306 <span class="se">\</span>
+  --target<span class="o">=</span><span class="s2">&quot;2021-06-01 15:01:41&quot;</span> <span class="se">\</span>
+  --blocks<span class="o">=</span><span class="m">10000</span> <span class="se">\</span>
+  --chain-id<span class="o">=</span>chain1 <span class="se">\</span>
+  --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
+  --secret-key<span class="o">=</span>mypassword
+</pre></div>
+</div>
+</li>
+<li><p>根据区块高度转储，将链上数据转移到独立存储上，需要权限：admin</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>  ./cmc archive dump --type<span class="o">=</span>mysql <span class="se">\</span>
+  --dest<span class="o">=</span>root:password:localhost:3306 <span class="se">\</span>
+  --target<span class="o">=</span><span class="m">100</span> <span class="se">\</span>
+  --blocks<span class="o">=</span><span class="m">10000</span> <span class="se">\</span>
+  --chain-id<span class="o">=</span>chain1 <span class="se">\</span>
+  --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
+  --secret-key<span class="o">=</span>mypassword
+</pre></div>
+</div>
+</li>
+<li><p>恢复，将链下的链数据恢复到链上，需要权限：admin</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>  ./cmc archive restore --type<span class="o">=</span>mysql <span class="se">\</span>
+  --dest<span class="o">=</span>root:password:localhost:3306 <span class="se">\</span>
+  --start-block-height<span class="o">=</span><span class="m">0</span> <span class="se">\</span>
+  --chain-id<span class="o">=</span>chain1 <span class="se">\</span>
+  --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
+  --secret-key<span class="o">=</span>mypassword
+</pre></div>
+</div>
+</li>
+<li><p>根据区块高度查询链下已归档区块</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>  ./cmc archive query block-by-height <span class="o">[</span>blockheight<span class="o">]</span> <span class="se">\</span>
+  --chain-id<span class="o">=</span>chain1 <span class="se">\</span>
+  --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
+  --type<span class="o">=</span>mysql <span class="se">\</span>
+  --dest<span class="o">=</span>root:password:localhost:3306
+</pre></div>
+</div>
+</li>
+<li><p>根据区块hash查询链下已归档区块</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>  ./cmc archive query block-by-hash <span class="o">[</span>blockhash<span class="o">]</span> <span class="se">\</span>
+  --chain-id<span class="o">=</span>chain1 <span class="se">\</span>
+  --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
+  --type<span class="o">=</span>mysql <span class="se">\</span>
+  --dest<span class="o">=</span>root:password:localhost:3306
+</pre></div>
+</div>
+</li>
+<li><p>根据txid查询链下已归档区块</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>  ./cmc archive query block-by-txid <span class="o">[</span>txid<span class="o">]</span> <span class="se">\</span>
+  --chain-id<span class="o">=</span>chain1 <span class="se">\</span>
+  --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
+  --type<span class="o">=</span>mysql <span class="se">\</span>
+  --dest<span class="o">=</span>root:password:localhost:3306
+</pre></div>
+</div>
+</li>
+<li><p>根据txid查询链下已归档tx</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>  ./cmc archive query tx <span class="o">[</span>txid<span class="o">]</span> <span class="se">\</span>
+  --chain-id<span class="o">=</span>chain1 <span class="se">\</span>
+  --sdk-conf-path<span class="o">=</span>./testdata/sdk_config.yml <span class="se">\</span>
+  --type<span class="o">=</span>mysql <span class="se">\</span>
+  --dest<span class="o">=</span>root:password:localhost:3306
+</pre></div>
+</div>
+</li>
+</ul>
+<p><br><br></p>
+</div>
 </div>
 </div>
 </div>

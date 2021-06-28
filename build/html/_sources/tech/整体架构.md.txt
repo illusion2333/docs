@@ -14,7 +14,7 @@
 
 
 
-<img src="../images/整体架构-逻辑架构.png" alt="整体架构-逻辑架构" style="zoom:70%;" />
+<img src="../images/Architecture-Logical.png" alt="整体架构-逻辑架构" style="zoom:70%;" />
 
 ## 层级架构
 
@@ -27,4 +27,8 @@
 - 接入层：多语言链SDK，方便应用开发者与链交互。
 - 前端应用层：包括区块链管理平台、区块链浏览器、合约开发IDE等，方便用户直接访问区块链底层平台。
 
-<img src="../images/整体架构-层级架构.png" alt="整体架构-层级架构" style="width:800px;" />
+<img src="../images/Architecture-Hierarchy.png" alt="整体架构-层级架构" style="width:800px;" />
+
+
+
+<br><br>

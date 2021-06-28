@@ -1,0 +1,707 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>16. 隐私合约 &mdash; chainmaker-docs v1.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1. 智能合约" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html" />
+    <link rel="prev" title="15. 跨链方案" href="%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+            
+            <img src="../_static/chainmakerLOGO-09.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/Q%26A.html">7. Q&amp;A</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html">13. SQL合约支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SPV.html">14. SPV 轻节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html">15. 跨链方案</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">16. 隐私合约</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">16.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">16.2. 隐私合约设计方案</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">16.2.1. 可信执行环境与远程证明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#intel-dcap">16.2.1.1. Intel DCAP远程证明（暂不支持，需搭配新款服务器）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#v1-2-0">16.2.1.2. 自定义信任根的远程证明（v1.2.0开始支持）</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">16.2.2. 合约部署阶段</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">16.2.3. 合约调用阶段</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">16.2.3.1. 隐私合约入参数据加密</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">16.3. 使用指南</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">16.3.1. 环境部署</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tee">16.3.1.1. TEE环境构建</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">16.3.1.2. 代码编译</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">16.3.1.3. 环境初始化</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">16.3.2. 隐私计算网关接口</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id15">16.3.2.1. 部署合约接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">16.3.2.2. 执行隐私计算接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">16.3.2.3. 远程证明接口</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">16.3.3. 示例参考</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id19">16.3.3.1. 远程证明示例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id20">16.3.3.2. 隐私合约部署</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id21">16.3.3.3. 隐私合约调用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cpu">16.4. 附录——推荐的支持隐私合约的服务器CPU型号</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B5%8F%E8%A7%88%E5%99%A8.html">7. 区块链浏览器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html">8. SPV 部署和使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%B7%A8%E9%93%BE%E4%BD%BF%E7%94%A8.html">9. 跨链使用</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">16. </span>隐私合约</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tech/隐私合约.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">16. </span>隐私合约<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">16.1. </span>概述<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>一般来说，参与到区块链交易中的数据对链参与者都是公开的。长安链隐私合约功能为区块链提供在合约中处理敏感数据的能力，达到保护数据隐私的同时保证合约执行过程的可靠性。长安链隐私合约采用可信计算技术，在可信执行环境中执行隐私合约。敏感数据以密文形式存在于区块链账本中，在使用时在可信执行环境中解密，而可信执行环境外无法获得敏感数据密文。同时，可信执行环境的远程证明保证合约逻辑不被篡改。如此，达到敏感数据在区块链上的可用不可见，而数据处理流程仍然可以在区块链上公开验证的效果。</p>
+<p>长安链支持Intel SGX作为执行隐私合约的硬件基础。目前Intel SGX相对于其他可信计算硬件，具有兼容性好、文档完善等优势。</p>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">16.2. </span>隐私合约设计方案<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>隐私合约功能由一个基于可信执行环境的隐私合约环境提供。这个隐私合约环境由可信执行环境Enclave和隐私计算网关组成。其中Enclave是运行在可信执行环境的逻辑，负责对合约进行验证、编译、执行，敏感数据密文只能在Enclave中解密。长安链的Enclave中实现了一套EVM逻辑，可以对任意数据处理逻辑进行编译、运行。隐私计算网关负责将用户、Enclave发出的信息打包成区块链的交易payload，并转发给区块链存证。</p>
+<p>整个流程分为三个阶段：可信执行环境的远程证明、隐私合约的部署、隐私合约的调用。</p>
+<ul class="simple">
+<li><p>远程证明动作可以是一次性的。在该阶段，由用户发起对隐私合约环境中Enclave的远程证明，验证该Enclave是否运行于可信执行环境中，以及该Enclave中的逻辑是否在部署后被篡改过。</p></li>
+<li><p>隐私合约的部署发生在远程证明之后，每个不同的隐私合约需要单独进行一次部署。在这个阶段中，用户可以部署任意经区块链共识接受的任意数据处理逻辑作为隐私合约，隐私合约会被存在区块链上，其逻辑收到公开监管。</p></li>
+<li><p>隐私合约的调用发生在部署之后。一个隐私合约部署后，用户可以以相同或不同的数据为入参进行多次调用。</p></li>
+</ul>
+<div class="section" id="id4">
+<h3><span class="section-number">16.2.1. </span>可信执行环境与远程证明<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Trusted_execution_environment">可信执行环境</a>是CPU的一个安全加固区域，可以保证其中的程式和资料在机密性和完整性上得到保护。该区域的软硬件环境可以看做是与外界隔离的一个反沙箱环境。在这个环境中运行的程序，其内存无法被外部包括操作系统读取或写入，其代码运行逻辑也无法被外部包括操作系统干扰。</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Trusted_Computing#Remote_attestation">远程证明</a>可以使验证者辨别被验证的可信执行环境上的软件逻辑是否有变更。通常，远程证明的被验证方通过可信硬件生成一个描述当前运行在可信执行环境中的软件的证书。验证者通过验证这个证书的合法性来验证可信硬件上的软件进程是否被修改过。</p>
+<div class="section" id="intel-dcap">
+<h4><span class="section-number">16.2.1.1. </span><a class="reference external" href="https://software.intel.com/content/dam/develop/external/us/en/documents/s21c-icmc2019-intel-sgx-opensource-attestation.pdf">Intel DCAP</a>远程证明（暂不支持，需搭配新款服务器）<a class="headerlink" href="#intel-dcap" title="Permalink to this headline">¶</a></h4>
+<p>Intel提供的远程证明机制。</p>
+<ul class="simple">
+<li><p>信任Intel。在DCAP远程证明模式中，Intel会作为根CA为SGX硬件提供认证。</p></li>
+<li><p>需要在网络中维护一个PCCS服务提供对网络中的SGX硬件提供认证。PCCS服务是将Intel为SGX下发的类似二级证书的信息缓存到一个局域网络中。</p></li>
+</ul>
+</div>
+<div class="section" id="v1-2-0">
+<h4><span class="section-number">16.2.1.2. </span>自定义信任根的远程证明（v1.2.0开始支持）<a class="headerlink" href="#v1-2-0" title="Permalink to this headline">¶</a></h4>
+<p>自定义信任根的远程证明对DCAP做了一些改动，将对Intel的信任转移到对任意选定的CA机构的信任上。</p>
+<p>在可信执行环境初始化阶段，可信硬件基于硬件固有密钥生成一对签名公私钥对和一对加密公私钥对，并向一个选定的CA机构申请证书。该证书中包含签名公钥和加密公钥。这个过程类似与硬件出厂时向Intel注册信息。</p>
+<img src="../images/PrivateContract-RemoteAttestation.png" style="zoom:100%;" /><p>在用户发起对Enclave的远程证明时：</p>
+<ol class="simple">
+<li><p>用户生成一个随机挑战（任意随机字符串），将其发送到隐私合约环境，由隐私计算网关转发到Enclave中。</p></li>
+<li><p>Enclave对收到的随机挑战制作一个远程证明。Enclave收到随机挑战后，调用SGX EREPORT指令获取包括当前运行中的软件的代码度量在内的Enclave信息——report，将随机挑战与report拼接后，用签名私钥对其签名，制作出包含随机挑战、report、Enclave签名、Enclave证书4个组件的远程证明。</p></li>
+<li><p>Enclave通过隐私计算网关输出远程证明（包括随机挑战、report、Enclave签名、Enclave证书）。</p>
+<ul class="simple">
+<li><p>隐私计算网关会调用系统合约将远程证明传上区块链账本中存证。系统合约中包含验证远程证明合法性的逻辑，通过验证的远程证明会经过区块链共识出块的流程被记录在区块中。</p></li>
+<li><p>隐私计算网关会返回一份远程证明给发起证明流程的用户，用户可以线下自行验证远程证明。</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="id5">
+<h3><span class="section-number">16.2.2. </span>合约部署阶段<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>在初始化（远程证明）阶段将Enclave的远程证明写入区块后，就可以在链上进行隐私合约的部署了。v1.2.0版本只支持solidity语言开发的合约。</p>
+<img src="../images/PrivateContract-ContractInstall.png" style="zoom:100%;" /><p>Solidity隐私合约的部署流程如上图所示：</p>
+<ol class="simple">
+<li><p>用户发起部署合约的请求，并把合约发送给隐私合约环境。</p></li>
+<li><p>隐私计算网关在接收到用户部署请求后，把其中的合约送入Enclave的EVM中进行初始化。部分情况中，这一步还需要借助链上数据参与，则由隐私计算网关打包查询请求与链交互后，再在EVM中初始化合约。</p></li>
+<li><p>Enclave初始化合约完成后，通知隐私计算网关。</p></li>
+<li><p>若Enclave初始化合约成功，隐私计算网关会将合约通过链上系统合约存入区块链账本中。链上的合约可用于合约逻辑的可靠性校验参照及合约的公共监管。</p></li>
+<li><p>隐私计算网关通知用户部署合约的事件状态。</p></li>
+</ol>
+</div>
+<div class="section" id="id6">
+<h3><span class="section-number">16.2.3. </span>合约调用阶段<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>用户可以随时发起对已经部署的隐私合约的调用请求。在调用隐私合约前，用户需要从区块链上获取远程证明并从中获得Enclave的加密公钥和签名验证公钥。隐私合约的调用流程如下：</p>
+<img src="../images/PrivateContract-ContractInvoke.png" style="zoom:100%;" /><ol>
+<li><p>用户向隐私合约环境发起调用隐私合约的请求。这个请求中包含要调用的隐私合约ID、涉及到的链上数据的key、用户准备的链外数据。（其中，链上的数据和用户准备的链外数据可能是加密的。我们会在之后的小章节中介绍加密数据的推荐处理方式。）</p></li>
+<li><p>隐私计算网关根据用户调用合约的请求构造一个从链上读取用户指定的隐私合约代码和用户指定的链上数据的请求，并发送到区块链。</p></li>
+<li><p>隐私计算网关从区块链上获取到隐私合约代码和需要的链上数据后，连同来自用户的链外数据一起，转发给Enclave。Enclave接收到隐私合约代码、区块链上数据、用户提供的链外数据后，</p>
+<ul class="simple">
+<li><p>编译隐私合约；</p></li>
+<li><p>若数据是密文，使用加密私钥解密数据；</p></li>
+<li><p>以传入Enclave的链上、链外数据为入参执行隐私合约；</p></li>
+<li><p>按需要选择是否对执行结果加密；</p></li>
+<li><p>打包执行结果，其中内容包括：隐私合约执行结果、隐私合约、链上及链外的入参数据；</p></li>
+<li><p>使用签名私钥对打包好的执行结果签名。</p></li>
+</ul>
+<p>Enclave将执行结果与签名返回到隐私计算网关。</p>
+</li>
+<li><p>隐私计算网关调用系统合约把执行结果与签名传到链上。系统合约中会从链上获取Enclave远程证明，从中提取出签名公钥对执行结果的签名进行验证，并从执行结果中提取隐私合约、链上数据部分，与区块链上的信息进行比对。如果这些验证都通过了，则系统合约执行成功，隐私合约的执行结果会被打包到区块中等待共识出块。</p></li>
+</ol>
+<div class="section" id="id7">
+<h4><span class="section-number">16.2.3.1. </span>隐私合约入参数据加密<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
+<li><p>在隐私合约执行流程的第2、4步中，提到过隐私合约使用的数据可能是加密的。</p>
+<ul class="simple">
+<li><p>链外加密数据：用户可以随机生成对称密钥作为会话密钥对数据加密，然后从区块链上获取Enclave的加密公钥对会话密钥加密。用户调用隐私合约时传入的链外数据即为数据本身的对称加密密文和会话密钥的非对称加密密文。Enclave使用时，使用加密私钥解密出会话密钥，在用会话密钥解密出数据。</p></li>
+<li><p>区块链上加密数据：区块链上可能会有少量敏感数据的密文，这些密文首先是以与链外加密数据一样的处理方式上链的，Enclave使用链上密文时与使用链外密文的方式相同。</p></li>
+</ul>
+</li>
+<li><p>在隐私合约执行流程的第4步中，提到过可以按需要对隐私合约的执行结果进行加密。这里有两个选择：</p>
+<ul class="simple">
+<li><p>使用Enclave的加密公钥加密：Enclave随机生成一个对称密钥作为会话密钥加密结果，再用Enclave的加密公钥加密会话密钥；执行结果的密文就包含会话密钥密文和数据密文两部分。这种情况下，隐私合约的执行结果只能在后续的隐私合约调用中在Enclave中使用，外部无法解密这个结果。</p></li>
+<li><p>使用入参中传入的一个公钥加密：入参中的公钥可以是来自区块链上的数据，也可以是用户发送调用隐私合约的请求时带入的链外的用户公钥。Enclave随机生成一个对称密钥作为会话密钥加密结果，再用入参中的加密公钥加密会话密钥；执行结果的密文就包含会话密钥密文和数据密文两部分。这种情况下，隐私合约的执行结果可以被对应的加密私钥持有者解密使用。</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2><span class="section-number">16.3. </span>使用指南<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id9">
+<h3><span class="section-number">16.3.1. </span>环境部署<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="tee">
+<h4><span class="section-number">16.3.1.1. </span>TEE环境构建<a class="headerlink" href="#tee" title="Permalink to this headline">¶</a></h4>
+<p>TEE环境构建主要包括安装 Intel(R) SGX driver、Intel(R) SGX SDK和Intel(R) SGX Platform Software (PSW)。环境构建请参考文档：https://github.com/intel/linux-sgx#build-and-install-the-intelr-sgx-driver</p>
+</div>
+<div class="section" id="id10">
+<h4><span class="section-number">16.3.1.2. </span>代码编译<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="enclave">
+<h5><span class="section-number">16.3.1.2.1. </span>编译Enclave<a class="headerlink" href="#enclave" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="enclave-edlenclave-t-c">
+<h6><span class="section-number">16.3.1.2.1.1. </span>根据Enclave.edl生成Enclave_t.c等文件<a class="headerlink" href="#enclave-edlenclave-t-c" title="Permalink to this headline">¶</a></h6>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> Enclave
+/opt/intel/sgxsdk/bin/x64/sgx_edger8r --untrusted ./Enclave.edl --search-path . --search-path /opt/intel/sgxsdk/include --search-path ./openssl/include
+
+/opt/intel/sgxsdk/bin/x64/sgx_edger8r --trusted ./Enclave.edl --search-path . --search-path /opt/intel/sgxsdk/include --search-path ./openssl/include
+</pre></div>
+</div>
+</div>
+<div class="section" id="enclave-u-cenclave-u-hgateway-bridge">
+<h6><span class="section-number">16.3.1.2.1.2. </span>复制Enclave_u.c和Enclave_u.h到gateway/bridge下<a class="headerlink" href="#enclave-u-cenclave-u-hgateway-bridge" title="Permalink to this headline">¶</a></h6>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>手动删除 Enclave_u.h 中的第8行 :  <span class="c1">#include &quot;sgx_edger8r.h&quot;</span>
+cp Enclave_u.* ../gateway/bridge
+cp user_types.* ../gateway/bridge
+</pre></div>
+</div>
+</div>
+<div class="section" id="cgo">
+<h6><span class="section-number">16.3.1.2.1.3. </span>生成cgo代码<a class="headerlink" href="#cgo" title="Permalink to this headline">¶</a></h6>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ../gateway/bridge
+go tool cgo bridge.go
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h6><span class="section-number">16.3.1.2.1.4. </span>编译Enclave<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h6>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake .
+make
+</pre></div>
+</div>
+</div>
+<div class="section" id="libenclave-so">
+<h6><span class="section-number">16.3.1.2.1.5. </span>对libenclave.so进行签名<a class="headerlink" href="#libenclave-so" title="Permalink to this headline">¶</a></h6>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/opt/intel/sgxsdk/bin/x64/sgx_sign sign -key ./Enclave_private.pem -enclave libenclave.so -out ./enclave.signed.so -config ./Enclave.config.xml
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h5><span class="section-number">16.3.1.2.2. </span>编译隐私计算网关<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h5>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ..
+go build
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id13">
+<h4><span class="section-number">16.3.1.3. </span>环境初始化<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
+<li><p>首次运行网关程序时，会导出Enclave可信区证明report文件(out_report.dat)以及证书请求CSR文件(out_csr.pem)</p></li>
+<li><p>调用系统合约将步骤1得到的report信息上链</p></li>
+<li><p>调用系统合约将第三方CA的签名根证书上链</p></li>
+<li><p>使用步骤1得到的CSR文件在第三方CA处申请签发TEE证书</p></li>
+<li><p>将通过步骤4签发的TEE证书以PEM格式存于文件(in_teecert.pem)并放在网关程序目录下</p></li>
+<li><p>重新运行网关程序后会自动校验和加载TEE证书
+备注：若Enclave代码版本发生变化，需要再次执行步骤2将更新过的report信息重新上链</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="id14">
+<h3><span class="section-number">16.3.2. </span>隐私计算网关接口<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<p>网关是用户调用隐私合约的入口，当前使用http接口方式进行调用。网关提供的接口主要包括远程证明、部署合约和调用合约三个接口。所有接口的请求method均使用post方式，参数使用json格式。描述如下：</p>
+<div class="section" id="id15">
+<h4><span class="section-number">16.3.2.1. </span>部署合约接口<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<p>接口地址：http://x.x.x.x:port/private/deploy，其中x.x.x.x:port为服务地址，用户可以在配置里指定。</p>
+<p>请求参数使用go语言描述如下：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// PrivateDeployRequest is the struct of private deploy request args, it will be serialized by json when sending request</span>
+<span class="kd">type</span> <span class="nx">PrivateDeployRequest</span> <span class="kd">struct</span> <span class="p">{</span>
+   <span class="c1">// SignPair include multi sign pairs</span>
+   <span class="nx">SignPair</span> <span class="p">[]</span><span class="o">*</span><span class="nx">SignInfo</span>    <span class="s">`protobuf:&quot;bytes,1,rep,name=sign_pair,json=signPair,proto3&quot; json:&quot;sign_pair,omitempty&quot;`</span>
+   <span class="c1">// Payload is the request payload, also the content of generating signatures</span>
+   <span class="nx">Payload</span>  <span class="o">*</span><span class="nx">PrivateDeployPayload</span> <span class="s">`protobuf:&quot;bytes,2,opt,name=payload,proto3&quot; json:&quot;payload,omitempty&quot;`</span>
+<span class="p">}</span>
+
+<span class="c1">// SignInfo is one pair of signature and a cert</span>
+<span class="kd">type</span> <span class="nx">SignInfo</span> <span class="kd">struct</span> <span class="p">{</span>
+  <span class="c1">// ClientSign is the signature of payload</span>
+	<span class="nx">ClientSign</span> <span class="kt">string</span> <span class="s">`protobuf:&quot;bytes,1,opt,name=client_sign,json=clientSign,proto3&quot; json:&quot;client_sign,omitempty&quot;`</span>
+  <span class="c1">// Cert is the certification used to verify the ClientSign</span>
+	<span class="nx">Cert</span>       <span class="kt">string</span> <span class="s">`protobuf:&quot;bytes,2,opt,name=cert,proto3&quot; json:&quot;cert,omitempty&quot;`</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">PrivateDeployPayload</span> <span class="kd">struct</span> <span class="p">{</span>
+  <span class="c1">// CodeBytes is the the codes of contract</span>
+	<span class="nx">CodeBytes</span> <span class="kt">string</span> <span class="s">`protobuf:&quot;bytes,1,opt,name=code_bytes,json=codeBytes,proto3&quot; json:&quot;code_bytes,omitempty&quot;`</span>
+	<span class="c1">// PrivateRlpData is the deploy args which is packed by abi</span>
+	<span class="nx">PrivateRlpData</span>  <span class="kt">string</span>   <span class="s">`protobuf:&quot;bytes,2,opt,name=private_rlp_data,json=privateRlpData,proto3&quot; json:&quot;private_rlp_data,omitempty&quot;`</span>
+  <span class="c1">// Passwd is the encrypted key which is encrypted by Enclave&#39;s public key</span>
+	<span class="nx">Passwd</span>          <span class="kt">string</span>   <span class="s">`protobuf:&quot;bytes,3,opt,name=passwd,proto3&quot; json:&quot;passwd,omitempty&quot;`</span>
+  <span class="c1">// SigAlgo is a reserved field and not used now</span>
+  <span class="nx">SigAlgo</span>         <span class="kt">string</span>   <span class="s">`protobuf:&quot;bytes,4,opt,name=sig_algo,json=sigAlgo,proto3&quot; json:&quot;sig_algo,omitempty&quot;`</span>
+  <span class="c1">// ContractName is the name of deploying contract</span>
+	<span class="nx">ContractName</span>    <span class="kt">string</span>   <span class="s">`protobuf:&quot;bytes,5,opt,name=contract_name,json=contractName,proto3&quot; json:&quot;contract_name,omitempty&quot;`</span>
+  <span class="c1">// ContractVersion is the version of deploying contract</span>
+	<span class="nx">ContractVersion</span> <span class="kt">string</span>   <span class="s">`protobuf:&quot;bytes,6,opt,name=contract_version,json=contractVersion,proto3&quot; json:&quot;contract_version,omitempty&quot;`</span>
+  <span class="c1">// CodeHash is the hash value(sha256) of CodeBytes, it should be hex bytes of hash</span>
+	<span class="nx">CodeHash</span>        <span class="kt">string</span>   <span class="s">`protobuf:&quot;bytes,7,opt,name=code_hash,json=codeHash,proto3&quot; json:&quot;code_hash,omitempty&quot;`</span>
+  <span class="c1">// OrgId is a slice of orgs which is coordinate with SignInfo&#39;s Cert</span>
+	<span class="nx">OrgId</span>           <span class="p">[]</span><span class="kt">string</span> <span class="s">`protobuf:&quot;bytes,8,rep,name=org_id,json=orgId,proto3&quot; json:&quot;org_id,omitempty&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id16">
+<h4><span class="section-number">16.3.2.2. </span>执行隐私计算接口<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
+<p>接口地址：http://x.x.x.x:port/private/compute，其中x.x.x.x:port为服务地址，用户可以在配置里指定。</p>
+<p>请求参数使用go语言描述如下：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// PrivateComputeRequest is the struct of private compute request args, it will be serialized by json when sending request</span>
+<span class="kd">type</span> <span class="nx">PrivateComputeRequest</span> <span class="kd">struct</span> <span class="p">{</span>
+   <span class="c1">// SignPair include multi sign pairs</span>
+   <span class="nx">SignPair</span> <span class="p">[]</span><span class="o">*</span><span class="nx">SignInfo</span> <span class="s">`protobuf:&quot;bytes,1,rep,name=sign_pair,json=signPair,proto3&quot; json:&quot;sign_pair,omitempty&quot;`</span>
+   <span class="nx">Payload</span>  <span class="o">*</span><span class="nx">Payload</span>    <span class="s">`protobuf:&quot;bytes,2,opt,name=payload,proto3&quot; json:&quot;payload,omitempty&quot;`</span>
+<span class="p">}</span>
+
+<span class="c1">// SignInfo is one pair of signature and a cert</span>
+<span class="kd">type</span> <span class="nx">SignInfo</span> <span class="kd">struct</span> <span class="p">{</span>
+  <span class="c1">// ClientSign is the signature of payload</span>
+	<span class="nx">ClientSign</span> <span class="kt">string</span> <span class="s">`protobuf:&quot;bytes,1,opt,name=client_sign,json=clientSign,proto3&quot; json:&quot;client_sign,omitempty&quot;`</span>
+  <span class="c1">// Cert is the certification used to verify the ClientSign</span>
+	<span class="nx">Cert</span>       <span class="kt">string</span> <span class="s">`protobuf:&quot;bytes,2,opt,name=cert,proto3&quot; json:&quot;cert,omitempty&quot;`</span>
+<span class="p">}</span>
+
+
+<span class="kd">type</span> <span class="nx">PrivateComputePayload</span> <span class="kd">struct</span> <span class="p">{</span>
+  <span class="c1">// PrivateRlpData is the compute args which is packed by abi</span>
+	<span class="nx">PrivateRlpData</span> <span class="kt">string</span>   <span class="s">`protobuf:&quot;bytes,1,opt,name=private_rlp_data,json=privateRlpData,proto3&quot; json:&quot;private_rlp_data,omitempty&quot;`</span>
+  <span class="c1">// Passwd is the encrypted key which is encrypted by Enclave&#39;s public key</span>
+	<span class="nx">Passwd</span>         <span class="kt">string</span>   <span class="s">`protobuf:&quot;bytes,2,opt,name=passwd,proto3&quot; json:&quot;passwd,omitempty&quot;`</span>
+  <span class="c1">// SigAlgo is a reserved field and not used now</span>
+	<span class="nx">SigAlgo</span>        <span class="kt">string</span>   <span class="s">`protobuf:&quot;bytes,3,opt,name=sig_algo,json=sigAlgo,proto3&quot; json:&quot;sig_algo,omitempty&quot;`</span>
+  <span class="c1">// ContractName is the name of deploying contract</span>
+	<span class="nx">ContractName</span>   <span class="kt">string</span>   <span class="s">`protobuf:&quot;bytes,4,opt,name=contract_name,json=contractName,proto3&quot; json:&quot;contract_name,omitempty&quot;`</span>
+  <span class="c1">// CodeHash is the hash value(sha256) of CodeBytes, it should be hex bytes of hash</span>
+	<span class="nx">CodeHash</span>       <span class="kt">string</span>   <span class="s">`protobuf:&quot;bytes,5,opt,name=code_hash,json=codeHash,proto3&quot; json:&quot;code_hash,omitempty&quot;`</span>
+  <span class="c1">// OrgId is a slice of orgs which is coordinate with SignInfo&#39;s Cert</span>
+	<span class="nx">OrgId</span>          <span class="p">[]</span><span class="kt">string</span> <span class="s">`protobuf:&quot;bytes,6,rep,name=org_id,json=orgId,proto3&quot; json:&quot;org_id,omitempty&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id17">
+<h4><span class="section-number">16.3.2.3. </span>远程证明接口<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
+<p>接口地址：http://x.x.x.x:port/private/remote_attestation，其中x.x.x.x:port为服务地址，用户可以在配置里指定。</p>
+<p>请求参数使用go语言描述如下：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// RemoteAttestationRequest is the struct of remote attestation request args, it will be serialized by json when sending request</span>
+<span class="kd">type</span> <span class="nx">RemoteAttestationRequest</span> <span class="kd">struct</span> <span class="p">{</span>
+   <span class="nx">ClientSign</span> <span class="kt">string</span> <span class="s">`json:&quot;client_sign&quot;`</span>
+   <span class="nx">Cert</span> <span class="kt">string</span> <span class="s">`json:&quot;cert&quot;`</span>
+   <span class="nx">Payload</span> <span class="o">*</span><span class="nx">RemoteAttestationRequestPayload</span> <span class="s">`json:&quot;payload&quot;`</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">RemoteAttestationRequestPayload</span> <span class="kd">struct</span> <span class="p">{</span>
+   <span class="c1">// Challenge is a random data to chanllege the sgx environmet</span>
+   <span class="nx">Challenge</span> <span class="kt">string</span> <span class="s">`json:&quot;challenge&quot;`</span>
+   <span class="c1">// OrgId is the orgnization of Cert</span>
+   <span class="nx">OrgId</span> <span class="kt">string</span> <span class="s">`json:&quot;org_id&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id18">
+<h3><span class="section-number">16.3.3. </span>示例参考<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id19">
+<h4><span class="section-number">16.3.3.1. </span>远程证明示例<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
+<p>请参考chainmaker-sgx项目下gateway/tools/test_remote_attestation</p>
+</div>
+<div class="section" id="id20">
+<h4><span class="section-number">16.3.3.2. </span>隐私合约部署<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+<p>请参考chainmaker-sgx项目下gateway/tools/test_tee的call_deploy</p>
+</div>
+<div class="section" id="id21">
+<h4><span class="section-number">16.3.3.3. </span>隐私合约调用<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
+<p>请参考chainmaker-sgx项目下gateway/tools/test_tee的call_tee</p>
+</div>
+</div>
+</div>
+<div class="section" id="cpu">
+<h2><span class="section-number">16.4. </span>附录——推荐的支持隐私合约的服务器CPU型号<a class="headerlink" href="#cpu" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>CPU序列号</th>
+<th>型号及描述</th>
+<th>SGX Enclave最大预留内存</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6354</td>
+<td>Ice Lake SP XCC Intel Xeon Gold 6345 18c 205W 3.0GHz</td>
+<td>64GB</td>
+</tr>
+<tr>
+<td>8360Y</td>
+<td>Ice Lake SP XCC Intel Xeon Platinum 8360Y 36c 250W 2.4GHz</td>
+<td>64GB</td>
+</tr>
+<tr>
+<td>6348</td>
+<td>Ice Lake SP XCC Intel Xeon Gold 6348 28c 235W 2.6GHz</td>
+<td>64GB</td>
+</tr>
+<tr>
+<td>8380</td>
+<td>Ice Lake SP XCC Intel Xeon 8380 40c 270W 2.3GHz</td>
+<td>512GB</td>
+</tr>
+<tr>
+<td>8368</td>
+<td>Ice Lake SP XCC Intel Xeon Platinum 8368 38c 270W 2.4GHz</td>
+<td>512GB</td>
+</tr>
+<tr>
+<td>8368Q</td>
+<td>Ice Lake SP XCC Intel Xeon Platinum 8368Q 38c 270W 2.6GHz (liquid cooled)</td>
+<td>512GB</td>
+</tr>
+<tr>
+<td>8358</td>
+<td>Ice Lake SP XCC Intel Xeon Platinum 8358 32c 250W 2.6GHz</td>
+<td>64GB</td>
+</tr>
+<tr>
+<td>8358P</td>
+<td>Ice Lake SP XCC Intel Xeon Platinum 8358P 32c 240W 2.6GHz</td>
+<td>8GB</td>
+</tr>
+<tr>
+<td>8352V</td>
+<td>Ice Lake SP XCC Intel Xeon Platinum 8352V 36c 195W 2.1GHz</td>
+<td>8GB</td>
+</tr>
+<tr>
+<td>8351N</td>
+<td>Ice Lake SP XCC Intel Xeon Platinum 8351N 36c 225W 2.4GHz</td>
+<td>64GB</td>
+</tr>
+<tr>
+<td>6314U</td>
+<td>Ice Lake SP XCC Intel Xeon Gold 6314U 32c 205W 2.3GHz</td>
+<td>64GB</td>
+</tr>
+<tr>
+<td>6338</td>
+<td>Ice Lake SP XCC Intel Xeon Gold 6338 32c 205W 2.0GHz</td>
+<td>64GB</td>
+</tr>
+<tr>
+<td>6338N</td>
+<td>Ice Lake SP XCC Intel Xeon Gold 6338N 32c 185W 2.2GHz</td>
+<td>64GB</td>
+</tr>
+<tr>
+<td>8352Y</td>
+<td>Ice Lake SP XCC Intel Xeon Platinum 8352Y 32c 205W 2.2GHz</td>
+<td>64GB</td>
+</tr>
+<tr>
+<td>8352S</td>
+<td>Ice Lake SP XCC Intel Xeon Platinum 8352S 32c 205W 2.2GHz</td>
+<td>512GB</td>
+</tr>
+<tr>
+<td>6330</td>
+<td>Ice Lake SP XCC Intel Xeon Gold 6330 28c 205W 2.0GHz</td>
+<td>64GB</td>
+</tr>
+<tr>
+<td>6330N</td>
+<td>Ice Lake SP XCC Intel Xeon Gold 6330N 28c 165W 2.2GHz</td>
+<td>64GB</td>
+</tr>
+<tr>
+<td>6346</td>
+<td>Ice Lake SP XCC Intel Xeon Gold 6346 16c 205W 3.1GHz</td>
+<td>64GB</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html" class="btn btn-neutral float-right" title="1. 智能合约" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html" class="btn btn-neutral float-left" title="15. 跨链方案" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

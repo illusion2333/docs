@@ -1,0 +1,983 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>13. SQL合约支持 &mdash; chainmaker-docs v1.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="14. SPV 轻节点" href="SPV.html" />
+    <link rel="prev" title="12. 并行调度" href="%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+            
+            <img src="../_static/chainmakerLOGO-09.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/Q%26A.html">7. Q&amp;A</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">13. SQL合约支持</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">13.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">13.2. SQL合约的处理逻辑</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">13.2.1. 合约创建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">13.2.2. 合约调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">13.2.3. 合约查询</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">13.2.4. 合约升级</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">13.3. SQL合约的编写规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">13.4. SQL合约的使用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">13.4.1. 节点状态数据库配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">13.4.2. 链配置中启用SQL合约</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sqlsdk">13.4.3. SQL合约SDK接口</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#golang">13.4.3.1. Golang</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rust">13.4.3.2. Rust</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">13.5. 合约示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id12">13.5.1. Golang合约示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">13.5.2. Rust合约示例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SPV.html">14. SPV 轻节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html">15. 跨链方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6.html">16. 隐私合约</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B5%8F%E8%A7%88%E5%99%A8.html">7. 区块链浏览器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html">8. SPV 部署和使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%B7%A8%E9%93%BE%E4%BD%BF%E7%94%A8.html">9. 跨链使用</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">13. </span>SQL合约支持</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tech/SQL合约支持.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sql">
+<h1><span class="section-number">13. </span>SQL合约支持<a class="headerlink" href="#sql" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><span class="section-number">13.1. </span>概述<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>长安链支持在智能合约中直接编写SQL语句，对状态数据库（必须配置为关系数据库类型，比如MySQL）进行操作。</p>
+</div>
+<div class="section" id="id2">
+<h2><span class="section-number">13.2. </span>SQL合约的处理逻辑<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>在长安链SQL合约中，SQL语句按功能的不同，被分为三种：</p>
+<ul class="simple">
+<li><p>DDL数据结构定义的语句，包括对表（TABLE）、视图（VIEW）和索引（INDEX）的创建（CREATE）、修改（ALTER）、删除（DROP）等操作。另外清空表内容（TRUNCATE TABLE）也是属于DDL语句。</p></li>
+<li><p>DML数据管理语句，包括增加（INSERT）、删除（DELETE）和修改（UPDATE）三种。</p></li>
+<li><p>DQL也就是各种SELECT查询语句，只读，不产生数据更改。</p></li>
+</ul>
+<div class="section" id="id3">
+<h3><span class="section-number">13.2.1. </span>合约创建<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>用户合约在创建时，系统会自动创建一个新的数据库给该合约，所以不同的用户合约的状态数据以数据库进行区隔。在创建合约对应的数据库后，系统会执行合约init_contract函数中的SQL语句，由于包含DDL语句，而DDL语句是非数据库事务的，所以出于安全起见，一个创建合约的交易或升级合约的交易将会被单独打包到区块中，不能与其他普通合约调用的交易一起打包。</p>
+</div>
+<div class="section" id="id4">
+<h3><span class="section-number">13.2.2. </span>合约调用<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>用户在合约中拼接SQL语句，并以字符串形式传入合约SDK，在合约执行时，由于无法像KV数据那样生成读写集，然后基于读写集判断一个区块中的多笔交易是否允许并行执行还是串行执行，所以在支持SQL合约的执行过程中，将全部按串行方式执行。一个区块对应一个数据库中的事务，区块开始处理第一笔交易时开启事务，然后针对每一笔交易，在交易执行前将建立事务的SavePoint保存点，然后再逐步执行交易中的多条SQL语句，如果全部SQL语句执行完成，并交易结果返回成功，那么将会把所有DML语句记录到写集中（SELECT语句不产生数据变更，不记录到写集），并建立一个新的事务SavePoint，继续处理下一笔交易。但一旦该交易中有SQL语句执行失败，或者最终该交易的结果返回为失败，则回滚到上一个SavePoint，并清空该交易的读写集。直到处理完本区块的最后一笔交易，提交整个数据库事务，每个合约对其状态数据库的更改落盘完成。以下为一个合约的多笔Invoke交易被打包到一个区块后的执行过程和结果示例：
+<img src="../images/SQLContract-process.png">
+最终在打包区块2后，我们查询合约的状态数据库，可以看到：</p>
+<table border="2">
+<tr><th>t1</th></tr>
+<tr><td> 1 </td></tr>
+<tr><td> 2 </td></tr>
+<tr><td> 5 </td></tr>
+<tr><td> 6 </td></tr>
+</table><br></div>
+<div class="section" id="id5">
+<h3><span class="section-number">13.2.3. </span>合约查询<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>当用户通过Query语句调用合约的查询函数时，查询函数内部拼接DQL，并直接将DQL传入对应的数据库，查询后返回结果给用户。查询函数中不得使用DDL或DML语句，只能使用DQL语句。</p>
+</div>
+<div class="section" id="id6">
+<h3><span class="section-number">13.2.4. </span>合约升级<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>合约升级时将调用新合约中的upgrade函数，该函数中用户可以定义对数据库进行更改的DDL或者对现有数据进行更新的DML。合约升级交易由于包含DDL，所以也必须要单独出块，不能和其他普通合约调用交易一起混合打包。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2><span class="section-number">13.3. </span>SQL合约的编写规范<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>建表、索引、视图等DDL语句只能在合约安装init_contract 和合约升级upgrade中使用，暂不支持用户自定义函数、存储过程、触发器等。</p></li>
+<li><p>SQL中，禁止跨数据库操作，无需指定数据库名。比如select * from db.table 是禁止的； use db;是禁止的。</p></li>
+<li><p>SQL中，禁止使用事务相关操作的语句，比如commit 、rollback等，事务由ChainMaker框架自动控制。</p></li>
+<li><p>SQL中，禁止使用随机数、获得系统时间等不确定性函数，这些函数在不同节点产生的结果会不一样。</p></li>
+<li><p>SQL中，禁止多条SQL拼接成一个SQL字符串传入。</p></li>
+<li><p>在建表时，禁止使用自增Sequence做主键，需由合约外控制生成主键。</p></li>
+<li><p>禁止操作（包括建立、修改、删除、查询、写入）表名为“state_infos”的表，这是系统自带的提供KV数据存储的表，用于存放PutState函数对应的数据，其中的数据通过PutState和GetState操作。</p></li>
+<li><p>禁止DCL语句，如GRANT，REVOKE等
+注意：
+1、发送交易为query交易时，只能执行DQL语句，不可执行DML语句。若含有则会报错。
+2、在一个交易中，若执行了多条语句（DQL、DML），其中一条或多条语句（DQL、DML）执行失败，则整个交易将执行失败并会回滚到上一个savePoint</p></li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h2><span class="section-number">13.4. </span>SQL合约的使用<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id9">
+<h3><span class="section-number">13.4.1. </span>节点状态数据库配置<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>默认情况下，长安链只支持KV数据的合约操作，也就是常见的PutState、GetState操作，如果调用合约框架中的Sql函数，则合约会报错。如果希望合约支持SQL操作，首先需要确保每个节点的状态数据库为SQL数据库类型。节点配置示例如下：</p>
+<p><code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code></p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>storage:
+  store_path: ../data/org1/ledgerData1
+  blockdb_config:
+    provider: leveldb
+    leveldb_config:
+      store_path: ../data/org1/blocks
+  statedb_config:
+    provider: sql #状态数据库为SQL数据库
+    sqldb_config:
+      sqldb_type:  mysql #具体数据库类型为mysql
+      dsn:  root:password@tcp(127.0.0.1:3306)/dbname  #mysql连接字符串
+  historydb_config:
+    provider: leveldb
+    leveldb_config:
+      store_path: ../data/org1/history
+  resultdb_config:
+    provider: leveldb
+    leveldb_config:
+      store_path: ../data/org1/result
+  disable_contract_eventdb: true  #是否禁止合约事件存储功能，默认为true，如果设置为false,需要配置mysql
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3><span class="section-number">13.4.2. </span>链配置中启用SQL合约<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>在确保每个节点的状态数据库为SQL数据库后，需要在链配置中修改合约的enable_sql_support为true。当然也可以在创世区块配置中，直接启用SQL合约支持。</p>
+<p><code class="docutils literal notranslate"><span class="pre">bc1.yml</span></code></p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>contract:
+  enable_sql_support: true
+</pre></div>
+</div>
+</div>
+<div class="section" id="sqlsdk">
+<h3><span class="section-number">13.4.3. </span>SQL合约SDK接口<a class="headerlink" href="#sqlsdk" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="golang">
+<h4><span class="section-number">13.4.3.1. </span>Golang<a class="headerlink" href="#golang" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-golang notranslate"><div class="highlight"><pre><span></span>// 接口定义
+type SqlSimContext interface {
+   // ExecuteQueryOne 返回第一行数据
+   ExecuteQueryOne(sql string) (*EasyCodec, ResultCode)
+   // ExecuteQuery 返回结果集游标
+   ExecuteQuery(sql string) (ResultSet, ResultCode)
+   // ExecuteUpdate 执行更新、删除、插入语句，返回影响行数和错误码
+   ExecuteUpdate(sql string) (int32, ResultCode)
+   // ExecuteDdl 执行创建、删除表等语句，返回错误码
+   ExecuteDdl(sql string) (int32, ResultCode)
+}
+// 结果集游标
+type ResultSet interface {
+   // 返回下一行数据
+   NextRow() (*EasyCodec, ResultCode)
+   // 返回是否有下一行
+   HasNext() bool
+   // 关闭
+   Close() (bool, ResultCode)
+}
+</pre></div>
+</div>
+<p><strong>使用接口方式</strong></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">ctx</span> <span class="o">:=</span> <span class="nx">NewSqlSimContext</span><span class="p">()</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">ExecuteDdl</span><span class="p">(</span><span class="nx">sql</span><span class="p">)</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">ExecuteUpdate</span><span class="p">(</span><span class="nx">sql</span><span class="p">)</span>
+<span class="nx">rs</span><span class="o">:=</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">ExecuteQuery</span><span class="p">(</span><span class="nx">sql</span><span class="p">)</span>
+<span class="k">for</span> <span class="nx">rs</span><span class="p">.</span><span class="nx">HasNext</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ec</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">NextRow</span><span class="p">()</span>
+    <span class="nx">ctx</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ec</span><span class="p">.</span><span class="nx">ToJson</span><span class="p">())</span>
+<span class="p">}</span>
+<span class="nx">rs</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rust">
+<h4><span class="section-number">13.4.3.2. </span>Rust<a class="headerlink" href="#rust" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">trait</span><span class="w"> </span><span class="n">SqlSimContext</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// execute_query_one 返回第一行数据</span>
+<span class="w">   </span><span class="k">fn</span> <span class="nf">execute_query_one</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">sql</span>: <span class="kp">&amp;</span><span class="nc">amp</span><span class="p">;</span><span class="kt">str</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="n">EasyCodec</span><span class="p">,</span><span class="w"> </span><span class="n">result_code</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// execute_query 返回结果集游标</span>
+<span class="w">   </span><span class="k">fn</span> <span class="nf">execute_query</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">sql</span>: <span class="kp">&amp;</span><span class="nc">amp</span><span class="p">;</span><span class="kt">str</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="n">ResultSet</span><span class="p">,</span><span class="w"> </span><span class="n">result_code</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// execute_update 执行更新、删除、插入语句，返回影响行数</span>
+<span class="w">   </span><span class="k">fn</span> <span class="nf">execute_update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">sql</span>: <span class="kp">&amp;</span><span class="nc">amp</span><span class="p">;</span><span class="kt">str</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="n">result_code</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// execute_ddl 执行创建、删除表等语句，返回错误码</span>
+<span class="w">   </span><span class="k">fn</span> <span class="nf">execute_ddl</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">sql</span>: <span class="kp">&amp;</span><span class="nc">amp</span><span class="p">;</span><span class="kt">str</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="n">result_code</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">impl</span><span class="o">&lt;&#39;</span><span class="na">a</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ResultSet</span><span class="o">&lt;&#39;</span><span class="na">a</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// 返回下一行数据</span>
+<span class="w">   </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">next_row</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="n">EasyCodec</span><span class="p">,</span><span class="w"> </span><span class="n">result_code</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// 返回是否有下一行</span>
+<span class="w">   </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">has_next</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">bool</span>
+   <span class="c1">// 关闭</span>
+<span class="w">   </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">close</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">bool</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>使用接口方式</strong></p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sim_context</span>::<span class="n">get_sql_sim_context</span><span class="p">();</span><span class="w"></span>
+<span class="n">ctx</span><span class="p">.</span><span class="n">execute_ddl</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span><span class="w"></span>
+<span class="n">ctx</span><span class="p">.</span><span class="n">execute_update</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span><span class="w"></span>
+<span class="n">ctx</span><span class="p">.</span><span class="n">execute_query_one</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span><span class="w"></span>
+<span class="kd">let</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">execute_query</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span><span class="w"></span>
+<span class="k">while</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="n">has_next</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">ec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="n">next_row</span><span class="p">().</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ec</span><span class="p">.</span><span class="n">to_json</span><span class="p">());</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">rs</span><span class="p">.</span><span class="n">close</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h2><span class="section-number">13.5. </span>合约示例<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id12">
+<h3><span class="section-number">13.5.1. </span>Golang合约示例<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-golang notranslate"><div class="highlight"><pre><span></span>package main
+import (
+   &quot;strconv&quot;
+)
+//安装合约时会执行此方法，必须
+//export init_contract
+func initContract() {
+   ctx := NewSqlSimContext()
+   ctx.Log(&quot;init_contract [start]&quot;)
+   // create teacher
+   sqlCreateTeacher := `create table teacher_gasm (
+                     id varchar(128) primary key,
+                     name varchar(64) DEFAULT &#39;&#39;
+                  )
+                  `
+   ctx.Log(sqlCreateTeacher)
+   _, resultCode := ctx.ExecuteDdl(sqlCreateTeacher)
+   if resultCode != SUCCESS {
+      msg := &quot;initContract error. resultCode=&quot; + strconv.Itoa(int(resultCode)) + &quot; sqlCreateTeacher=&quot; + sqlCreateTeacher
+      ctx.Log(msg)
+      ctx.ErrorResult(msg)
+      return
+   } else {
+      ctx.Log(&quot;create table teacher_gasm success.&quot;)
+   }
+   // create student
+   sqlCreateStudent := `create table student_gasm (
+               id varchar(128) primary key,
+               teacher_id varchar(128),
+               name varchar(64) DEFAULT &#39;&#39;,
+               age int DEFAULT 0,
+               score int DEFAULT 0,
+               id_card_no varchar(19) DEFAULT &#39;&#39;,
+               attend_school_time date
+               )
+            `
+   ctx.Log(sqlCreateStudent)
+   _, resultCode = ctx.ExecuteDdl(sqlCreateStudent)
+   if resultCode != SUCCESS {
+      msg := &quot;initContract error. resultCode=&quot; + strconv.Itoa(int(resultCode)) + &quot; sqlCreateStudent=&quot; + sqlCreateStudent
+      ctx.Log(msg)
+      ctx.ErrorResult(msg)
+      return
+   } else {
+      ctx.Log(&quot;create table student_gasm success.&quot;)
+   }
+   ctx.SuccessResult(&quot;create table student、teacher_gasm success&quot;)
+   ctx.Log(&quot;initContract success.&quot;)
+   ctx.Log(&quot;init_contract [end]&quot;)
+}
+// 升级合约时会执行此方法，必须
+//export upgrade
+func upgrade() {
+   ctx := NewSqlSimContext()
+   ctx.Log(&quot;upgrade [start]&quot;)
+   sqlAddColumn := &quot;ALTER TABLE student_gasm ADD address varchar(255) NULL&quot;
+   ctx.Log(sqlAddColumn)
+   _, resultCode := ctx.ExecuteDdl(sqlAddColumn)
+   if resultCode != SUCCESS {
+      msg := &quot;upgrade error.&quot;
+      ctx.Log(msg)
+      ctx.ErrorResult(msg)
+   } else {
+      ctx.Log(&quot;upgrade success.&quot;)
+      ctx.SuccessResult(&quot;upgrade success.&quot;)
+   }
+   ctx.Log(&quot;upgrade [end]&quot;)
+}
+//export sql_insert
+func sqlInsert() {
+   ctx := NewSqlSimContext()
+   ctx.Log(&quot;sql_insert [start]&quot;)
+   id, _ := ctx.Arg(&quot;id&quot;)
+   age, _ := ctx.Arg(&quot;age&quot;)
+   name, _ := ctx.Arg(&quot;name&quot;)
+   idCardNo, _ := ctx.Arg(&quot;id_card_no&quot;)
+   if len(id) == 0 || len(age) == 0 {
+      ctx.Log(&quot;param id/age is required&quot;)
+      ctx.ErrorResult(&quot;param id/age is required&quot;)
+      return
+   }
+   // insert fmt.Sprintf(&quot;insert into student_gasm(id, name, age, id_card_no) VALUES (&#39;%s&#39;, &#39;%s&#39;, &#39;%s&#39;, &#39;%s&#39;)&quot;, id, name, age, idCardNo)
+   sqlInsert := &quot;insert into student_gasm(id, name, age, id_card_no) VALUES (&#39;&quot; + id + &quot;&#39;, &#39;&quot; + name + &quot;&#39;, &#39;&quot; + age + &quot;&#39;, &#39;&quot; + idCardNo + &quot;&#39;)&quot;
+   ctx.Log(&quot;sql_insert [sql]&quot; + sqlInsert)
+   rowCount, resultCode := ctx.ExecuteUpdate(sqlInsert)
+   if resultCode != SUCCESS {
+      ctx.Log(&quot;sql_insert error&quot;)
+      ctx.ErrorResult(&quot;sql_insert error&quot;)
+      return
+   } else {
+      msg := &quot;sql_insert update row=&quot; + strconv.Itoa(int(rowCount))
+      ctx.Log(msg)
+   }
+   ctx.SuccessResult(&quot;ok&quot;)
+   ctx.Log(&quot;sql_insert [end] ok&quot;)
+}
+//export sql_query_by_id
+func sqlQueryById() {
+   ctx := NewSqlSimContext()
+   ctx.Log(&quot;sql_query_by_id [start]&quot;)
+   id, _ := ctx.Arg(&quot;id&quot;)
+   if len(id) == 0 {
+      ctx.Log(&quot;param id is required&quot;)
+      ctx.ErrorResult(&quot;param id is required&quot;)
+      return
+   }
+   sqlQuery := &quot;select id, name, age, id_card_no from student_gasm where id=&#39;&quot; + id + &quot;&#39;&quot;
+   ctx.Log(sqlQuery)
+   ec, resultCode := ctx.ExecuteQueryOne(sqlQuery)
+   if resultCode != SUCCESS {
+      ctx.Log(&quot;ExecuteQueryOne error&quot;)
+      ctx.ErrorResult(&quot;ExecuteQueryOne error&quot;)
+      return
+   }
+   jsonStr := ec.ToJson()
+   ctx.Log(&quot;sql_query_by_id ok result:&quot; + jsonStr)
+   ctx.SuccessResult(jsonStr)
+   ctx.Log(&quot;sql_query_by_id [end]&quot;)
+}
+//export sql_query_range_of_age
+func sqlQueryRangeOfAge() {
+   ctx := NewSqlSimContext()
+   ctx.Log(&quot;sql_query_range_of_age [start]&quot;)
+   maxAge, _ := ctx.Arg(&quot;max_age&quot;)
+   minAge, _ := ctx.Arg(&quot;min_age&quot;)
+   if len(maxAge) == 0 || len(minAge) == 0 {
+      ctx.Log(&quot;param max_age/min_age is required&quot;)
+      ctx.ErrorResult(&quot;param max_age/min_age is required&quot;)
+      return
+   }
+   sqlQuery := &quot;select id, name, age, id_card_no from student_gasm where age&gt;&quot; + minAge + &quot; and age&lt;&quot; + maxAge
+   ctx.Log(sqlQuery)
+   resultSet, resultCode := ctx.ExecuteQuery(sqlQuery)
+   if resultCode != SUCCESS {
+      ctx.Log(&quot;ExecuteQuery error&quot;)
+      ctx.ErrorResult(&quot;ExecuteQuery error&quot;)
+      return
+   }
+   var result string
+   for resultSet.HasNext() {
+      ec, resultCode := resultSet.NextRow()
+      if resultCode != SUCCESS {
+         ctx.Log(&quot;NextRow error&quot;)
+         ctx.ErrorResult(&quot;NextRow error&quot;)
+         return
+      }
+      jsonStr := ec.ToJson()
+      ctx.Log(&quot;NextRow: &quot; + jsonStr)
+      result += jsonStr
+   }
+   resultSet.Close()
+   ctx.SuccessResult(result)
+   ctx.Log(&quot;sql_query_range_of_age [end]&quot;)
+}
+//export sql_update
+func sqlUpdate() {
+   ctx := NewSqlSimContext()
+   ctx.Log(&quot;sql_update [start]&quot;)
+   name, _ := ctx.Arg(&quot;name&quot;)
+   // insert
+   sqlInsert := &quot;update student_gasm set name=&#39;&quot; + name + &quot;&#39; &quot;
+   ctx.Log(sqlInsert)
+   rowCount, resultCode := ctx.ExecuteUpdate(sqlInsert)
+   if resultCode != SUCCESS {
+      ctx.Log(&quot;ExecuteUpdateSingle error&quot;)
+      ctx.ErrorResult(&quot;ExecuteUpdateSingle error&quot;)
+      return
+   } else {
+      msg := &quot;ExecuteUpdateSingle update row=&quot; + strconv.Itoa(int(rowCount))
+      ctx.Log(msg)
+   }
+   ctx.SuccessResult(&quot;ok&quot;)
+   ctx.Log(&quot;sql_update [end]&quot;)
+}
+//export sql_update_rollback_save_point
+func sqlUpdateRollbackSavePoint() {
+   ctx := NewSqlSimContext()
+   ctx.Log(&quot;sql_update_rollback_save_point [start]&quot;)
+   name, _ := ctx.Arg(&quot;name&quot;)
+   txId, _ := ctx.GetTxId()
+   // insert
+   sqlUpdate := &quot;update student_gasm set name=&#39;&quot; + name + &quot;&#39;&quot;
+   sqlInsert := &quot;insert into student_gasm(id, name, age, id_card_no) VALUES (&#39;&quot; + txId + &quot;&#39;, &#39;Tom&#39;, &#39;18&#39;, &#39;409787417841395&#39;)&quot;
+   ctx.Log(sqlInsert)
+   ctx.Log(sqlUpdate)
+   rowCount, resultCode := ctx.ExecuteUpdate(sqlUpdate)
+   ctx.ExecuteUpdate(sqlInsert)
+   if resultCode != SUCCESS {
+      ctx.Log(&quot;ExecuteUpdateSingle error&quot;)
+      ctx.ErrorResult(&quot;ExecuteUpdateSingle error&quot;)
+      return
+   } else {
+      msg := &quot;ExecuteUpdateSingle update row=&quot; + strconv.Itoa(int(rowCount))
+      ctx.Log(msg)
+   }
+   ctx.SuccessResult(&quot;ok&quot;)
+   ctx.Log(&quot;sql_update_rollback_save_point [end]&quot;)
+}
+//export sql_delete
+func sqlDelete() {
+   ctx := NewSqlSimContext()
+   ctx.Log(&quot;sql_delete [start]&quot;)
+   id, _ := ctx.Arg(&quot;id&quot;)
+   // insert
+   sqlInsert := &quot;delete from student_gasm where id=&#39;&quot; + id + &quot;&#39;&quot;
+   ctx.Log(sqlInsert)
+   rowCount, resultCode := ctx.ExecuteUpdate(sqlInsert)
+   if resultCode != SUCCESS {
+      ctx.Log(&quot;ExecuteUpdateSingle error&quot;)
+      ctx.ErrorResult(&quot;ExecuteUpdateSingle error&quot;)
+      return
+   } else {
+      msg := &quot;ExecuteUpdateSingle update row=&quot; + strconv.Itoa(int(rowCount))
+      ctx.Log(msg)
+   }
+   ctx.SuccessResult(&quot;ok&quot;)
+   ctx.Log(&quot;sql_delete [end]&quot;)
+}
+//export sql_cross_call
+func sqlCrossCall() {
+   ctx := NewSqlSimContext()
+   ctx.Log(&quot;sql_cross_call [start]&quot;)
+   contractName, _ := ctx.Arg(&quot;contract_name&quot;)
+   minAge, _ := ctx.Arg(&quot;min_age&quot;)
+   maxAge, _ := ctx.Arg(&quot;max_age&quot;)
+   if len(contractName) == 0 {
+      contractName = &quot;contract01&quot;
+   }
+   if len(minAge) == 0 {
+      minAge = &quot;0&quot;
+   }
+   if len(maxAge) == 0 {
+      maxAge = &quot;20&quot;
+   }
+   param := map[string]string{
+      &quot;min_age&quot;: minAge,
+      &quot;max_age&quot;: maxAge,
+   }
+   result, code := ctx.CallContract(contractName, &quot;sql_query_range_of_age&quot;, param)
+   if code != SUCCESS {
+      ctx.Log(&quot;contract inner call contract fail.&quot;)
+      ctx.ErrorResult(&quot;contract inner call contract fail.&quot;)
+      return
+   }
+   ctx.Log(string(result))
+   ctx.SuccessResultByte(result)
+   ctx.Log(&quot;sql_cross_call [end]&quot;)
+}
+func main() {
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h3><span class="section-number">13.5.2. </span>Rust合约示例<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">use</span><span class="w"> </span><span class="k">crate</span>::<span class="p">{</span><span class="n">easycodec</span><span class="p">,</span><span class="w"> </span><span class="n">sim_context</span><span class="p">,</span><span class="w"> </span><span class="n">sim_context_rs</span><span class="p">};</span><span class="w"></span>
+<span class="k">use</span><span class="w"> </span><span class="n">easycodec</span>::<span class="n">EasyCodec</span><span class="p">;</span><span class="w"></span>
+<span class="k">use</span><span class="w"> </span><span class="n">sim_context_rs</span>::<span class="n">SqlSimContext</span><span class="p">;</span><span class="w"></span>
+<span class="c1">// 安装合约时会执行此方法，必须</span>
+<span class="cp">#[no_mangle]</span><span class="w"></span>
+<span class="k">pub</span><span class="w"> </span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="k">fn</span> <span class="nf">init_contract</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sim_context</span>::<span class="n">get_sql_sim_context</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// create teacher</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">sql_create_teacher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;create table teacher (</span>
+<span class="s">                            id varchar(128) primary key,</span>
+<span class="s">                            name varchar(64) DEFAULT &#39;&#39;</span>
+<span class="s">                        )&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">execute_ddl</span><span class="p">(</span><span class="n">sql_create_teacher</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nb">Err</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;initContract error. create table teacher error&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">ctx</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;create table teacher success.&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// create student</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">sql_create_student</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;create table student (</span>
+<span class="s">                    id varchar(128) primary key,</span>
+<span class="s">                    teacher_id varchar(128),</span>
+<span class="s">                    name varchar(64) DEFAULT &#39;&#39;,</span>
+<span class="s">                    age int DEFAULT 0,</span>
+<span class="s">                    score int DEFAULT 0,</span>
+<span class="s">                    id_card_no varchar(19) DEFAULT &#39;&#39;,</span>
+<span class="s">                    attend_school_time date</span>
+<span class="s">                )&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">execute_ddl</span><span class="p">(</span><span class="n">sql_create_student</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nb">Err</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;initContract error. create table student error&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">ctx</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;create table student success.&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">ok</span><span class="p">(</span><span class="s">&quot;create table student、teacher success&quot;</span><span class="p">.</span><span class="n">as_bytes</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;initContract success.&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="c1">// 升级合约时会执行此方法，必须</span>
+<span class="cp">#[no_mangle]</span><span class="w"></span>
+<span class="k">pub</span><span class="w"> </span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="k">fn</span> <span class="nf">upgrade</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sim_context</span>::<span class="n">get_sql_sim_context</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">sql_add_column</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ALTER TABLE student ADD address varchar(255)&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">execute_ddl</span><span class="p">(</span><span class="n">sql_add_column</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">is_err</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;upgrade error.&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;upgrade error.&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;upgrade success.&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">ok</span><span class="p">(</span><span class="s">&quot;upgrade success.&quot;</span><span class="p">.</span><span class="n">as_bytes</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="cp">#[no_mangle]</span><span class="w"></span>
+<span class="k">pub</span><span class="w"> </span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="k">fn</span> <span class="nf">sql_insert</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sim_context</span>::<span class="n">get_sql_sim_context</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">arg_default_blank</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">arg_default_blank</span><span class="p">(</span><span class="s">&quot;age&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">arg_default_blank</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">id_card_no</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">arg_default_blank</span><span class="p">(</span><span class="s">&quot;id_card_no&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">id</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">age</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;param id/age is required&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;param id/age is required&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// insert</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">sql_insert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">format!</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="s">&quot;insert into student(id, name, age, id_card_no) VALUES ({:?}, {:?}, {:?}, {:?})&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">id_card_no</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;sql_insert&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">sql_insert</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">execute_update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">sql_insert</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">is_err</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;execute_update_single error. &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;execute_update_single error. &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;execute_update_single ok&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">ok</span><span class="p">(</span><span class="s">&quot;ok&quot;</span><span class="p">.</span><span class="n">as_bytes</span><span class="p">());</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="cp">#[no_mangle]</span><span class="w"></span>
+<span class="k">pub</span><span class="w"> </span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="k">fn</span> <span class="nf">sql_query_by_id</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">sim_context</span>::<span class="n">log</span><span class="p">(</span><span class="s">&quot;sql_query_by_id&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sim_context</span>::<span class="n">get_sql_sim_context</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">arg_default_blank</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">id</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;param id is required&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;param id is required&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sql_query_by_id id:&quot;</span><span class="p">.</span><span class="n">to_string</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">push_str</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">id</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">msg</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">sql_query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">format!</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="s">&quot;select id, name, age, id_card_no from student where id={:?}&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">id</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">execute_query_one</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">sql_query</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">is_err</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;execute_query error. &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;execute_query error. &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">ec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sql_query_by_id ok result:&quot;</span><span class="p">.</span><span class="n">to_string</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">push_str</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">ec</span><span class="p">.</span><span class="n">to_json</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">msg</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">ok</span><span class="p">(</span><span class="n">ec</span><span class="p">.</span><span class="n">to_json</span><span class="p">().</span><span class="n">as_bytes</span><span class="p">());</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="cp">#[no_mangle]</span><span class="w"></span>
+<span class="k">pub</span><span class="w"> </span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="k">fn</span> <span class="nf">sql_query_range_of_age</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">sim_context</span>::<span class="n">log</span><span class="p">(</span><span class="s">&quot;sql_query_range_of_age&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sim_context</span>::<span class="n">get_sql_sim_context</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">max_age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">arg_default_blank</span><span class="p">(</span><span class="s">&quot;max_age&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">min_age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">arg_default_blank</span><span class="p">(</span><span class="s">&quot;min_age&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">max_age</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">min_age</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;param max_age/min_age is required&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;param max_age/min_age is required&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">sql_query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">format!</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="s">&quot;select id, name, age, id_card_no from student where age&gt;{:?} and age&lt;{:?}&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">min_age</span><span class="p">,</span><span class="w"> </span><span class="n">max_age</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">execute_query</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">sql_query</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">is_err</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;execute_query error. &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;execute_query error. &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">result_set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">.</span><span class="n">to_string</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="n">result_set</span><span class="p">.</span><span class="n">has_next</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">ec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result_set</span><span class="p">.</span><span class="n">next_row</span><span class="p">().</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">ec</span><span class="p">.</span><span class="n">to_json</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="n">result</span><span class="p">.</span><span class="n">push_str</span><span class="p">(</span><span class="n">ec</span><span class="p">.</span><span class="n">to_json</span><span class="p">().</span><span class="n">as_str</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">result_set</span><span class="p">.</span><span class="n">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;sql_query_range_of_age ok &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">ok</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">as_bytes</span><span class="p">());</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="cp">#[no_mangle]</span><span class="w"></span>
+<span class="k">pub</span><span class="w"> </span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="k">fn</span> <span class="nf">sql_update</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sim_context</span>::<span class="n">get_sql_sim_context</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">arg_default_blank</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// insert</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">sql_insert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">format!</span><span class="p">(</span><span class="s">&quot;update student set name={:?} &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">execute_update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">sql_insert</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">is_err</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;execute_update_single error. &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;execute_update_single error. &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;execute_update_single success. &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;sql_update ok&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">ok</span><span class="p">(</span><span class="s">&quot;ok&quot;</span><span class="p">.</span><span class="n">as_bytes</span><span class="p">());</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="cp">#[no_mangle]</span><span class="w"></span>
+<span class="k">pub</span><span class="w"> </span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="k">fn</span> <span class="nf">sql_update_rollback_save_point</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sim_context</span>::<span class="n">get_sql_sim_context</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">arg_default_blank</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">tx_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">get_tx_id</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// insert</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">sql_insert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">format!</span><span class="p">(</span><span class="s">&quot;update student set name={:?} &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">sql_insert</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">execute_update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">sql_insert</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">sql_insert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">format!</span><span class="p">(</span><span class="s">&quot;insert into student(id, name, age, id_card_no) VALUES ({:?}, &#39;Tom&#39;, &#39;18&#39;, &#39;409787417841395&#39;)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tx_id</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">sql_insert</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">execute_update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">sql_insert</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">is_err</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;execute_update_single error. &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;execute_update_single error. &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;execute_update_single success. &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;sql_update ok&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;save point test&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="cp">#[no_mangle]</span><span class="w"></span>
+<span class="k">pub</span><span class="w"> </span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="k">fn</span> <span class="nf">sql_delete</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sim_context</span>::<span class="n">get_sql_sim_context</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">arg_default_blank</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// insert</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">sql_delete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">format!</span><span class="p">(</span><span class="s">&quot;delete from student where id={:?}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">execute_update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">sql_delete</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">is_err</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;execute_update_single error. &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;execute_update_single error. &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;execute_update_single success. &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;sql_delete ok&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">ok</span><span class="p">(</span><span class="s">&quot;ok&quot;</span><span class="p">.</span><span class="n">as_bytes</span><span class="p">());</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="cp">#[no_mangle]</span><span class="w"></span>
+<span class="k">pub</span><span class="w"> </span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="k">fn</span> <span class="nf">sql_cross_call</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sim_context</span>::<span class="n">get_sql_sim_context</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">contract_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">arg_default_blank</span><span class="p">(</span><span class="s">&quot;contract_name&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">min_age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">arg_default_blank</span><span class="p">(</span><span class="s">&quot;min_age&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">max_age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">arg_default_blank</span><span class="p">(</span><span class="s">&quot;max_age&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">contract_name</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">contract_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;contract01&quot;</span><span class="p">.</span><span class="n">to_string</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">min_age</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">min_age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;0&quot;</span><span class="p">.</span><span class="n">to_string</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">max_age</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">max_age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;20&quot;</span><span class="p">.</span><span class="n">to_string</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">ec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EasyCodec</span>::<span class="n">new</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">ec</span><span class="p">.</span><span class="n">add_string</span><span class="p">(</span><span class="s">&quot;min_age&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">min_age</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ec</span><span class="p">.</span><span class="n">add_string</span><span class="p">(</span><span class="s">&quot;max_age&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">max_age</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">call_contract</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">contract_name</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sql_query_range_of_age&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ec</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">is_err</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;【error】 sql_cross_call sql_query_range_of_age contract&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;!!!!!!!!!!!!!!!!!!!test fail.!!!!!!!!!!!!!!!!!!!&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;【success】 sql_cross_call sql_query_range_of_age contract&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">fact_str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span>::<span class="kt">str</span>::<span class="n">from_utf8</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">result</span><span class="p">).</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="fm">format!</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="s">&quot; call contract find_by_file_hash result={:?}&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">fact_str</span><span class="w"></span>
+<span class="w">    </span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="n">ok</span><span class="p">(</span><span class="n">fact_str</span><span class="p">.</span><span class="n">as_bytes</span><span class="p">());</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="SPV.html" class="btn btn-neutral float-right" title="14. SPV 轻节点" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html" class="btn btn-neutral float-left" title="12. 并行调度" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

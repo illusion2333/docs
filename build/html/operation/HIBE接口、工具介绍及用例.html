@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>5. HIBE 教程 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  <title>5. HIBE 教程 &mdash; chainmaker-docs v1.2.0 documentation</title>
   
 
   
@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
 
   
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
 
   
@@ -57,13 +59,16 @@
           
 
           
+            
+            <img src="../_static/chainmakerLOGO-09.png" class="logo" alt="Logo"/>
+          
           </a>
 
           
             
             
               <div class="version">
-                v1.1.0
+                v1.2.0
               </div>
             
           
@@ -88,7 +93,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+              <p class="caption"><span class="caption-text">长安链介绍</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
@@ -104,8 +109,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/Q%26A.html">7. Q&amp;A</a></li>
 </ul>
-<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<p class="caption"><span class="caption-text">技术设计文档</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
@@ -119,6 +125,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html">13. SQL合约支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/SPV.html">14. SPV 轻节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html">15. 跨链方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6.html">16. 隐私合约</a></li>
 </ul>
 <p class="caption"><span class="caption-text">开发指南</span></p>
 <ul>
@@ -186,6 +196,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B5%8F%E8%A7%88%E5%99%A8.html">7. 区块链浏览器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html">8. SPV 部署和使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%B7%A8%E9%93%BE%E4%BD%BF%E7%94%A8.html">9. 跨链使用</a></li>
 </ul>
 <p class="caption"><span class="caption-text">应用场景</span></p>
 <ul>
@@ -271,8 +284,8 @@
 <h1><span class="section-number">5. </span>HIBE 教程<a class="headerlink" href="#hibe" title="Permalink to this headline">¶</a></h1>
 <p>本文分为两部分：</p>
 <ol class="simple">
-<li><p>方案接口、工具介绍：对 ChainMaker·长安链的 HIBE SDK 接口、cmc 工具和 common 库提供的算法的介绍。</p></li>
-<li><p>用例：介绍了如何使用 ChainMaker·长安链 HIBE 特性，从 HIBE 系统初始化、编写智能合约，到使用 SDK（本文使用 go 的 SDK） 进行数据的加密上链、获取链上数据解密。</p></li>
+<li><p>方案接口、工具介绍：对 ChainMaker的 HIBE SDK 接口、cmc 工具和 common 库提供的算法的介绍。</p></li>
+<li><p>用例：介绍了如何使用 ChainMakerHIBE 特性，从 HIBE 系统初始化、编写智能合约，到使用 SDK（本文使用 go 的 SDK） 进行数据的加密上链、获取链上数据解密。</p></li>
 </ol>
 <div class="section" id="id1">
 <h2><span class="section-number">5.1. </span>接口、工具介绍<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
@@ -281,7 +294,7 @@
 <div class="section" id="id2">
 <h4><span class="section-number">5.1.1.1. </span>简介<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p>CMC 中的 hibe 命令是管理、使用HIBE身份层级加密的辅助工具，用于初始化一个公司的系统层级，生成<code class="docutils literal notranslate"><span class="pre">params</span></code>、<code class="docutils literal notranslate"><span class="pre">MasterKey</span></code>、根据参数生成成员的<code class="docutils literal notranslate"><span class="pre">privateKey</span></code>，并保存到本地文件，由上司去分发。</p>
-<p>使用命令<code class="docutils literal notranslate"><span class="pre">./cmc</span> <span class="pre">-hibe</span> <span class="pre">-h</span></code> 查看命令该子命令详细提示：</p>
+<p>使用命令<code class="docutils literal notranslate"><span class="pre">./cmc</span> <span class="pre">hibe</span> <span class="pre">-h</span></code> 查看命令该子命令详细提示：</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cmc hibe -h
 ChainMaker hibe <span class="nb">command</span>
 
@@ -572,7 +585,7 @@ Flags:
 <span class="p">[</span><span class="n">wx</span><span class="o">-</span><span class="n">topL</span> <span class="n">secondL</span> <span class="n">thirdL</span><span class="p">]</span> <span class="n">privateKey</span> <span class="n">storage</span> <span class="n">file</span> <span class="n">path</span><span class="p">:</span> <span class="o">./</span><span class="n">hibe</span><span class="o">-</span><span class="n">data</span><span class="o">/</span><span class="n">wx</span><span class="o">-</span><span class="n">org1</span><span class="o">.</span><span class="n">chainmaker</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">privateKeys</span><span class="o">/</span><span class="n">wx</span><span class="o">-</span><span class="n">topL</span><span class="c1">#secondL#thirdL.privateKey</span>
 </pre></div>
 </div>
-<p>注意，所有的私钥都平铺在指定目录（这里是 <em>./hibe-data/wx-org1.chainmaker.org/privateKeys</em> ）下进行管理，并且会以 <code class="docutils literal notranslate"><span class="pre">_</span></code> 替换 <code class="docutils literal notranslate"><span class="pre">/</span></code> 之后的<em>ID.privatekey</em>命名，此时的文件夹结构及子密钥名称如下：</p>
+<p>注意，所有的私钥都平铺在指定目录（这里是 <em>./hibe-data/wx-org1.chainmaker.org/privateKeys</em> ）下进行管理，并且会以 <code class="docutils literal notranslate"><span class="pre">#</span></code> 替换 <code class="docutils literal notranslate"><span class="pre">/</span></code> 之后的<em>ID.privatekey</em>命名，此时的文件夹结构及子密钥名称如下：</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span>./hibe-data/
 └── wx-org1.chainmaker.org
     ├── privateKeys
@@ -1078,6 +1091,7 @@ Flags:
 PASS
 </pre></div>
 </div>
+<p><br><br></p>
 </div>
 </div>
 </div>

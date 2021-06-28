@@ -2,6 +2,24 @@
 
 通过本文你将可以搭建起长安链多节点集群，并使用命令行工具和SDK完成长安链功能的体验。
 
+通过源码搭建长安链并且上链查数据需要以下步骤，本文将一一演示
+
+- 下载长安链及证书管理工具源码
+- 编译源码
+- 生成节点证书
+- 编译及安装包制作
+- 启动节点集群
+- 查看节点状态
+- 使用CMC工具安装、调用、查询一个合约
+- 使用GO SDK验证合约
+
+> ！！！注：如有操作过程问题请参考[常见问题！！！](#normalError)
+>
+> ！！！注：如有操作过程问题请参考[常见问题！！！](#normalError)
+>
+> ！！！注：如有操作过程问题请参考[常见问题！！！](#normalError)
+
+
 ## 环境依赖
 
 ### 硬件依赖
@@ -14,6 +32,26 @@
 | 带宽 | 2Mb      | 10Mb     |
 
 ### 软件依赖
+
+当前文档在centos7.6操作下完成，以下为本次演示所需的依赖
+软件列表如下：
+
+| 名称                                          | 版本  | 描述                                                         | 是否必须 |
+| --------------------------------------------- | ----- | ------------------------------------------------------------ | -------- |
+| git                                           | /     | 源码管理                                                     | 是       |
+| golang                                        | 1.15+ | 编译环境                                                     | 是       |
+| docker                                        | 18+   | 独立运行容器                                                 | 否       |
+| docker-compose                                | /     | 容器管理组件                                                 | 否       |
+| gcc                                           | 4+    | 编译环境依赖                                                 | 是       |
+| glibc                                         | 2.18  | 智能合约执行环境依赖                                         | 是       |
+| tmux                                          | /     | 默认快速启动命令依赖                                         | 否       |
+| wasmer运行时库 **libwasmer_runtime_c_api.so** | /     | 库在`chainmaker-go/main`目录下，将该库路径添加至系统PATH环境变量下<br>启动脚本默认包含，单独启动需加上如下配置：<br>cd deployPath/lib <br>cp xxx/main/libwasmer_runtime_c_api.so libwasmer.so<br>export LD_LIBRARY_PATH=deployPath/lib:$LD_LIBRARY_PATH | 是       |
+
+> ！！！注：如有操作过程问题请参考[常见问题！！！](#normalError)
+>
+> ！！！注：如有操作过程问题请参考[常见问题！！！](#normalError)
+>
+> ！！！注：如有操作过程问题请参考[常见问题！！！](#normalError)
 
 #### git
 
@@ -43,6 +81,12 @@
 安装步骤，请参看：[https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
 
 ## 环境搭建
+
+> ！！！注：如有操作过程问题请参考[常见问题！！！](#normalError)
+>
+> ！！！注：如有操作过程问题请参考[常见问题！！！](#normalError)
+>
+> ！！！注：如有操作过程问题请参考[常见问题！！！](#normalError)
 
 ### 使用脚本搭建
 
@@ -202,10 +246,10 @@ $ ./cluster_quick_start.sh normal
 
 ```bash
 $ ps -ef|grep chainmaker | grep -v grep
-jason    25261  2146  4 19:55 pts/20   00:00:01 ./chainmaker start -c ../config/wx-org1.chainmaker.org/chainmaker.yml
-jason    25286  2146  4 19:55 pts/20   00:00:01 ./chainmaker start -c ../config/wx-org2.chainmaker.org/chainmaker.yml
-jason    25309  2146  4 19:55 pts/20   00:00:01 ./chainmaker start -c ../config/wx-org3.chainmaker.org/chainmaker.yml
-jason    25335  2146  4 19:55 pts/20   00:00:01 ./chainmaker start -c ../config/wx-org4.chainmaker.org/chainmaker.yml
+25261  2146  4 19:55 pts/20   00:00:01 ./chainmaker start -c ../config/wx-org1.chainmaker.org/chainmaker.yml
+25286  2146  4 19:55 pts/20   00:00:01 ./chainmaker start -c ../config/wx-org2.chainmaker.org/chainmaker.yml
+25309  2146  4 19:55 pts/20   00:00:01 ./chainmaker start -c ../config/wx-org3.chainmaker.org/chainmaker.yml
+25335  2146  4 19:55 pts/20   00:00:01 ./chainmaker start -c ../config/wx-org4.chainmaker.org/chainmaker.yml
 ```
 
 - 查看端口是否监听
@@ -377,7 +421,7 @@ go env -w  GOPROXY=https://goproxy.io,direct
 ### 下载源码
 
 ```sh
-git clone --recurse-submodules git@git.code.tencent.com:ChainMaker/chainmaker-go.git
+git clone --recurse-submodules https://git.chainmaker.org.cn/chainmaker/chainmaker-go.git
 ```
 
 
@@ -396,7 +440,7 @@ Go-->Go Modules --> 勾上Enable Go Modules integration
 
 Go-->GOROOT-->添加已安装的go
 
-<img src="../images/快速入门-goland-run-mod.jpg">
+<img src="../images/quickstart-goland-run-mod.jpg">
 
 
 
@@ -416,11 +460,11 @@ chainmaker-go/config/wx-org1/log.yml将 log_in_console修改为true：在控制�
 
 
 
-<img src="../images/快速入门-goland-run-main.jpg">
+<img src="../images/quickstart-goland-run-main.jpg">
 
 
 
-<img src="../images/快速入门-goland-run-main-arg.jpg">
+<img src="../images/quickstart-goland-run-main-arg.jpg">
 
 
 
@@ -433,6 +477,7 @@ chainmaker-go/config/wx-org1/log.yml将 log_in_console修改为true：在控制�
 
 
 ## 常见问题
+<span id="question">此处介绍可能遇到的常见问题</span>
 
 ### 视频教程
 
@@ -448,11 +493,12 @@ chainmaker-go/config/wx-org1/log.yml将 log_in_console修改为true：在控制�
 
 • 36-54分钟：部署合约（穿插常见问题）；
 
-• 54---结束：常见问题及单机&多级部署对照表。
+• 54---结束：常见问题及单机&多机部署对照表。
 
 <a href="https://mp.weixin.qq.com/s/zGV320UDlGVVw1tTJcOsQQ" target="_blank" title="点击跳转至播放页面" ><img src="../images/快速入门-直播.png" style="max-width:1200px;width:80%;padding-left:10%"/></a>
 
 <!--
+
 <iframe 
     width="100%" 
     height="450" 
@@ -467,23 +513,30 @@ chainmaker-go/config/wx-org1/log.yml将 log_in_console修改为true：在控制�
 
 ### 编译时错误
 
+<span id="normalError">编译chainmaker-go及chainmaker-cryptogen时可能出现的错误</span>
+
 #### missing go.sum entry
 
 **Q：** 
 
-如果执行 ./build_release.sh 时 或者在启动时 报错：misssing go.sum entry: to add it，分别在 chainmaker-go/main 或者 chainmaker-go/common  和 chainmaker-go/tools/cmc 下执行 go mod download ，执行完后 再重试
+> 如果执行 ./build_release.sh 时 或者在启动时 报错：misssing go.sum entry: to add it，分别在 chainmaker-go/main 或者 chainmaker-go/common  和 chainmaker-go/tools/cmc 下执行 go mod download ，执行完后 再重试
 
   问题描述如下图：
 
-<img src="../images/快速入门-misssing-go.sum-entry.png">
+<img src="../images/quickstart-misssing-go.sum-entry.png">
 
 
 
 **A：**
 
+原因：go1.15 版本 执行go build时会自动下载依赖，会更新mod文档，在go 1.16版本这一行为被禁止了。想要安装、更新依赖只能使用go get, go mod download, go mod tidy等命令，go build和go test将不会再做这类工作。
+
+在go1.16版本中，想要自动更新依赖可以使用 go build -mod=mod，
+
 进入对应目录执行`go mod download`
 
 ```sh
+# chainmaker-go项目
 cd  chainmaker-go/main
 go mod download
 
@@ -492,16 +545,20 @@ go mod download
 
 cd  chainmaker-go/tools/cmc
 go mod download
+
+# # chainmaker-cryptogen项目
+cd  chainmaker-cryptogen/src
+go mod download
 ```
 
 #### go.mod no such file or directory
 
 **Q:**
 
-编译时报错：
-
+>  编译时报错：
+>
 > go: chainmaker.org/chainmaker-go/blockchain@v0.0.0 requires
->         chainmaker.org/chainmaker-go/common@v0.0.0: parsing ../common/go.mod: open /mnt/d/develop/workspace/go/noSubmodule/chainmaker-go/common/go.mod: no such file or directory
+>      chainmaker.org/chainmaker-go/common@v0.0.0: parsing ../common/go.mod: open /mnt/d/develop/workspace/go/noSubmodule/chainmaker-go/common/go.mod: no such file or directory
 
 **A:**
 
@@ -527,7 +584,7 @@ git clone --recursive https://git.chainmaker.org.cn/chainmaker/chainmaker-go.git
 
 **Q:**
 
-若出现错误`./chainmaker: /lib64/libc.so.6: version `GLIBC_2.18' not found (required by /root/git-code/chainmaker-go/module/vm/wasmer/wasmer-go/libwasmer.so)`
+>  若出现错误`./chainmaker: /lib64/libc.so.6: version `GLIBC_2.18' not found (required by /root/git-code/chainmaker-go/module/vm/wasmer/wasmer-go/libwasmer.so)`
 
 **A:**
 
@@ -544,7 +601,7 @@ sh install.sh
 
 **Q:**
 
-[root@localhost scripts]# ./cluster_quick_start.sh normal ===> Staring chainmaker cluster START ==> /home/wx/chainmaker/chainmaker-go/build/release/chainmaker-V1.0.0-wx-org1.chainmaker.org ./cluster_quick_start.sh: line 51: ./restart.sh: Permission denied
+>  [root@localhost scripts]# ./cluster_quick_start.sh normal ===> Staring chainmaker cluster START ==> /home/wx/chainmaker/chainmaker-go/build/release/chainmaker-V1.0.0-wx-org1.chainmaker.org ./cluster_quick_start.sh: line 51: ./restart.sh: Permission denied
 
 **A:**
 
@@ -573,21 +630,25 @@ chmod +x *.sh
 
 **Q:**
 
-执行gasm合约时报错：resolve imports: syscall/js.valueGet not exported in module env
+>  执行gasm合约时报错：resolve imports: syscall/js.valueGet not exported in module env
 
 **A:** 
 
 tinygo不支持fmt等函数
 
-#### runtime type error
+#### runtime type error |  byte code validation failed
 
 **Q:**
 
-发送交易成功，但链打印错误信息：contract invoke failed, runtime type error, expect rust:[2], but got 4。同时根据该交易id查询到交易错误信息。
+>  发送交易成功，但链打印错误信息：contract invoke failed, runtime type error, expect rust:[2], but got 4。同时根据该交易id查询到交易错误信息。
+>
+>  failed to create vm runtime, contract: contract_test, [contract_test], byte code validation failed
 
 **A:**
 
-执行交易时异步的（查询类交易除外），返回的状态为链成功接收到交易的状态。执行合约是，runtimeType选择错误，需要根据自己的合约语言选择对应的runtimeType
+执行交易时异步的（查询类交易除外），返回的状态为链成功接收到交易的状态。执行合约是，runtimeType选择错误，需要根据自己的合约语言选择对应的runtimeType。
+
+ byte code validation failed：可能原因：1、运行类型错误；2、wasm文件损坏；3、wasm文件非官网指定渠道编译
 
 | 语言     | 类型                   |
 | -------- | ---------------------- |
@@ -598,11 +659,13 @@ tinygo不支持fmt等函数
 | solidity | RuntimeType_EVM = 5    |
 |          |                        |
 
+
+
 #### 返回成功，但实际执行失败
 
 **Q:**
 
-使用sdk执行安装、调用合约时，SDK 返回message为ok，但链和交易显示执行失败
+>  使用sdk执行安装、调用合约时，SDK 返回message为ok，但链和交易显示执行失败
 
 **A:**
 
@@ -629,7 +692,7 @@ tinygo不支持fmt等函数
 >
 > 时间 [日志级别] [模块] @链名称 文件名.go:行数 链chain[链名称]:put block\[区块高度\](txs:交易个数 bytes:区块大小), 使用时间毫秒(mashal:0, log:2, commit:5, total:7)
 
-<img src="../images/快速入门-qa-put-block.png">
+<img src="../images/quickstart-qa-put-block.png">
 
 
 
@@ -651,11 +714,12 @@ tinygo不支持fmt等函数
 >
 > 
 
-<img src="../images/快速入门-qa-netrowk-ok.png" style="zoom:50%;" />
+<img src="../images/quickstart-qa-netrowk-ok.png" style="zoom:50%;" />
 
-<img src="../images/快速入门-qa-init-block-success.png" style="zoom:50%;" />
-
-<br><br>
+<img src="../images/quickstart-qa-init-block-success.png" style="zoom:50%;" />
 
 
+
+
+<br><br><br>
 

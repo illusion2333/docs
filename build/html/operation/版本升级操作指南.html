@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>6. 版本升级操作指南 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  <title>6. 版本升级操作指南 &mdash; chainmaker-docs v1.2.0 documentation</title>
   
 
   
@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
 
   
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
 
   
@@ -38,7 +40,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. 供应链金融" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html" />
+    <link rel="next" title="7. 区块链浏览器" href="%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B5%8F%E8%A7%88%E5%99%A8.html" />
     <link rel="prev" title="5. HIBE 教程" href="HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html" /> 
 </head>
 
@@ -57,13 +59,16 @@
           
 
           
+            
+            <img src="../_static/chainmakerLOGO-09.png" class="logo" alt="Logo"/>
+          
           </a>
 
           
             
             
               <div class="version">
-                v1.1.0
+                v1.2.0
               </div>
             
           
@@ -88,7 +93,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+              <p class="caption"><span class="caption-text">长安链介绍</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
@@ -104,8 +109,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/Q%26A.html">7. Q&amp;A</a></li>
 </ul>
-<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<p class="caption"><span class="caption-text">技术设计文档</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
@@ -119,6 +125,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html">13. SQL合约支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/SPV.html">14. SPV 轻节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html">15. 跨链方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6.html">16. 隐私合约</a></li>
 </ul>
 <p class="caption"><span class="caption-text">开发指南</span></p>
 <ul>
@@ -136,17 +146,20 @@
 <li class="toctree-l1"><a class="reference internal" href="HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">6. 版本升级操作指南</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">6.1. 概述</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#v1-0-0-v1-1-0">6.2. v1.0.0版本 -&gt; v1.1.0版本 升级指南</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#v1-1-0v1-0-0">6.2.1. v1.1.0版本与v1.0.0版本配置变更说明：</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id3">6.2.1.1. 链配置项中共识节点配置变更说明：</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v1-0-0-v1-1-x">6.2. v1.0.0版本 -&gt; v1.1.x版本 升级指南</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v1-1-xv1-0-0">6.2.1. v1.1.x版本与v1.0.0版本配置变更说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">6.2.1.1. 链配置项中共识节点配置变更说明</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#v1-0-0v1-1-0">6.2.2. 将v1.0.0版本升级为v1.1.0版本操作步骤：</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">6.2.3. 将v1.0.0版本升级为v1.1.0版本后，需要新添加节点注意事项：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#v1-0-0v1-1-x">6.2.2. 将v1.0.0版本升级为v1.1.x版本操作步骤</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">6.2.3. 将v1.0.0版本升级为v1.1.x版本后，需要新添加节点注意事项</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B5%8F%E8%A7%88%E5%99%A8.html">7. 区块链浏览器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html">8. SPV 部署和使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%B7%A8%E9%93%BE%E4%BD%BF%E7%94%A8.html">9. 跨链使用</a></li>
 </ul>
 <p class="caption"><span class="caption-text">应用场景</span></p>
 <ul>
@@ -234,13 +247,13 @@
 <h2><span class="section-number">6.1. </span>概述<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>本文档主要描述将已在运行的chainmaker旧版本升级为新版本的步骤，正常情况下，伴随着新版发布，都会有相应的升级描述。本文档根据版本号倒序排版，即最新版本升级描述会在最前面，请读者注意。</p>
 </div>
-<div class="section" id="v1-0-0-v1-1-0">
-<h2><span class="section-number">6.2. </span>v1.0.0版本 -&gt; v1.1.0版本 升级指南<a class="headerlink" href="#v1-0-0-v1-1-0" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="v1-1-0v1-0-0">
-<h3><span class="section-number">6.2.1. </span>v1.1.0版本与v1.0.0版本配置变更说明：<a class="headerlink" href="#v1-1-0v1-0-0" title="Permalink to this headline">¶</a></h3>
-<p>从v1.1.0版本开始，共识节点的节点网络地址不再上链，改为只将共识节点的节点ID（NodeID）上链。目的是让节点IP发生变更时，减少运维的操作复杂度，运维人员只需修改本地<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>文件中的网络配置即可，无需发起链配置变更交易。</p>
+<div class="section" id="v1-0-0-v1-1-x">
+<h2><span class="section-number">6.2. </span>v1.0.0版本 -&gt; v1.1.x版本 升级指南<a class="headerlink" href="#v1-0-0-v1-1-x" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="v1-1-xv1-0-0">
+<h3><span class="section-number">6.2.1. </span>v1.1.x版本与v1.0.0版本配置变更说明<a class="headerlink" href="#v1-1-xv1-0-0" title="Permalink to this headline">¶</a></h3>
+<p>从v1.1.x版本开始，共识节点的节点网络地址不再上链，改为只将共识节点的节点ID（NodeID）上链。目的是让节点IP发生变更时，减少运维的操作复杂度，运维人员只需修改本地<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>文件中的网络配置即可，无需发起链配置变更交易。</p>
 <div class="section" id="id3">
-<h4><span class="section-number">6.2.1.1. </span>链配置项中共识节点配置变更说明：<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">6.2.1.1. </span>链配置项中共识节点配置变更说明<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
 <p>v1.0.0版本<code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>中共识配置及权限配置：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1">#共识配置</span>
 <span class="nt">consensus</span><span class="p">:</span>
@@ -270,7 +283,7 @@
         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">admin</span>
 </pre></div>
 </div>
-<p>v1.1.0版本<code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>中共识配置变更为：</p>
+<p>v1.1.x版本<code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>中共识配置变更为：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1">#共识配置</span>
 <span class="nt">consensus</span><span class="p">:</span>
   <span class="c1"># 共识类型(0-SOLO,1-TBFT,2-MBFT,3-HOTSTUFF,4-RAFT,10-POW)</span>
@@ -299,7 +312,7 @@
         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">admin</span>
 </pre></div>
 </div>
-<p><strong>v1.1.0版本将权限配置中<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_ADD</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_UPDATE</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_DELETE</span></code>全部改为<code class="docutils literal notranslate"><span class="pre">NODE_ID_ADD</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ID_UPDATE</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ID_DELETE</span></code>，原<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_ADD</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_UPDATE</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_DELETE</span></code>已全部弃用。</strong></p>
+<p><strong>v1.1.x版本将权限配置中<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_ADD</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_UPDATE</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_DELETE</span></code>全部改为<code class="docutils literal notranslate"><span class="pre">NODE_ID_ADD</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ID_UPDATE</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ID_DELETE</span></code>，原<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_ADD</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_UPDATE</span></code>、<code class="docutils literal notranslate"><span class="pre">NODE_ADDR_DELETE</span></code>已全部弃用。</strong></p>
 <p>v1.0.0版本<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>中网络配置：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">net</span><span class="p">:</span>
   <span class="nt">provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">LibP2P</span>
@@ -310,7 +323,7 @@
     <span class="nt">cert_file</span><span class="p">:</span>     <span class="l l-Scalar l-Scalar-Plain">../config/wx-org1/certs/node/consensus1/consensus1.tls.crt</span>
 </pre></div>
 </div>
-<p>v1.1.0版本<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>中网络配置变更为：</p>
+<p>v1.1.x版本<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>中网络配置变更为：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">net</span><span class="p">:</span>
   <span class="nt">provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">LibP2P</span>
   <span class="nt">listen_addr</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/ip4/0.0.0.0/tcp/11301</span>
@@ -326,24 +339,95 @@
     <span class="nt">cert_file</span><span class="p">:</span>     <span class="l l-Scalar l-Scalar-Plain">../config/wx-org1/certs/node/consensus1/consensus1.tls.crt</span>
 </pre></div>
 </div>
+<p>v1.1.0版本<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>中合约事件配置：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">storage</span><span class="p">:</span>
+    <span class="nt">provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">leveldb</span>        <span class="c1">#合约事件功能适配支持levedb、rocksdb、mysql provider</span>
+    <span class="nt">store_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">../data/ledgerData1</span>
+    <span class="nt">enable_contract_eventdb</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class="c1">#是否开启合约事件存储功能， 默认为false，如果设置为true,需要配置mysql</span>
+    <span class="nt">mysql</span><span class="p">:</span>    <span class="c1">#MySQL相关配置，provider选择MySQL或者enable_contract_eventdb为true时需要配置</span>
+      <span class="nt">dsn</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root:password@tcp(127.0.0.1:3306)/</span>    <span class="c1">#mysql的连接信息，包括用户名、密码、ip、port等，示例：root:admin@tcp(127.0.0.1:3306)</span>
+      <span class="nt">max_idle_conns</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>    <span class="c1">#连接池中维持的最大的空闲连接数，默认为10</span>
+      <span class="nt">max_open_conns</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>    <span class="c1">#最大的可用连接数，默认为10</span>
+      <span class="nt">conn_max_lifetime</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60</span>    <span class="c1">#连接维持的最长时间，单位秒，默认为60</span>
+</pre></div>
+</div>
+<p>v1.1.1版本<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>中合约事件配置变更为：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">storage</span><span class="p">:</span>
+  <span class="nt">disable_contract_eventdb</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>  <span class="c1">#是否禁止合约事件存储功能，默认为true，如果设置为false,需要配置mysql</span>
+  <span class="nt">contract_eventdb_config</span><span class="p">:</span>
+    <span class="nt">provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sql</span>                 <span class="c1">#如果开启contract event db 功能，需要指定provider为sql</span>
+    <span class="nt">sqldb_config</span><span class="p">:</span>
+      <span class="nt">sqldb_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mysql</span>           <span class="c1">#contract event db 只支持mysql</span>
+      <span class="nt">dsn</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root:password@tcp(127.0.0.1:3306)/</span>  <span class="c1">#mysql的连接信息，包括用户名、密码、ip、port等，示例：root:admin@tcp(127.0.0.1:3306)/</span>
+</pre></div>
+</div>
+<p>v1.1.1版本<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>中存储配置如下：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">storage</span><span class="p">:</span>
+  <span class="nt">db_prefix</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">org01</span>
+  <span class="nt">store_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">../data/org1/ledgerData1</span>
+  <span class="nt">blockdb_config</span><span class="p">:</span>
+    <span class="nt">provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">leveldb</span>
+    <span class="nt">leveldb_config</span><span class="p">:</span>
+      <span class="nt">store_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">../data/org1/blocks</span>
+    <span class="c1"># provider: sql</span>
+    <span class="c1"># sqldb_config:</span>
+    <span class="c1">#   sqldb_type:  mysql</span>
+    <span class="c1">#   dsn:  root:passw0rd@tcp(localhost:3306)/mysql</span>
+  <span class="nt">statedb_config</span><span class="p">:</span>
+    <span class="nt">provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">leveldb</span>
+    <span class="nt">leveldb_config</span><span class="p">:</span>
+      <span class="nt">store_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">../data/org1/state</span>
+    <span class="c1"># provider: sql</span>
+    <span class="c1"># sqldb_config:</span>
+    <span class="c1">#   sqldb_type:  mysql</span>
+    <span class="c1">#   dsn:  root:passw0rd@tcp(localhost:3306)/mysql</span>
+  <span class="nt">historydb_config</span><span class="p">:</span>
+    <span class="nt">provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">leveldb</span>
+    <span class="nt">leveldb_config</span><span class="p">:</span>
+      <span class="nt">store_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">../data/org1/history</span>
+    <span class="c1"># provider: sql</span>
+    <span class="c1"># sqldb_config:</span>
+    <span class="c1">#   sqldb_type:  mysql</span>
+    <span class="c1">#   dsn:  root:passw0rd@tcp(localhost:3306)/mysql</span>
+  <span class="nt">resultdb_config</span><span class="p">:</span>
+    <span class="nt">provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">leveldb</span>
+    <span class="nt">leveldb_config</span><span class="p">:</span>
+      <span class="nt">store_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">../data/org1/result</span>
+    <span class="c1"># provider: sql</span>
+    <span class="c1"># sqldb_config:</span>
+    <span class="c1">#   sqldb_type:  mysql</span>
+    <span class="c1">#   dsn:  root:passw0rd@tcp(localhost:3306)/mysql</span>
+  <span class="nt">disable_contract_eventdb</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>  <span class="c1">#是否禁止合约事件存储功能，默认为true，如果设置为false,需要配置mysql</span>
+  <span class="nt">contract_eventdb_config</span><span class="p">:</span>
+    <span class="nt">provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sql</span>                 <span class="c1">#如果开启contract event db 功能，需要指定provider为sql</span>
+    <span class="nt">sqldb_config</span><span class="p">:</span>
+      <span class="nt">sqldb_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mysql</span>           <span class="c1">#contract event db 只支持mysql</span>
+      <span class="nt">dsn</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root:password@tcp(127.0.0.1:3306)/</span>  <span class="c1">#mysql的连接信息，包括用户名、密码、ip、port等，示例：root:admin@tcp(127.0.0.1:3306)/</span>
+</pre></div>
 </div>
 </div>
-<div class="section" id="v1-0-0v1-1-0">
-<h3><span class="section-number">6.2.2. </span>将v1.0.0版本升级为v1.1.0版本操作步骤：<a class="headerlink" href="#v1-0-0v1-1-0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="v1-0-0v1-1-x">
+<h3><span class="section-number">6.2.2. </span>将v1.0.0版本升级为v1.1.x版本操作步骤<a class="headerlink" href="#v1-0-0v1-1-x" title="Permalink to this headline">¶</a></h3>
 <p>*<strong>写在最前面：建议所有操作都备份</strong></p>
-<p>1.停止所有向节点发交易请求，即不要再让链出新块。</p>
-<p>2.确认现有全部节点状态已同步到一致，即块高度一致。</p>
-<p>3.停止所有节点服务。</p>
-<p>4.编译v1.1.0版本的可执行文件，并替换原v1.0.0版本的可执行文件。</p>
-<p>5.修改所有节点的<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>，将<code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>中的共识节点地址添加至<code class="docutils literal notranslate"><span class="pre">net:seeds:</span></code>中。 <code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>不要修改!!! <code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>不要修改!!! <code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>不要修改!!!</p>
-<p>6.启动所有节点，观察日志有无错误信息。</p>
-<p>7.正常情况下，至此版本升级成功。</p>
-<p>8.如果有使用<code class="docutils literal notranslate"><span class="pre">sdk</span></code>或者<code class="docutils literal notranslate"><span class="pre">cmc</span></code>工具，请将<code class="docutils literal notranslate"><span class="pre">sdk</span></code>或<code class="docutils literal notranslate"><span class="pre">cmc</span></code>版本升级为v1.1.0,否则可能会导致交易失败。</p>
+<ul class="simple">
+<li><p><strong>1.停止交易：</strong> 停止所有向节点发交易请求，即不要再让链出新块。</p></li>
+<li><p><strong>2.确认同步：</strong> 确认现有全部节点状态已同步到一致，即块高度一致。</p></li>
+<li><p><strong>3.停止节点：</strong> 停止所有节点服务。</p></li>
+<li><p><strong>4.编译chainmaker：</strong> 编译v1.1.x版本的可执行文件，并替换原v1.0.0版本的可执行文件。</p></li>
+<li><p><strong>5.修改配置：</strong> 修改所有节点的<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>，将<code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>中的共识节点地址添加至<code class="docutils literal notranslate"><span class="pre">net:seeds:</span></code>中。 <code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>不要修改!!! <code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>不要修改!!! <code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>不要修改!!!</p></li>
+<li><p><strong>6.启动：</strong> 启动所有节点，观察日志有无错误信息。</p></li>
+<li><p><strong>7.链升级成功：</strong> 正常情况下，至此版本升级成功。</p></li>
+<li><p><strong>8.编译wasm文件：</strong> 使用和chainmaker-go相同版本的合约SDK编译新的wasm文件。</p></li>
+<li><p><strong>9.升级合约：</strong> 使用新的合约升级以前版本的合约。</p></li>
+<li><p><strong>10.升级配套工具：</strong> 如果有使用<code class="docutils literal notranslate"><span class="pre">sdk</span></code>或者<code class="docutils literal notranslate"><span class="pre">cmc</span></code>工具，请将<code class="docutils literal notranslate"><span class="pre">sdk</span></code>或<code class="docutils literal notranslate"><span class="pre">cmc</span></code>版本升级为v1.1.x,否则可能会导致交易失败。</p></li>
+</ul>
 </div>
 <div class="section" id="id4">
-<h3><span class="section-number">6.2.3. </span>将v1.0.0版本升级为v1.1.0版本后，需要新添加节点注意事项：<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>1.新节点的<code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>文件必须与v1.0.0版本时期保持一致，无需修改为v1.1.0版本。v1.1.0版本程序已对其做了兼容，如果修改<code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>会导致创世块不一致，无法完成同步。</p>
-<p>2.新节点的<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>文件需要与v1.1.0版本保持一致，即需要将共识节点地址添加至<code class="docutils literal notranslate"><span class="pre">net:seeds:</span></code>配置项中。</p>
+<h3><span class="section-number">6.2.3. </span>将v1.0.0版本升级为v1.1.x版本后，需要新添加节点注意事项<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>1.新节点的<code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>文件必须与v1.0.0版本时期保持一致，无需修改为v1.1.x版本。v1.1.x版本程序已对其做了兼容，如果修改<code class="docutils literal notranslate"><span class="pre">bc*.yml</span></code>会导致创世块不一致，无法完成同步。</p>
+<p>2.新节点的<code class="docutils literal notranslate"><span class="pre">chainmaker.yml</span></code>文件需要与v1.1.x版本保持一致，即需要将共识节点地址添加至<code class="docutils literal notranslate"><span class="pre">net:seeds:</span></code>配置项中。</p>
+<p><br><br></p>
 </div>
 </div>
 </div>
@@ -354,7 +438,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html" class="btn btn-neutral float-right" title="1. 供应链金融" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B5%8F%E8%A7%88%E5%99%A8.html" class="btn btn-neutral float-right" title="7. 区块链浏览器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html" class="btn btn-neutral float-left" title="5. HIBE 教程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

@@ -6,12 +6,12 @@
 
 
 
-## v1.0.0版本 -> v1.1.0版本 升级指南
+## v1.0.0版本 -> v1.1.x版本 升级指南
 
-### v1.1.0版本与v1.0.0版本配置变更说明：
-从v1.1.0版本开始，共识节点的节点网络地址不再上链，改为只将共识节点的节点ID（NodeID）上链。目的是让节点IP发生变更时，减少运维的操作复杂度，运维人员只需修改本地`chainmaker.yml`文件中的网络配置即可，无需发起链配置变更交易。
+### v1.1.x版本与v1.0.0版本配置变更说明
+从v1.1.x版本开始，共识节点的节点网络地址不再上链，改为只将共识节点的节点ID（NodeID）上链。目的是让节点IP发生变更时，减少运维的操作复杂度，运维人员只需修改本地`chainmaker.yml`文件中的网络配置即可，无需发起链配置变更交易。
 
-#### 链配置项中共识节点配置变更说明：
+#### 链配置项中共识节点配置变更说明
 
 v1.0.0版本`bc*.yml`中共识配置及权限配置：
 
@@ -44,7 +44,7 @@ resource_policies:
         - admin
 ```
 
-v1.1.0版本`bc*.yml`中共识配置变更为：
+v1.1.x版本`bc*.yml`中共识配置变更为：
 
 ```yaml
 #共识配置
@@ -75,7 +75,7 @@ resource_policies:
         - admin
 ```
 
-**v1.1.0版本将权限配置中`NODE_ADDR_ADD`、`NODE_ADDR_UPDATE`、`NODE_ADDR_DELETE`全部改为`NODE_ID_ADD`、`NODE_ID_UPDATE`、`NODE_ID_DELETE`，原`NODE_ADDR_ADD`、`NODE_ADDR_UPDATE`、`NODE_ADDR_DELETE`已全部弃用。**
+**v1.1.x版本将权限配置中`NODE_ADDR_ADD`、`NODE_ADDR_UPDATE`、`NODE_ADDR_DELETE`全部改为`NODE_ID_ADD`、`NODE_ID_UPDATE`、`NODE_ID_DELETE`，原`NODE_ADDR_ADD`、`NODE_ADDR_UPDATE`、`NODE_ADDR_DELETE`已全部弃用。**
 
 v1.0.0版本`chainmaker.yml`中网络配置：
 ```yaml
@@ -88,7 +88,7 @@ net:
     cert_file:     ../config/wx-org1/certs/node/consensus1/consensus1.tls.crt
 ```
 
-v1.1.0版本`chainmaker.yml`中网络配置变更为：
+v1.1.x版本`chainmaker.yml`中网络配置变更为：
 ```yaml
 net:
   provider: LibP2P
@@ -104,29 +104,104 @@ net:
     priv_key_file: ../config/wx-org1/certs/node/consensus1/consensus1.tls.key
     cert_file:     ../config/wx-org1/certs/node/consensus1/consensus1.tls.crt
 ```
+v1.1.0版本`chainmaker.yml`中合约事件配置：
+```yaml
+storage:
+    provider: leveldb        #合约事件功能适配支持levedb、rocksdb、mysql provider
+    store_path: ../data/ledgerData1
+    enable_contract_eventdb: false #是否开启合约事件存储功能， 默认为false，如果设置为true,需要配置mysql
+    mysql:    #MySQL相关配置，provider选择MySQL或者enable_contract_eventdb为true时需要配置
+      dsn: root:password@tcp(127.0.0.1:3306)/    #mysql的连接信息，包括用户名、密码、ip、port等，示例：root:admin@tcp(127.0.0.1:3306)
+      max_idle_conns: 10    #连接池中维持的最大的空闲连接数，默认为10
+      max_open_conns: 10    #最大的可用连接数，默认为10
+      conn_max_lifetime: 60    #连接维持的最长时间，单位秒，默认为60
+```
 
-### 将v1.0.0版本升级为v1.1.0版本操作步骤：
+v1.1.1版本`chainmaker.yml`中合约事件配置变更为：
+```yaml
+storage:
+  disable_contract_eventdb: true  #是否禁止合约事件存储功能，默认为true，如果设置为false,需要配置mysql
+  contract_eventdb_config:
+    provider: sql                 #如果开启contract event db 功能，需要指定provider为sql
+    sqldb_config:
+      sqldb_type: mysql           #contract event db 只支持mysql
+      dsn: root:password@tcp(127.0.0.1:3306)/  #mysql的连接信息，包括用户名、密码、ip、port等，示例：root:admin@tcp(127.0.0.1:3306)/
+```
+v1.1.1版本`chainmaker.yml`中存储配置如下：
+```yaml
+storage:
+  db_prefix: org01
+  store_path: ../data/org1/ledgerData1
+  blockdb_config:
+    provider: leveldb
+    leveldb_config:
+      store_path: ../data/org1/blocks
+    # provider: sql
+    # sqldb_config:
+    #   sqldb_type:  mysql
+    #   dsn:  root:passw0rd@tcp(localhost:3306)/mysql
+  statedb_config:
+    provider: leveldb
+    leveldb_config:
+      store_path: ../data/org1/state
+    # provider: sql
+    # sqldb_config:
+    #   sqldb_type:  mysql
+    #   dsn:  root:passw0rd@tcp(localhost:3306)/mysql
+  historydb_config:
+    provider: leveldb
+    leveldb_config:
+      store_path: ../data/org1/history
+    # provider: sql
+    # sqldb_config:
+    #   sqldb_type:  mysql
+    #   dsn:  root:passw0rd@tcp(localhost:3306)/mysql
+  resultdb_config:
+    provider: leveldb
+    leveldb_config:
+      store_path: ../data/org1/result
+    # provider: sql
+    # sqldb_config:
+    #   sqldb_type:  mysql
+    #   dsn:  root:passw0rd@tcp(localhost:3306)/mysql
+  disable_contract_eventdb: true  #是否禁止合约事件存储功能，默认为true，如果设置为false,需要配置mysql
+  contract_eventdb_config:
+    provider: sql                 #如果开启contract event db 功能，需要指定provider为sql
+    sqldb_config:
+      sqldb_type: mysql           #contract event db 只支持mysql
+      dsn: root:password@tcp(127.0.0.1:3306)/  #mysql的连接信息，包括用户名、密码、ip、port等，示例：root:admin@tcp(127.0.0.1:3306)/
+```
+
+### 将v1.0.0版本升级为v1.1.x版本操作步骤
 
 ***写在最前面：建议所有操作都备份**
 
-1.停止所有向节点发交易请求，即不要再让链出新块。
+- **1.停止交易：** 停止所有向节点发交易请求，即不要再让链出新块。
 
-2.确认现有全部节点状态已同步到一致，即块高度一致。
+- **2.确认同步：** 确认现有全部节点状态已同步到一致，即块高度一致。
 
-3.停止所有节点服务。
+- **3.停止节点：** 停止所有节点服务。
 
-4.编译v1.1.0版本的可执行文件，并替换原v1.0.0版本的可执行文件。
+- **4.编译chainmaker：** 编译v1.1.x版本的可执行文件，并替换原v1.0.0版本的可执行文件。
 
-5.修改所有节点的`chainmaker.yml`，将`bc*.yml`中的共识节点地址添加至`net:seeds:`中。 `bc*.yml`不要修改!!! `bc*.yml`不要修改!!! `bc*.yml`不要修改!!!
+- **5.修改配置：** 修改所有节点的`chainmaker.yml`，将`bc*.yml`中的共识节点地址添加至`net:seeds:`中。 `bc*.yml`不要修改!!! `bc*.yml`不要修改!!! `bc*.yml`不要修改!!!
 
-6.启动所有节点，观察日志有无错误信息。
+- **6.启动：** 启动所有节点，观察日志有无错误信息。
 
-7.正常情况下，至此版本升级成功。
+- **7.链升级成功：** 正常情况下，至此版本升级成功。
 
-8.如果有使用`sdk`或者`cmc`工具，请将`sdk`或`cmc`版本升级为v1.1.0,否则可能会导致交易失败。
+- **8.编译wasm文件：** 使用和chainmaker-go相同版本的合约SDK编译新的wasm文件。
 
-### 将v1.0.0版本升级为v1.1.0版本后，需要新添加节点注意事项：
+- **9.升级合约：** 使用新的合约升级以前版本的合约。
 
-1.新节点的`bc*.yml`文件必须与v1.0.0版本时期保持一致，无需修改为v1.1.0版本。v1.1.0版本程序已对其做了兼容，如果修改`bc*.yml`会导致创世块不一致，无法完成同步。
+- **10.升级配套工具：** 如果有使用`sdk`或者`cmc`工具，请将`sdk`或`cmc`版本升级为v1.1.x,否则可能会导致交易失败。
 
-2.新节点的`chainmaker.yml`文件需要与v1.1.0版本保持一致，即需要将共识节点地址添加至`net:seeds:`配置项中。
+### 将v1.0.0版本升级为v1.1.x版本后，需要新添加节点注意事项
+
+1.新节点的`bc*.yml`文件必须与v1.0.0版本时期保持一致，无需修改为v1.1.x版本。v1.1.x版本程序已对其做了兼容，如果修改`bc*.yml`会导致创世块不一致，无法完成同步。
+
+2.新节点的`chainmaker.yml`文件需要与v1.1.x版本保持一致，即需要将共识节点地址添加至`net:seeds:`配置项中。
+
+
+
+<br><br>

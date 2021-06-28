@@ -286,7 +286,7 @@ java version "1.8.0_281"
 #### 下载安装
 
 ```bash
-$ git clone https://git.code.tencent.com/ChainMaker/chainmaker-sdk-java.git
+$ git clone https://git.chainmaker.org.cn/chainmaker/chainmaker-sdk-java.git
 ```
 
 #### 示例代码
@@ -378,3 +378,10 @@ if (chainClient == null) {
 #### 接口说明
 
 请参看：[《chainmaker-java-sdk》](../dev/chainmaker-java-sdk.md)
+
+
+
+
+
+<br><br>
+

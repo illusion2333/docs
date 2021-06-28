@@ -82,10 +82,10 @@ $ ./cluster_quick_start.sh normal
 
 # 查看节点启动情况
 $ ps -ef|grep chainmaker
-jason    30219  2326  3 17:56 pts/5    00:00:03 ./chainmaker start -c ../config/wx-org1.chainmaker.org/chainmaker.yml
-jason    30239  2326  4 17:56 pts/5    00:00:03 ./chainmaker start -c ../config/wx-org2.chainmaker.org/chainmaker.yml
-jason    30256  2326  4 17:56 pts/5    00:00:03 ./chainmaker start -c ../config/wx-org3.chainmaker.org/chainmaker.yml
-jason    30277  2326  4 17:56 pts/5    00:00:03 ./chainmaker start -c ../config/wx-org4.chainmaker.org/chainmaker.yml
+30219  2326  3 17:56 pts/5    00:00:03 ./chainmaker start -c ../config/wx-org1.chainmaker.org/chainmaker.yml
+30239  2326  4 17:56 pts/5    00:00:03 ./chainmaker start -c ../config/wx-org2.chainmaker.org/chainmaker.yml
+30256  2326  4 17:56 pts/5    00:00:03 ./chainmaker start -c ../config/wx-org3.chainmaker.org/chainmaker.yml
+30277  2326  4 17:56 pts/5    00:00:03 ./chainmaker start -c ../config/wx-org4.chainmaker.org/chainmaker.yml
 ```
 
 ### 配置修改
@@ -242,7 +242,7 @@ etcd_disk_wal_write_bytes_total
 
 选择`Prometheus`数据源，填入`URL`后，点击`Save & Test`按钮进行测试，测试通过会显示`Data source is working`的提示。
 
-<img src="../images/运维监控-添加数据源.png" style="zoom:50%;" />
+<img src="../images/Monitoring-AddingDataSources.png" style="zoom:50%;" />
 
 #### 导入仪表盘
 
@@ -250,11 +250,14 @@ etcd_disk_wal_write_bytes_total
 >
 > 仪表盘模板存放路径：`chainmaker-go/monitor/dashboard.json`
 
-<img src="../images/运维监控-导入仪表盘.png" style="zoom:50%;" />
+<img src="../images/Monitoring-ImportDashboard.png" style="zoom:50%;" />
 
 ## 监控效果展示
 
 > 导入仪表盘后，便可查看到监控效果
 
-<img src="../images/运维监控-监控效果展示.png" style="zoom:50%;" />
+<img src="../images/Monitoring-EffectDisplay.png" style="zoom:50%;" />
 
+
+
+<br><br>

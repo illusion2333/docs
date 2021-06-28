@@ -1,0 +1,279 @@
+# 隐私合约
+
+## 概述
+一般来说，参与到区块链交易中的数据对链参与者都是公开的。长安链隐私合约功能为区块链提供在合约中处理敏感数据的能力，达到保护数据隐私的同时保证合约执行过程的可靠性。长安链隐私合约采用可信计算技术，在可信执行环境中执行隐私合约。敏感数据以密文形式存在于区块链账本中，在使用时在可信执行环境中解密，而可信执行环境外无法获得敏感数据密文。同时，可信执行环境的远程证明保证合约逻辑不被篡改。如此，达到敏感数据在区块链上的可用不可见，而数据处理流程仍然可以在区块链上公开验证的效果。
+
+长安链支持Intel SGX作为执行隐私合约的硬件基础。目前Intel SGX相对于其他可信计算硬件，具有兼容性好、文档完善等优势。
+
+## 隐私合约设计方案
+隐私合约功能由一个基于可信执行环境的隐私合约环境提供。这个隐私合约环境由可信执行环境Enclave和隐私计算网关组成。其中Enclave是运行在可信执行环境的逻辑，负责对合约进行验证、编译、执行，敏感数据密文只能在Enclave中解密。长安链的Enclave中实现了一套EVM逻辑，可以对任意数据处理逻辑进行编译、运行。隐私计算网关负责将用户、Enclave发出的信息打包成区块链的交易payload，并转发给区块链存证。
+
+整个流程分为三个阶段：可信执行环境的远程证明、隐私合约的部署、隐私合约的调用。
+
+- 远程证明动作可以是一次性的。在该阶段，由用户发起对隐私合约环境中Enclave的远程证明，验证该Enclave是否运行于可信执行环境中，以及该Enclave中的逻辑是否在部署后被篡改过。
+- 隐私合约的部署发生在远程证明之后，每个不同的隐私合约需要单独进行一次部署。在这个阶段中，用户可以部署任意经区块链共识接受的任意数据处理逻辑作为隐私合约，隐私合约会被存在区块链上，其逻辑收到公开监管。
+- 隐私合约的调用发生在部署之后。一个隐私合约部署后，用户可以以相同或不同的数据为入参进行多次调用。
+
+### 可信执行环境与远程证明
+[可信执行环境](https://en.wikipedia.org/wiki/Trusted_execution_environment)是CPU的一个安全加固区域，可以保证其中的程式和资料在机密性和完整性上得到保护。该区域的软硬件环境可以看做是与外界隔离的一个反沙箱环境。在这个环境中运行的程序，其内存无法被外部包括操作系统读取或写入，其代码运行逻辑也无法被外部包括操作系统干扰。
+
+[远程证明](https://en.wikipedia.org/wiki/Trusted_Computing#Remote_attestation)可以使验证者辨别被验证的可信执行环境上的软件逻辑是否有变更。通常，远程证明的被验证方通过可信硬件生成一个描述当前运行在可信执行环境中的软件的证书。验证者通过验证这个证书的合法性来验证可信硬件上的软件进程是否被修改过。
+
+
+#### [Intel DCAP](https://software.intel.com/content/dam/develop/external/us/en/documents/s21c-icmc2019-intel-sgx-opensource-attestation.pdf)远程证明（暂不支持，需搭配新款服务器）
+Intel提供的远程证明机制。
+
+- 信任Intel。在DCAP远程证明模式中，Intel会作为根CA为SGX硬件提供认证。
+- 需要在网络中维护一个PCCS服务提供对网络中的SGX硬件提供认证。PCCS服务是将Intel为SGX下发的类似二级证书的信息缓存到一个局域网络中。
+
+#### 自定义信任根的远程证明（v1.2.0开始支持）
+自定义信任根的远程证明对DCAP做了一些改动，将对Intel的信任转移到对任意选定的CA机构的信任上。
+
+在可信执行环境初始化阶段，可信硬件基于硬件固有密钥生成一对签名公私钥对和一对加密公私钥对，并向一个选定的CA机构申请证书。该证书中包含签名公钥和加密公钥。这个过程类似与硬件出厂时向Intel注册信息。
+
+<img src="../images/PrivateContract-RemoteAttestation.png" style="zoom:100%;" />
+
+在用户发起对Enclave的远程证明时：
+
+1. 用户生成一个随机挑战（任意随机字符串），将其发送到隐私合约环境，由隐私计算网关转发到Enclave中。
+2. Enclave对收到的随机挑战制作一个远程证明。Enclave收到随机挑战后，调用SGX EREPORT指令获取包括当前运行中的软件的代码度量在内的Enclave信息——report，将随机挑战与report拼接后，用签名私钥对其签名，制作出包含随机挑战、report、Enclave签名、Enclave证书4个组件的远程证明。
+3. Enclave通过隐私计算网关输出远程证明（包括随机挑战、report、Enclave签名、Enclave证书）。
+    - 隐私计算网关会调用系统合约将远程证明传上区块链账本中存证。系统合约中包含验证远程证明合法性的逻辑，通过验证的远程证明会经过区块链共识出块的流程被记录在区块中。
+    - 隐私计算网关会返回一份远程证明给发起证明流程的用户，用户可以线下自行验证远程证明。
+
+### 合约部署阶段
+在初始化（远程证明）阶段将Enclave的远程证明写入区块后，就可以在链上进行隐私合约的部署了。v1.2.0版本只支持solidity语言开发的合约。
+
+<img src="../images/PrivateContract-ContractInstall.png" style="zoom:100%;" />
+
+Solidity隐私合约的部署流程如上图所示：
+1. 用户发起部署合约的请求，并把合约发送给隐私合约环境。
+2. 隐私计算网关在接收到用户部署请求后，把其中的合约送入Enclave的EVM中进行初始化。部分情况中，这一步还需要借助链上数据参与，则由隐私计算网关打包查询请求与链交互后，再在EVM中初始化合约。
+3. Enclave初始化合约完成后，通知隐私计算网关。
+4. 若Enclave初始化合约成功，隐私计算网关会将合约通过链上系统合约存入区块链账本中。链上的合约可用于合约逻辑的可靠性校验参照及合约的公共监管。
+5. 隐私计算网关通知用户部署合约的事件状态。
+
+### 合约调用阶段
+用户可以随时发起对已经部署的隐私合约的调用请求。在调用隐私合约前，用户需要从区块链上获取远程证明并从中获得Enclave的加密公钥和签名验证公钥。隐私合约的调用流程如下：
+
+<img src="../images/PrivateContract-ContractInvoke.png" style="zoom:100%;" />
+
+1. 用户向隐私合约环境发起调用隐私合约的请求。这个请求中包含要调用的隐私合约ID、涉及到的链上数据的key、用户准备的链外数据。（其中，链上的数据和用户准备的链外数据可能是加密的。我们会在之后的小章节中介绍加密数据的推荐处理方式。）
+2. 隐私计算网关根据用户调用合约的请求构造一个从链上读取用户指定的隐私合约代码和用户指定的链上数据的请求，并发送到区块链。
+3. 隐私计算网关从区块链上获取到隐私合约代码和需要的链上数据后，连同来自用户的链外数据一起，转发给Enclave。Enclave接收到隐私合约代码、区块链上数据、用户提供的链外数据后，
+    - 编译隐私合约；
+    - 若数据是密文，使用加密私钥解密数据；
+    - 以传入Enclave的链上、链外数据为入参执行隐私合约；
+    - 按需要选择是否对执行结果加密；
+    - 打包执行结果，其中内容包括：隐私合约执行结果、隐私合约、链上及链外的入参数据；
+    - 使用签名私钥对打包好的执行结果签名。
+
+    Enclave将执行结果与签名返回到隐私计算网关。
+4. 隐私计算网关调用系统合约把执行结果与签名传到链上。系统合约中会从链上获取Enclave远程证明，从中提取出签名公钥对执行结果的签名进行验证，并从执行结果中提取隐私合约、链上数据部分，与区块链上的信息进行比对。如果这些验证都通过了，则系统合约执行成功，隐私合约的执行结果会被打包到区块中等待共识出块。
+
+#### 隐私合约入参数据加密
+1. 在隐私合约执行流程的第2、4步中，提到过隐私合约使用的数据可能是加密的。
+    - 链外加密数据：用户可以随机生成对称密钥作为会话密钥对数据加密，然后从区块链上获取Enclave的加密公钥对会话密钥加密。用户调用隐私合约时传入的链外数据即为数据本身的对称加密密文和会话密钥的非对称加密密文。Enclave使用时，使用加密私钥解密出会话密钥，在用会话密钥解密出数据。
+    - 区块链上加密数据：区块链上可能会有少量敏感数据的密文，这些密文首先是以与链外加密数据一样的处理方式上链的，Enclave使用链上密文时与使用链外密文的方式相同。
+2. 在隐私合约执行流程的第4步中，提到过可以按需要对隐私合约的执行结果进行加密。这里有两个选择：
+    - 使用Enclave的加密公钥加密：Enclave随机生成一个对称密钥作为会话密钥加密结果，再用Enclave的加密公钥加密会话密钥；执行结果的密文就包含会话密钥密文和数据密文两部分。这种情况下，隐私合约的执行结果只能在后续的隐私合约调用中在Enclave中使用，外部无法解密这个结果。
+    
+    - 使用入参中传入的一个公钥加密：入参中的公钥可以是来自区块链上的数据，也可以是用户发送调用隐私合约的请求时带入的链外的用户公钥。Enclave随机生成一个对称密钥作为会话密钥加密结果，再用入参中的加密公钥加密会话密钥；执行结果的密文就包含会话密钥密文和数据密文两部分。这种情况下，隐私合约的执行结果可以被对应的加密私钥持有者解密使用。
+
+## 使用指南
+### 环境部署
+#### TEE环境构建
+TEE环境构建主要包括安装 Intel(R) SGX driver、Intel(R) SGX SDK和Intel(R) SGX Platform Software (PSW)。环境构建请参考文档：https://github.com/intel/linux-sgx#build-and-install-the-intelr-sgx-driver
+
+#### 代码编译
+##### 编译Enclave
+###### 根据Enclave.edl生成Enclave_t.c等文件
+```sh
+cd Enclave
+/opt/intel/sgxsdk/bin/x64/sgx_edger8r --untrusted ./Enclave.edl --search-path . --search-path /opt/intel/sgxsdk/include --search-path ./openssl/include
+
+/opt/intel/sgxsdk/bin/x64/sgx_edger8r --trusted ./Enclave.edl --search-path . --search-path /opt/intel/sgxsdk/include --search-path ./openssl/include
+```
+###### 复制Enclave_u.c和Enclave_u.h到gateway/bridge下
+```sh
+手动删除 Enclave_u.h 中的第8行 :  #include "sgx_edger8r.h"
+cp Enclave_u.* ../gateway/bridge
+cp user_types.* ../gateway/bridge
+```
+###### 生成cgo代码
+```sh
+cd ../gateway/bridge
+go tool cgo bridge.go
+```
+###### 编译Enclave
+```sh
+cmake .
+make
+```
+###### 对libenclave.so进行签名
+```bash
+/opt/intel/sgxsdk/bin/x64/sgx_sign sign -key ./Enclave_private.pem -enclave libenclave.so -out ./enclave.signed.so -config ./Enclave.config.xml
+```
+##### 编译隐私计算网关
+```sh
+cd ..
+go build
+```
+#### 环境初始化
+1.	首次运行网关程序时，会导出Enclave可信区证明report文件(out_report.dat)以及证书请求CSR文件(out_csr.pem)
+2.	调用系统合约将步骤1得到的report信息上链
+3.	调用系统合约将第三方CA的签名根证书上链
+4.	使用步骤1得到的CSR文件在第三方CA处申请签发TEE证书
+5.	将通过步骤4签发的TEE证书以PEM格式存于文件(in_teecert.pem)并放在网关程序目录下
+6.	重新运行网关程序后会自动校验和加载TEE证书
+备注：若Enclave代码版本发生变化，需要再次执行步骤2将更新过的report信息重新上链
+
+### 隐私计算网关接口
+
+网关是用户调用隐私合约的入口，当前使用http接口方式进行调用。网关提供的接口主要包括远程证明、部署合约和调用合约三个接口。所有接口的请求method均使用post方式，参数使用json格式。描述如下：
+
+#### 部署合约接口
+
+接口地址：http://x.x.x.x:port/private/deploy，其中x.x.x.x:port为服务地址，用户可以在配置里指定。
+
+请求参数使用go语言描述如下：
+
+```go
+// PrivateDeployRequest is the struct of private deploy request args, it will be serialized by json when sending request
+type PrivateDeployRequest struct {
+   // SignPair include multi sign pairs
+   SignPair []*SignInfo    `protobuf:"bytes,1,rep,name=sign_pair,json=signPair,proto3" json:"sign_pair,omitempty"`
+   // Payload is the request payload, also the content of generating signatures
+   Payload  *PrivateDeployPayload `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty"`
+}
+
+// SignInfo is one pair of signature and a cert
+type SignInfo struct {
+  // ClientSign is the signature of payload
+	ClientSign string `protobuf:"bytes,1,opt,name=client_sign,json=clientSign,proto3" json:"client_sign,omitempty"`
+  // Cert is the certification used to verify the ClientSign
+	Cert       string `protobuf:"bytes,2,opt,name=cert,proto3" json:"cert,omitempty"`
+}
+
+type PrivateDeployPayload struct {
+  // CodeBytes is the the codes of contract
+	CodeBytes string `protobuf:"bytes,1,opt,name=code_bytes,json=codeBytes,proto3" json:"code_bytes,omitempty"`
+	// PrivateRlpData is the deploy args which is packed by abi
+	PrivateRlpData  string   `protobuf:"bytes,2,opt,name=private_rlp_data,json=privateRlpData,proto3" json:"private_rlp_data,omitempty"`
+  // Passwd is the encrypted key which is encrypted by Enclave's public key
+	Passwd          string   `protobuf:"bytes,3,opt,name=passwd,proto3" json:"passwd,omitempty"`
+  // SigAlgo is a reserved field and not used now
+  SigAlgo         string   `protobuf:"bytes,4,opt,name=sig_algo,json=sigAlgo,proto3" json:"sig_algo,omitempty"`
+  // ContractName is the name of deploying contract
+	ContractName    string   `protobuf:"bytes,5,opt,name=contract_name,json=contractName,proto3" json:"contract_name,omitempty"`
+  // ContractVersion is the version of deploying contract
+	ContractVersion string   `protobuf:"bytes,6,opt,name=contract_version,json=contractVersion,proto3" json:"contract_version,omitempty"`
+  // CodeHash is the hash value(sha256) of CodeBytes, it should be hex bytes of hash
+	CodeHash        string   `protobuf:"bytes,7,opt,name=code_hash,json=codeHash,proto3" json:"code_hash,omitempty"`
+  // OrgId is a slice of orgs which is coordinate with SignInfo's Cert
+	OrgId           []string `protobuf:"bytes,8,rep,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
+}
+
+```
+
+
+
+#### 执行隐私计算接口
+
+接口地址：http://x.x.x.x:port/private/compute，其中x.x.x.x:port为服务地址，用户可以在配置里指定。
+
+请求参数使用go语言描述如下：
+
+```go
+// PrivateComputeRequest is the struct of private compute request args, it will be serialized by json when sending request
+type PrivateComputeRequest struct {
+   // SignPair include multi sign pairs
+   SignPair []*SignInfo `protobuf:"bytes,1,rep,name=sign_pair,json=signPair,proto3" json:"sign_pair,omitempty"`
+   Payload  *Payload    `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty"`
+}
+
+// SignInfo is one pair of signature and a cert
+type SignInfo struct {
+  // ClientSign is the signature of payload
+	ClientSign string `protobuf:"bytes,1,opt,name=client_sign,json=clientSign,proto3" json:"client_sign,omitempty"`
+  // Cert is the certification used to verify the ClientSign
+	Cert       string `protobuf:"bytes,2,opt,name=cert,proto3" json:"cert,omitempty"`
+}
+
+
+type PrivateComputePayload struct {
+  // PrivateRlpData is the compute args which is packed by abi
+	PrivateRlpData string   `protobuf:"bytes,1,opt,name=private_rlp_data,json=privateRlpData,proto3" json:"private_rlp_data,omitempty"`
+  // Passwd is the encrypted key which is encrypted by Enclave's public key
+	Passwd         string   `protobuf:"bytes,2,opt,name=passwd,proto3" json:"passwd,omitempty"`
+  // SigAlgo is a reserved field and not used now
+	SigAlgo        string   `protobuf:"bytes,3,opt,name=sig_algo,json=sigAlgo,proto3" json:"sig_algo,omitempty"`
+  // ContractName is the name of deploying contract
+	ContractName   string   `protobuf:"bytes,4,opt,name=contract_name,json=contractName,proto3" json:"contract_name,omitempty"`
+  // CodeHash is the hash value(sha256) of CodeBytes, it should be hex bytes of hash
+	CodeHash       string   `protobuf:"bytes,5,opt,name=code_hash,json=codeHash,proto3" json:"code_hash,omitempty"`
+  // OrgId is a slice of orgs which is coordinate with SignInfo's Cert
+	OrgId          []string `protobuf:"bytes,6,rep,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
+}
+
+```
+
+#### 远程证明接口
+
+接口地址：http://x.x.x.x:port/private/remote_attestation，其中x.x.x.x:port为服务地址，用户可以在配置里指定。
+
+请求参数使用go语言描述如下：
+
+```go
+// RemoteAttestationRequest is the struct of remote attestation request args, it will be serialized by json when sending request
+type RemoteAttestationRequest struct {
+   ClientSign string `json:"client_sign"`
+   Cert string `json:"cert"`
+   Payload *RemoteAttestationRequestPayload `json:"payload"`
+}
+
+type RemoteAttestationRequestPayload struct {
+   // Challenge is a random data to chanllege the sgx environmet
+   Challenge string `json:"challenge"`
+   // OrgId is the orgnization of Cert
+   OrgId string `json:"org_id"`
+}
+```
+
+### 示例参考
+
+#### 远程证明示例
+
+请参考chainmaker-sgx项目下gateway/tools/test_remote_attestation
+
+#### 隐私合约部署
+
+请参考chainmaker-sgx项目下gateway/tools/test_tee的call_deploy
+
+#### 隐私合约调用
+
+请参考chainmaker-sgx项目下gateway/tools/test_tee的call_tee
+
+## 附录——推荐的支持隐私合约的服务器CPU型号
+
+| CPU序列号 | 型号及描述 | SGX Enclave最大预留内存   |
+| --- | --- | --- |
+| 6354 | Ice Lake SP XCC Intel Xeon Gold 6345 18c 205W 3.0GHz | 64GB |
+| 8360Y | Ice Lake SP XCC Intel Xeon Platinum 8360Y 36c 250W 2.4GHz | 64GB |
+| 6348 | Ice Lake SP XCC Intel Xeon Gold 6348 28c 235W 2.6GHz | 64GB |
+| 8380 | Ice Lake SP XCC Intel Xeon 8380 40c 270W 2.3GHz | 512GB |
+| 8368 | Ice Lake SP XCC Intel Xeon Platinum 8368 38c 270W 2.4GHz | 512GB |
+| 8368Q | Ice Lake SP XCC Intel Xeon Platinum 8368Q 38c 270W 2.6GHz (liquid cooled) | 512GB |
+| 8358 | Ice Lake SP XCC Intel Xeon Platinum 8358 32c 250W 2.6GHz | 64GB |
+| 8358P | Ice Lake SP XCC Intel Xeon Platinum 8358P 32c 240W 2.6GHz | 8GB |
+| 8352V | Ice Lake SP XCC Intel Xeon Platinum 8352V 36c 195W 2.1GHz | 8GB |
+| 8351N | Ice Lake SP XCC Intel Xeon Platinum 8351N 36c 225W 2.4GHz | 64GB |
+| 6314U | Ice Lake SP XCC Intel Xeon Gold 6314U 32c 205W 2.3GHz | 64GB |
+| 6338 | Ice Lake SP XCC Intel Xeon Gold 6338 32c 205W 2.0GHz | 64GB |
+| 6338N | Ice Lake SP XCC Intel Xeon Gold 6338N 32c 185W 2.2GHz | 64GB |
+| 8352Y | Ice Lake SP XCC Intel Xeon Platinum 8352Y 32c 205W 2.2GHz | 64GB |
+| 8352S | Ice Lake SP XCC Intel Xeon Platinum 8352S 32c 205W 2.2GHz | 512GB |
+| 6330 | Ice Lake SP XCC Intel Xeon Gold 6330 28c 205W 2.0GHz | 64GB |
+| 6330N | Ice Lake SP XCC Intel Xeon Gold 6330N 28c 165W 2.2GHz | 64GB |
+| 6346 | Ice Lake SP XCC Intel Xeon Gold 6346 16c 205W 3.1GHz | 64GB |
+

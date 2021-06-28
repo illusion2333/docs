@@ -699,7 +699,7 @@ public byte[] createPayloadOfRevokeCerts(String certCrl) {}
             throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
     }
 ```
-### 多签接口
+### 多签接口(该功能尚不支持)
 #### 发送多签交易请求
 **参数说明**
   - txType: 交易类型
@@ -877,7 +877,7 @@ public Request.EndorsementEntry signPayloadOfMultiSign(byte[] payload, boolean i
 ### 编译
 
 ```
-git clone https://git.code.tencent.com/ChainMaker/chainmaker-sdk-java.git
+git clone https://git.chainmaker.org.cn/chainmaker/chainmaker-sdk-java.git
 // 说明：需要使用openjdk 1.8.151+并提前安装gradle，也可以使用intelliJ IDEA打开项目进行编译
 cd chainamker-sdk-java
 ./gradle build
@@ -896,4 +896,12 @@ cd chainamker-sdk-java
    ```
    import org.chainmaker.sdk.*;
    ```
+
+
+
+
+
+
+
+<br><br>
 

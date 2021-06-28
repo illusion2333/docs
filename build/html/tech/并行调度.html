@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>12. 并行调度 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  <title>12. 并行调度 &mdash; chainmaker-docs v1.2.0 documentation</title>
   
 
   
@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
 
   
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
 
   
@@ -38,7 +40,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. 智能合约" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html" />
+    <link rel="next" title="13. SQL合约支持" href="SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html" />
     <link rel="prev" title="11. 交易缓存" href="%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html" /> 
 </head>
 
@@ -57,13 +59,16 @@
           
 
           
+            
+            <img src="../_static/chainmakerLOGO-09.png" class="logo" alt="Logo"/>
+          
           </a>
 
           
             
             
               <div class="version">
-                v1.1.0
+                v1.2.0
               </div>
             
           
@@ -88,7 +93,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+              <p class="caption"><span class="caption-text">长安链介绍</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
@@ -104,8 +109,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/Q%26A.html">7. Q&amp;A</a></li>
 </ul>
-<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<p class="caption"><span class="caption-text">技术设计文档</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
@@ -123,6 +129,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#id3">12.2. 长安链并行调度算法</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html">13. SQL合约支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SPV.html">14. SPV 轻节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html">15. 跨链方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6.html">16. 隐私合约</a></li>
 </ul>
 <p class="caption"><span class="caption-text">开发指南</span></p>
 <ul>
@@ -139,6 +149,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B5%8F%E8%A7%88%E5%99%A8.html">7. 区块链浏览器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html">8. SPV 部署和使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%B7%A8%E9%93%BE%E4%BD%BF%E7%94%A8.html">9. 跨链使用</a></li>
 </ul>
 <p class="caption"><span class="caption-text">应用场景</span></p>
 <ul>
@@ -224,25 +237,26 @@
 <h1><span class="section-number">12. </span>并行调度<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>长安链支持块内通用交易的并行调度执行，以加速区块链整体处理性能。区块提议节点在提议过程中运行并行调度算法，产生块内交易并行执行顺序关系。执行顺序可利用有向无环图，也就是<code class="docutils literal notranslate"><span class="pre">DAG</span></code>表示，<code class="docutils literal notranslate"><span class="pre">DAG</span></code>中节点代表交易，边代表交易间<code class="docutils literal notranslate"><span class="pre">happens-before</span></code>关系。网络中其他节点在验证区块时，可根据此<code class="docutils literal notranslate"><span class="pre">DAG</span></code>并行验证块内交易，产生交易的读写集合，而后根据读写集合验证提议区块中<code class="docutils literal notranslate"><span class="pre">DAG</span></code>的有效性。</p>
 <p>整体流程如下图所示：</p>
-<img src="../images/并行调度-整体流程.png" alt="并行调度-整体流程" style="zoom:60%;" /><div class="section" id="id2">
+<img src="../images/Parallel-process.png" alt="并行调度-整体流程" style="zoom:60%;" /><div class="section" id="id2">
 <h2><span class="section-number">12.1. </span>并行调度算法分类<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>根据对同一批交易调度产生的<code class="docutils literal notranslate"><span class="pre">DAG</span></code>是否随机，并行调度算法可分为：</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">确定性调度算法</span></code>：即针对同一批交易调度产生的<code class="docutils literal notranslate"><span class="pre">DAG</span></code>结果是确定性的。此类算法的优点是DAG产生稳定且可复现，因此理论上讲DAG可不包含在区块内，各验证节点运行并行调度算法即可进行校验。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">随机性调度算法</span></code>：即针对同一批交易调度产生的<code class="docutils literal notranslate"><span class="pre">DAG</span></code>结果是随机的，即使同一节点针对同一批交易连续运行两次调度算法产生的结果也可能不同。此类算法往往调度速度较快，但因存在随机性，DAG必须打包至区块中并由其他节点据此验证。</p></li>
 </ul>
-<p>在长安链1.0中，实现了一种<code class="docutils literal notranslate"><span class="pre">随机性调度算法</span></code>，以最大化交易处理能力。</p>
+<p>长安链自版本1.0.0起，就已经实现了一种<code class="docutils literal notranslate"><span class="pre">随机性调度算法</span></code>，以最大化交易处理能力。</p>
 </div>
 <div class="section" id="id3">
 <h2><span class="section-number">12.2. </span>长安链并行调度算法<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>长安链并行调度算法示意图如下，主要思想是交易分为执行<code class="docutils literal notranslate"><span class="pre">execute</span></code>和生效<code class="docutils literal notranslate"><span class="pre">commit</span></code>两步，若交易执行期间读集未被其他交易更改，则交易可生效；否则需要重试执行此交易。</p>
-<img src="../images/并行调度-随机调度算法.png" alt="并行调度-随机调度算法" style="width:800px;" /><p>主要步骤为：</p>
+<img src="../images/Parallel-random.png" alt="并行调度-随机调度算法" style="width:800px;" /><p>主要步骤为：</p>
 <ol class="simple">
 <li><p>将所有交易并行执行，在执行中所有的写操作都在内存缓存中；</p></li>
 <li><p>每笔交易结束时，查看读集中所有的key是否被其他交易修改，若无则将交易写集生效（<code class="docutils literal notranslate"><span class="pre">ApplyTxSimContext</span></code>），若有则将交易重新加入待执行队列；</p></li>
 <li><p>待所有交易执行完毕后，分析所有交易的读写集，构建<code class="docutils literal notranslate"><span class="pre">DAG</span></code>。若交易间存在“读-写”、“写-读”、“写-写”冲突，根据执行时的先后顺序构建DAG中的边。</p></li>
 </ol>
 <p>因存在冲突的两笔交易执行时间存在随机性，最终构建的<code class="docutils literal notranslate"><span class="pre">DAG</span></code>也无法预测，所以此算法为随机性调度算法。在进行冲突检测时，长安链应用了位图等数据结构进行工程优化，以提升执行效率。</p>
+<p><br><br></p>
 </div>
 </div>
 
@@ -252,7 +266,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html" class="btn btn-neutral float-right" title="1. 智能合约" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html" class="btn btn-neutral float-right" title="13. SQL合约支持" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html" class="btn btn-neutral float-left" title="11. 交易缓存" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

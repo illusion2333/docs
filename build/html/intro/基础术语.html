@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>3. 基础术语 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  <title>3. 基础术语 &mdash; chainmaker-docs v1.2.0 documentation</title>
   
 
   
@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
 
   
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
 
   
@@ -57,13 +59,16 @@
           
 
           
+            
+            <img src="../_static/chainmakerLOGO-09.png" class="logo" alt="Logo"/>
+          
           </a>
 
           
             
             
               <div class="version">
-                v1.1.0
+                v1.2.0
               </div>
             
           
@@ -88,12 +93,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+              <p class="caption"><span class="caption-text">长安链介绍</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">3. 基础术语</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">3.1. 通用概念：</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">3.1. 通用概念</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
@@ -107,8 +112,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/Q%26A.html">7. Q&amp;A</a></li>
 </ul>
-<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<p class="caption"><span class="caption-text">技术设计文档</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
@@ -122,6 +128,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html">13. SQL合约支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/SPV.html">14. SPV 轻节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html">15. 跨链方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6.html">16. 隐私合约</a></li>
 </ul>
 <p class="caption"><span class="caption-text">开发指南</span></p>
 <ul>
@@ -138,6 +148,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B5%8F%E8%A7%88%E5%99%A8.html">7. 区块链浏览器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html">8. SPV 部署和使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%B7%A8%E9%93%BE%E4%BD%BF%E7%94%A8.html">9. 跨链使用</a></li>
 </ul>
 <p class="caption"><span class="caption-text">应用场景</span></p>
 <ul>
@@ -222,7 +235,7 @@
   <div class="section" id="id1">
 <h1><span class="section-number">3. </span>基础术语<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
-<h2><span class="section-number">3.1. </span>通用概念：<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.1. </span>通用概念<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -265,15 +278,15 @@
 </tr>
 <tr>
 <td align="left">交易调度（TransactionScheduling）</td>
-<td align="left">将一批交易按照调度策略分配计算资源进行执行的过程。交易调度的调度策略决定一批交易的执行顺序和交易并行冲突的处理机制。</td>
+<td align="left">将一批交易按照调度策略分配计算资源进行执行的过程。<br/>交易调度的调度策略决定一批交易的执行顺序和交易并行冲突的处理机制。</td>
 </tr>
 <tr>
-<td align="left">可装配区块链系统（Assemblable Blockchain System）</td>
-<td align="left">可装配区块链系统是由一组易替代、遵循一定规范的模块按照使用者的定制需求组合而成的可正常运作的区块链系统。该系统具备易<br>变更的特性，通过替换模块能够灵活变更为具备不同特性的另一个可正常运作的区块链系统。</td>
+<td align="left">可装配区块链系统<br>（Assemblable Blockchain System）</td>
+<td align="left">可装配区块链系统是由一组易替代、遵循一定规范的模块按照使用者的定制需求组合而成的可正常运作的区块链系统。<br/>该系统具备易变更的特性，通过替换模块能够灵活变更为具备不同特性的另一个可正常运作的区块链系统。</td>
 </tr>
 <tr>
-<td align="left">可装配区块链系统框架 (Assemblable Blockchain System Framework)</td>
-<td align="left">可装配区块链系统框架是指为确定区块生成流程而设计的具有一定约束性的支撑结构。框架决定了各个模块的调用规则，根据区块生成的具<br/>体要求选择相应的框架按照使用者的定制需求组合模块或在已有框架上扩展、安插更多的模块，从而更迅速和方便地构建完整的区块链系统。</td>
+<td align="left">可装配区块链系统框架<br> (Assemblable Blockchain System Framework)</td>
+<td align="left">可装配区块链系统框架是指为确定区块生成流程而设计的具有一定约束性的支撑结构。<br/>框架决定了各个模块的调用规则，根据区块生成的具体要求选择相应的框架按照使用者的定制需求组合模块或<br/>在已有框架上扩展、安插更多的模块，从而更迅速和方便地构建完整的区块链系统。</td>
 </tr>
 <tr>
 <td align="left">提议节点（ProposingNode）</td>
@@ -281,10 +294,10 @@
 </tr>
 <tr>
 <td align="left">验证节点（VerifyingNode）</td>
-<td align="left">区块链网络中负责验证新的候选区块的节点。对某一候选区块而言，除提议此区块的节点外其余区块链节点均为验证节点。在不同轮次中<br/>提议节点和验证节点身份可互相转换。</td>
+<td align="left">区块链网络中负责验证新的候选区块的节点。<br/>对某一候选区块而言，除提议此区块的节点外其余区块链节点均为验证节点。<br/>在不同轮次中提议节点和验证节点身份可互相转换。</td>
 </tr>
 <tr>
-<td align="left">可信执行环境（TrustedExecutionEnviorment)</td>
+<td align="left">可信执行环境（TrustedExecutionEnvironment)</td>
 <td align="left">提供硬件级别的资源隔离和信任度量能力，其中最具代表性的是 Intel SGX。</td>
 </tr>
 <tr>
@@ -297,15 +310,15 @@
 </tr>
 <tr>
 <td align="left">有向无环图（DAG）</td>
-<td align="left">DAG原本是计算机领域一种常用数据结构，因为独特的拓扑结构所带来的优异特性，经常被用于处理动态规划、导航中寻求<br/>最短路径、数据压缩等多种算法场景。有向无环图指的是一个无回路的有向图。如果有一个非有向无环图，且A点出发向B经C可回到A，<br/>形成一个环。将从C到A的边方向改为从A到C，则变成有向无环图。</td>
+<td align="left">DAG原本是计算机领域一种常用数据结构，<br/>因为独特的拓扑结构所带来的优异特性，经常被用于处理动态规划、导航中寻求最短路径、数据压缩等多种算法场景。<br/>有向无环图指的是一个无回路的有向图。<br/>如果有一个非有向无环图，且A点出发向B经C可回到A，形成一个环。<br/>将从C到A的边方向改为从A到C，则变成有向无环图。</td>
 </tr>
 <tr>
 <td align="left">以太坊虚拟机（Ethereum Virtual Machine）</td>
-<td align="left">EVM是简化版的虚拟机，为了保证智能合约运行的流畅度，EVM并没有模拟完整的计算机，而是采用了轻量级的虚拟机架构。</td>
+<td align="left">EVM是简化版的虚拟机，为了保证智能合约运行的流畅度，EVM并没有模拟完整的计算机，<br>而是采用了轻量级的虚拟机架构。</td>
 </tr>
 <tr>
 <td align="left">长安链可执行文件（chainmaker binary)</td>
-<td align="left">长安链项目chainmaker-go源码编译后生成的可执行二进制文件<br/>执行make命令后将生成在chainmaker-go/bin目录下</td>
+<td align="left">长安链项目chainmaker-go源码编译后生成的可执行二进制文件执行make命令后将生成在chainmaker-go/bin目录下</td>
 </tr>
 <tr>
 <td align="left">长安链SDK（chainmaker SDK）</td>
@@ -323,8 +336,13 @@
 <td align="left">长安链CA（chainmaker CA）</td>
 <td align="left">指使用长安链配套证书管理工具chainmaker-cryptogen管理的证书、密钥体系</td>
 </tr>
+<tr>
+<td align="left">SPV（Simplified Payment Verification）</td>
+<td align="left">轻节点，通过同步区块头和部分其他数据实现对交易的有效性证明</td>
+</tr>
 </tbody>
-</table></div>
+</table><p><br><br></p>
+</div>
 </div>
 
 

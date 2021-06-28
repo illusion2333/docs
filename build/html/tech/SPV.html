@@ -1,0 +1,655 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>14. SPV 轻节点 &mdash; chainmaker-docs v1.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="15. 跨链方案" href="%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html" />
+    <link rel="prev" title="13. SQL合约支持" href="SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> chainmaker-docs
+          
+
+          
+            
+            <img src="../_static/chainmakerLOGO-09.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">长安链介绍</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E5%9F%BA%E7%A1%80%E6%9C%AF%E8%AF%AD.html">3. 基础术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%BC%96%E5%86%99%E8%AF%AD%E8%A8%80.html">4. 编写语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.html">5. 版本迭代</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id2">2. 环境依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id5">3. 环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/Q%26A.html">7. Q&amp;A</a></li>
+</ul>
+<p class="caption"><span class="caption-text">技术设计文档</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">3. 数据结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA.html">4. 智能合约与虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="P2P%E7%BD%91%E7%BB%9C.html">6. P2P网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RPC%E6%9C%8D%E5%8A%A1.html">7. RPC服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8.html">8. 数据存储</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html">13. SQL合约支持</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">14. SPV 轻节点</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">14.1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">14.2. 节点类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">14.3. 设计思路</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">14.3.1. 模块设计</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">14.3.2. 主要流程</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">14.4. 参数配置</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">14.4.1. SPV配置参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chainmaker-sdk">14.4.2. ChainMaker SDK配置文件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">14.5. 接口说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#grpc">14.5.1. gRPC接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">14.5.2. 内部接口</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html">15. 跨链方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6.html">16. 隐私合约</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.html">1. 智能合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/SDK.html">2. SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.html">4. 证书生成工具</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%A4%9A%E6%9C%BA%E9%83%A8%E7%BD%B2.html">1. 多机部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%9B%91%E6%8E%A7%E8%BF%90%E7%BB%B4.html">2. 运维监控</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%87%AA%E6%8B%89%E8%B5%B7%E6%9C%8D%E5%8A%A1.html">3. 自拉起服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B5%8F%E8%A7%88%E5%99%A8.html">7. 区块链浏览器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html">8. SPV 部署和使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%B7%A8%E9%93%BE%E4%BD%BF%E7%94%A8.html">9. 跨链使用</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用场景</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D.html">1. 供应链金融</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E7%A2%B3%E4%BA%A4%E6%98%93.html">2. 碳交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecase/%E5%86%B7%E9%93%BE%E6%BA%AF%E6%BA%90.html">3. 冷链溯源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">关于作者</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85.html">1. 关于作者</a></li>
+</ul>
+<p class="caption"><span class="caption-text">鸣谢</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../thanks/%E9%B8%A3%E8%B0%A2.html">1. 鸣谢</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">chainmaker-docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">14. </span>SPV 轻节点</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tech/SPV.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="spv">
+<h1><span class="section-number">14. </span>SPV 轻节点<a class="headerlink" href="#spv" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><span class="section-number">14.1. </span>概述<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>SPV是ChainMaker的轻节点，主要是同步区块头及部分其他数据的节点，并通过同步的数据实现交易的验证。</p>
+<p>目前只实现了对ChainMaker的支持，具有如下功能：</p>
+<ul class="simple">
+<li><p>实现对多链的区块头及部分其他数据（如交易Hash）的同步，且可对外提供交易存在性及有效性证明。</p></li>
+<li><p>可独立部署获取业务链的数据，并提供交易存在性及有效性证明服务。</p></li>
+<li><p>可作为组件集成进其他模块，调用启动以获取业务链的数据，并提供交易存在性及有效性证明。</p></li>
+</ul>
+<p>快速部署和使用示例，请按如下链接内容进行：<br /><a class="reference internal" href="../operation/%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html"><span class="doc">SPV部署和使用文档</span></a></p>
+</div>
+<div class="section" id="id2">
+<h2><span class="section-number">14.2. </span>节点类型<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="left">节点类型</th>
+<th align="left">同步数据类型</th>
+<th align="left">是否参与共识</th>
+<th align="left">是否验证区块</th>
+<th align="left">是否执行交易</th>
+<th align="left">是否可接收执行类交易</th>
+<th align="left">是否可接收查询类交易</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">共识节点</td>
+<td align="left">区块</td>
+<td align="left">是</td>
+<td align="left">是</td>
+<td align="left">是</td>
+<td align="left">是</td>
+<td align="left">是</td>
+</tr>
+<tr>
+<td align="left">同步节点</td>
+<td align="left">区块</td>
+<td align="left">否</td>
+<td align="left">是</td>
+<td align="left">是</td>
+<td align="left">是</td>
+<td align="left">是</td>
+</tr>
+<tr>
+<td align="left">轻节点</td>
+<td align="left">区块头</td>
+<td align="left">否</td>
+<td align="left">是</td>
+<td align="left">否</td>
+<td align="left">否</td>
+<td align="left">否</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="id3">
+<h2><span class="section-number">14.3. </span>设计思路<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3><span class="section-number">14.3.1. </span>模块设计<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>在SPV中，主要包含StateManager、ReqManager、BlockManager、Prover、Storage模块，各模块作用主要如下：</p>
+<ul class="simple">
+<li><p>StateManager模块：状态管理模块，主要作用是订阅远端链最新区块、轮询远端链的最新区块高度。</p></li>
+<li><p>ReqManager模块：请求管理模块，主要作用是请求spv本地已请求的区块高度(requestMaxHeight)至远端链最新高度(remoteHeight)之间的区块、请求BlockManager模块验证不合法的区块。</p></li>
+<li><p>BlockManager模块：区块管理模块，主要作用是验证区块有效性、并持久化有效区块的区块头和交易Hash。</p></li>
+<li><p>Prover模块：证明器模块，主要作用是对Client提供交易存在性和有效性证明服务。</p></li>
+<li><p>Storage模块：存储模块，主要作用是存储同步的区块中的区块头及交易Hash。</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3><span class="section-number">14.3.2. </span>主要流程<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>SPV主要功能为同步区块头及区块中交易Hash，以及提供交易存在性和有效性证明，下图描述了主要功能的流程：</p>
+<p><img alt="流程设计" src="../_images/spv_design.png" /></p>
+<p>区块同步流程：</p>
+<ol class="simple">
+<li><p>StateManager订阅远端业务链最新区块；</p></li>
+<li><p>StateManager获取远端业务链最新区块；<br />2.1 BlockManager处理获得的区块；<br />2.2 BlockManager检验区块的有效性；<br />2.3 区块有效，存储区块头和区块中的交易Hash；<br />2.4 区块无效，通过ReqManager重新请求该高度区块；</p></li>
+<li><p>StateManager轮询远端链最新高度；</p></li>
+<li><p>StateManager获取远端链最新高度；<br />4.1 ReqManager处理获得的远端链高度信息；<br />4.2 ReqManager请求相应高度的区块；<br />4.3 ReqManager获取到相应高度的区块，并交给BlockManager处理；</p></li>
+</ol>
+<p>交易存在性和有效性验证流程:<br />5. Client提供TxVerifyInfo，调用Prover中的ValidTransaction接口进行交易有效性证明；<br />5.1 Prover从本地通过交易ID获得交易Hash；<br />5.2 Prover调用SDK通过交易Hash获得交易实体；<br />5.3 Prover比对TxVerifyInfo中的交易信息和交易实体中的信息，判断交易存在性和有效性；</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h2><span class="section-number">14.4. </span>参数配置<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h3><span class="section-number">14.4.1. </span>SPV配置参数<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>spv_config.yml 配置文件如下：</p></li>
+</ul>
+<blockquote>
+<div><p><strong>注意：SPV配置文件中的路径是基于spv二进制文件的相对路径，也可以使用绝对路径。</strong></p>
+</div></blockquote>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># 链配置</span>
+<span class="nt">chain</span><span class="p">:</span>
+   <span class="c1"># 链ID</span>
+ <span class="p p-Indicator">-</span> <span class="nt">chain_id</span><span class="p">:</span> <span class="s">&quot;chain1&quot;</span>
+   <span class="c1"># 同步配置，同步链中节点区块最新高度信息的时间间隔，单位：毫秒</span>
+   <span class="nt">sync_chainInfo_interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10000</span>
+   <span class="c1"># sdk配置文件路径</span>
+   <span class="nt">sdk_config_path</span><span class="p">:</span> <span class="s">&quot;../config/chainmaker_sdk_config_chain1.yml&quot;</span>
+   <span class="c1"># 链ID</span>
+ <span class="p p-Indicator">-</span> <span class="nt">chain_id</span><span class="p">:</span> <span class="s">&quot;chain2&quot;</span>
+   <span class="c1"># 同步配置，同步链中节点区块最新高度信息的时间间隔，单位：毫秒</span>
+   <span class="nt">sync_chainInfo_interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10000</span>
+   <span class="c1"># sdk配置文件路径</span>
+   <span class="nt">sdk_config_path</span><span class="p">:</span> <span class="s">&quot;../config/chainmaker_sdk_config_chain2.yml&quot;</span>
+
+<span class="c1"># grpc配置</span>
+<span class="nt">grpc</span><span class="p">:</span>
+  <span class="c1"># grpc监听网卡地址</span>
+  <span class="nt">address</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span>
+  <span class="c1"># grpc监听端口</span>
+  <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">12308</span>
+
+<span class="c1"># 存储配置，用于配置当前SPV对区块头和交易哈希的存储记录</span>
+<span class="nt">storage</span><span class="p">:</span>
+  <span class="c1"># 存储采用的类型,当前仅支持leveldb类型</span>
+  <span class="nt">provider</span><span class="p">:</span> <span class="s">&quot;leveldb&quot;</span>
+  <span class="c1"># 存储采用leveldb的情况下，对应leveldb的详细配置</span>
+  <span class="nt">leveldb</span><span class="p">:</span>
+    <span class="c1"># leveldb的存储路径</span>
+    <span class="nt">store_path</span><span class="p">:</span> <span class="s">&quot;../data/spv_db&quot;</span>
+    <span class="c1"># leveldb的写入Buffer大小，单位：M</span>
+    <span class="nt">write_buffer_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
+    <span class="c1"># leveldb的布隆过滤器的bit长度</span>
+    <span class="nt">bloom_filter_bits</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+
+<span class="c1"># 日志配置，用于配置日志的打印</span>
+<span class="nt">log</span><span class="p">:</span>
+  <span class="nt">system</span><span class="p">:</span>
+    <span class="c1"># 日志打印级别</span>
+    <span class="nt">log_level</span><span class="p">:</span> <span class="s">&quot;INFO&quot;</span>
+    <span class="c1"># 日志文件路径</span>
+    <span class="nt">file_path</span><span class="p">:</span> <span class="s">&quot;../log/spv.log&quot;</span>
+    <span class="c1"># 日志最长保存时间，单位：天</span>
+    <span class="nt">max_age</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">365</span>
+    <span class="c1"># 日志滚动时间，单位：小时</span>
+    <span class="nt">rotation_time</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+    <span class="c1"># 是否展示日志到终端，仅限于调试使用</span>
+    <span class="nt">log_in_console</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="c1"># 是否打印颜色日志</span>
+    <span class="nt">show_color</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="chainmaker-sdk">
+<h3><span class="section-number">14.4.2. </span>ChainMaker SDK配置文件<a class="headerlink" href="#chainmaker-sdk" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>chainmaker_sdk_config_chain1.yml 配置文件如下：</p></li>
+</ul>
+<blockquote>
+<div><p><strong>注意：SDK配置文件中的路径是基于spv二进制文件的相对路径。</strong></p>
+</div></blockquote>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">chain_client</span><span class="p">:</span>
+  <span class="c1"># 链ID</span>
+  <span class="nt">chain_id</span><span class="p">:</span> <span class="s">&quot;chain1&quot;</span>
+  <span class="c1"># 组织ID</span>
+  <span class="nt">org_id</span><span class="p">:</span> <span class="s">&quot;wx-org1.chainmaker.org&quot;</span>
+  <span class="c1"># 客户端用户私钥路径</span>
+  <span class="nt">user_key_file_path</span><span class="p">:</span> <span class="s">&quot;../config/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key&quot;</span>
+  <span class="c1"># 客户端用户证书路径</span>
+  <span class="nt">user_crt_file_path</span><span class="p">:</span> <span class="s">&quot;../config/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt&quot;</span>
+  <span class="c1"># 客户端用户交易签名私钥路径(若未设置，将使用user_key_file_path)</span>
+  <span class="nt">user_sign_key_file_path</span><span class="p">:</span> <span class="s">&quot;../config/crypto-config/wx-org1.chainmaker.org/user/client1/client1.sign.key&quot;</span>
+  <span class="c1"># 客户端用户交易签名证书路径(若未设置，将使用user_crt_file_path)</span>
+  <span class="nt">user_sign_crt_file_path</span><span class="p">:</span> <span class="s">&quot;../config/crypto-config/wx-org1.chainmaker.org/user/client1/client1.sign.crt&quot;</span>
+
+  <span class="nt">nodes</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="c1"># 节点地址，格式为：IP:端口:连接数</span>
+      <span class="nt">node_addr</span><span class="p">:</span> <span class="s">&quot;127.0.0.1:12301&quot;</span>
+      <span class="c1"># 节点连接数</span>
+      <span class="nt">conn_cnt</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+      <span class="c1"># RPC连接是否启用双向TLS认证</span>
+      <span class="nt">enable_tls</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="c1"># 信任证书池路径</span>
+      <span class="nt">trust_root_paths</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;../config/crypto-config/wx-org1.chainmaker.org/ca&quot;</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;../config/crypto-config/wx-org2.chainmaker.org/ca&quot;</span>
+      <span class="c1"># TLS hostname</span>
+      <span class="nt">tls_host_name</span><span class="p">:</span> <span class="s">&quot;chainmaker.org&quot;</span>
+    <span class="p p-Indicator">-</span> <span class="c1"># 节点地址，格式为：IP:端口:连接数</span>
+      <span class="nt">node_addr</span><span class="p">:</span> <span class="s">&quot;127.0.0.1:12302&quot;</span>
+      <span class="c1"># 节点连接数</span>
+      <span class="nt">conn_cnt</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+      <span class="c1"># RPC连接是否启用双向TLS认证</span>
+      <span class="nt">enable_tls</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="c1"># 信任证书池路径</span>
+      <span class="nt">trust_root_paths</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;../config/crypto-config/wx-org1.chainmaker.org/ca&quot;</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;../config/crypto-config/wx-org2.chainmaker.org/ca&quot;</span>
+      <span class="c1"># TLS hostname</span>
+      <span class="nt">tls_host_name</span><span class="p">:</span> <span class="s">&quot;chainmaker.org&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2><span class="section-number">14.5. </span>接口说明<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="grpc">
+<h3><span class="section-number">14.5.1. </span>gRPC接口<a class="headerlink" href="#grpc" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>独立部署时，提供交易存在性和有效性证明服务的grpc接口</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">RpcProverServer</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="nx">ValidTransaction</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="o">*</span><span class="nx">TxVerifyInfo</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">ErrorMsg</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>其中<code class="docutils literal notranslate"><span class="pre">*api.TxVerifyInfo</span></code>结构如下：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">TxVerifyInfo</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">ChainId</span>           <span class="kt">string</span>             <span class="c1">// 链ID</span>
+	<span class="nx">BlockHeight</span>       <span class="kt">int64</span>              <span class="c1">// 交易所在区块高度</span>
+	<span class="nx">Index</span>             <span class="kt">int32</span>              <span class="c1">// 交易索引, ChainMaker不存在该字段</span>
+	<span class="nx">TxKey</span>             <span class="kt">string</span>             <span class="c1">// 交易ID</span>
+	<span class="nx">ContractValidData</span> <span class="o">*</span><span class="nx">ContractValidData</span> <span class="c1">// 交易调用的合约数据</span>
+	<span class="nx">Extra</span>             <span class="p">[]</span><span class="kt">byte</span>             <span class="c1">// 预留扩展字段</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">ContractValidData</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">ContractName</span> <span class="kt">string</span>          <span class="c1">// 合约名称</span>
+	<span class="nx">Version</span>      <span class="kt">string</span>          <span class="c1">// 合约版本</span>
+	<span class="nx">Method</span>       <span class="kt">string</span>          <span class="c1">// 合约方法名</span>
+	<span class="nx">Parameters</span>   <span class="p">[]</span><span class="o">*</span><span class="nx">KeyValuePair</span> <span class="c1">// 合约方法参数</span>
+	<span class="nx">Extra</span>        <span class="p">[]</span><span class="kt">byte</span>          <span class="c1">// 预留扩展字段</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">KeyValuePair</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">Key</span>   <span class="kt">string</span>     <span class="c1">// 参数名称</span>
+	<span class="nx">Value</span> <span class="kt">string</span>     <span class="c1">// 参数值</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>其中<code class="docutils literal notranslate"><span class="pre">*api.Response</span></code>结构如下：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Response</span> <span class="kd">struct</span> <span class="p">{</span>
+<span class="nx">ChainId</span> <span class="kt">string</span>      <span class="c1">// 链ID   </span>
+<span class="nx">TxKey</span>   <span class="kt">string</span>      <span class="c1">// 交易ID   </span>
+<span class="nx">Code</span>    <span class="nx">StatusCode</span>  <span class="c1">// 状态码，0 表示VALID，有效的交易； 1 表示INVALID，无效的交易</span>
+<span class="nx">Message</span> <span class="kt">string</span>      <span class="c1">// 提示信息</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3><span class="section-number">14.5.2. </span>内部接口<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>SPV为了适配更多的链，在实现时进行了接口抽象。因此，在适配不同链时需要对内部接口进行针对性实现。</p>
+<ul class="simple">
+<li><p>包装类型接口</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// 包装区块的接口</span>
+<span class="kd">type</span> <span class="nx">Blocker</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="c1">// 区块头接口</span>
+	<span class="nx">Header</span>
+
+	<span class="c1">// 返回区块头</span>
+	<span class="nx">GetBlockHeader</span><span class="p">()</span> <span class="nx">Header</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">Header</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="c1">// 返回该区块所在链的链ID</span>
+	<span class="nx">GetChainId</span><span class="p">()</span> <span class="kt">string</span>
+
+	<span class="c1">// 返回该区块的前置区块哈希值</span>
+	<span class="nx">GetPreHash</span><span class="p">()</span> <span class="p">[]</span><span class="kt">byte</span>
+
+	<span class="c1">// 返回该区块中的交易默克尔树根哈希</span>
+	<span class="nx">GetTxRoot</span><span class="p">()</span> <span class="p">[]</span><span class="kt">byte</span>
+
+	<span class="c1">// 返回该区块的高度值</span>
+	<span class="nx">GetHeight</span><span class="p">()</span> <span class="kt">int64</span>
+
+	<span class="c1">// 返回该区块的哈希值</span>
+	<span class="nx">GetBlockHash</span><span class="p">()</span> <span class="p">[]</span><span class="kt">byte</span>
+<span class="p">}</span>
+
+<span class="c1">// 包装交易的接口</span>
+<span class="kd">type</span> <span class="nx">Transactioner</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="c1">// 返回交易状态码</span>
+	<span class="nx">GetStatusCode</span><span class="p">()</span> <span class="kt">int32</span>
+
+	<span class="c1">// 返回交易哈希值</span>
+	<span class="nx">GetTransactionHash</span><span class="p">()</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// 返回该交易所调用合约的名称</span>
+	<span class="nx">GetContractName</span><span class="p">()</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// 返回该交易所调用合约的方法名</span>
+	<span class="nx">GetMethod</span><span class="p">()</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// 返回该交易所调用合约方法的参数</span>
+	<span class="nx">GetParameters</span><span class="p">()</span> <span class="p">([]</span><span class="kd">interface</span><span class="p">{},</span> <span class="kt">error</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>SDK适配器接口</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">SDKAdapter</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="c1">// 订阅最新区块</span>
+	<span class="nx">SubscribeBlock</span><span class="p">()</span> <span class="p">(</span><span class="kd">chan</span> <span class="nx">common</span><span class="p">.</span><span class="nx">Blocker</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// 查询远端链当前高度</span>
+	<span class="nx">GetChainInfo</span><span class="p">()</span> <span class="p">(</span><span class="kt">int64</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// 通过高度获取区块</span>
+	<span class="nx">GetBlockByHeight</span><span class="p">(</span><span class="nx">blockHeight</span> <span class="kt">int64</span><span class="p">)</span> <span class="p">(</span><span class="nx">common</span><span class="p">.</span><span class="nx">Blocker</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// 通过交易ID获取交易</span>
+	<span class="nx">GetTransactionByKey</span><span class="p">(</span><span class="nx">txKey</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">common</span><span class="p">.</span><span class="nx">Transactioner</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// 获取远端链配置信息</span>
+	<span class="nx">GetChainConfig</span><span class="p">()</span> <span class="p">(</span><span class="o">*</span><span class="nx">protogo</span><span class="p">.</span><span class="nx">ChainConfig</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// 停止sdk的链接并释放链接资源</span>
+	<span class="nx">Stop</span><span class="p">()</span> <span class="kt">error</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>编解码接口</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Coder</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="c1">// 将区块头序列化</span>
+	<span class="nx">SerializeBlockHeader</span><span class="p">(</span><span class="nx">header</span> <span class="nx">common</span><span class="p">.</span><span class="nx">Header</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// 反序列化区块头</span>
+	<span class="nx">DeserializeBlockHeader</span><span class="p">(</span><span class="nx">serializeBlockHeader</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="nx">common</span><span class="p">.</span><span class="nx">Header</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+	<span class="c1">// 根据区块中的交易生成交易哈希</span>
+	<span class="nx">GenerateTransactionHashes</span><span class="p">(</span><span class="nx">blocker</span> <span class="nx">common</span><span class="p">.</span><span class="nx">Blocker</span><span class="p">)</span> <span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>验证器接口</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Verifier</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="c1">// 验证同步过来的区块的有效性</span>
+	<span class="nx">ValidBlock</span><span class="p">(</span><span class="nx">blocker</span> <span class="nx">common</span><span class="p">.</span><span class="nx">Blocker</span><span class="p">,</span> <span class="nx">preBlockHash</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="kt">error</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>证明器接口</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Prover</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="c1">// 验证交易存在性和有效性</span>
+	<span class="nx">ValidTransaction</span><span class="p">(</span><span class="nx">txInfo</span> <span class="o">*</span><span class="nx">api</span><span class="p">.</span><span class="nx">TxVerifyInfo</span><span class="p">,</span> <span class="nx">timeout</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">)</span> <span class="kt">error</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html" class="btn btn-neutral float-right" title="15. 跨链方案" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html" class="btn btn-neutral float-left" title="13. SQL合约支持" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright chainmaker.org.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

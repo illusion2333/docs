@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>8. 数据存储 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  <title>8. 数据存储 &mdash; chainmaker-docs v1.2.0 documentation</title>
   
 
   
@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
 
   
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
 
   
@@ -57,13 +59,16 @@
           
 
           
+            
+            <img src="../_static/chainmakerLOGO-09.png" class="logo" alt="Logo"/>
+          
           </a>
 
           
             
             
               <div class="version">
-                v1.1.0
+                v1.2.0
               </div>
             
           
@@ -88,7 +93,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+              <p class="caption"><span class="caption-text">长安链介绍</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
@@ -104,8 +109,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/Q%26A.html">7. Q&amp;A</a></li>
 </ul>
-<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<p class="caption"><span class="caption-text">技术设计文档</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
@@ -133,12 +139,32 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">8.7. 链上数据归档</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">8.7.1. 归档需求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">8.7.2. 总体方案</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id15">8.7.2.1. 对区块链中的账本数据分类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">8.7.3. 数据迁移</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">8.7.4. 数据查询</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">8.7.5. 数据恢复</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">8.7.6. 实现原理</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id20">8.7.6.1. 数据归档</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id21">8.7.6.2. 归档数据恢复</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="%E8%BA%AB%E4%BB%BD%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">9. 身份权限管理</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.html">10. 加密算法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E4%BA%A4%E6%98%93%E7%BC%93%E5%AD%98.html">11. 交易缓存</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html">13. SQL合约支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SPV.html">14. SPV 轻节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html">15. 跨链方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6.html">16. 隐私合约</a></li>
 </ul>
 <p class="caption"><span class="caption-text">开发指南</span></p>
 <ul>
@@ -155,6 +181,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B5%8F%E8%A7%88%E5%99%A8.html">7. 区块链浏览器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html">8. SPV 部署和使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%B7%A8%E9%93%BE%E4%BD%BF%E7%94%A8.html">9. 跨链使用</a></li>
 </ul>
 <p class="caption"><span class="caption-text">应用场景</span></p>
 <ul>
@@ -241,7 +270,7 @@
 <div class="section" id="id2">
 <h2><span class="section-number">8.1. </span>概述<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>存储模块负责持久化存储链上的区块、交易、状态、历史读写集等账本数据，并对外提供上述数据的查询功能。区块链以区块为单位进行批量的数据提交，一次区块提交会涉及到多项账本数据的提交，比如：交易提交，状态数据修改等，所以存储模块需要维护账本数据的原子性。长安链支持常用的数据库来存储账本数据，如LevelDB、RocksDB、MySQL等数据库，业务可选择其中任意一种数据库来部署区块链。</p>
-<p>账本数据主要分为3类：</p>
+<p>账本数据主要分为4类：</p>
 <ol class="simple">
 <li><p>区块数据，记录区块元信息和交易数据：</p>
 <ul class="simple">
@@ -250,27 +279,36 @@
 </ul>
 </li>
 <li><p>状态数据，记录智能合约中读写的链上状态数据，既世界状态。</p></li>
-<li><p>历史读写集数据，长安链对每笔交易在执行过程中的所读写的状态数据集进行了单独保存，可用于后续追溯交易、状态数据的变迁过程。</p></li>
+<li><p>历史数据，长安链对每笔交易在执行过程中的状态变化历史、合约调用历史、账户发起交易历史都可以进行记录，可用于后续追溯交易、状态数据的变迁过程。</p></li>
+<li><p>合约执行结果读写集数据，长安链对每笔交易在执行过程中的所读写的状态数据集进行了单独保存，方便其他节点进行快速的数据同步。</p></li>
 </ol>
 </div>
 <div class="section" id="id3">
 <h2><span class="section-number">8.2. </span>存储模块运行逻辑<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>针对上述3类账本数据，长安链分别实现了3个DB类，分别是：Block DB、State DB、History DB。采用多个数据库之后，就需要维护数据库之间的数据一致性，避免仅有部分数据库提交后，发生程序中断而导致不同数据库间的数据不一致，因此，长安链引入了Block binary log组件来持久化存储区块的原始内容，用于重启过程中的数据恢复，类似于数据库中的预写式日志(wal)的功能。</p>
-<img src="../images/数据存储-存储模块结构图.png" style="zoom:50%;" /></div>
+<p>针对上述4类账本数据，长安链分别实现了4个DB类，分别是：Block DB、State DB、History DB、Result DB。采用多个数据库之后，就需要维护数据库之间的数据一致性，避免仅有部分数据库提交后，发生程序中断而导致不同数据库间的数据不一致，因此，长安链引入了Block binary log组件来持久化存储区块的原始内容，用于重启过程中的数据恢复，类似于数据库中的预写式日志(wal)的功能。 需要注意的是，历史数据、结果数据并不是每个节点必须保存的，节点可以根据自己的业务需要在配置文件中启用或者关闭历史数据库和结果数据库。</p>
+<img src="../images/DataStorage-StorageStructure.png" style="zoom:100%;" /></div>
 <div class="section" id="id4">
 <h2><span class="section-number">8.3. </span>区块提交流程<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
-<li><p>首先将序列化后的区块、读写集数据、以及最新的区块高度写入Block binary log，用于异常中断后的数据恢复。为了提高性能，加入一层cache，新区块提交请求在更新完Block binary log之后，再将区块数据写入cache，在更新完log和cache后，提交即可返回，由后台线程异步更新Block DB、State DB和History DB。</p></li>
-<li><p>在Block DB中记录区块元信息与交易信息，其中交易信息以TxID作为key存储，区块信息以BlockHeight作为key存储，区块元信息中只记录交易ID列表，同时索引BlockHash到BlockHeight的映射关系。Block DB中额外记录了当前最新的区块高度（LastBlockHeight）作为checkpoint，用以重启后的数据恢复。</p></li>
+<li><p>首先将序列化后的区块、读写集数据、以及最新的区块高度写入Block binary log，用于异常中断后的数据恢复。为了提高性能，加入一层cache，新区块提交请求在更新完Block binary log之后，再将区块数据写入cache，在更新完log和cache后，提交即可返回，由后台线程异步更新Block DB、State DB、History DB和Result DB。</p></li>
+<li><p>在Block DB中记录区块元信息与交易信息，其中交易信息以TxID作为主键存储，区块信息以BlockHeight作为主键存储，区块元信息中只记录交易ID列表，同时索引BlockHash到BlockHeight的映射关系。Block DB中额外记录了当前最新的区块高度（LastBlockHeight）作为checkpoint，用以重启后的数据恢复。</p></li>
 <li><p>在State DB中保存state数据，key为合约名与对象主键的组合：&lt;contractName, ObjectKey&gt;，同时记录最新的区块高度（LastBlockHeight）作为checkpoint。</p></li>
-<li><p>在History DB中记录交易的读写集，读写集以TxID作为key，同时记录最新的区块高度（LastBlockHeight）作为checkpoint。</p></li>
+<li><p>在History DB中记录交易产生的三种类型的索引：</p></li>
+</ol>
+<ul class="simple">
+<li><p>状态变更历史，以&lt;contractName, ObjectKey，TxId&gt;为索引</p></li>
+<li><p>合约调用历史，以&lt;contractName, TxId&gt;为索引</p></li>
+<li><p>账户交易历史，以&lt;accountId,TxId&gt;为索引</p></li>
+</ul>
+<ol class="simple">
+<li><p>在Result DB中记录交易的读写集，读写集以TxID作为key，同时记录最新的区块高度（LastBlockHeight）作为checkpoint。</p></li>
 </ol>
 </div>
 <div class="section" id="id5">
 <h2><span class="section-number">8.4. </span>账本恢复流程<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>如果区块正在提交过程中，节点因异常退出，节点在下次启动时存储模块会进入恢复流程：</p>
 <ol class="simple">
-<li><p>分别从Block binary log、Block DB、State DB、History DB中获取最新的区块高度，以Block binary log中的区块高度作为基准高度，判断其他DB是否落后基准高度。</p></li>
+<li><p>分别从Block binary log、Block DB、State DB、History DB、Result DB中获取最新的区块高度，以Block binary log中的区块高度作为基准高度，判断其他DB是否落后基准高度。</p></li>
 <li><p>如果有某个DB落后基准高度，则从Block bianry log中获取缺失的区块及读写集，依次提交到落后DB中。</p></li>
 <li><p>所有DB同步到基准高度后，存储模块启动完成，节点进入正常流程。</p></li>
 </ol>
@@ -356,16 +394,31 @@
 <h3><span class="section-number">8.6.2. </span>配置说明<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <p>节点本地配置文件chainmaker.yml中存储部分的配置说明</p>
 <div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>storage:
-	provider: LevelDB	#数据库类型，支持LevelDB，RocksDB，MySQL或分布式MySQL
 	store_path: ../data/ledgerData  #账本的存储路径， 包括LevelDB、RocksDB的数据目录，Block binary log的数据目录
 	write_buffer_size: 4	#LevelDB、RocksDB的write_buffer_size， 单位为MB，默认为4M
 	bloom_filter_bits: 10	#LevelDB、RocksDB的布隆过滤器参数，为每个key分配的额外bit空间，默认为10，如果少于或等于0，则不开启布隆过滤。
 	disable_historydb: false	#是否禁用历史读写集的存储功能， 默认为false，也就是保存历史读写集。
-	mysql:	#MySQL相关配置，只有provider选择MySQL时才需要配置，LevelDB和RocksDB可以忽略
-		dsn: user:password@tcp(ip:port)/	#mysql的连接信息，包括用户名、密码、ip、port等，示例：root:admin@tcp(127.0.0.1:3306)/
-		max_idle_conns: 10	#连接池中维持的最大的空闲连接数，默认为10
+	blockdb_config: #BlockDB 数据库配置
+    provider: leveldb #数据库类型，支持LevelDB，RocksDB，SQL
+    leveldb_config: #LevelDB的详细配置
+      store_path: ../data/org1/blocks
+  statedb_config: #StateDB 数据库配置
+    provider: sql #数据库类型为sql数据库
+    sqldb_config: #SQL数据库的详细配置
+      sqldb_type:  mysql #具体的RDBMS为mysql，也可以是sqlite、mssql等
+      dsn:  root:passw0rd@tcp(127.0.0.1)/mysql #MySQL的数据库连接字符串
+      max_idle_conns: 10	#连接池中维持的最大的空闲连接数，默认为10
 		max_open_conns: 10	#最大的可用连接数，默认为10
 		conn_max_lifetime: 60	#连接维持的最长时间，单位秒，默认为60
+  historydb_config: #HistoryDB数据库配置
+    provider: leveldb
+    leveldb_config:
+      store_path: ../data/org1/history
+  resultdb_config: #ResultDB数据库配置
+    provider: leveldb
+    leveldb_config:
+      store_path: ../data/org1/result
+		
 </pre></div>
 </div>
 </div>
@@ -451,6 +504,83 @@
 </div>
 </li>
 </ol>
+</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2><span class="section-number">8.7. </span>链上数据归档<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id13">
+<h3><span class="section-number">8.7.1. </span>归档需求<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>数据转移到独立存储</p></li>
+<li><p>归档数据应具备可查询</p></li>
+<li><p>归档数据还可以再恢复到区块链节点中</p></li>
+</ol>
+</div>
+<div class="section" id="id14">
+<h3><span class="section-number">8.7.2. </span>总体方案<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h4><span class="section-number">8.7.2.1. </span>对区块链中的账本数据分类<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
+<li><p>状态数据，仅存储最新的数据快照，无历史版本，数据量相对较少，而且数据是否冷热由业务决定，因此不考虑对状态数据做归档。</p></li>
+<li><p>非状态数据，如：区块、交易、历史读写集，数据量大，随交易不断膨胀，而且只读不修改，适合对某个区块高度之前的数据做归档。</p></li>
+<li><p>归档后节点对其他节点提供同步服务时，其他节点需选择已归档高度低于同步节点高度的节点</p></li>
+</ol>
+<p>归档只对单个节点，由节点运营方发起对自己节点的归档</p>
+</div>
+</div>
+<div class="section" id="id16">
+<h3><span class="section-number">8.7.3. </span>数据迁移<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<p><img alt="数据迁移" src="../_images/Archive-Data-Migration.png" /></p>
+<ol class="simple">
+<li><p>使用CMC依次查询节点的区块数据</p></li>
+<li><p>将区块备份到链外存储，链外存储可以是数据库或IPFS,当前已支持mysql，其他存储形式后续进行支持。</p></li>
+<li><p>备份完成后，发起清理区块数据的系统合约调用。存储模块提供清理区块数据的接口，将交易、读写集数据删除, 索引数据保持不变，也就是说仍然可以在链上判断区块、交易是否存在。</p></li>
+<li><p>leveldb/rocksdb在清理数据后，需要主动调用compaction释放空间，采用异步执行</p></li>
+</ol>
+</div>
+<div class="section" id="id17">
+<h3><span class="section-number">8.7.4. </span>数据查询<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<p><img alt="数据迁移" src="../_images/Archive-Data-Search.png" /></p>
+<ol class="simple">
+<li><p>APP端使用现有链上CMC查询区块或交易内容</p></li>
+<li><p>如果返回数据已归档，APP可以使用CMC(提供了查询链外归档数据的方法)在链外存储查询已归档数据</p></li>
+<li><p>CMC封装访问链外存储的过程。</p></li>
+</ol>
+</div>
+<div class="section" id="id18">
+<h3><span class="section-number">8.7.5. </span>数据恢复<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>CMC从链外存储获取归档数据，以区块为单位，向链上发起区块恢复请求</p></li>
+<li><p>链上存储模块提供恢复区块数据的接口，以区块为单位，将归档后的payload数据复原</p></li>
+<li><p>leveldb/rocksdb在归档数据后，需要主动调用compaction释放空间，采用异步执行</p></li>
+</ol>
+</div>
+<div class="section" id="id19">
+<h3><span class="section-number">8.7.6. </span>实现原理<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id20">
+<h4><span class="section-number">8.7.6.1. </span>数据归档<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+<p>数据归档主要针对Block DB 和 Result DB将平时不怎么需要访问的数据归档，目前也仅这两种数据库支持归档，暂不支持mysql，归档实现方式：</p>
+<ol class="simple">
+<li><p>归档前设置不允许归档的高度(unarchive_block_height，默认300000，当设置值小于10时，自动设置成10)，能归档的最高高度即为当前链高度 - unarchive_block_height</p></li>
+<li><p>归档的内容会从链上删除，需要事先将数据转存到链外数据库</p></li>
+<li><p>归档会删除BlockDB中的tx详细内容和ResultDB中的RWSets，并记录当前归档的高度(该高度也会被归档)，并触发kvDB的compaction</p></li>
+<li><p>归档过程中会跳过Genesis Block和Config Block，如果要归档的目标高度正好为这两种区块，归档会失败，可以将目标高度修改到普通区块的高度</p></li>
+<li><p>归档后的区块依然可以从链上获取区块的原数据(MetaBlock)，只是无法获取到交易内容和RWSets(读写集)。所以无法获取完整的区块信息。但Genesis Block和Config Block任然可以获取完整区块信息</p></li>
+<li><p>归档后的节点在对其他节点提供区块同步信息时，无法提供已归档的区块信息，所以在需要同步的节点选择连接的peer节点时，会只选择已归档高度比自己高度低的节点。如果是高度为1的全新节点，则只能从未归档的节点(peer)同步区块</p></li>
+<li><p>用户可以多次归档，每次归档接着上次归档的高度继续</p></li>
+</ol>
+</div>
+<div class="section" id="id21">
+<h4><span class="section-number">8.7.6.2. </span>归档数据恢复<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
+<p>数据恢复时会将数据写回链上，链慢慢恢复未归档前的样子</p>
+<ol class="simple">
+<li><p>数据恢复时会将交易内容和读写集(RWSets)写回节点，节点恢复到未归档前样子</p></li>
+<li><p>恢复过程中区块内容按照高度从高到低写回BlockDB和ResultDB，Genesis Block和Config Block跳过(不需要恢复)</p></li>
+<li><p>更新最新的已归档的高度，同时触发kvdb的compaction</p></li>
+<li><p>用户可以多次恢复归档数据，每次恢复接着之前恢复的高度继续</p></li>
+</ol>
+<p><br><br></p>
 </div>
 </div>
 </div>

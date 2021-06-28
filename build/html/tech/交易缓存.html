@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>11. 交易缓存 &mdash; chainmaker-docs v1.1.0 documentation</title>
+  <title>11. 交易缓存 &mdash; chainmaker-docs v1.2.0 documentation</title>
   
 
   
@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
 
   
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
 
   
@@ -57,13 +59,16 @@
           
 
           
+            
+            <img src="../_static/chainmakerLOGO-09.png" class="logo" alt="Logo"/>
+          
           </a>
 
           
             
             
               <div class="version">
-                v1.1.0
+                v1.2.0
               </div>
             
           
@@ -88,7 +93,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">长安链介绍:</span></p>
+              <p class="caption"><span class="caption-text">长安链介绍</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B.html">1. 长安链底层技术平台简介</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/%E8%83%8C%E6%99%AF.html">2. 背景</a></li>
@@ -104,8 +109,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id16">4. 功能验证</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#goland">5. 开发-goland启动链</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html#id30">6. 常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/Q%26A.html">7. Q&amp;A</a></li>
 </ul>
-<p class="caption"><span class="caption-text">技术设计文档:</span></p>
+<p class="caption"><span class="caption-text">技术设计文档</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.html">1. 整体架构</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B.html">2. 核心流程</a></li>
@@ -128,6 +134,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%B9%B6%E8%A1%8C%E8%B0%83%E5%BA%A6.html">12. 并行调度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SQL%E5%90%88%E7%BA%A6%E6%94%AF%E6%8C%81.html">13. SQL合约支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SPV.html">14. SPV 轻节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%B7%A8%E9%93%BE%E6%96%B9%E6%A1%88.html">15. 跨链方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6.html">16. 隐私合约</a></li>
 </ul>
 <p class="caption"><span class="caption-text">开发指南</span></p>
 <ul>
@@ -144,6 +154,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../operation/%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4.html">4. 配置变更</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation/HIBE%E6%8E%A5%E5%8F%A3%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%A8%E4%BE%8B.html">5. HIBE 教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.html">6. 版本升级操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B5%8F%E8%A7%88%E5%99%A8.html">7. 区块链浏览器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%BD%BB%E8%8A%82%E7%82%B9SPV%E4%BD%BF%E7%94%A8.html">8. SPV 部署和使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation/%E8%B7%A8%E9%93%BE%E4%BD%BF%E7%94%A8.html">9. 跨链使用</a></li>
 </ul>
 <p class="caption"><span class="caption-text">应用场景</span></p>
 <ul>
@@ -272,7 +285,7 @@
 <td>依据txId，查询交易信息</td>
 </tr>
 <tr>
-<td><code>GetTxsByTxIds(txIds []string) &lt;br&gt;(txsRet map[string]*common.Transaction, txsHeightRet map[string]int64)</code></td>
+<td><code>GetTxsByTxIds(txIds []string)</code> <br><code>(txsRet map[string]*common.Transaction, txsHeightRet map[string]int64)</code></td>
 <td>批量查询交易信息</td>
 </tr>
 <tr>
@@ -333,7 +346,7 @@
 <li><p>验证区块：区块验证通过后，调用交易池的<code class="docutils literal notranslate"><span class="pre">AddTxsToPendingCache</span></code>，将块内的交易从交易池的普通的队列移动至待删除队列，如果块内不在交易池的普通队列中，则直接添加至待删除队列中</p></li>
 <li><p>提交区块：调用交易池的<code class="docutils literal notranslate"><span class="pre">RetryAndRemoveTxs</span> </code>实现，先将同一高度其他区块的交易添加至交易池的普通队列中，同时这些交易如果存在于待删除队列，则将其从待删除移除；再将块内交易从交易池的所有队列中移除（普通队列、待删除队列）</p></li>
 </ul>
-<img src="../images/交易缓存-txpool-internal-state.png"  alt="Raft共识与核心引擎交互图" style="zoom:70%;"/></div>
+<img src="../images/TransactionCache-txpool-internal-state.png"  alt="Raft共识与核心引擎交互图" style="zoom:70%;"/></div>
 <div class="section" id="batch">
 <h2><span class="section-number">11.5. </span>batch交易池实现<a class="headerlink" href="#batch" title="Permalink to this headline">¶</a></h2>
 <p>batch交易池是交易池的另一种实现方式，池内状态的更新是以批次作为基准的；如：添加交易至队列、广播交易、从交易池获取等。</p>
@@ -359,7 +372,7 @@
 <li><p>节点生成、验证、提交区块时，<code class="docutils literal notranslate"><span class="pre">Core</span></code>模块调用相应的接口，修改交易池的状态</p></li>
 </ul>
 <p>流程图如下：</p>
-<img src="../images/交易缓存-chainmaker-txpool-flow.png"  alt="Raft共识与核心引擎交互图" style="width:900px;"/></div>
+<img src="../images/TransactionCache-chainmaker-txpool-flow.png"  alt="Raft共识与核心引擎交互图" style="width:900px;"/></div>
 <div class="section" id="id6">
 <h2><span class="section-number">11.7. </span>参数配置<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>txpool 在节点配置中，有如下配置参数。</p>
@@ -404,7 +417,8 @@
 <td>批量交易池，定时创建批次的时间间隔</td>
 </tr>
 </tbody>
-</table></div>
+</table><p><br><br></p>
+</div>
 </div>
 
 

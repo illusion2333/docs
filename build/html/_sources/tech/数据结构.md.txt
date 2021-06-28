@@ -19,7 +19,7 @@ ChainMaker官方提供ChainMaker协议的Golang实现，根据protobuf3数据模
 ### 区块
 #### 结构示意图
 
-<img src="../images/数据结构-区块结构.png" style="width:900px;" />
+<img src="../images/DataStructure-BlockStructure.png" style="width:900px;" />
 
 #### 整体结构
 
@@ -135,7 +135,7 @@ message BlockHeader {
 
 ### 交易结构
 #### 交易结构示意图
-<img src="../images/数据结构-Transaction结构.png" style="width:700px;" />
+<img src="../images/DataStructure-Transaction.png" style="width:700px;" />
 
 ####  交易结构定义
 ```go
@@ -342,3 +342,7 @@ message TxWrite {
 * ContractName 对哪个合约的状态数据进行了更改
 * Key 被修改的状态键值
 * Value 修改后的状态值
+
+
+
+<br><br>

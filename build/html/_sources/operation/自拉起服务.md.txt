@@ -91,9 +91,9 @@ Created symlink /etc/systemd/system/multi-user.target.wants/chainmaker.service �
    CGroup: /system.slice/chainmaker.service
            └─5384 ./chainmaker start -c ../config/wx-org.chainmaker.org/chainmaker.yml
 
-Apr 07 12:48:39 jasonruan-LB2 systemd[1]: Starting chainmaker...
-Apr 07 12:48:39 jasonruan-LB2 bash[5364]: chainmaker is startting, pls check log...
-Apr 07 12:48:39 jasonruan-LB2 systemd[1]: Started chainmaker.
+Apr 07 12:48:39 LB2 systemd[1]: Starting chainmaker...
+Apr 07 12:48:39 LB2 bash[5364]: chainmaker is startting, pls check log...
+Apr 07 12:48:39 LB2 systemd[1]: Started chainmaker.
 ```
 
 ### 检查&测试
@@ -139,3 +139,4 @@ $ ps -ef|grep chainmaker | grep -v grep
 
 
 
+<br><br>
