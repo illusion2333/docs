@@ -254,13 +254,7 @@ func invokeUserContract(client *ChainClient, contractName, method, txId string, 
 
 > 更多示例和用法，请参看单元测试用例
 
-| 功能     | 单测代码                      |
-| -------- | ----------------------------- |
-| 用户合约 | `sdk_user_contract_test.go`   |
-| 系统合约 | `sdk_system_contract_test.go` |
-| 链配置   | `sdk_chain_config_test.go`    |
-| 证书管理 | `sdk_cert_manage_test.go`     |
-| 消息订阅 | `sdk_subscribe_test.go`       |
+![](../images/chart14.png)
 
 #### 接口说明
 
@@ -366,14 +360,7 @@ if (chainClient == null) {
 
 > 更多示例和用法，请参看单元测试用例
 
-| 功能     | 单测代码                      |
-| -------- | ----------------------------- |
-| 基础配置 | `TestBase`   |
-| 用户合约 | `TestUserContract`   |
-| 系统合约 | `TestSystemContract` |
-| 链配置   | `TestChainConfig`    |
-| 证书管理 | `TestBaseCertManage`     |
-| 消息订阅 | `TestSubscribe`       |
+![](../images/chart15.png)
 
 #### 接口说明
 
