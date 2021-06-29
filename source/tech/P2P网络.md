@@ -28,7 +28,7 @@ P2P网络相关特性，可用下图一图汇总，包括：
 - 专有网络穿透连接；
 - 多链网络隔离。
 
-<img src="../images/P2P-schematic.png" style="width:900px;" />
+![](../images/P2P-schematic.png)
 
 ## 组网方式
 
@@ -84,7 +84,7 @@ net:
       - "QmVSCXfPweL1GRSNt8gjcw1YQ2VcCirAtTdLKGkgGKsHqi"
 ```
 
-在链初始化阶段，网络模块会将根据链配置（例如：bc1.yml）中的trust_roots配置的根证书创建TLS根证书池，在节点连接建立时，TLS握手阶段会依次使用每条链的TLS根证书池验证对方节点TLS证书，若认证通过则认为对方节点属于当前根证书池对应的链，确定链ID，并将对方节点ID加入到对应链的pubsub服务白名单中。这样就可以保证链内的广播消息不会发送给不属于该链组织的节点。
+在链初始化阶段，网络模块会将根据链配置（例如：bc1.xml）中的trust_roots配置的根证书创建TLS根证书池，在节点连接建立时，TLS握手阶段会依次使用每条链的TLS根证书池验证对方节点TLS证书，若认证通过则认为对方节点属于当前根证书池对应的链，确定链ID，并将对方节点ID加入到对应链的pubsub服务白名单中。这样就可以保证链内的广播消息不会发送给不属于该链组织的节点。
 
 
 在多链场景下，只需要保证每个链的trust_roots里都配有该节点TLS证书对应的CA或根证书即可，不需要额外的其他配置。
@@ -95,9 +95,9 @@ net:
 
 2.假设节点N的TLS证书是由组织ID为“wx-org2.chainmaker.org”的CA证书签发；
 
-3.假设blockchain1链的配置文件为bc1.yml，blockchain2链的配置文件为bc2.yml。
+3.假设blockchain1链的配置文件为bc1.xml，blockchain2链的配置文件为bc2.xml。
 
-那么bc1.yml中trust_roots配置：
+那么bc1.xml中trust_roots配置：
 ```yaml
 trust_roots:
   - org_id: "wx-org1.chainmaker.org"
@@ -106,7 +106,7 @@ trust_roots:
     root: "../config/wx-org2/certs/ca/wx-org2.chainmaker.org/ca.crt"
 ```
 
-bc2.yml中trust_roots配置：
+bc2.xml中trust_roots配置：
 ```yaml
 trust_roots:
   - org_id: "wx-org2.chainmaker.org"
@@ -121,7 +121,7 @@ trust_roots:
 
 当前版本网络模块与其他模块交互都是异步的，都是通过MsgBus来进行数据互传，交互图如下：
 
-<br><img src="../images/P2P网络-与其他模块交互图.png" alt="Raft共识与核心引擎交互图" style="zoom:90%;"/>
+![](../images/P2P-interaction.png)
 
 ##  接口说明
 ```go

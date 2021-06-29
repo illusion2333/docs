@@ -17,7 +17,7 @@ chainmaker文档
    intro/基础术语.md
    intro/编写语言.md
    intro/版本迭代.md
-
+   
 
 .. toctree::
     :maxdepth: 2
@@ -25,7 +25,6 @@ chainmaker文档
     :numbered:
 
     tutorial/快速入门.md
-    tutorial/Q&A.md
 
 .. toctree::
     :maxdepth: 2
@@ -45,9 +44,6 @@ chainmaker文档
     tech/交易缓存.md
     tech/并行调度.md
     tech/SQL合约支持.md
-    tech/SPV.md
-    tech/跨链方案.md
-    tech/隐私合约.md
 
 .. toctree::
     :maxdepth: 2
@@ -71,8 +67,6 @@ chainmaker文档
     operation/HIBE接口、工具介绍及用例.md
     operation/版本升级操作指南.md
     operation/区块链浏览器.md
-    operation/轻节点SPV使用.md
-    operation/跨链使用.md
 
 .. toctree::
     :maxdepth: 2
@@ -96,3 +90,4 @@ chainmaker文档
     :numbered:
 
     thanks/鸣谢.md
+

@@ -699,7 +699,7 @@ public byte[] createPayloadOfRevokeCerts(String certCrl) {}
             throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
     }
 ```
-### 多签接口(该功能尚不支持)
+### 多签接口
 #### 发送多签交易请求
 **参数说明**
   - txType: 交易类型
@@ -887,7 +887,7 @@ cd chainamker-sdk-java
 
 1. 导入Jar包，这里使用IntelliJ为示例引用Jar包，将编译好的jar包拷贝到需要使用sdk的项目下（一般可以在项目下建一个libs目录），然后打开IntelliJ IDEA->File->Project Structures，如下图点击“+”号，选择JARs or Directories，选中Jar包点击open即可。
 
-<img src="../images/chainmaker-java-sdk-add-sdk-jar.png" style="zoom:50%;" />
+![](../images/chainmaker-java-sdk-add-sdk-jar.png)
 
 2. 引用
 
