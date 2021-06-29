@@ -70,7 +70,11 @@ service RpcNode {
 
 ### 消息订阅（事件通知）实现原理
 
+
+
 ![](../images/RPC-subscribe.png)
+
+
 
 （1）订阅者发起消息订阅请求，当前支持订阅区块消息和交易消息；
 
