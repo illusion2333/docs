@@ -2,7 +2,7 @@
 RocksDB是使用C++开发的开源嵌入式数据库，长安链采用golang开发，为了集成RocksDB，目前长安链使用了gorocksdb第三方开源的golang库，gorocksdb需要依赖RocksDB的库文件，因此如果选用RocksDB作为存储数据库，需要在本地安装RocksDB的环境，并使用条件编译来集成RocksDB。过程如下：
 
 - 1.RocksDB安装：https://github.com/facebook/rocksdb/blob/master/INSTALL.md
-- 2.gorocksdb安装：https://github.com/tecbot/gorocksdb
+- 2.gorocksdb安装：https://github.com/yiyanwannian/gorocksdb
 - 3.使用rocksdb需要通过-tag方式启动，build方式：
 
 ```sh
@@ -223,14 +223,18 @@ make install
 
 通过1-6安装步骤后，rocksdb会被安装在 usr/local/rocksdb 这个目录下，我们使用go版本的rocksdb需要依赖于该路径。
 
-目前使用的gorocksdb为：github.com/tecbot/gorocksdb
+目前使用的gorocksdb为：github.com/yiyanwannian/gorocksdb
 
 安装上述的安装路径，使用下面的命令即可：
 
 ```sh
 CGO_CFLAGS="-I/usr/local/rocksdb/include" \
 CGO_LDFLAGS="-L/usr/local/rocksdb -lrocksdb -lstdc++ -lm -lz -lbz2 -lsnappy -llz4 -lzstd" \
-  go get github.com/tecbot/gorocksdb
+  go get github.com/yiyanwannian/gorocksdb
 ```
 
 如果安装目录有变化，则修改对应的/usr/local/rocksdb对应的路径
+
+
+
+<br><br>

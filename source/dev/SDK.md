@@ -1,10 +1,11 @@
 # SDK
+<span id="section_sdk"></span>
 
 ## 概述
 
 长安链`SDK`是业务模块与长安链交互的桥梁，支持双向`TLS`认证，提供安全可靠的加密通信信道。
 
-长安链提供了多种语言的`SDK`，包括：`Go SDK`、`Java SDK`、`Python SDK`（实现中）、`JS SDK`（实现中）方便开发者根据需要进行选用。
+长安链提供了多种语言的`SDK`，包括：`Go SDK`、`Java SDK`、`Python SDK`（实现中）、`Nodejs SDK`（实现中）方便开发者根据需要进行选用。
 
 提供的`SDK`接口，覆盖合约管理、链配置管理、证书管理、多签收集、各类查询操作、事件订阅等场景，满足了不同的业务场景需要。
 
@@ -36,7 +37,7 @@ go version go1.15 linux/amd64
 #### 下载安装
 
 ```bash
-$ git clone --recursive https://git.chainmaker.org.cn/chainmaker/chainmaker-sdk-go.git
+$ git clone https://git.chainmaker.org.cn/chainmaker/sdk-go.git
 ```
 
 #### 示例代码
@@ -266,13 +267,14 @@ func invokeUserContract(client *ChainClient, contractName, method, txId string, 
 
 请参看：[《chainmaker-go-sdk》](../dev/chainmaker-go-sdk.md)
 
+<!--
 ###  Java SDK
 
 #### 环境依赖
 
 **java**
 
-> openjdk 1.8.151+
+> jdk 1.8.0_202或以下
 
 下载地址：https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html
 
@@ -280,13 +282,13 @@ func invokeUserContract(client *ChainClient, contractName, method, txId string, 
 
 ```bash
 $ java -version
-java version "1.8.0_281"
+java version "1.8.0_202"
 ```
 
 #### 下载安装
 
 ```bash
-$ git clone https://git.code.tencent.com/ChainMaker/chainmaker-sdk-java.git
+$ git clone https://git.chainmaker.org.cn/chainmaker/chainmaker-sdk-java.git
 ```
 
 #### 示例代码
@@ -307,19 +309,92 @@ Node node = Node.builder()
                 .negotiationType(TLS_NEGOTIATION).build();
 ```
 
-##### 创建ChainClient
+##### 以参数形式创建ChainClient
 
 > 更多内容请参看：`TestBase`
 
 ```java
-// 创建ChainClient
-chainManager = ChainManager.getInstance();
-chainClient = chainManager.getChainClient(CHAIN_ID);
-if (chainClient == null) {
-  chainClient = chainManager.createChainClient(CHAIN_ID, ORG_ID, FileUtils.getResourceFileBytes(USER_KEY_PATH),
-  FileUtils.getResourceFileBytes(USER_CERT_PATH), chainNode);
-}
+public void init() throws IOException, ChainMakerCryptoSuiteException, ChainClientException {
+        byte[][] tlsCaCerts = new byte[][]{FileUtils.getResourceFileBytes(GRPC_CERT_PATH_ORG1), FileUtils.getResourceFileBytes(GRPC_CERT_PATH_ORG2)};
+        Node node1 = Node.builder().clientKeyBytes(FileUtils.getResourceFileBytes(GRPC_TLS_KEY_PATH_ORG1))
+                .clientCertBytes(FileUtils.getResourceFileBytes(GRPC_TLS_CERT_PATH_ORG1))
+                .tlsCertBytes(tlsCaCerts)
+                .hostname(TLS_HOST_NAME1).grpcUrl(NODE_GRPC_URL1)
+                .sslProvider(OPENSSL_PROVIDER).negotiationType(TLS_NEGOTIATION).build();
+        chainManager = ChainManager.getInstance();
+        chainClient = chainManager.getChainClient(CHAIN_ID);
+        User clientUser = new User(ORG_ID1, FileUtils.getResourceFileBytes(CLIENT_KEY_PATH),
+                FileUtils.getResourceFileBytes(CLIENT_CERT_PATH));
+        if (chainClient == null) {
+            chainClient = chainManager.createChainClient(CHAIN_ID, clientUser, new Node[]{node1});
+        }
+        adminUser1 = new User(ORG_ID1, FileUtils.getResourceFileBytes(ADMIN1_KEY_PATH),
+                FileUtils.getResourceFileBytes(ADMIN1_CERT_PATH));
+        adminUser2 = new User(ORG_ID2, FileUtils.getResourceFileBytes(ADMIN2_KEY_PATH),
+                FileUtils.getResourceFileBytes(ADMIN2_CERT_PATH));
+        adminUser3 = new User(ORG_ID3, FileUtils.getResourceFileBytes(ADMIN3_KEY_PATH),
+                FileUtils.getResourceFileBytes(ADMIN3_CERT_PATH));
+    }
 
+```
+
+##### 以配置文件形式创建ChainClient
+
+> 更多内容请参看：`TestBase`
+
+```java
+public void initWithConfig() throws IOException, ChainMakerCryptoSuiteException, ChainClientException {
+
+        Yaml yaml = new Yaml();
+        InputStream in = TestBase.class.getClassLoader().getResourceAsStream("sdk_config.yml");
+
+        SdkConfig sdkConfig;
+        sdkConfig = yaml.loadAs(in, SdkConfig.class);
+        in.close();
+        List<Node> nodeList = new ArrayList<>();
+
+        for (NodeConfig nodeConfig : sdkConfig.getChain_client().getNodes()) {
+            List<byte[]> tlsCaCertList = new ArrayList<>();
+            for (String rootPath : nodeConfig.getTrust_root_paths()){
+                tlsCaCertList.add(FileUtils.getResourceFileBytes(rootPath));
+            }
+
+            byte[][] tlsCaCerts = new byte[tlsCaCertList.size()][];
+            tlsCaCertList.toArray(tlsCaCerts);
+
+            String url = "";
+
+            if (nodeConfig.isEnable_tls()){
+                url = "grpcs://" + nodeConfig.getNode_addr();
+            }else {
+                url = "grpc://" + nodeConfig.getNode_addr();
+            }
+
+            Node node = Node.builder().clientKeyBytes(FileUtils.getResourceFileBytes(sdkConfig.getChain_client().getUser_key_file_path()))
+                    .clientCertBytes(FileUtils.getResourceFileBytes(sdkConfig.getChain_client().getUser_crt_file_path()))
+                    .tlsCertBytes(tlsCaCerts)
+                    .hostname(nodeConfig.getTls_host_name()).grpcUrl(url)
+                    .sslProvider(OPENSSL_PROVIDER).negotiationType(TLS_NEGOTIATION).build();
+            nodeList.add(node);
+        }
+
+        Node[] nodes = new Node[nodeList.size()];
+        nodeList.toArray(nodes);
+
+        chainManager = ChainManager.getInstance();
+        chainClient = chainManager.getChainClient(sdkConfig.getChain_client().getChain_id());
+        User clientUser = new User(sdkConfig.getChain_client().getOrg_id(), FileUtils.getResourceFileBytes(sdkConfig.getChain_client().getUser_key_file_path()),
+                FileUtils.getResourceFileBytes(sdkConfig.getChain_client().getUser_crt_file_path()));
+        if (chainClient == null) {
+            chainClient = chainManager.createChainClient(sdkConfig.getChain_client().getChain_id(), clientUser, nodes);
+        }
+        adminUser1 = new User(sdkConfig.getChain_client().getOrg_id(), FileUtils.getResourceFileBytes(sdkConfig.getChain_client().getUser_sign_key_file_path()),
+                FileUtils.getResourceFileBytes(sdkConfig.getChain_client().getUser_sign_crt_file_path()));
+        adminUser2 = new User(ORG_ID2, FileUtils.getResourceFileBytes(ADMIN2_KEY_PATH),
+                FileUtils.getResourceFileBytes(ADMIN2_CERT_PATH));
+        adminUser3 = new User(ORG_ID3, FileUtils.getResourceFileBytes(ADMIN3_KEY_PATH),
+                FileUtils.getResourceFileBytes(ADMIN3_CERT_PATH));
+    }
 ```
 
 ##### 创建合约
@@ -378,3 +453,128 @@ if (chainClient == null) {
 #### 接口说明
 
 请参看：[《chainmaker-java-sdk》](../dev/chainmaker-java-sdk.md)
+-->
+
+###  Nodejs SDK
+
+#### 环境依赖
+
+**nodejs**
+
+> nodejs 14.0.0+
+
+下载地址：https://nodejs.org/dist/
+
+若已安装，请通过命令查看版本：
+
+```bash
+$ node --version
+v14.0.0
+```
+
+#### 下载安装
+
+```bash
+$ git clone https://git.chainmaker.org.cn/chainmaker/sdk-nodejs.git
+```
+
+#### 示例代码
+
+##### 创建节点
+
+> 更多内容请参看：`sdkInit.js`
+
+```javascript
+// 创建节点
+this.node = new Node(nodeConfigArray, timeout);
+```
+
+##### 参数形式创建ChainClient
+
+> 更多内容请参看：`sdkInit.js`
+
+```javascript
+// 创建ChainClient
+const ChainClient = new Sdk(chainID, orgID, userKeyPathFile, userCertPathFile, nodeConfigArray, 30000, archiveConfig);
+
+```
+
+##### 以配置文件形式创建ChainClient
+
+> 更多内容请参看：`sdkinit.js`
+
+```javascript
+const ChainClient = new LoadFromYaml(path.join(__dirname, './sdk_config.yaml'));
+```
+
+##### 创建合约
+
+> 更多内容请参看：`testUserContractMgr.js`
+
+```javascript
+  const testCreateUserContract = async (sdk, contractName, contractVersion, contractFilePath) => {
+		const response = await sdk.userContractMgr.createUserContract({
+			contractName,
+			contractVersion,
+			contractFilePath,
+			runtimeType: utils.common.RuntimeType.GASM,
+			params: {
+				key1: 'value1',
+				key2: 'value2',
+			},
+		});
+		return response;
+	};
+```
+
+##### 调用合约
+
+> 更多内容请参看：`testUserContractMgr.js`
+
+```javascript
+  const testInvokeUserContract = async (sdk, contractName) => {
+		const response = await sdk.callUserContract.invokeUserContract({
+			contractName, method: 'save', params: {
+				file_hash: '1234567890',
+				file_name: 'test.txt',
+			},
+		});
+		return response;
+	};
+```
+
+##### 更多示例和用法
+
+> 更多示例和用法，请参看单元测试用例
+
+安装mocha：
+
+```bash
+$ npm install -g mocha
+```
+
+使用脚本搭建chainmaker运行环境（4组织4节点），将build文件中的cryptogen复制到当前项目的test/testFile文件中
+
+运行测试命令：
+
+```bash
+$ npm test
+```
+
+| 功能     | 单测代码                      |
+| -------- | ----------------------------- |
+| 基础配置 | `sdkInit.js`   |
+| 用户合约 | `userContract.js`   |
+| 系统合约 | `systemContract.js` |
+| 链配置   | `chainConfig.js`    |
+| 证书管理 | `cert.js`     |
+| 消息订阅 | `subscribe.js`       |
+
+#### 接口说明
+
+请参看：[《chainmaker-nodejs-sdk》](../dev/chainmaker-nodejs-sdk.md)
+
+
+
+<br><br>
+

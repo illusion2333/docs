@@ -9,15 +9,14 @@ chainmaker文档
 
 .. toctree::
    :maxdepth: 2
-   :caption: 长安链介绍:
+   :caption: 长安链介绍
    :numbered:
 
    intro/平台简介.md
-   intro/背景.md
-   intro/基础术语.md
+   intro/功能说明.md
    intro/编写语言.md
    intro/版本迭代.md
-   
+
 
 .. toctree::
     :maxdepth: 2
@@ -25,10 +24,11 @@ chainmaker文档
     :numbered:
 
     tutorial/快速入门.md
+    tutorial/FAQ.md
 
 .. toctree::
     :maxdepth: 2
-    :caption: 技术设计文档:
+    :caption: 技术设计文档
     :numbered:
 
     tech/整体架构.md
@@ -43,6 +43,11 @@ chainmaker文档
     tech/加密算法.md
     tech/交易缓存.md
     tech/并行调度.md
+    tech/SQL合约支持.md
+    tech/SPV.md
+    tech/跨链方案.md
+    tech/CA证书服务.md
+    tech/隐私合约.md
 
 .. toctree::
     :maxdepth: 2
@@ -62,9 +67,11 @@ chainmaker文档
     operation/多机部署.md
     operation/监控运维.md
     operation/自拉起服务.md
-    operation/配置变更.md
+    operation/证书管理.md
+    operation/节点管理.md
     operation/HIBE接口、工具介绍及用例.md
     operation/版本升级操作指南.md
+    operation/CA证书服务.md
 
 .. toctree::
     :maxdepth: 2
@@ -74,18 +81,3 @@ chainmaker文档
     usecase/供应链金融.md
     usecase/碳交易.md
     usecase/冷链溯源.md
-
-.. toctree::
-    :maxdepth: 2
-    :caption: 关于作者
-    :numbered:
-
-    author/关于作者.md
-
-.. toctree::
-    :maxdepth: 2
-    :caption: 鸣谢
-    :numbered:
-
-    thanks/鸣谢.md
-

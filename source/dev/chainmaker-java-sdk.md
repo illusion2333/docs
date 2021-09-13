@@ -699,7 +699,7 @@ public byte[] createPayloadOfRevokeCerts(String certCrl) {}
             throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
     }
 ```
-### 多签接口
+### 多签接口(该功能尚不支持)
 #### 发送多签交易请求
 **参数说明**
   - txType: 交易类型
@@ -748,11 +748,76 @@ public ResponseInfo sendMultiSignVote(MultSign.VoteStatus voteStatus, String mul
 **参数说明**
   - startBlock: 订阅起始区块高度，若为-1，表示订阅实时最新区块
   - endBlock: 订阅结束区块高度，若为-1，表示订阅实时最新区块
-  - txType: 订阅交易类型,若为pb.TxType(-1)，表示订阅所有交易类型
+  - txType: 订阅交易类型
   - txIds: 订阅txId列表，若为空，表示订阅所有txId
 ```java
     public void subscribeTx(long startBlock, long endBlock, Request.TxType txType, String[] txIds,
                             StreamObserver<ChainmakerResult.SubscribeResult> txStreamObserver) {
+    }
+```
+
+#### 事件订阅
+**参数说明**
+  - topic: 订阅话题
+  - contractName: 订阅合约名
+```java
+    public void subscribeContractEvent(String topic, String contractName,
+                           StreamObserver<ResultOuterClass.SubscribeResult> contractEventStreamObserver) {
+    }
+```
+
+### 归档类接口
+####  数据归档payload生成
+**参数说明**
+  - targetBlockHeight: 归档区块高度
+```java
+    public byte[] createArchiveBlockPayload(long targetBlockHeight) {
+    }
+```
+
+####  归档恢复payload生成
+**参数说明**
+  - fullBlock: 归档恢复数据
+```java
+    public byte[] createRestoreBlockPayload(byte[] fullBlock) {
+    
+    }
+```
+
+#### 发送数据归档请求
+**参数说明**
+  - payloadBytes: 数据归档payload
+```java
+    public ResponseInfo sendArchiveBlockRequest(byte[] payloadBytes, long timeout) 
+            throws ChainMakerCryptoSuiteException, ChainClientException {
+    }
+```
+
+#### 发送归档恢复请求
+**参数说明**
+  - payloadBytes: 归档恢复payload
+```java
+    public ResponseInfo sendRestoreBlockRequest(byte[] payloadBytes, long timeout) 
+            throws ChainMakerCryptoSuiteException, ChainClientException {
+    }
+```
+
+#### 获取归档数据
+**参数说明**
+  - targetBlockHeight: 归档区块高度
+```java
+    public Store.BlockWithRWSet getArchivedFullBlockByHeight(long blockHeight) 
+            throws InvalidProtocolBufferException, SQLException, ClassNotFoundException {
+    }
+```
+
+#### 获取归档区块信息
+**参数说明**
+  - targetBlockHeight: 归档区块高度
+  - withRWSet: 是否获取读写集
+```java
+    public ChainmakerBlock.BlockInfo getArchivedBlockByHeight(long blockHeight, boolean withRWSet) 
+            throws InvalidProtocolBufferException, SQLException, ClassNotFoundException {
     }
 ```
 
@@ -877,7 +942,7 @@ public Request.EndorsementEntry signPayloadOfMultiSign(byte[] payload, boolean i
 ### 编译
 
 ```
-git clone https://git.code.tencent.com/ChainMaker/chainmaker-sdk-java.git
+git clone https://git.chainmaker.org.cn/chainmaker/chainmaker-sdk-java.git
 // 说明：需要使用openjdk 1.8.151+并提前安装gradle，也可以使用intelliJ IDEA打开项目进行编译
 cd chainamker-sdk-java
 ./gradle build
@@ -896,4 +961,12 @@ cd chainamker-sdk-java
    ```
    import org.chainmaker.sdk.*;
    ```
+
+
+
+
+
+
+
+<br><br>
 
