@@ -284,7 +284,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   (master_doc, 'Recommonmark', u'ChainMaker-docs',
-   author, 'chainmaker.org@烛夜', 'One line description of project.',
+   author, 'chainmaker.org', 'One line description of project.',
    'Miscellaneous'),
 ]
 
