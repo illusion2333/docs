@@ -23,7 +23,7 @@
 
 **golang**
 
-版本为1.15或以上
+版本为1.16或以上
 
 下载地址：https://golang.org/dl/
 
@@ -31,7 +31,7 @@
 
 ```bash
 $ go version
-go version go1.15 linux/amd64
+go version go1.16 linux/amd64
 ```
 
 #### 下载安装
@@ -267,7 +267,6 @@ func invokeUserContract(client *ChainClient, contractName, method, txId string, 
 
 请参看：[《chainmaker-go-sdk》](../dev/chainmaker-go-sdk.md)
 
-<!--
 ###  Java SDK
 
 #### 环境依赖
@@ -277,6 +276,8 @@ func invokeUserContract(client *ChainClient, contractName, method, txId string, 
 > jdk 1.8.0_202或以下
 
 下载地址：https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html
+
+若jdk版本较高，请在路径为`cryto/ChainmakerX509CryptoSuite.java`的代码中修改`import sun.security.ec.CurveDB`为`import sun.security.util.CurveDB`
 
 若已安装，请通过命令查看版本：
 
@@ -288,54 +289,62 @@ java version "1.8.0_202"
 #### 下载安装
 
 ```bash
-$ git clone https://git.chainmaker.org.cn/chainmaker/chainmaker-sdk-java.git
+$ git clone https://git.chainmaker.org.cn/chainmaker/sdk-java.git
 ```
+
+#### jar包依赖
+
+需将`sdk`中依赖的`jar`包导入本地工程中，
+同时，需将`sdk`中`lib`目录下的`netty-tcnative-openssl-static-2.0.39.Final.jar`包导入工程中，以便适配国密`tls`通信。
 
 #### 示例代码
-
-##### 创建节点
-
-> 更多内容请参看：`TestBase`
-
-```java
-// 创建节点
-Node node = Node.builder()
-                .clientKeyBytes(keyBytes)
-                .clientCertBytes(certBytes)
-                .tlsCertBytes(tlsCertBytes)
-                .hostname(TLS_HOST_NAME1)
-                .grpcUrl(NODE_GRPC_URL1)
-                .sslProvider(OPENSSL_PROVIDER)
-                .negotiationType(TLS_NEGOTIATION).build();
-```
 
 ##### 以参数形式创建ChainClient
 
 > 更多内容请参看：`TestBase`
 
 ```java
-public void init() throws IOException, ChainMakerCryptoSuiteException, ChainClientException {
-        byte[][] tlsCaCerts = new byte[][]{FileUtils.getResourceFileBytes(GRPC_CERT_PATH_ORG1), FileUtils.getResourceFileBytes(GRPC_CERT_PATH_ORG2)};
-        Node node1 = Node.builder().clientKeyBytes(FileUtils.getResourceFileBytes(GRPC_TLS_KEY_PATH_ORG1))
-                .clientCertBytes(FileUtils.getResourceFileBytes(GRPC_TLS_CERT_PATH_ORG1))
-                .tlsCertBytes(tlsCaCerts)
-                .hostname(TLS_HOST_NAME1).grpcUrl(NODE_GRPC_URL1)
-                .sslProvider(OPENSSL_PROVIDER).negotiationType(TLS_NEGOTIATION).build();
-        chainManager = ChainManager.getInstance();
-        chainClient = chainManager.getChainClient(CHAIN_ID);
-        User clientUser = new User(ORG_ID1, FileUtils.getResourceFileBytes(CLIENT_KEY_PATH),
-                FileUtils.getResourceFileBytes(CLIENT_CERT_PATH));
-        if (chainClient == null) {
-            chainClient = chainManager.createChainClient(CHAIN_ID, clientUser, new Node[]{node1});
-        }
-        adminUser1 = new User(ORG_ID1, FileUtils.getResourceFileBytes(ADMIN1_KEY_PATH),
-                FileUtils.getResourceFileBytes(ADMIN1_CERT_PATH));
-        adminUser2 = new User(ORG_ID2, FileUtils.getResourceFileBytes(ADMIN2_KEY_PATH),
-                FileUtils.getResourceFileBytes(ADMIN2_CERT_PATH));
-        adminUser3 = new User(ORG_ID3, FileUtils.getResourceFileBytes(ADMIN3_KEY_PATH),
-                FileUtils.getResourceFileBytes(ADMIN3_CERT_PATH));
-    }
+public void initWithNoConfig() throws SdkException {
+    byte[][] tlsCaCerts = new byte[][]{FileUtils.getResourceFileBytes(ORG1_CERT_PATH)};
+    
+    SdkConfig sdkConfig = new SdkConfig();
+    ChainClientConfig chainClientConfig = new ChainClientConfig();
+    sdkConfig.setChainClient(chainClientConfig);
 
+    RpcClientConfig rpcClientConfig = new RpcClientConfig();
+    rpcClientConfig.setMaxReceiveMessageSize(MAX_MESSAGE_SIZE);
+
+    ArchiveConfig archiveConfig = new ArchiveConfig();
+    archiveConfig.setDest(DEST);
+    archiveConfig.setType(TYPE);
+    archiveConfig.setSecretKey(SECRET_KEY);
+
+    NodeConfig nodeConfig = new NodeConfig();
+    nodeConfig.setTrustRootBytes(tlsCaCerts);
+    nodeConfig.setTlsHostName(TLS_HOST_NAME1);
+    nodeConfig.setEnableTls(true);
+    nodeConfig.setNodeAddr(NODE_GRPC_URL1);
+    nodeConfig.setConnCnt(CONNECT_COUNT);
+
+    NodeConfig[] nodeConfigs = new NodeConfig[]{nodeConfig};
+
+    chainManager = ChainManager.getInstance();
+    chainClient = chainManager.getChainClient(CHAIN_ID);
+
+    chainClientConfig.setOrgId(ORG_ID1);
+    chainClientConfig.setChainId(CHAIN_ID);
+    chainClientConfig.setUserKeyBytes(FileUtils.getResourceFileBytes(CLIENT1_TLS_KEY_PATH));
+    chainClientConfig.setUserCrtBytes(FileUtils.getResourceFileBytes(CLIENT1_TLS_CERT_PATH));
+    chainClientConfig.setUserSignKeyBytes(FileUtils.getResourceFileBytes(CLIENT1_KEY_PATH));
+    chainClientConfig.setUserSignCrtBytes(FileUtils.getResourceFileBytes(CLIENT1_CERT_PATH));
+    chainClientConfig.setRpcClient(rpcClientConfig);
+    chainClientConfig.setArchive(archiveConfig);
+    chainClientConfig.setNodes(nodeConfigs);
+
+    if (chainClient == null) {
+        chainClient = chainManager.createChainClient(sdkConfig);
+    }
+}
 ```
 
 ##### 以配置文件形式创建ChainClient
@@ -343,58 +352,35 @@ public void init() throws IOException, ChainMakerCryptoSuiteException, ChainClie
 > 更多内容请参看：`TestBase`
 
 ```java
-public void initWithConfig() throws IOException, ChainMakerCryptoSuiteException, ChainClientException {
+public void init() throws IOException, SdkException {
+    Yaml yaml = new Yaml();
+    InputStream in = TestBase.class.getClassLoader().getResourceAsStream(SDK_CONFIG);
 
-        Yaml yaml = new Yaml();
-        InputStream in = TestBase.class.getClassLoader().getResourceAsStream("sdk_config.yml");
+    SdkConfig sdkConfig;
+    sdkConfig = yaml.loadAs(in, SdkConfig.class);
+    assert in != null;
+    in.close();
 
-        SdkConfig sdkConfig;
-        sdkConfig = yaml.loadAs(in, SdkConfig.class);
-        in.close();
-        List<Node> nodeList = new ArrayList<>();
-
-        for (NodeConfig nodeConfig : sdkConfig.getChain_client().getNodes()) {
-            List<byte[]> tlsCaCertList = new ArrayList<>();
-            for (String rootPath : nodeConfig.getTrust_root_paths()){
-                tlsCaCertList.add(FileUtils.getResourceFileBytes(rootPath));
+    for (NodeConfig nodeConfig : sdkConfig.getChain_client().getNodes()) {
+        List<byte[]> tlsCaCertList = new ArrayList<>();
+        for (String rootPath : nodeConfig.getTrustRootPaths()){
+            List<String> filePathList = FileUtils.getFilesByPath(rootPath);
+            for (String filePath : filePathList) {
+                tlsCaCertList.add(FileUtils.getFileBytes(filePath));
             }
-
-            byte[][] tlsCaCerts = new byte[tlsCaCertList.size()][];
-            tlsCaCertList.toArray(tlsCaCerts);
-
-            String url = "";
-
-            if (nodeConfig.isEnable_tls()){
-                url = "grpcs://" + nodeConfig.getNode_addr();
-            }else {
-                url = "grpc://" + nodeConfig.getNode_addr();
-            }
-
-            Node node = Node.builder().clientKeyBytes(FileUtils.getResourceFileBytes(sdkConfig.getChain_client().getUser_key_file_path()))
-                    .clientCertBytes(FileUtils.getResourceFileBytes(sdkConfig.getChain_client().getUser_crt_file_path()))
-                    .tlsCertBytes(tlsCaCerts)
-                    .hostname(nodeConfig.getTls_host_name()).grpcUrl(url)
-                    .sslProvider(OPENSSL_PROVIDER).negotiationType(TLS_NEGOTIATION).build();
-            nodeList.add(node);
         }
-
-        Node[] nodes = new Node[nodeList.size()];
-        nodeList.toArray(nodes);
-
-        chainManager = ChainManager.getInstance();
-        chainClient = chainManager.getChainClient(sdkConfig.getChain_client().getChain_id());
-        User clientUser = new User(sdkConfig.getChain_client().getOrg_id(), FileUtils.getResourceFileBytes(sdkConfig.getChain_client().getUser_key_file_path()),
-                FileUtils.getResourceFileBytes(sdkConfig.getChain_client().getUser_crt_file_path()));
-        if (chainClient == null) {
-            chainClient = chainManager.createChainClient(sdkConfig.getChain_client().getChain_id(), clientUser, nodes);
-        }
-        adminUser1 = new User(sdkConfig.getChain_client().getOrg_id(), FileUtils.getResourceFileBytes(sdkConfig.getChain_client().getUser_sign_key_file_path()),
-                FileUtils.getResourceFileBytes(sdkConfig.getChain_client().getUser_sign_crt_file_path()));
-        adminUser2 = new User(ORG_ID2, FileUtils.getResourceFileBytes(ADMIN2_KEY_PATH),
-                FileUtils.getResourceFileBytes(ADMIN2_CERT_PATH));
-        adminUser3 = new User(ORG_ID3, FileUtils.getResourceFileBytes(ADMIN3_KEY_PATH),
-                FileUtils.getResourceFileBytes(ADMIN3_CERT_PATH));
+        byte[][] tlsCaCerts = new byte[tlsCaCertList.size()][];
+        tlsCaCertList.toArray(tlsCaCerts);
+        nodeConfig.setTrustRootBytes(tlsCaCerts);
     }
+
+    chainManager = ChainManager.getInstance();
+    chainClient = chainManager.getChainClient(sdkConfig.getChain_client().getChainId());
+
+    if (chainClient == null) {
+        chainClient = chainManager.createChainClient(sdkConfig);
+    }
+}
 ```
 
 ##### 创建合约
@@ -402,24 +388,26 @@ public void initWithConfig() throws IOException, ChainMakerCryptoSuiteException,
 > 更多内容请参看：`TestUserContract`
 
 ```java
-   public void testCreateContract() throws IOException, InterruptedException, ExecutionException, TimeoutException {
-       byte[] byteCode = FileUtils.getResourceFileBytes(CONTRACT_FILE_PATH);
-   
-       // 1. create payload
-       byte[] payload = chainClient.createPayloadOfContractCreation(CONTRACT_NAME,
-               "1", Contract.RuntimeType.WASMER_RUST, null, byteCode);
-   
-       // 2. create payloads with endorsement
-       byte[] payloadWithEndorsement1 = chainClient.signPayloadOfContractMgmt(payload);
-   
-       // 3. merge endorsements using payloadsWithEndorsement
-       byte[][] payloadsWithEndorsement = new byte[1][];
-       payloadsWithEndorsement[0] = payloadWithEndorsement1;
-       byte[] payloadWithEndorsement = chainClient.mergeSignedPayloadsOfContractMgmt(payloadsWithEndorsement);
-   
-       // 4. create contract
-       ResponseInfo responseInfo = chainClient.createContract(payloadWithEndorsement, 5000, 5000);
-   }
+public void testCreateContract() throws IOException, InterruptedException, ExecutionException, TimeoutException {
+    ResultOuterClass.TxResponse responseInfo = null;
+    try {
+        byte[] byteCode = FileUtils.getResourceFileBytes(CONTRACT_FILE_PATH);
+ 
+        // 1. create payload
+        Request.Payload payload = chainClient.createContractCreatePayload(CONTRACT_NAME, "1", byteCode,
+                ContractOuterClass.RuntimeType.WASMER, null);
+ 
+        //2. create payloads with endorsement
+        Request.EndorsementEntry[] endorsementEntries = SdkUtils.getEndorsers(payload, new User[]{adminUser1, adminUser2, adminUser3});
+ 
+        // 3. send request
+        responseInfo = chainClient.sendContractManageRequest(payload, endorsementEntries, rpcCallTimeout, syncResultTimeout);
+    } catch (SdkException e) {
+        e.printStackTrace();
+        Assert.fail(e.getMessage());
+    }
+    Assert.assertNotNull(responseInfo);
+}
 ```
 
 ##### 调用合约
@@ -427,14 +415,17 @@ public void initWithConfig() throws IOException, ChainMakerCryptoSuiteException,
 > 更多内容请参看：`TestUserContract`
 
 ```java
-   public void testInvokeContract() throws Exception {
-
-       Map<String, String> params = new HashMap<>();
-       params.put("time", System.currentTimeMillis()+"");
-       params.put("file_hash", UUID.randomUUID().toString());
-       params.put("file_name", UUID.randomUUID().toString()+System.currentTimeMillis());
-       ResponseInfo responseInfo = chainClient.invokeContract(QUERY_CONTRACT_NAME, QUERY_CONTRACT_METHOD, params, 5000, 5000);
-   }
+public void testInvokeContract() throws Exception {
+    ResultOuterClass.TxResponse responseInfo = null;
+    try {
+        responseInfo = chainClient.invokeContract(CONTRACT_NAME, INVOKE_CONTRACT_METHOD,
+                null, null, rpcCallTimeout, syncResultTimeout);
+    } catch (Exception e) {
+        e.printStackTrace();
+        Assert.fail(e.getMessage());
+    }
+    Assert.assertNotNull(responseInfo);
+}
 ```
 
 ##### 更多示例和用法
@@ -449,11 +440,12 @@ public void initWithConfig() throws IOException, ChainMakerCryptoSuiteException,
 | 链配置   | `TestChainConfig`    |
 | 证书管理 | `TestBaseCertManage`     |
 | 消息订阅 | `TestSubscribe`       |
+| 线上多签 | `TestContractMultisign`       |
+| 公钥身份 | `TestPubkeyManage`       |
 
 #### 接口说明
 
 请参看：[《chainmaker-java-sdk》](../dev/chainmaker-java-sdk.md)
--->
 
 ###  Nodejs SDK
 
@@ -577,4 +569,5 @@ $ npm test
 
 
 <br><br>
+
 

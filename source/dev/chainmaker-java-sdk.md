@@ -2,72 +2,60 @@
 
 ## 基本概念定义
 
-Java SDK定义了User、Node、ChainClient、ChainManager和ResponseInfo几个类，分别介绍如下：
+Java SDK定义了User、Node、ChainClient和ChainManager和SdkConfig几个类，分别介绍如下：
 
 - User: 表示链的一个用户信息，主要包括证书和private key，用来给要发送的交易payload签名或者给多签的payload签名。
 - Node：表示链的一个节点信息，它定义了节点的各种属性，如节点连接的RPC地址，连接所用的密钥信息等，一个ChainClient对象需要包含一个或多个Node，这样才能对过节点实现各种功能。
 - ChainClient：客户端开发最重要也是使用最多的类，代表逻辑上的一条链，所有客户端对链的操作接口都来自ChainClient。
-
-
-- ChainManager：负责管理所有创建过的链，是一个使用单例模式的链管理类，避免用户同一条链创建多个ChainClient。用户可以使用ChainManager来检查某条链是否已经创建，或者直接创建某条链，如果这条链已经创建，ChainManager会直接返回之前已经创建过的
-
-
-- ResponseInfo：对于创建合约、更新合约、调用合约和查询合约几个接口返回响应内容，其中包括交易ID，用于当用户请求超时后，后续主动查询交易结果。
-
+- ChainManager：负责管理所有创建过的链，是一个链管理类，避免用户同一条链创建多个ChainClient。用户可以使用ChainManager来检查某条链是否已经创建，或者直接创建某条链，如果这条链已经创建，ChainManager会直接返回之前已经创建过的
+- SdkConfig: 创建ChainClient所需的配置类。
 
 ChainClient对象给用户使用。数据结构定义如下：
 
 ```java
 public class User {
-
     // the organization id of the user
-    private final String orgId;
+    private String orgId;
     // user's private key used to sign transaction
-    private final PrivateKey privateKey;
+    private PrivateKey privateKey;
     // user's certificate
-    private final Certificate certificate;
+    private Certificate certificate;
+    // user's private key used to sign transaction
+    private PrivateKey tlsPrivateKey;
+    // user's certificate
+    private Certificate tlsCertificate;
     // the bytes of user's certificate
-    private final byte[] certBytes;
+    private byte[] certBytes;
     // the hash of the cert
-    @Getter
     private byte[] certHash;
 
-    private final CryptoSuite cryptoSuite;
+    private CryptoSuite cryptoSuite;
 }
 
 public class Node {
     // node grpc address
     private String grpcUrl;
-    // rpc client private key bytes
-    private byte[] clientKeyBytes;
-    // rpc client certificate bytes
-    private byte[] clientCertBytes;
     // the organization's ca cert bytes
-    private byte[] tlsCertBytes;
+    private byte[][] tlsCertBytes;
     // the hostname in client certificate
     private String hostname;
     // TLS or PLAINTEXT
     private String negotiationType;
     // OPENSSL or JDK
     private String sslProvider;
+    // node connect count
+    private int connectCount;
 }
 
 public class ChainClient {
     // chainId is the identity of the chain
-    private final String chainId;
-    // the nodes of the chain
-    private final List<Node> Nodes;
-    // rpc clients used to send rpc command
-    private Map<Node, RpcServiceClient> rpcServiceClients;
-
-    // the organization id of the user
-    private final String orgId;
-    // user's private key used to sign transaction
-    private final PrivateKey privateKey;
-    // user's certificate
-    private final Certificate certificate;
-    // the bytes of user's certificate
-    private final byte[] certBytes;
+        private String chainId;
+        // rpc connection Pool
+        private ConnectionPool connectionPool;
+        // archive config
+        private ArchiveConfig archiveConfig;
+        // the user used to sign transactions
+        private User clientUser;
 }
 
 public class ChainManager {
@@ -77,22 +65,12 @@ public class ChainManager {
     private static final ChainManager chainManager = new ChainManager();
 }
 
-public class ResponseInfo {
-		// response of request
-    private ChainmakerResult.TxResponse txResponse;
-    // txId of the request
-    private String txId;
-    // 同步获取交易执行的结果
-    private ChainmakerTransaction.TransactionInfo syncResultTxInfo;
-}
 ```
 
 ## ChainClient类接口定义
 
-ChainClient类描述了所有用户能够对链进行操作的接口
-
-### 用户合约接口
-#### 生成用于创建合约的待签名payload
+### 1 用户合约接口
+#### 1.1 生成用于创建合约的待签名payload
 **参数说明**
 
   - contractName: 合约名
@@ -101,17 +79,12 @@ ChainClient类描述了所有用户能够对链进行操作的接口
   - params: 合约初始化参数
   - byteCodes: 合约字节数组
 
-**返回值说明**
-    返回payload字节数组
-
 ```java
-    public byte[] createPayloadOfContractCreation(String contractName, String version, 
-                                                  Contract.RuntimeType runtimeType, Map<String, String> params, 
-                                                  byte[] byteCodes) {
-    }
+   public Request.Payload createContractCreatePayload(String contractName, String version, byte[] byteCode,
+                                                          ContractOuterClass.RuntimeType runtime, Map<String, byte[]> params)
 ```
-
-#### 生成用于升级合约的待签名payload
+    
+#### 1.2 生成用于升级合约的待签名payload
  **参数说明**
 
   - contractName: 合约名
@@ -120,118 +93,47 @@ ChainClient类描述了所有用户能够对链进行操作的接口
   - params: 合约初始化参数
   - byteCodes: 合约字节数组
 
-**返回值说明**
-    返回payload字节数组
 
 ```java
-public byte[] createPayloadOfContractUpgrade(String contractName, String version,
-                                             Contract.RuntimeType runtimeType, Map<String, String> params,
-                                             byte[] byteCodes) {
+public Request.Payload createContractUpgradePayload(String contractName, String version, byte[] byteCode,
+                                                       ContractOuterClass.RuntimeType runtime, Map<String, byte[]> params)
 ```
-#### 生成用于冻结合约的待签名payload
+
+#### 1.3 生成用于冻结合约的待签名payload
  **参数说明**
 
   - contractName: 合约名
-    **返回值说明**
-    返回payload字节数组
 ```java
-public byte[] createPayloadOfContractFreeze(String contractName) {}
+public Request.Payload createContractFreezePayload(String contractName) {}
 ```
-#### 生成用于解冻合约的待签名payload
+#### 1.4 生成用于解冻合约的待签名payload
  **参数说明**
 
   - contractName: 合约名
-    **返回值说明**
-    返回payload字节数组
 ```java
-public byte[] createPayloadOfContractUnfreeze(String contractName) {}
+public Request.Payload createContractUnFreezePayload(String contractName) {}
 ```
-#### 生成用于吊销合约的待签名payload
+
+#### 1.5 生成用于吊销合约的待签名payload
  **参数说明**
 
   - contractName: 合约名
-    **返回值说明**
-    返回payload字节数组
 ```java
-public byte[] createPayloadOfContractRevoke(String contractName) {}
+public Request.Payload createContractRevokePayload(String contractName) {}
 ```
 
-#### 将多个带签名后的payload合并成一个带多个签名的payload，所有签名都放在一个payload后面
-
+#### 1.6 发送合约操作请求
 **参数说明**
-  - payloads: 多个带签名的payload
-
-**返回值说明**
-    返回带多个签名的payload字节数组
-```java
-    public byte[] mergeSignedPayloadsOfContractMgmt(byte[][] payloads) throws InvalidProtocolBufferException {
-    }
-```
-
-####  创建合约
-**参数说明**
-  - payloadWithEndorsementsBytes: 带签名的合约内容
+  - payload: 合约内容
+  - endorsementEntries: 带签名的合约内容
   - rpcCallTimeout: 调用rcp接口超时时间, 单位：毫秒
   - syncResultTimeout: 同步获取执行结果超时时间，小于等于0代表不等待执行结果，直接返回（返回信息里包含交易ID），单位：毫秒
 ```java
-    public ResponseInfo createContract(byte[] payloadWithEndorsementsBytes, long rpcCallTimeout,
-                                       long syncResultTimeout) throws InvalidProtocolBufferException, 
-																				ChainMakerCryptoSuiteException {
-    }
+    public ResultOuterClass.TxResponse sendContractManageRequest(Request.Payload payload, Request.EndorsementEntry[] endorsementEntries,
+                                                                     long rpcCallTimeout, long syncResultTimeout)
 ```
 
-#### 升级合约
-**参数说明**
-
-  - payloadWithEndorsementsBytes: 带签名的合约内容
-  - rpcCallTimeout: 调用rcp接口超时时间, 单位：毫秒
-  - syncResultTimeout: 同步获取执行结果超时时间，小于等于0代表不等待执行结果，
-    直接返回（返回信息里包含交易ID），单位：毫秒
-```java
-    public ResponseInfo upgradeContract(byte[] payloadWithEndorsementsBytes, long rpcCallTimeout,
-                                        long syncResultTimeout) throws InvalidProtocolBufferException, 
-																				ChainMakerCryptoSuiteException {
-    }
-```
-#### 冻结合约
-**参数说明**
-
-  - payloadWithEndorsementsBytes: 带签名的合约内容
-  - rpcCallTimeout: 调用rcp接口超时时间, 单位：毫秒
-  - syncResultTimeout: 同步获取执行结果超时时间，小于等于0代表不等待执行结果，
-    直接返回（返回信息里包含交易ID），单位：毫秒
-```java
-    public ResponseInfo freezeContract(byte[] payloadWithEndorsementsBytes, long rpcCallTimeout,
-                                        long syncResultTimeout) throws InvalidProtocolBufferException, 
-																				ChainMakerCryptoSuiteException {}
-```
-#### 解冻合约
-**参数说明**
-
-  - payloadWithEndorsementsBytes: 带签名的合约内容
-  - rpcCallTimeout: 调用rcp接口超时时间, 单位：毫秒
-  - syncResultTimeout: 同步获取执行结果超时时间，小于等于0代表不等待执行结果，
-    直接返回（返回信息里包含交易ID），单位：毫秒
-```java
-    public ResponseInfo unfreezeContract(byte[] payloadWithEndorsementsBytes, long rpcCallTimeout,
-                                       long syncResultTimeout) throws InvalidProtocolBufferException, 
-																				ChainMakerCryptoSuiteException {}
-```
-#### 吊销合约
-**参数说明**
-
-  - payloadWithEndorsementsBytes: 带签名的合约内容
-  - rpcCallTimeout: 调用rcp接口超时时间, 单位：毫秒
-  - syncResultTimeout: 同步获取执行结果超时时间，小于等于0代表不等待执行结果，
-    直接返回（返回信息里包含交易ID），单位：毫秒
-```java
-    public ResponseInfo revokeContract(byte[] payloadWithEndorsementsBytes, long rpcCallTimeout,
-                                       long syncResultTimeout) throws InvalidProtocolBufferException, 
-																				ChainMakerCryptoSuiteException {
-```
-
-#### 执行合约
-
+#### 1.7 执行合约
 **参数说明**
   - contractName: 合约名
   - method: 方法名
@@ -239,204 +141,238 @@ public byte[] createPayloadOfContractRevoke(String contractName) {}
   - rpcCallTimeout: 调用rcp接口超时时间, 单位：毫秒
   - syncResultTimeout: 同步获取执行结果超时时间，小于等于0代表不等待执行结果，直接返回（返回信息里包含交易ID），单位：毫秒
 ```java
-    public ResponseInfo invokeContract(String contractName, String method,
-                                       Map<String, String> params, long rpcCallTimeout,
-                                       long syncResultTimeout) throws InvalidProtocolBufferException, 
-																				ChainMakerCryptoSuiteException {
-    }
+    public ResultOuterClass.TxResponse invokeContract(String contractName, String method, String txId,  Map<String, byte[]> params,
+                                                          long rpcCallTimeout, long syncResultTimeout)
 ```
 
-#### 查询合约接口
+#### 1.8 查询合约接口
 **参数说明**
   - contractName: 合约名
   - method: 方法名
+  - txId: 交易id
   - params: 执行参数
-  - timeout: 执行超时时间，单位毫秒
+  - rpcCallTimeout: 执行超时时间，单位毫秒
 ```java
-    public ResponseInfo queryContract(String contractName, String method,
-                                      Map<String, String> params, long timeout) throws ChainMakerCryptoSuiteException {
-    }
+    public ResultOuterClass.TxResponse queryContract(String contractName, String method, String txId,
+                                                         Map<String, byte[]> params, long rpcCallTimeout)
 ```
 
-### 系统合约接口
-#### 根据交易Id查询交易
+### 2 系统合约接口
+#### 2.1 根据交易Id查询交易
 **参数说明**
   - txId: 交易ID
-  - timeout：超时时间，单位毫秒
+  - rpcCallTimeout：超时时间，单位毫秒
 ```java
-    public ChainmakerTransaction.TransactionInfo getTxByTxId(String txId, long timeout)
-            throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException  {
-    }
+    ChainmakerTransaction.TransactionInfo getTxByTxId(String txId, long rpcCallTimeout)
 ```
 
-#### 根据区块高度查询区块
+#### 2.2 根据区块高度查询区块
 **参数说明**
   - blockHeight: 区块高度
   - withRWSet: 是否返回读写集
-  - timeout：超时时间，单位毫秒
+  - rpcCallTimeout：超时时间，单位毫秒
 ```java
-    public ChainmakerBlock.BlockInfo getBlockByHeight(long blockHeight, boolean withRWSet, long timeout)
-            throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public ChainmakerBlock.BlockInfo getBlockByHeight(long blockHeight, boolean withRWSet, long rpcCallTimeout)
 ```
-
-#### 根据区块哈希查询区块
+    
+#### 2.3 根据区块哈希查询区块
 **参数说明**
   - blockHash: 区块高度
   - withRWSet: 是否返回读写集
-  - timeout：超时时间，单位毫秒
+  - rpcCallTimeout：超时时间，单位毫秒
 ```java
-    public ChainmakerBlock.BlockInfo getBlockByHash(String blockHash, boolean withRWSet, long timeout)
-            throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public ChainmakerBlock.BlockInfo getBlockByHash(String blockHash, boolean withRWSet, long rpcCallTimeout)
 ```
-
-#### 根据交易Id查询区块
+    
+#### 2.4 根据交易Id查询区块
 **参数说明**
   - txId: 交易Id
   - withRWSet: 是否返回读写集
-  - timeout：超时时间，单位毫秒
+  - rpcCallTimeout：超时时间，单位毫秒
 ```java
-    public ChainmakerBlock.BlockInfo getBlockByTxId(String txId, boolean withRWSet, long timeout)
-            throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public ChainmakerBlock.BlockInfo getBlockByTxId(String txId, boolean withRWSet, long rpcCallTimeout)
+``` 
+
+#### 2.5 查询上一个配置块
+**参数说明**
+  - withRWSet: 是否返回读写集
+  - rpcCallTimeout：超时时间，单位毫秒
+```java
+    ChainmakerBlock.BlockInfo getLastConfigBlock(boolean withRWSet, long rpcCallTimeout)
 ```
 
-#### 查询上一个配置块
+#### 2.6 查询节点加入的链信息
 **参数说明**
+   - timeout：超时时间，单位毫秒
+```java
+    public Discovery.ChainList getNodeChainList(long rpcCallTimeout)
+```
+
+#### 2.7 查询链信息
+**参数说明**
+  - rpcCallTimeout：超时时间，单位毫秒
+```java
+     public Discovery.ChainInfo getChainInfo(long rpcCallTimeout)
+```
+
+#### 2.8 根据txId查询区块高度
+
+**参数说明**
+  - txId: 交易id
+  - rpcCallTimeout：超时时间，单位毫秒
+```java
+    public long getBlockHeightByTxId(String txId, long rpcCallTimeout) 
+```    
+
+#### 2.9 根据blockHash查询区块高度
+
+**参数说明**
+  - blockHash: 区块哈希
+  - rpcCallTimeout：超时时间，单位毫秒
+```java
+    public long getBlockHeightByBlockHash(String blockHash, long rpcCallTimeout)
+```
+
+#### 2.10 根据区块高度查询完整区块
+
+**参数说明**
+  - blockHeight : 区块高度 
+  - rpcCallTimeout：超时时间，单位毫秒
+```java
+    public Store.BlockWithRWSet getFullBlockByHeight(long blockHeight, long rpcCallTimeout)
+```
+
+#### 2.11 查询最新区块信息
+
+**参数说明**
+
   - withRWSet: 是否返回读写集
   - timeout：超时时间，单位毫秒
 ```java
-    public ChainmakerBlock.BlockInfo getLastConfigBlock(boolean withRWSet, long timeout)
-            throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
-```
+    public ChainmakerBlock.BlockInfo getLastBlock(boolean withRWSet, long rpcCallTimeout)
+```   
+    
 
-#### 查询节点加入的链信息
+#### 2.12 查询最新区块高度
 
 **参数说明**
 
-   - timeout：超时时间，单位毫秒
-
-**返回值说明**
-
--  返回ChainId清单
-
+  - timeout：超时时间，单位毫秒
 ```java
-    public Discovery.ChainList getNodeChainList(long timeout)
-            throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public long getCurrentBlockHeight(long timeout) 
 ```
 
-#### 查询链信息
+#### 2.13 根据区块高度查询区块头
 
-**返回值说明**
-
-  - 包括：当前链最新高度，链节点信息
+**参数说明**
+  - 区块高度: blockHeight
+  - rpcCallTimeout：超时时间，单位毫秒
 ```java
-    public Discovery.ChainInfo getChainInfo(long timeout)
-            throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public ChainmakerBlock.BlockHeader getBlockHeaderByHeight(long blockHeight, long timeout) 
 ```
 
-### 链配置接口
+#### 2.14 系统合约调用
 
-链配置信息定义如下：
-
-```protobuf
-message ChainConfig {
-    string                          chain_id         = 1; // 链标识
-    string                          version          = 2; // 链版本
-    string                          auth_type        = 3; // 认证类型
-    uint64                          sequence         = 4; // 序列号
-    CryptoConfig                    crypto           = 5; // 算法配置
-    BlockConfig                     block            = 6; // 区块配置
-    CoreConfig                      core             = 7; // core配置
-    ConsensusConfig                 consensus        = 8; // 共识配置
-    repeated TrustRootConfig        trust_roots      = 9; // 联盟成员，联盟链配置初始成员；公链无需配置。key：节点标识；value：地址，节点公钥/CA证书
-    repeated Permission             permissions      = 10; // 权限配置
-}
-
-message Permission{
-    string          resource_name   =1; // 方法名
-    Principle       principle       =2; // 权限
-}
-
-// crypto配置
-message CryptoConfig {
-    string hash    = 1; // 是否需要开启交易时间戳校验
-}
-
-// 区块配置
-message BlockConfig {
-    bool   tx_timestamp_verify      = 1; // 是否需要开启交易时间戳校验
-    uint32 tx_timeout               = 2; // 交易时间戳的过期时间(秒)
-    uint32 block_tx_capacity        = 3; // 区块中最大交易数
-    uint32 block_size               = 4; // 区块最大限制，单位MB
-    uint32 block_interval           = 5; // 出块间隔，单位:ms
-}
-
-// core配置
-message CoreConfig {
-    uint64 tx_scheduler_timeout                 = 1; // [0, 60] 交易调度器从交易池拿到交易后, 进行调度的时间
-    uint64 tx_scheduler_validate_timeout        = 2; // [0, 60] 交易调度器从区块中拿到交易后, 进行验证的超时时间
-}
-
-// 共识配置
-message ConsensusConfig {
-    ConsensusType           type            = 1; // 共识类型
-    repeated OrgConfig      nodes           = 2; // 节点机构列表
-    repeated KeyValuePair   ext_config      = 3; // 扩展字段，记录难度、奖励等其他类共识算法配置
-}
-
-// 机构配置
-message OrgConfig {
-    string org_id = 1;
-    repeated string address =2;// 机构下的地址列表
-}
-
-message TrustRootConfig {
-    string org_id   = 1; // 组织名
-    string root     = 2; // root证书/公钥
-}
-```
-
-#### 查询最新链配置
+**参数说明**
+   - method: 方法名
+   - txId: 交易id
+   - params: 执行参数
+   - rpcCallTimeout: 调用rcp接口超时时间, 单位：毫秒
+   - syncResultTimeout: 同步获取执行结果超时时间，小于等于0代表不等待执行结果，直接返回（返回信息里包含交易ID），单位：毫秒
 ```java
-    public ChainmakerConfig.ChainConfig getChainConfig(long timeout)
-            throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    ResultOuterClass.TxResponse invokeSystemContract(String contractName, String method, String txId,  Map<String, byte[]> params,
+                                                          long rpcCallTimeout, long syncResultTimeout)
 ```
 
-#### 根据指定区块高度查询最近链配置
-  - 如果当前区块就是配置块，直接返回当前区块的链配置
+#### 2.15 系统合约查询
+
+**参数说明**
+   - method: 方法名
+   - txId: 交易id
+   - params: 执行参数
+   - rpcCallTimeout: 调用rcp接口超时时间, 单位：毫秒
 ```java
-    public ChainmakerConfig.ChainConfig getChainConfigByBlockHeight(int blockHeight, long timeout)
-            throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public ResultOuterClass.TxResponse (String contractName, String method, String txId,
+                                                         Map<String, byte[]> params, long rpcCallTimeout)
 ```
 
-#### 查询最新链配置序号Sequence
+#### 2.16 根据交易Id获取Merkle路径
+
+**参数说明**
+    - txId: 交易ID
+    
+```java
+public byte[] getMerklePathByTxId(String txId, long rpcCallTimeout)
+```
+
+#### 2.17 开放系统合约
+**参数说明**
+   - grantContractList: 需要开放的系统合约字符串数组
+```java
+    public Request.Payload createNativeContractAccessGrantPayload(String[] grantContractList)
+```
+
+#### 2.18 弃用系统合约
+**参数说明**
+   - revokeContractList: 需要弃用的系统合约字符串数组
+```java
+    public Request.Payload createNativeContractAccessRevokePayload(String[] revokeContractList)
+```
+
+#### 2.19 查询弃用的系统合约名单
+```java
+public Request.Payload createGetDisabledNativeContractListPayload() 
+```
+
+#### 2.20 查询指定合约的信息，包括系统合约和用户合约
+**参数说明**
+   - contractName: 指定查询的合约名字，包括系统合约和用户合约
+   - rpcCallTimeout: 调用rcp接口超时时间, 单位：毫秒
+    
+```java
+public String getContractInfo(String contractName, long rpcCallTimeout)
+```
+
+#### 2.21 查询所有的合约名单，包括系统合约和用户合约
+```java
+public String getContractList(long rpcCallTimeout)
+```
+
+#### 2.22 查询已禁用的系统合约名单
+```java
+public String getDisabledNativeContractList(long rpcCallTimeout) 
+```
+
+
+### 3 链配置接口
+#### 3.1 查询最新链配置
+```java
+    ChainConfigOuterClass.ChainConfig getChainConfig(long rpcCallTimeout)
+```
+
+#### 3.2 根据指定区块高度查询最近链配置
+**参数说明**
+   - blockHeight: 区块高度
+```java
+    public ChainConfigOuterClass.ChainConfig getChainConfigByBlockHeight(long blockHeight, long rpcCallTimeout)
+```
+
+#### 3.3 查询最新链配置序号Sequence
   - 用于链配置更新
 ```java
-    public long getChainConfigSequence(long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public long getChainConfigSequence(long rpcCallTimeout)
 ```
 
-#### 更新Core模块待签名payload生成
+#### 3.4 更新Core模块待签名payload生成
 **参数说明**
   - txSchedulerTimeout: 交易调度器从交易池拿到交易后, 进行调度的时间，其值范围为[0, 60]，若无需修改，请置为-1
   - txSchedulerValidateTimeout: 交易调度器从区块中拿到交易后, 进行验证的超时时间，其值范围为[0, 60]，
     若无需修改，请置为-1
 ```java
-    public byte[] createPayloadOfChainConfigCoreUpdate(int txSchedulerTimeout, int txSchedulerValidateTimeout,
-    																									 long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainClientException, ChainMakerCryptoSuiteException {
-    }
+    public Request.Payload createPayloadOfChainConfigCoreUpdate(int txSchedulerTimeout, int txSchedulerValidateTimeout, long rpcCallTimeout)
 ```
 
-#### 更新Core模块待签名payload生成
+#### 3.5 更新Core模块待签名payload生成
 **参数说明**
 
   - txTimestampVerify: 是否需要开启交易时间戳校验
@@ -446,354 +382,278 @@ message TrustRootConfig {
   - blockSize: 区块最大限制，单位MB，其值范围为(0, +∞]
   - blockInterval: 出块间隔，单位:ms，其值范围为[10, +∞]
 ```java
-    public byte[] createPayloadOfChainConfigBlockUpdate(boolean txTimestampVerify, int txTimeout, 
-    																										int blockTxCapacity, int blockSize, int blockInterval,
-                                                        long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainClientException, ChainMakerCryptoSuiteException {
-    }
+     public Request.Payload createPayloadOfChainConfigBlockUpdate(boolean txTimestampVerify, int txTimeout, int blockTxCapacity,
+                                                            int blockSize, int blockInterval, long rpcCallTimeout)
 ```
 
-#### 添加信任组织根证书待签名payload生成
+#### 3.6 添加信任组织根证书待签名payload生成
 **参数说明**
   - trustRootOrgId: 组织Id
   - trustRootCrt: 根证书
 ```java
-    public byte[] createPayloadOfChainConfigTrustRootAdd(String trustRootOrgId, String trustRootCrt, 
-    																										 long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public Request.Payload createPayloadOfChainConfigTrustRootAdd(String trustRootOrgId, String[] trustRootCrt, long rpcCallTimeout)
 ```
 
-#### 更新信任组织根证书待签名payload生成
+#### 3.7 更新信任组织根证书待签名payload生成
 **参数说明**
   - trustRootOrgId: 组织Id
   - trustRootCrt: 根证书
 ```java
-    public byte[] createPayloadOfChainConfigTrustRootUpdate(String trustRootOrgId, String trustRootCrt, 
-    																												long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public Request.Payload createPayloadOfChainConfigTrustRootUpdate(String trustRootOrgId, String[] trustRootCrt, long rpcCallTimeout)
 ```
 
-####  删除信任组织根证书待签名payload生成
+#### 3.8 删除信任组织根证书待签名payload生成
 **参数说明**
   - trustRootOrgId: 组织Id
 ```java
-    public byte[] createPayloadOfChainConfigTrustRootDelete(String trustRootOrgId, long timeout)
-            throws TimeoutException, InvalidProtocolBufferException {
-    }
+    public Request.Payload createPayloadOfChainConfigTrustRootDelete(String trustRootOrgId, long rpcCallTimeout)
 ```
 
-#### 添加权限配置待签名payload生成
+#### 3.9 添加权限配置待签名payload生成
 **参数说明**
   - permissionResourceName: 权限名
   - principle: 权限规则
 ```java
-    public byte[] createPayloadOfChainConfigPermissionAdd(String permissionResourceName,
-                                                          PrincipleOuterClass.Principle principal, long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public Request.Payload createPayloadOfChainConfigPermissionAdd(String permissionResourceName,
+                                                              PolicyOuterClass.Policy principal, long rpcCallTimeout)
 ```
 
-#### 更新权限配置待签名payload生成
+#### 3.10 更新权限配置待签名payload生成
 **参数说明**
   - permissionResourceName: 权限名
   - principle: 权限规则
 ```java
-    public byte[] createPayloadOfChainConfigPermissionUpdate(String permissionResourceName,
-                                                             PrincipleOuterClass.Principle principal, 
-                                                             long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public Request.Payload createPayloadOfChainConfigPermissionUpdate(String permissionResourceName,
+                                                                 PolicyOuterClass.Policy principal, long rpcCallTimeout)
 ```
 
-#### 删除权限配置待签名payload生成
+#### 3.11 删除权限配置待签名payload生成
 **参数说明**
   - permissionResourceName: 权限名
 ```java
-    public byte[] createPayloadOfChainConfigPermissionDelete(String permissionResourceName, long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public Request.Payload createPayloadOfChainConfigPermissionDelete(String permissionResourceName, long rpcCallTimeout)
 ```
 
-#### 添加共识节点地址待签名payload生成
+#### 3.12 添加共识节点地址待签名payload生成
 **参数说明**
   - nodeOrgId: 节点组织Id
   - nodeAddresses: 节点地址
 ```java
-    public byte[] createPayloadOfChainConfigConsensusNodeAddrAdd(String nodeOrgId, String[] nodeAddresses, 
-    																														 long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public Request.Payload createPayloadOfChainConfigConsensusNodeAddrAdd(String nodeOrgId, String[] nodeAddresses, long rpcCallTimeout)
 ```
 
-#### 更新共识节点地址待签名payload生成
+#### 3.13 更新共识节点地址待签名payload生成
 **参数说明**
   - nodeOrgId: 节点组织Id
   - nodeOldAddress: 节点原地址
   - nodeNewAddress: 节点新地址
 ```java
-    public byte[] createPayloadOfChainConfigConsensusNodeAddrUpdate(String nodeOrgId, String nodeOldAddress,
-                                                                    String nodeNewAddress, long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public Request.Payload createPayloadOfChainConfigConsensusNodeAddrUpdate(String nodeOrgId, String nodeOldAddress,
+                                                                        String nodeNewAddress, long rpcCallTimeout)
 ```
 
-#### 删除共识节点地址待签名payload生成
+#### 3.14 删除共识节点地址待签名payload生成
 **参数说明**
   - nodeOrgId: 节点组织Id
   - nodeAddress: 节点地址
 ```java
-    public byte[] createPayloadOfChainConfigConsensusNodeAddrDelete(String nodeOrgId, String nodeAddress, 
-    																																long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public Request.Payload createPayloadOfChainConfigConsensusNodeAddrDelete(String nodeOrgId, String nodeAddress, long rpcCallTimeout)
 ```
 
-#### 添加共识节点待签名payload生成
+#### 3.15 添加共识节点待签名payload生成
 **参数说明**
   - nodeOrgId: 节点组织Id
   - nodeAddresses: 节点地址
 ```java
-    public byte[] createPayloadOfChainConfigConsensusNodeOrgAdd(String nodeOrgId, String[] nodeAddresses, 
-    																														long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public Request.Payload createPayloadOfChainConfigConsensusNodeOrgAdd(String nodeOrgId, String[] nodeAddresses, long rpcCallTimeout)
 ```
 
-####  更新共识节点待签名payload生成
+#### 3.16 更新共识节点待签名payload生成
 **参数说明**
 
   - nodeOrgId: 节点组织Id
   - nodeAddresses: 节点地址
 ```java
-    public byte[] createPayloadOfChainConfigConsensusNodeOrgUpdate(String nodeOrgId, String[] nodeAddresses, 
-    																															 long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public Request.Payload createPayloadOfChainConfigConsensusNodeOrgUpdate(String nodeOrgId, String[] nodeAddresses, long rpcCallTimeout)
 ```
 
-#### 删除共识节点待签名payload生成
+#### 3.17 删除共识节点待签名payload生成
 **参数说明**
   - nodeOrgId: 节点组织Id
 ```java
-    public byte[] createChainConfigConsensusNodeOrgDeletePayload(String nodeOrgId, long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public Request.Payload createPayloadOfChainConfigConsensusNodeOrgDelete(String nodeOrgId, long rpcCallTimeout)
 ```
 
-#### 添加共识扩展字段待签名payload生成
+#### 3.18 添加共识扩展字段待签名payload生成
 **参数说明**
   - params: Map<String, String>
 ```java
-    public byte[] createPayloadOfChainConfigConsensusExtAdd(Map<String, String> params, long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public Request.Payload createPayloadOfChainConfigConsensusExtAdd(Map<String, byte[]> params, long rpcCallTimeout)
 ```
 
-#### 添加共识扩展字段待签名payload生成
+#### 3.19 添加共识扩展字段待签名payload生成
 **参数说明**
   - params: Map<String, String>
 ```java
-    public byte[] createPayloadOfChainConfigConsensusExtUpdatePayload(Map<String, String> params, long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public Request.Payload createPayloadOfChainConfigConsensusExtUpdate(Map<String, byte[]> params, long rpcCallTimeout)
 ```
 
-#### 添加共识扩展字段待签名payload生成
+#### 3.20 添加共识扩展字段待签名payload生成
 **参数说明**
   - keys: 待删除字段
 ```java
-    public byte[] createPayloadOfChainConfigConsensusExtDelete(String[] keys, long timeout)
-            throws TimeoutException, InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public Request.Payload createPayloadOfChainConfigConsensusExtDelete(String[] keys, long rpcCallTimeout)
 ```
 
-#### 链配置更新Payload签名收集&合并
+#### 3.21 添加信任成员证书待签名payload生成
+**参数说明**
+   - trustMemberOrgId: 组织Id
+   - trustMemberNodeId: 节点Id
+   - trustMemberRole: 成员角色
+   - trustMemberInfo: 成员信息内容
 ```java
-    public byte[] mergeSignedPayloadsOfChainConfig(byte[][] payloads) throws InvalidProtocolBufferException {
-    }
+    public Request.Payload createChainConfigTrustMemberAddPayload(String trustMemberOrgId, String trustMemberNodeId, String trustMemberRole,
+                                                                      String trustMemberInfo, long rpcCallTimeout)
 ```
 
-#### 发送链配置更新请求
+#### 3.22 删除信任成员证书待签名payload生成
+**参数说明**
+   - trustMemberInfo: 成员信息内容
 ```java
-    public ResponseInfo updateChainConfig(byte[] payloadWithEndorsementsBytes, long rpcCallTimeout) throws ChainMakerCryptoSuiteException {
-    }
+     public Request.Payload createChainConfigTrustMemberAddPayload(String trustMemberInfo, long rpcCallTimeout)
+```
+    
+#### 3.23 发送链配置更新请求
+```java
+    public ResultOuterClass.TxResponse updateChainConfig(Request.Payload payload, Request.EndorsementEntry[] endorsementEntries,
+                                              long rpcCallTimeout, long syncResultTimeout)
 ```
 
-
-### 证书管理接口
-#### 用户证书添加
+### 4 证书管理接口
+#### 4.1 用户证书添加
 **参数说明**
   - rpcCallTimeout: 发送rpc请求的超时时间
-  - syncResultTimeout: 同步交易结果的超时时间
 ```java
-    public ResponseInfo addCert(long rpcCallTimeout, long syncResultTimeout) 
-      throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public ResultOuterClass.TxResponse addCert(long rpcCallTimeout) 
 ```
 
-#### 用户证书删除
+#### 4.2 用户证书删除
 **参数说明**
+  - payload: 合约内容
+  - endorsementEntries: 带签名的合约内容
+```java
+    public ResultOuterClass.TxResponse deleteCert(Request.Payload payload, Request.EndorsementEntry[] endorsementEntries,
+                                                      long rpcCallTimeout, long syncResultTimeout)
+```
+   
+#### 4.3 用户证书冻结
+**参数说明**
+  - payload: 证书冻结的payload
+  - endorsementEntries: 多签信息
+```java
+   ResultOuterClass.TxResponse freezeCerts(Request.Payload payload, Request.EndorsementEntry[] endorsementEntries,
+                                                      long rpcCallTimeout, long syncResultTimeout)
+```
 
+#### 4.4 用户证书解冻
+**参数说明**
+  - payload: 证书冻结的payload
+  - endorsementEntries: 多签信息
+```java
+   public ResultOuterClass.TxResponse unfreezeCerts(Request.Payload payload, Request.EndorsementEntry[] endorsementEntries,
+                                                      long rpcCallTimeout, long syncResultTimeout)
+```
+
+#### 4.5 用户证书吊销
+**参数说明**
+  - payload: 证书冻结的payload
+  - endorsementEntries: 多签信息
+```java
+ public ResultOuterClass.TxResponse revokeCerts(Request.Payload payload, Request.EndorsementEntry[] endorsementEntries,
+                                                     long rpcCallTimeout, long syncResultTimeout)
+```
+
+#### 4.6 冻结证书payload
+**参数说明**
+  - certHashes: 冻结证书列表
+```java
+    public Request.Payload createCertFreezePayload(String[] certHashes)
+```
+#### 4.7 解冻证书payload
+**参数说明**
+  - certHashes: 冻结证书列表
+```java
+    public Request.Payload createPayloadOfUnfreezeCerts(String[] certHashes)
+```
+#### 4.8 吊销证书
+**参数说明**
+  - certCrl: 证书吊销crl
+```java
+    public Request.Payload createPayloadOfRevokeCerts(String certCrl)
+```
+#### 4.9 用户证书查询
+**参数说明**
   - certHashes: 证书Hash列表
 ```java
-    public ResponseInfo deleteCert(String[] certHashes, long rpcCallTimeout, long syncResultTimeout) 
-      throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+    public ResultOuterClass.CertInfos queryCert(String[] certHashes, long rpcCallTimeout)
 ```
 
-#### 生成用户证书冻结的待签名payload
-**参数说明**
-  - certHashes: 冻结的证书内容列表
-```java
-   public byte[] createPayloadOfFreezeCerts(String[] certs) {}
-```
-#### 生成用户证书解冻的待签名payload
-**参数说明**
-  - certHashes: 解冻的证书内容列表
-```java
-   public byte[] createPayloadOfFreezeCerts(String[] certs) {}
-```
-#### 生成用户证书吊销的待签名payload
-**参数说明**
-  - certCrl: 吊销证书列表
-```java
-public byte[] createPayloadOfRevokeCerts(String certCrl) {}
-```
-#### 冻结证书
-**参数说明**
-  - payload: 冻结证书交易的payload
-  - rpcCallTimeout: 发送rpc请求的超时时间
-  - syncResultTimeout: 同步交易结果的超时时间
-```java
-    public ResponseInfo freezeCerts(byte[] payload, long rpcCallTimeout, long syncResultTimeout) 
-      throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {}
-```
-#### 解冻证书
-**参数说明**
-  - payload: 解冻证书交易的payload
-  - rpcCallTimeout: 发送rpc请求的超时时间
-  - syncResultTimeout: 同步交易结果的超时时间
-```java
-    public ResponseInfo unfreezeCerts(byte[] payload, long rpcCallTimeout, long syncResultTimeout) 
-            throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {}
-```
-#### 吊销证书
-**参数说明**
-  - payload: 解冻证书交易的payload
-  - rpcCallTimeout: 发送rpc请求的超时时间
-  - syncResultTimeout: 同步交易结果的超时时间
-```java
-    public ResponseInfo revokeCerts(byte[] payload, long rpcCallTimeout, long syncResultTimeout) 
-            throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {}
-```
-#### 用户证书查询
-**参数说明**
-  - certHashes: 证书Hash列表
 
-**返回值说明**
-  - *pb.CertInfos: 包含证书Hash和证书内容的列表
-```java
-    public ChainmakerResult.CertInfos queryCert(String[] certHashes, long timeout)
-            throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
-```
-### 多签接口(该功能尚不支持)
-#### 发送多签交易请求
-**参数说明**
-  - txType: 交易类型
-  - payload: 多签交易（未签名）的payload
-  - endorsement: 签名
-  - deadlineBlock: 交易有效截止的block高度
-  - rpcCallTimeout: 发送rpc请求的超时时间
-  - syncResultTimeout: 同步交易结果的超时时间
-```java
-public ResponseInfo sendMultiSignRequest(Request.TxType txType, byte[] payload, 
-                                         Request.EndorsementEntry endorsement,                                      
-                                         long deadlineBlock, long rpcCallTimeout, 
-                                         long syncResultTimeout) 
-  throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {}
-```
-#### 发送多签交易投票
-**参数说明**
-  - voteStatus: 投票状态
-  - multiSignReqTxId: 投票交易的交易Id
-  - payloadHash: 要投票交易的payloadHash
-  - endorsement: 签名
-  - deadlineBlock: 交易有效截止的block高度
-  - rpcCallTimeout: 发送rpc请求的超时时间
-  - syncResultTimeout: 同步交易结果的超时时间
-```java
-public ResponseInfo sendMultiSignVote(MultSign.VoteStatus voteStatus, String multiSignReqTxId, 
-                                      String payloadHash,
-                                      Request.EndorsementEntry endorsement, long rpcCallTimeout,
-                                      long syncResultTimeout) 
-  throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {}
-```
-
-### 消息订阅接口
-#### 区块订阅
+### 5 消息订阅接口
+#### 5.1 区块订阅
 **参数说明**
   - startBlock: 订阅起始区块高度，若为-1，表示订阅实时最新区块
   - endBlock: 订阅结束区块高度，若为-1，表示订阅实时最新区块
   - withRwSet: 是否返回读写集
+  - onlyHeader: 是否只返回区块头
 ```java
-    public void subscribeBlock(long startBlock, long endBlock, boolean withRwSet,
-                                StreamObserver<ChainmakerResult.SubscribeResult> blockStreamObserver) {
-    }
+    public void subscribeBlock(long startBlock, long endBlock, boolean withRwSet, boolean onlyHeader,
+                                   StreamObserver<ResultOuterClass.SubscribeResult> blockStreamObserver)
 ```
 
-#### 交易订阅
+#### 5.2 交易订阅
 **参数说明**
   - startBlock: 订阅起始区块高度，若为-1，表示订阅实时最新区块
   - endBlock: 订阅结束区块高度，若为-1，表示订阅实时最新区块
-  - txType: 订阅交易类型
+  - txType: 订阅交易类型,若为pb.TxType(-1)，表示订阅所有交易类型
   - txIds: 订阅txId列表，若为空，表示订阅所有txId
 ```java
-    public void subscribeTx(long startBlock, long endBlock, Request.TxType txType, String[] txIds,
-                            StreamObserver<ChainmakerResult.SubscribeResult> txStreamObserver) {
-    }
+    public void subscribeTx(long startBlock, long endBlock, String contractName, String[] txIds,
+                                StreamObserver<ResultOuterClass.SubscribeResult> txStreamObserver)
 ```
 
-#### 事件订阅
+#### 5.3 事件订阅
 **参数说明**
   - topic: 订阅话题
   - contractName: 订阅合约名
 ```java
     public void subscribeContractEvent(String topic, String contractName,
-                           StreamObserver<ResultOuterClass.SubscribeResult> contractEventStreamObserver) {
-    }
+                                          StreamObserver<ResultOuterClass.SubscribeResult> contractEventStreamObserver)
 ```
 
-### 归档类接口
-####  数据归档payload生成
+### 6 归档类接口
+#### 6.1 数据归档payload生成
 **参数说明**
   - targetBlockHeight: 归档区块高度
 ```java
-    public byte[] createArchiveBlockPayload(long targetBlockHeight) {
-    }
+    public Request.Payload createArchiveBlockPayload(long targetBlockHeight)
 ```
 
-####  归档恢复payload生成
+#### 6.2 归档恢复payload生成
 **参数说明**
-  - fullBlock: 归档恢复数据
+  - payload: 归档恢复payload
 ```java
-    public byte[] createRestoreBlockPayload(byte[] fullBlock) {
-    
-    }
+    public ResultOuterClass.TxResponse sendRestoreBlockRequest(Request.Payload payload, long timeout)
 ```
 
-#### 发送数据归档请求
+#### 6.3 发送数据归档请求
 **参数说明**
-  - payloadBytes: 数据归档payload
+  - payload: 数据归档payload
 ```java
-    public ResponseInfo sendArchiveBlockRequest(byte[] payloadBytes, long timeout) 
-            throws ChainMakerCryptoSuiteException, ChainClientException {
-    }
+    public ResultOuterClass.TxResponse sendArchiveBlockRequest(Request.Payload payload, long timeout)
 ```
 
-#### 发送归档恢复请求
+#### 6.4 发送归档恢复请求
 **参数说明**
   - payloadBytes: 归档恢复payload
 ```java
@@ -802,7 +662,7 @@ public ResponseInfo sendMultiSignVote(MultSign.VoteStatus voteStatus, String mul
     }
 ```
 
-#### 获取归档数据
+#### 6.5 获取归档数据
 **参数说明**
   - targetBlockHeight: 归档区块高度
 ```java
@@ -811,7 +671,7 @@ public ResponseInfo sendMultiSignVote(MultSign.VoteStatus voteStatus, String mul
     }
 ```
 
-#### 获取归档区块信息
+#### 6.6 获取归档区块信息
 **参数说明**
   - targetBlockHeight: 归档区块高度
   - withRWSet: 是否获取读写集
@@ -821,60 +681,98 @@ public ResponseInfo sendMultiSignVote(MultSign.VoteStatus voteStatus, String mul
     }
 ```
 
-### 管理类接口
-#### SDK停止接口：关闭连接池连接，释放资源
-```java
-public void stop() {}
-```
-
-## User类接口
-
-### 生成用于管理合约交易的签名后的payload
-
+### 7 公钥身份类接口
+#### 7.1 构造添加公钥身份请求
 **参数说明**
-  - payload: 签名前的payload
-
-**返回值说明**
-  - 返回带签名的payload字节数组
-
-```java
-    public byte[] signPayloadOfContractMgmt(byte[] payload, boolean isEnabledCertHash) 
-            throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
+  - pubkey: 公钥信息
+  - orgId: 组织id
+  - role:   角色，支持client,light,common
+```java  
+    public Request.Payload createPubkeyAddPayload(String pubkey, String orgId, String role) 
 ```
 
-### 生成用于系统合约调用的签名后的payload
-
+#### 7.2 构造删除公钥身份请求
 **参数说明**
-  - payload: 签名前的payload
+  - pubkey: 公钥信息
+  - orgId: 组织id
+```java  
+    public Request.Payload createPubkeyDelPayload(String pubkey, String orgId)
+``` 
 
-**返回值说明**
-  - 返回带签名的payload字节数组
-
-```java
-    public byte[] signPayloadOfSystemContract(byte[] payloadBytes, boolean isEnabledCertHash) 
-            throws InvalidProtocolBufferException, ChainMakerCryptoSuiteException {
-    }
-```
-### 生成用于多签交易的payload
-
+#### 7.3 构造查询公钥身份请求
 **参数说明**
-  - payload: 签名前的payload
-
-**返回值说明**
-  - 返回包含签名的EndorsementEntry
-
-```java
-public Request.EndorsementEntry signPayloadOfMultiSign(byte[] payload, boolean isEnabledCertHash) throws ChainMakerCryptoSuiteException {}
+  - pubkey: 公钥信息
+```java 
+    public Request.Payload createPubkeyQueryPayload(String pubkey) 
 ```
+
+#### 7.4 发送公钥身份管理请求（添加、删除）
+**参数说明**
+  - payload: 合约内容
+  - endorsementEntries: 带签名的合约内容
+  - rpcCallTimeout: 调用rcp接口超时时间, 单位：毫秒
+  - syncResultTimeout: 同步获取执行结果超时时间，小于等于0代表不等待执行结果，直接返回（返回信息里包含交易ID），单位：毫秒
+```java
+    public ResultOuterClass.TxResponse sendPubkeyManageRequest(Request.Payload payload, Request.EndorsementEntry[] endorsementEntries,
+                                                               long rpcCallTimeout, long syncResultTimeout)
+```
+
+### 8 多签类接口
+#### 8.1 发起多签请求
+**参数说明**
+  - payload: 多签payload
+```java
+    public ResultOuterClass.TxResponse multiSignContractReq(Request.Payload payload, long rpcCallTimeout)
+```
+#### 8.2 发起多签投票
+**参数说明**
+  - payload: 多签payload
+  - endorsementEntry: 多签信息
+```java
+    public ResultOuterClass.TxResponse multiSignContractVote(Request.Payload payload, Request.EndorsementEntry endorsementEntry, long rpcCallTimeout)
+```
+#### 8.3 多签查询
+**参数说明**
+  - txId: 交易id
+```java
+    public ResultOuterClass.TxResponse multiSignContractQuery(String txId, long rpcCallTimeout) 
+```
+
+#### 8.4 创建多签请求payload
+**参数说明**
+  - params: 多签参数
+```java
+    public Request.Payload createMultiSignReqPayload(Map<String, byte[]> params)
+```
+
+#### 8.5 创建多签投票payload
+**参数说明**
+  - params: 多签参数
+```java
+    public Request.Payload createMultiSignVotePayload(Map<String, byte[]> params)
+```
+
+#### 8.6 创建多签查询payload
+**参数说明**
+  - params: 多签参数
+```java
+    public Request.Payload createMultiSignQueryPayload(Map<String, byte[]> params) 
+```
+
+
+### 9 管理类接口
+#### 9.1 SDK停止接口：关闭连接池连接，释放资源
+```java
+public void stop()
+```
+
 ## 使用过程
 
 客户端使用SDK的过程如下：
 
-1. 创建User对象
-2. 创建Node对象
-2. 获取ChainManager单例对象
-3. 使用ChainManager获取或创建链对象，创建ChainClient时需要将ChainNode对象作为参数传入
+1. 创建SdkConfig对象
+2. 获取ChainManager对象
+3. 使用ChainManager获取或创建链对象，创建ChainClient时需要将SdkConfig对象作为参数传入
 4. 调用ChainClient对象的接口进行操作
 
 ## 使用示例
@@ -883,20 +781,32 @@ public Request.EndorsementEntry signPayloadOfMultiSign(byte[] payload, boolean i
 
 ```java
    public void init() {
-       try {
-           ChainNode chainNode = ChainNode.builder().clientKeyBytes(FileUtils.getResourceFileBytes(GRPC_TLS_KEY_PATH))
-                   .clientCertBytes(FileUtils.getResourceFileBytes(GRPC_TLS_CERT_PATH))
-                   .tlsCertBytes(FileUtils.getResourceFileBytes(GRPC_CERT_PATH))
-                   .hostname(TLS_HOST_NAME).grpcUrl(NODE_GRPC_URL)
-                   .sslProvider("openSSL").negotiationType("TLS").build();
-           chainManager = ChainManager.getInstance();
-           chainClient = chainManager.getChainClient(CHAIN_ID);
-           if (chainClient == null) {
-               chainClient = chainManager.createChainClient(CHAIN_ID, ORG_ID, FileUtils.getResourceFileBytes(USER_KEY_PATH),
-                       FileUtils.getResourceFileBytes(USER_CERT_PATH), chainNode);
+       Yaml yaml = new Yaml();
+       InputStream in = TestBase.class.getClassLoader().getResourceAsStream(SDK_CONFIG);
+
+       SdkConfig sdkConfig;
+       sdkConfig = yaml.loadAs(in, SdkConfig.class);
+       assert in != null;
+       in.close();
+
+       for (NodeConfig nodeConfig : sdkConfig.getChain_client().getNodes()) {
+           List<byte[]> tlsCaCertList = new ArrayList<>();
+           for (String rootPath : nodeConfig.getTrustRootPaths()){
+               List<String> filePathList = FileUtils.getFilesByPath(rootPath);
+               for (String filePath : filePathList) {
+                   tlsCaCertList.add(FileUtils.getFileBytes(filePath));
+               }
            }
-       } catch (Exception e) {
-           System.out.printf("test init exception", e);
+           byte[][] tlsCaCerts = new byte[tlsCaCertList.size()][];
+           tlsCaCertList.toArray(tlsCaCerts);
+           nodeConfig.setTrustRootBytes(tlsCaCerts);
+       }
+
+       chainManager = ChainManager.getInstance();
+       chainClient = chainManager.getChainClient(sdkConfig.getChain_client().getChainId());
+
+       if (chainClient == null) {
+           chainClient = chainManager.createChainClient(sdkConfig);
        }
    }
 ```
@@ -905,22 +815,24 @@ public Request.EndorsementEntry signPayloadOfMultiSign(byte[] payload, boolean i
 
 ```java
    public void testCreateContract() throws IOException, InterruptedException, ExecutionException, TimeoutException {
-       byte[] byteCode = FileUtils.getResourceFileBytes(CONTRACT_FILE_PATH);
-   
-       // 1. create payload
-       byte[] payload = chainClient.createPayloadOfContractCreation(CONTRACT_NAME,
-               "1", Contract.RuntimeType.WASMER_RUST, null, byteCode);
-   
-       // 2. create payloads with endorsement
-       byte[] payloadWithEndorsement1 = chainClient.signPayloadOfContractMgmt(payload);
-   
-       // 3. merge endorsements using payloadsWithEndorsement
-       byte[][] payloadsWithEndorsement = new byte[1][];
-       payloadsWithEndorsement[0] = payloadWithEndorsement1;
-       byte[] payloadWithEndorsement = chainClient.mergeSignedPayloadsOfContractMgmt(payloadsWithEndorsement);
-   
-       // 4. create contract
-       ResponseInfo responseInfo = chainClient.createContract(payloadWithEndorsement, 5000, 5000);
+       ResultOuterClass.TxResponse responseInfo = null;
+       try {
+           byte[] byteCode = FileUtils.getResourceFileBytes(CONTRACT_FILE_PATH);
+
+           // 1. create payload
+           Request.Payload payload = chainClient.createContractCreatePayload(CONTRACT_NAME, "1", byteCode,
+                   ContractOuterClass.RuntimeType.WASMER, null);
+
+           //2. create payloads with endorsement
+           Request.EndorsementEntry[] endorsementEntries = SdkUtils.getEndorsers(payload, new User[]{adminUser1, adminUser2, adminUser3});
+
+           // 3. send request
+           responseInfo = chainClient.sendContractManageRequest(payload, endorsementEntries, rpcCallTimeout, syncResultTimeout);
+       } catch (SdkException e) {
+           e.printStackTrace();
+           Assert.fail(e.getMessage());
+       }
+       Assert.assertNotNull(responseInfo);
    }
 ```
 
@@ -928,12 +840,15 @@ public Request.EndorsementEntry signPayloadOfMultiSign(byte[] payload, boolean i
 
 ```java
    public void testInvokeContract() throws Exception {
-
-       Map<String, String> params = new HashMap<>();
-       params.put("time", System.currentTimeMillis()+"");
-       params.put("file_hash", UUID.randomUUID().toString());
-       params.put("file_name", UUID.randomUUID().toString()+System.currentTimeMillis());
-       ResponseInfo responseInfo = chainClient.invokeContract(QUERY_CONTRACT_NAME, QUERY_CONTRACT_METHOD, params, 5000, 5000);
+       ResultOuterClass.TxResponse responseInfo = null;
+       try {
+           responseInfo = chainClient.invokeContract(CONTRACT_NAME, INVOKE_CONTRACT_METHOD,
+                   null, null, rpcCallTimeout, syncResultTimeout);
+       } catch (Exception e) {
+           e.printStackTrace();
+           Assert.fail(e.getMessage());
+       }
+       Assert.assertNotNull(responseInfo);
    }
 ```
 
@@ -942,19 +857,22 @@ public Request.EndorsementEntry signPayloadOfMultiSign(byte[] payload, boolean i
 ### 编译
 
 ```
-git clone https://git.chainmaker.org.cn/chainmaker/chainmaker-sdk-java.git
+git clone -b v2.1.0_alpha https://git.chainmaker.org.cn/chainmaker/sdk-java.git
 // 说明：需要使用openjdk 1.8.151+并提前安装gradle，也可以使用intelliJ IDEA打开项目进行编译
 cd chainamker-sdk-java
-./gradle build
+./gradlew build
 ```
 
 ### 使用
 
-1. 导入Jar包，这里使用IntelliJ为示例引用Jar包，将编译好的jar包拷贝到需要使用sdk的项目下（一般可以在项目下建一个libs目录），然后打开IntelliJ IDEA->File->Project Structures，如下图点击“+”号，选择JARs or Directories，选中Jar包点击open即可。
+1. 导入`jar`包，这里使用`IntelliJ`为示例引用`jar`包，将编译好的`jar`包拷贝到需要使用sdk的项目下（一般可以在项目下建一个`libs`目录），然后打开`IntelliJ IDEA->File->Project Structures`，如下图点击`“+”`号，选择`JARs or Directories`，选中`jar`包点击`open`即可。
 
 <img src="../images/chainmaker-java-sdk-add-sdk-jar.png" style="zoom:50%;" />
 
-2. 引用
+2. 导入依赖`jar`包，需将`sdk`中依赖的`jar`包导入本地工程中，同时，需将`sdk`中`lib`目录下的`netty-tcnative-openssl-static-2.0.39.Final.jar`包导入工程中，以便适配国密`tls`通信。
+`tcnative`的`jar`包及动态库地址：<a href="https://git.chainmaker.org.cn/chainmaker/chainmaker-tools/-/tree/master/tls-netty"  target="_blank"> tcnative </a>
+
+3. 引用
 
    在要使用sdk的源文件里使用import引用sdk包，如下：
 
@@ -963,10 +881,6 @@ cd chainamker-sdk-java
    ```
 
 
-
-
-
-
-
 <br><br>
+
 
