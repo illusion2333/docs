@@ -14,17 +14,7 @@ chainmaker文档
 
    intro/平台简介.md
    intro/功能说明.md
-   intro/编写语言.md
-   intro/版本迭代.md
 
-
-.. toctree::
-    :maxdepth: 2
-    :caption: 快速入门
-    :numbered:
-
-    tutorial/快速入门.md
-    tutorial/FAQ.md
 
 .. toctree::
     :maxdepth: 2
@@ -49,15 +39,7 @@ chainmaker文档
     tech/CA证书服务.md
     tech/隐私合约.md
 
-.. toctree::
-    :maxdepth: 2
-    :caption: 开发指南
-    :numbered:
 
-    dev/智能合约.md
-    dev/SDK.md
-    dev/命令行工具.md
-    dev/证书生成工具.md
 
 .. toctree::
     :maxdepth: 2
@@ -70,14 +52,4 @@ chainmaker文档
     operation/证书管理.md
     operation/节点管理.md
     operation/HIBE接口、工具介绍及用例.md
-    operation/版本升级操作指南.md
     operation/CA证书服务.md
-
-.. toctree::
-    :maxdepth: 2
-    :caption: 应用场景
-    :numbered:
-
-    usecase/供应链金融.md
-    usecase/碳交易.md
-    usecase/冷链溯源.md
