@@ -33,7 +33,7 @@ CA证书服务设计链接：
 ### 代码下载
 
 ```sh
-$ git clone https://git.chainmaker.org.cn/chainmaker/chainmaker-ca.git
+$ git clone -b v1.2.0 https://git.chainmaker.org.cn/chainmaker/chainmaker-ca.git
 ```
 
 ### 运行启动

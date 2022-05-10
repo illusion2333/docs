@@ -766,6 +766,143 @@ public String getDisabledNativeContractList(long rpcCallTimeout)
 public void stop()
 ```
 
+### 10 gas管理相关接口
+#### 10.1 构造设置gas管理员payload
+**参数说明**
+  - address: gas管理员的地址
+```java
+public Request.Payload createSetGasAdminPayload(String address)
+```
+
+#### 10.2 查询gas管理员
+**参数说明**
+  - rpcCallTimeout: 调用rpc接口超时时间, 单位：毫秒
+```java
+public String getGasAdmin(long rpcCallTimeout)
+```
+
+#### 10.3 构造充值gas账户payload
+**参数说明**
+  - rechargeGasList: 一个gas账户充值指定gas数量
+```java
+public Request.Payload createRechargeGasPayload(AccountManager.RechargeGas[] rechargeGasList)
+```
+
+#### 10.4 查询gas账户余额（根据公钥）
+**参数说明**
+  - address: 查询gas余额的账户地址
+  - rpcCallTimeout: 调用rpc接口超时时间, 单位：毫秒
+```java
+public long getGasBalance(String address, long rpcCallTimeout)
+```
+
+#### 10.5 构造 退还gas账户的gas payload
+**参数说明**
+  - address: 退还gas的账户地址
+  - amount: 退还gas的数量
+```java
+public Request.Payload createRechargeGasPayload(AccountManager.RechargeGas[] rechargeGasList)
+```
+
+#### 10.6 构造 冻结指定gas账户 payload
+**参数说明**
+  - address: 冻结指定gas账户的账户地址
+```java
+public Request.Payload createFrozenGasAccountPayload(String address)
+```
+
+#### 10.7 构造 退还gas账户的gas payload
+**参数说明**
+  - address: 解冻指定gas账户的账户地址
+```java
+public Request.Payload createUnfrozenGasAccountPayload(String address)
+```
+
+#### 10.8 查询gas账户的状态
+**参数说明**
+  - address: 指定gas账户的账户地址
+   - rpcCallTimeout: 调用rpc接口超时时间, 单位：毫秒
+```java
+public boolean getGasAccountStatus(String address, long rpcCallTimeout)
+```
+
+#### 10.9 发送gas管理类请求
+**参数说明**
+  - payload: 交易payload
+  - endorsementEntries: 背书签名信息列表
+  - rpcCallTimeout: 超时时间，单位：s，若传入-1，将使用默认超时时间：10s
+  - syncResultTimeout: 是否同步获取交易执行结果
+```java
+public ResultOuterClass.TxResponse sendGasManageRequest(Request.Payload payload, Request.EndorsementEntry[] endorsementEntries, long rpcCallTimeout, long syncResultTimeout)
+```
+
+#### 10.10 为payload添加gas limit
+**参数说明**
+  - payload: 交易payload
+  - limit: gas limit
+```java
+public Request.Payload attachGasLimit(Request.Payload payload, Request.Limit limit)
+```
+
+#### 10.11 启用或停用Gas计费开关payload生成
+**参数说明**
+  - rpcCallTimeout: 超时时间，单位：s，若传入-1，将使用默认超时时间：10s
+```java
+public Request.Payload createChainConfigEnableOrDisableGasPayload(long rpcCallTimeout)
+```
+
+### 11 别名管理相关接口
+#### 11.1 添加别名
+**参数说明**
+  - rpcCallTimeout: 超时时间，单位：s，若传入-1，将使用默认超时时间：10s
+```java
+public ResultOuterClass.TxResponse addAlias(long rpcCallTimeout)
+```
+
+#### 11.2 构造更新别名payload
+**参数说明**
+  - alias: 要更新的别名
+  - certPEM: 对应的证书
+```java
+public Request.Payload createUpdateAliasPayload(String alias, String certPem)
+```
+
+#### 11.3 发起更新别名交易
+**参数说明**
+  - payload: 待签名的payload
+  - endorsementEntries: 背书签名信息列表
+  - rpcCallTimeout: 超时时间，单位：s，若传入-1，将使用默认超时时间：10s
+```java
+public Request.Payload createUpdateAliasPayload(String alias, String certPem)
+```
+
+#### 11.4 查询别名详情交易
+**参数说明**
+  - aliasList: 要查询的别名列表
+   - rpcCallTimeout: 超时时间，单位：s，若传入-1，将使用默认超时时间：10s
+```java
+public ResultOuterClass.AliasInfos queryAlias(String[] aliasList, long rpcCallTimeout)
+```
+
+#### 11.5 生成删除别名payload
+**参数说明**
+  - aliasList: 要查询的别名列表
+  - rpcCallTimeout: 超时时间，单位：s，若传入-1，将使用默认超时时间：10s
+```java
+public Request.Payload createAliasDeletePayload(String[] aliasList)
+```
+
+#### 11.6 发起更新别名交易
+**参数说明**
+  - payload: 待签名的payload
+  - endorsementEntries: 背书签名信息列表
+  - rpcCallTimeout: 超时时间，单位：s，若传入-1，将使用默认超时时间：10s
+  - syncResultTimeout: 是否同步获取交易执行结果
+```java
+public ResultOuterClass.TxResponse deleteAlias(Request.Payload payload, Request.EndorsementEntry[] endorsementEntries,
+            long rpcCallTimeout, long syncResultTimeout)
+```
+
 ## 使用过程
 
 客户端使用SDK的过程如下：
@@ -857,7 +994,7 @@ public void stop()
 ### 编译
 
 ```
-git clone -b v2.1.0_alpha https://git.chainmaker.org.cn/chainmaker/sdk-java.git
+git clone -b v2.2.0 https://git.chainmaker.org.cn/chainmaker/sdk-java.git
 // 说明：需要使用openjdk 1.8.151+并提前安装gradle，也可以使用intelliJ IDEA打开项目进行编译
 cd chainamker-sdk-java
 ./gradlew build
@@ -865,21 +1002,25 @@ cd chainamker-sdk-java
 
 ### 使用
 
-1. 导入`jar`包，这里使用`IntelliJ`为示例引用`jar`包，将编译好的`jar`包拷贝到需要使用sdk的项目下（一般可以在项目下建一个`libs`目录），然后打开`IntelliJ IDEA->File->Project Structures`，如下图点击`“+”`号，选择`JARs or Directories`，选中`jar`包点击`open`即可。
+#### 导入`jar`包
+导入`jar`包，这里使用`IntelliJ`为示例引用`jar`包，将编译好的`jar`包拷贝到需要使用sdk的项目下（一般可以在项目下建一个`libs`目录），然后打开`IntelliJ IDEA->File->Project Structures`，如下图点击`“+”`号，选择`JARs or Directories`，选中`jar`包点击`open`即可。
 
 <img src="../images/chainmaker-java-sdk-add-sdk-jar.png" style="zoom:50%;" />
 
-2. 导入依赖`jar`包，需将`sdk`中依赖的`jar`包导入本地工程中，同时，需将`sdk`中`lib`目录下的`netty-tcnative-openssl-static-2.0.39.Final.jar`包导入工程中，以便适配国密`tls`通信。
+#### 依赖库
+导入依赖`jar`包，需将`sdk`中依赖的`jar`包导入本地工程中，同时，需将`sdk`中`lib`目录下的`netty-tcnative-openssl-static-2.0.39.Final.jar`包导入工程中，以便适配国密`tls`通信。
 `tcnative`的`jar`包及动态库地址：<a href="https://git.chainmaker.org.cn/chainmaker/chainmaker-tools/-/tree/master/tls-netty"  target="_blank"> tcnative </a>
 
-3. 引用
+#### 引用
 
    在要使用sdk的源文件里使用import引用sdk包，如下：
 
    ```
    import org.chainmaker.sdk.*;
    ```
+#### 应用demo
 
+java sdk应用示例，请参考<a href="https://git.chainmaker.org.cn/chainmaker/sdk-java-demo/-/tree/v2.2.0"  target="_blank"> sdk-java-demo </a>
 
 <br><br>
 

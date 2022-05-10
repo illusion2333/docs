@@ -21,20 +21,23 @@
 ## 整体设计思路
 
  __密码技术__ 作为长安链底层重要技术之一，在主项目chainmaker-go，ca服务、中间件以及SDK中都有深度应用。长安链在整体设计上，综合考虑了 __算法性能、扩展性、标准化__ 等方面，密码相关组件如下：
-<img loading="lazy" src="../images/TLS-design-principal.png" style="width:900px;" />
+ 
+ <img loading="lazy" src="../images/TLS-design-principal.png" style="zoom:50%;" />
 
 
 1. 密码算法库：提供统一密码算法接口，支持不同密码算法以及实现的扩展。
 
 2. 密码协议库：支持标准TLS，包括国际标准和国密标准
 
-3. 密码应用：长安链密码技术应用依赖于“密码算法库”和“密码协议库”，解绑具体实现细节。
+3. 密码应用：长安链密码技术应用依赖于“密码算法库”和“密码协议库”，解耦具体实现细节。
 
 ## TLS支持现状
 
 长安链后端服务采用 __Golang语言__ 实现，通过grpc对外提供区块链服务。生态工具SDK支持Golang、Java等不同语言。目前为止，长安链已经完成了区块链服务与客户端SDK，区块链网络节点之间的 __双向国密TLS通信__ 。 
 长安链服务调用以及国密TLS支撑图如下：
-<img loading="lazy" src="../images/TLS-interconn-flow.png" style="width:900px;" />
+
+ <img loading="lazy" src="../images/TLS-interconn-flow.png" style="zoom:50%;" />
+
 1. golang服务端：底层基于grpc通信，其中tls握手采用长安链密码协议库（支持国密TLS以及国际TLS协议）
 
 2. golang客户端：同上
@@ -75,13 +78,13 @@
 
 ## 未来工作
 
-1. 支持 __高性能国密库__ 实现：长安链密码算法库目前仅支持tjfoc一种实现，与北大gmssl、腾讯国密库等密码库相比存在数量级上的差距。
+1. 支持 __高性能国密库__ 实现：长安链开源的国密算法库目前仅支持tjfoc一种实现，与北大gmssl使用C语言实现的密码库相比存在数量级上的差距。
 
-2. 支持 __国密双证书__ 体系：目前长安链国密TLS仅在国密证书、国密算法SM2和SM3上进行了支持，在与标准国密SSL互联互通上还需要进一步改进和完善。
+2. 支持 __国密双证书__ 体系：目前长安链国密TLS在国密证书、国密算法SM2和SM3上进行了支持，在与标准国密SSL互联互通上还需要进一步改进和完善。
 
- 
- ## 备注
-目前长安链已经在v2.1.0_alpha版本支持国密TLS  
+
+## 备注
+目前长安链已经在v2.1.0及以上版本支持国密TLS  
 java sdk地址：<a href="https://git.chainmaker.org.cn/chainmaker/sdk-java"  target="_blank"> sdk-java </a>
 
 netty-tcnative国密jar包基于长安链国密openssl以及netty-tcnative的2.0.39.Final版本，构建流程参考  

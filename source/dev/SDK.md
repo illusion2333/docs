@@ -1,4 +1,5 @@
 # SDK
+
 <span id="section_sdk"></span>
 
 ## 概述
@@ -37,7 +38,7 @@ go version go1.16 linux/amd64
 #### 下载安装
 
 ```bash
-$ git clone https://git.chainmaker.org.cn/chainmaker/sdk-go.git
+$ git clone -b v2.2.0 https://git.chainmaker.org.cn/chainmaker/sdk-go.git
 ```
 
 #### 示例代码
@@ -139,7 +140,7 @@ func createClientWithConfig() (*ChainClient, error) {
 }
 ```
 
-##### 创建合约
+##### 创建wasm合约
 
 > `sdk_user_contract_claim_test.go`
 
@@ -206,7 +207,7 @@ func createUserContract(client *ChainClient, admin1, admin2, admin3, admin4 *Cha
 	return resp, nil
 ```
 
-##### 调用合约
+##### 调用wasm合约
 
 > `sdk_user_contract_claim_test.go`
 
@@ -251,6 +252,10 @@ func invokeUserContract(client *ChainClient, contractName, method, txId string, 
 }
 ```
 
+##### 创建及调用evm合约
+
+> `sdk-go/examples/user_contract_evm_balance/main.go`(https://git.chainmaker.org.cn/chainmaker/sdk-go/-/blob/master/examples/user_contract_evm_balance/main.go)
+
 ##### 更多示例和用法
 
 > 更多示例和用法，请参看单元测试用例
@@ -289,13 +294,17 @@ java version "1.8.0_202"
 #### 下载安装
 
 ```bash
-$ git clone https://git.chainmaker.org.cn/chainmaker/sdk-java.git
+$ git clone -b v2.2.0 https://git.chainmaker.org.cn/chainmaker/sdk-java.git
 ```
 
 #### jar包依赖
 
 需将`sdk`中依赖的`jar`包导入本地工程中，
 同时，需将`sdk`中`lib`目录下的`netty-tcnative-openssl-static-2.0.39.Final.jar`包导入工程中，以便适配国密`tls`通信。
+
+#### 应用demo
+
+java sdk应用示例，请参考<a href="https://git.chainmaker.org.cn/chainmaker/sdk-java-demo/-/tree/v2.2.0"  target="_blank"> sdk-java-demo </a>
 
 #### 示例代码
 
@@ -432,16 +441,16 @@ public void testInvokeContract() throws Exception {
 
 > 更多示例和用法，请参看单元测试用例
 
-| 功能     | 单测代码                      |
-| -------- | ----------------------------- |
-| 基础配置 | `TestBase`   |
-| 用户合约 | `TestUserContract`   |
-| 系统合约 | `TestSystemContract` |
-| 链配置   | `TestChainConfig`    |
-| 证书管理 | `TestBaseCertManage`     |
-| 消息订阅 | `TestSubscribe`       |
-| 线上多签 | `TestContractMultisign`       |
-| 公钥身份 | `TestPubkeyManage`       |
+| 功能     | 单测代码                |
+| -------- | ----------------------- |
+| 基础配置 | `TestBase`              |
+| 用户合约 | `TestUserContract`      |
+| 系统合约 | `TestSystemContract`    |
+| 链配置   | `TestChainConfig`       |
+| 证书管理 | `TestBaseCertManage`    |
+| 消息订阅 | `TestSubscribe`         |
+| 线上多签 | `TestContractMultisign` |
+| 公钥身份 | `TestPubkeyManage`      |
 
 #### 接口说明
 
@@ -467,7 +476,7 @@ v14.0.0
 #### 下载安装
 
 ```bash
-$ git clone https://git.chainmaker.org.cn/chainmaker/sdk-nodejs.git
+$ git clone -b v2.0.0 https://git.chainmaker.org.cn/chainmaker/sdk-nodejs.git
 ```
 
 #### 示例代码
@@ -553,14 +562,14 @@ $ npm install -g mocha
 $ npm test
 ```
 
-| 功能     | 单测代码                      |
-| -------- | ----------------------------- |
-| 基础配置 | `sdkInit.js`   |
+| 功能     | 单测代码            |
+| -------- | ------------------- |
+| 基础配置 | `sdkInit.js`        |
 | 用户合约 | `userContract.js`   |
 | 系统合约 | `systemContract.js` |
 | 链配置   | `chainConfig.js`    |
-| 证书管理 | `cert.js`     |
-| 消息订阅 | `subscribe.js`       |
+| 证书管理 | `cert.js`           |
+| 消息订阅 | `subscribe.js`      |
 
 #### 接口说明
 
@@ -569,5 +578,4 @@ $ npm test
 
 
 <br><br>
-
 

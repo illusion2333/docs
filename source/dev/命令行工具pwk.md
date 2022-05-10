@@ -1,25 +1,26 @@
-# 3. 命令行工具
+# 2. 命令行工具
 
 
 
-## 3.1. 简介
+## 2.1. 简介
 
 cmc`(ChainMaker Client)`是ChainMaker提供的命令行工具，用于和ChainMaker链进行交互以及生成证书或者密钥等功能。cmc基于go语言编写，通过使用ChainMaker的go语言sdk（使用grpc协议）达到和ChainMaker链进行交互的目的。<br>
 cmc的详细日志请查看`./sdk.log`
 
-## 3.2. 身份模式
+## 2.2. 身份模式
 
-长安链在2.1版本以后支持不同身份模式，详情见[身份权限管理](../tech/身份权限管理.md)的身份模式部分。不同身份模式，cmc使用文档如下：
+长安链在2.1版本以后支持不同身份模式，详情见[身份权限管理](../tech/身份权限管理.md)的身份模式部分。本篇文章中主要是介绍PermissionedWithKey模式，其它两种模式的cmc使用文档如下：
 
+* PermissionedWithKey
 * [PermissionedWithCert](./命令行工具.md)
 * [Public](./命令行工具pk.md)
 
-## 3.3. 编译&配置
+## 2.3. 编译&配置
 
 cmc工具的编译&运行方式如下：
 
 > 创建工作目录 $WORKDIR 比如 ~/chainmaker
-> 启动测试链 [在工作目录下 使用脚本搭建](../tutorial/快速入门.html#runUseScripts)
+> 启动测试链 [在工作目录下 使用脚本搭建](../tutorial/通过命令行工具启动链.html#runUseScripts)
 
 ```sh
 # 编译cmc
@@ -32,7 +33,7 @@ $ cd $WORKDIR/chainmaker-go/tools/cmc
 $ ./cmc --help
 ```
 
-## 3.4. 自定义配置
+## 2.4. 自定义配置
 
 cmc 依赖 sdk-go 配置文件。
 编译&配置 步骤使用的是 [SDK配置模版](https://git.chainmaker.org.cn/chainmaker/sdk-go/-/blob/master/testdata/sdk_config.yml)
@@ -40,7 +41,7 @@ cmc 依赖 sdk-go 配置文件。
 比如 `user-signkey-file-path` 参数可设置为普通用户或admin用户的私钥路径。设置后cmc将会以对应用户身份与链建立连接。
 其他详细配置项请参看 ~/chainmaker/chainmaker-go/tools/cmc/testdata/sdk_config_pwk.yml 中的注解。
 
-## 3.5. 功能
+## 2.5. 功能
 
 cmc提供功能如下: 
 
@@ -54,10 +55,11 @@ cmc提供功能如下:
 
  
 
-### 3.5.1. 示例
+### 2.5.1. 示例
 
 <span id="keyManage"></span>
-#### 3.5.1.1. 私钥管理
+
+#### 2.5.1.1. 私钥管理
 
 生成私钥, 目前支持的算法有 SM2 ECC_P256 未来将支持更多算法。
 **参数说明**：
@@ -79,9 +81,9 @@ Flags:
 `$ ./cmc key gen -a ECC_P256 -n ca.key -p ./`
 
 <span id="sendRequest"></span>
-#### 3.5.1.2. 交易功能
+#### 2.5.1.2. 交易功能
 
-##### 3.5.1.2.1. 用户合约
+##### 2.5.1.2.1. 用户合约
 
 cmc的交易功能用来发送交易和链进行交互，主要参数说明如下：
 
@@ -267,7 +269,7 @@ cmc的交易功能用来发送交易和链进行交互，主要参数说明如�
  
 
 <span id="queryOnChainData"></span>
-#### 3.5.1.3. 查询链上数据
+#### 2.5.1.3. 查询链上数据
 
 查询链上block和transaction 主要参数说明如下：
 
@@ -313,7 +315,7 @@ cmc的交易功能用来发送交易和链进行交互，主要参数说明如�
  
 
 <span id="chainConfig"></span>
-#### 3.5.1.4. 链配置
+#### 2.5.1.4. 链配置
 
 查询及更新链配置 主要参数说明如下：
 
@@ -332,6 +334,7 @@ cmc的交易功能用来发送交易和链进行交互，主要参数说明如�
   --user-signkey-file-path: 指定发送交易的用户sign私钥路径, 会覆盖sdk配置文件读取的配置
 
   --block-interval: 出块时间 单位ms
+  --tx-parameter-size: 交易参数最大限制 单位:MB
   --trust-root-org-id: 增加/删除/更新组织管理员公钥时指定的组织Id
   --trust-root-path: 增加/删除/更新组织管理员公钥时指定的管理员公钥文件目录
   --node-id: 增加/删除/更新共识节点Id时指定的节点Id
@@ -362,6 +365,18 @@ cmc的交易功能用来发送交易和链进行交互，主要参数说明如�
   ```
 
  
+
+- 更新交易参数最大值限制
+
+  ```sh
+  ./cmc client chainconfig block updatetxparametersize \
+  --sdk-conf-path=./testdata/sdk_config_pwk.yml \
+  --admin-org-ids=wx-org1.chainmaker.org,wx-org2.chainmaker.org,wx-org3.chainmaker.org \
+  --admin-key-file-paths=./testdata/crypto-config/wx-org1.chainmaker.org/admin/admin.key,./testdata/crypto-config/wx-org2.chainmaker.org/admin/admin.key,./testdata/crypto-config/wx-org3.chainmaker.org/admin/admin.key \
+  --tx-parameter-size 10 
+  ```
+
+  
 
 - 增加组织管理员公钥
 
@@ -526,7 +541,7 @@ cmc的交易功能用来发送交易和链进行交互，主要参数说明如�
  
 
 <span id="archive"></span>
-#### 3.5.1.5. 归档&恢复功能
+#### 2.5.1.5. 归档&恢复功能
 
 cmc的归档功能是指将链上数据转移到独立存储上，归档后的数据具备可查询、可恢复到链上的特性。
 为了保持数据一致性和防止误操作，cmc实现了分布式锁，同一时刻只允许一个cmc进程进行转储。
@@ -633,9 +648,9 @@ cmc支持增量转储和恢复、断点中继转储和恢复，中途退出不�
 
  <span id="multiSign"></span>
 
-#### 3.5.1.6. 线上多签
+#### 2.5.1.6. 线上多签
 
-当合约调用需要多个用户同时签名才能生效时，可使用线上多签功能。<br>
+当合约调用（目前仅适用合约管理场景）需要多个用户同时签名才能生效时，可使用线上多签功能。<br>
 
   主要参数说明如下：
 
@@ -686,14 +701,13 @@ cmc支持增量转储和恢复、断点中继转储和恢复，中途退出不�
    ```
 
    > 查询结果如下：
-   >          >
-   >             > multi sign query resp: message:"SUCCESS" contract_result:<result:"\n\235\242\017\n\006chain1\032@6b9bc882635b4bfa805e1f3504a9b9ce693f274559fd4ee3a1db3c1e82e54266 \312\226\231\213\0062\nMULTI_SIGN:\003REQB$\n\021SYS_CONTRACT_NAME\022\017CONTRACT_MANAGEB\033\n\nSYS_METHOD\022\rINIT_CONTRACTB\034\n\rCONTRACT_NAME\022\013contract107B\027\n\020CONTRACT_VERSION\022\0031.0B\235\240\017\n\021CONTRACT_BYTECODE\022\206\xxxxxxxxxxxxCONTRACT_RUNTIME_TYPE\022\006WASMER\022\017CONTRACT_MANAGE\032\rINIT_CONTRACT" message:"OK" > tx_id:"ddf306f50117495e9846bf1e447ff87ffb051050c18d409583349382189e0414" 
-
+                    >
+                    > multi sign query resp: message:"SUCCESS" contract_result:<result:"  235 242 017  006chain1 032@6b9bc882635b4bfa805e1f3504a9b9ce693f274559fd4ee3a1db3c1e82e54266  312 226 231 213 0062 MULTI_SIGN: 003REQB$  021SYS_CONTRACT_NAME 022 017CONTRACT_MANAGEB 033  SYS_METHOD 022 rINIT_CONTRACTB 034  rCONTRACT_NAME 022 013contract107B 027  020CONTRACT_VERSION 022 0031.0B 235 240 017  021CONTRACT_BYTECODE 022 206 xxxxxxxxxxxxCONTRACT_RUNTIME_TYPE 022 006WASMER 022 017CONTRACT_MANAGE 032 rINIT_CONTRACT" message:"OK" > tx_id:"ddf306f50117495e9846bf1e447ff87ffb051050c18d409583349382189e0414" 
 
 
  <span id="manage"></span>
 
-#### 3.5.1.7. 系统合约开放管理
+#### 2.5.1.7. 系统合约开放管理
 
 对系统合约的开放权限进行管理功能<br>
 
