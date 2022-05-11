@@ -220,6 +220,7 @@ html_static_path = ['_static']
 htmlhelp_basename = 'Recommonmarkdoc'
 
 # -- Options for LaTeX output ---------------------------------------------
+latex_engine = 'xelatex'
 
 latex_elements = {
 # The paper size ('letterpaper' or 'a4paper').
@@ -233,6 +234,11 @@ latex_elements = {
 
 # Latex figure (float) alignment
 #'figure_align': 'htbp',
+
+'preamble' : r'''
+  \usepackage[UTF8,fontset=windows]{ctex} % Chinese
+  \hypersetup{bookmarks,pdfstartview=FitH}
+        ''',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
