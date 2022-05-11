@@ -22,7 +22,8 @@ chainmaker文档
     :numbered:
 
     tutorial/长安链基础知识介绍.md
-    tutorial/通过命令行工具启动链.md
+    tutorial/通过命令行工具启动链
+    tutorial/testrst
     tutorial/通过管理台启动链.md
     tutorial/部署示例合约.md
     tutorial/FAQ.md
