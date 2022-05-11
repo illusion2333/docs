@@ -1005,7 +1005,7 @@ cd chainamker-sdk-java
 #### 导入`jar`包
 导入`jar`包，这里使用`IntelliJ`为示例引用`jar`包，将编译好的`jar`包拷贝到需要使用sdk的项目下（一般可以在项目下建一个`libs`目录），然后打开`IntelliJ IDEA->File->Project Structures`，如下图点击`“+”`号，选择`JARs or Directories`，选中`jar`包点击`open`即可。
 
-<img src="../images/chainmaker-java-sdk-add-sdk-jar.png" style="zoom:50%;" />
+![](../images/chainmaker-java-sdk-add-sdk-jar.png)
 
 #### 依赖库
 导入依赖`jar`包，需将`sdk`中依赖的`jar`包导入本地工程中，同时，需将`sdk`中`lib`目录下的`netty-tcnative-openssl-static-2.0.39.Final.jar`包导入工程中，以便适配国密`tls`通信。

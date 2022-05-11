@@ -31,7 +31,7 @@ P2P网络相关特性，可用下图一图汇总，包括：
 - 专有网络穿透连接；
 - 多链网络隔离。
 
-<img loading="lazy" src="../images/P2P-schematic.png" style="width:900px;" />
+![](../images/P2P-schematic.png)
 
 ### 组网方式
 
@@ -53,7 +53,7 @@ P2P网络相关特性，可用下图一图汇总，包括：
 
 当前版本网络模块与其他模块交互都是异步的，都是通过MsgBus来进行数据互传，交互图如下：
 
-<img loading="lazy" src="../images/P2P-interaction.png" style="zoom:90%;"/>
+![](../images/P2P-interaction.png)
 
 ###  接口说明
 ```go
@@ -191,7 +191,7 @@ Liquid架构在功能层面由上至下总共划分为三个层级，分别是�
 
 功能架构图如下：
 
-<img loading="lazy" src="../images/Liquid-structure.png" style="width:900px;" />
+![](../images/Liquid-structure.png)
 
 - 网络应用层：是指使用Liquid来实现网络通讯的上层应用集合，Liquid是使用应用协议（protocol.ID)来区分标识上层应用的，每个应用模块都应该有一个全局唯一的应用协议。应用协议描述详见4.1。消息发布及订阅模块（PubSub）是Liquid内置的一个应用。
 - 网络管理层：负责Liquid网络节点间连接状态管理，由多个管理组件组成，它们包括但不限于：应用协议管理（包含应用协议交换机）、节点信息管理（PeerStore）、连接管理（ConnMgr）、数据流管理（SendStreamPool/SendStreamMgr/ReceiveStreamMgr）、黑名单管理、组播组件、连接状态维护组件（ConnSupervisor）、节点发现（Discovery）、节点路由（PeerRouting）、节点中继、NAT穿透等。其中应用协议交换、节点发现也是基于应用协议支持实现的，它们属于管理层内置的应用模块。
@@ -226,7 +226,7 @@ Liquid网络核心包里包含了框架核心接口定义、通用类型定义�
 
 BasicHost（在net/liquid/host/host.go中）是Liquid内置默认Host实现，也是网络初始化的总入口。我们基于BasicHost整理了一张Liquid默认实现的代码结构图：
 
-<img loading="lazy" src="../images/Liquid-BasicHost-structure.png" style="width:900px;" />
+![](../images/Liquid-BasicHost-structure.png)
 
 具体各组件间的联系及调用关系会在我们发布正式稳定版之后补充在功能逻辑流程图中，敬请期待。
 

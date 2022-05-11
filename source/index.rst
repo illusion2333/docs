@@ -13,7 +13,7 @@ chainmaker文档
    :numbered:
 
    intro/平台简介.md
-   intro/版本迭代说明.md
+   intro/版本迭代说明.rst
    intro/版本升级操作指南.md
 
 .. toctree::
@@ -22,7 +22,7 @@ chainmaker文档
     :numbered:
 
     tutorial/长安链基础知识介绍.md
-    tutorial/通过命令行工具启动链.md
+    tutorial/通过命令行工具启动链.rst
     tutorial/通过管理台启动链.md
     tutorial/部署示例合约.md
     tutorial/FAQ.md

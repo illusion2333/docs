@@ -23,15 +23,15 @@
 
 2、打开Chrome浏览器，进⼊插件⻚⾯ `chrome://extensions/` 。
 
-<img loading="lazy" src="../images/Smartplugin-extensions-manager.png" style="zoom:50%;" />
+![](../images/Smartplugin-extensions-manager.png)
 
 3、打开浏览器开发者模式，并重启浏览器。
 
-<img loading="lazy" src="../images/Smartplugin-add-extension.png" style="zoom:50%;" />
+![](../images/Smartplugin-add-extension.png)
 
 4、加载已解压到本地的dist文件夹，完成添加插件，插件的使用教程，请见产品使用说明章节。
 
-<img loading="lazy" src="../images/Smartplugin-Upload-file.png" style="zoom:50%;" />
+![](../images/Smartplugin-Upload-file.png)
 
 
 
@@ -41,7 +41,7 @@
 
 ### 初始化 - 设置密码
 
-<img loading="lazy" src="../images/Smartplugin-Set-password.png" style="zoom:50%;" />
+![](../images/Smartplugin-Set-password.png)
 
 * 下载安装完后，可在谷歌浏览器的插件位置，找到长安链SmartPlugin。
 * 首次打开SmartPlugin时，需要先进行初始化设定。
@@ -49,7 +49,7 @@
 
 ### 初始化 - 添加网络
 
-<img loading="lazy" src="../images/Smartplugin-add-blockchain.png" style="zoom:50%;" />
+![](../images/Smartplugin-add-blockchain.png)
 
 - 可在添加网络界面，添加区块链网络，目前支持添加长安链V2.1.0及以上版本的链。
 - 目前支持的链的账户类型为证书模式（PermissionedWithCert），对公钥模式的支持，将放在后续版本。
@@ -59,7 +59,7 @@
   
 ### 首页
 
-<img loading="lazy" src="../images/Smartplugin-home.png" style="zoom:50%;" />
+![](../images/Smartplugin-home.png)
 
 - 通过顶部的下拉选择，可以切换不同的区块链。
 - 通过右上角的更多按钮，可以切换到其他功能页面。
@@ -71,25 +71,25 @@
 
 ### 区块链网络管理
 
-<img loading="lazy" src="../images/Smartplugin-Blockchain-management.png" style="zoom:50%;" />
+![](../images/Smartplugin-Blockchain-management.png)
 
 - 您可以在区块链网络管理页面，查看并管理已添加的链，也可以继续添加别的区块链。
 
 ### 链账号管理
 
-<img loading="lazy" src="../images/Smartplugin-account-list.png" style="zoom:50%;" />
+![](../images/Smartplugin-account-list.png)
 
 - 你可以在链账户管理界面，查看并管理已添加的链账户，也可以继续添加别的链账户。
 
 
-<img loading="lazy" src="../images/Smartplugin-add-account.png" style="zoom:50%;" />
+![](../images/Smartplugin-add-account.png)
 
 - 平台完全去中心化，并无中心化服务器，保存用户所上传到链账户信息。
 
 
 ### 上链记录
 
-<img loading="lazy" src="../images/Smartplugin-transaction-list.png" style="zoom:50%;" />
+![](../images/Smartplugin-transaction-list.png)
 
 - 上链后可到上链记录里，查看上链的交易信息。
 - 本版本暂不支持直接在插件内查看交易详情，如需查看交易详情，可复制交易哈希到区块链浏览器内查询。后续版本会考虑支持。
@@ -97,7 +97,7 @@
 
 ### 系统设置
 
-<img loading="lazy" src="../images/Smartplugin-system.png" style="zoom:50%;" />
+![](../images/Smartplugin-system.png)
 
 - 长安链v2.1版本的链需要由代理将HTTP请求转化为gRPC请求，默认由长安链官方提供公网代理服务，代码开源，开发者也可选择自行部署代理。
 - 如开发者是想订阅内网的测试链，则需要自行部署自己内网里的代理服务。
